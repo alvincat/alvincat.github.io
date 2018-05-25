@@ -65,17 +65,15 @@ menu_icons:
   enable: true
   #KeyMapsToMenuItemKey: NameOfTheIconFromFontAwesome
   home: home
-  about: user
   categories: th
-  schedule: calendar
   tags: tags
   archives: archive
-  sitemap: sitemap
-  commonweal: heartbeat
   photo: photo
   resume: id-card
-  
-
+  about: user
+  commonweal: heartbeat
+  schedule: calendar
+  sitemap: sitemap
 # ---------------------------------------------------------------
 # Scheme Settings
 # ---------------------------------------------------------------
@@ -99,6 +97,7 @@ social:
   #LinkLabel:link
   GitHub: https://github.com/alvincat
   CSDN: https://blog.csdn.net/ljss321
+  Weibo: https://weibo.com/u/1989743752
 # Social Links Icons
 # Icon Mapping:
 #   Map a menu item to a specific FontAwesome icon name.
@@ -119,15 +118,12 @@ links_title: 友情链接
 links_layout: inline
 links:
   师弟的博客: http://xinrisanshao.github.io/
- 
- 
-  
 
 # Sidebar Avatar
 #in theme directory(source/images): /images/avatar.jpg
 #in site  directory(source/uploads): /uploads/avatar.jpg
 avatar: /images/avatar.jpg
-reward_comment: 分享知识，分享快乐！
+#reward_comment: 分享知识，分享快乐！
 # wechatpay: /images/wechatpay.jpg
 # alipay: /images/alipay.jpg
 
@@ -317,19 +313,19 @@ han: false
 #duoshuo_shortname:
 
 # Disqus
-disqus:
-  enable: false
-  shortname:
-  count: true
+# disqus:
+  # enable: false
+  # shortname:
+  # count: true
 
 # Hypercomments
 #hypercomments_id:
 
 # changyan
-changyan:
-  enable: false
-  appid:
-  appkey:
+# changyan:
+  # enable: false
+  # appid:
+  # appkey:
 
 # Support for youyan comments system.
 # You can get your uid from http://www.uyan.cc
@@ -359,7 +355,7 @@ jiathis: true
 #google_site_verification:
 
 # Google Analytics
-#google_analytics:
+google_analytics: UA-119862268-1
 
 # Yandex Webmaster tools verification setting
 # See: https://webmaster.yandex.ru/
@@ -402,45 +398,45 @@ jiathis: true
 
 # VKontakte API Support.
 # To get your AppID visit https://vk.com/editapp?act=create
-vkontakte_api:
-  enable: false
-  app_id:       #<app_id>
-  like:         true
-  comments:     true
-  num_of_posts: 10
+# vkontakte_api:
+  # enable: false
+  # app_id:       #<app_id>
+  # like:         true
+  # comments:     true
+  # num_of_posts: 10
 
 # Star rating support to each article.
 # To get your ID visit https://widgetpack.com
-rating:
-  enable: false
-  id:     #<app_id>
-  color:  fc6423
+# rating:
+  # enable: false
+  # id:     #<app_id>
+  # color:  fc6423
 
 
 # Show number of visitors to each article.
 # You can visit https://leancloud.cn get AppID and AppKey.
 leancloud_visitors:
   enable: false
-  app_id: #<app_id>
-  app_key: #<app_key>
+  app_id: #<oYoG9V0QG83IQCIHzzQYqstR-gzGzoHsz>
+  app_key: #<bfz6NDNWUF8Pw7UavV1bpdsL>
 
 # Show PV/UV of the website/page with busuanzi.
 # Get more information on http://ibruce.info/2015/04/04/busuanzi/
-busuanzi_count:
-  # count values only if the other configs are false
-  enable: false
-  # custom uv span for the whole site
-  site_uv: true
-  site_uv_header: <i class="fa fa-user"></i>
-  site_uv_footer:
-  # custom pv span for the whole site
-  site_pv: true
-  site_pv_header: <i class="fa fa-eye"></i>
-  site_pv_footer:
-  # custom pv span for one page only
-  page_pv: true
-  page_pv_header: <i class="fa fa-file-o"></i>
-  page_pv_footer:
+# busuanzi_count:
+  # # count values only if the other configs are false
+  # enable: false
+  # # custom uv span for the whole site
+  # site_uv: true
+  # site_uv_header: <i class="fa fa-user"></i>
+  # site_uv_footer:
+  # # custom pv span for the whole site
+  # site_pv: true
+  # site_pv_header: <i class="fa fa-eye"></i>
+  # site_pv_footer:
+  # # custom pv span for one page only
+  # page_pv: true
+  # page_pv_header: <i class="fa fa-file-o"></i>
+  # page_pv_footer:
 
 
 # Tencent analytics ID
@@ -451,7 +447,7 @@ busuanzi_count:
 
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
-baidu_push: true
+#baidu_push: true
 
 # Google Calendar
 # Share your recent schedule to others via calendar page
@@ -465,7 +461,7 @@ calendar:
   orderBy: startTime
   offsetMax: 24
   offsetMin: 4
-  timeZone:
+  timeZone: Asia/Shanghai
   showDeleted: false
   singleEvents: true
   maxResults: 250
