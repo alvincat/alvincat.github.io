@@ -1,6 +1,6 @@
 ﻿---
 title: "Hexo常见问题解决方法"
-date: 2018-05-24 19:21:30
+date: 2017-08-10 19:21:30
 description: "摘要：本文主要记录我自己在配置Hexo，写博客过程中遇到的问题，以及对应的解决方法。" 
 categories: ["Hexo"]
 tags: ["hexo problem"]

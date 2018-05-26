@@ -1,6 +1,6 @@
 ---
 title: "GithubPage与Hexo部署博客的方法"
-date: 2018-05-24 19:08:19
+date: 2017-08-10 19:08:19
 description: "博客摘要：本文主要将hexo生成的静态网页部署到Github Page中的方法。"
 categories: ["hexo"]
 tags: ["hexo", "部署博客"]

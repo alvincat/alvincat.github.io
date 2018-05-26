@@ -1,6 +1,6 @@
 ---
 title: "Hexo撰写博客"
-date: 2018-05-24 19:53:17
+date: 2017-08-10 19:53:17
 description: "博客摘要：本文讲解怎么使用Markdown语法书写能够适用Hexo系统的博客文章的方法。"
 categories: ["Hexo"]
 tags: ["Hexo", "Hexo撰写博客"]

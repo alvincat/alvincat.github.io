@@ -2,7 +2,7 @@
 title: "Hexo Quick Start"
 categories: ["hexo"]
 tags: ["hexo install", "hexo options"]
-date: 2018-05-24 17:16:26
+date: 2017-08-10 17:16:26
 layout: true
 comments: true
 top: 

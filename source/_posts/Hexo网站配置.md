@@ -1,6 +1,6 @@
 ﻿---
 title: "Hexo网站配置"
-date: 2018-05-24 17:25:30
+date: 2017-08-10 17:25:30
 description: "博客摘要：本文主要介绍Hexo博客中一些主要内容的配置方法。"
 categories: ["Hexo"]
 tags: ["Hexo page set", "Hexo"]

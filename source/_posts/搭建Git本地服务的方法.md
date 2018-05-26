@@ -1,6 +1,6 @@
 ---
 title: "搭建Git本地服务的方法"
-date: 2018-05-24 21:16:22
+date: 2018-05-20 21:16:22
 description: "博客摘要：本文简要的介绍了在本地搭建Git服务的方法，以及克隆本地Git仓库的方法。"
 categories: ["Git"]
 tags: ["Git", "搭建Git本地服务"]
