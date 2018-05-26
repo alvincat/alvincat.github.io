@@ -95,9 +95,12 @@ scheme: Pisces
   #LinkLabel: Link
 social:
   #LinkLabel:link
+  E-mail: mailto:alvincat01@gmail.com
+  QQ: http://wpa.qq.com/msgrd?v=3&uin=1586544700&site=qq&menu=yes
   GitHub: https://github.com/alvincat
-  CSDN: https://blog.csdn.net/ljss321
   Weibo: https://weibo.com/u/1989743752
+  CSDN: https://blog.csdn.net/ljss321
+  
 # Social Links Icons
 # Icon Mapping:
 #   Map a menu item to a specific FontAwesome icon name.
@@ -111,6 +114,8 @@ social_icons:
   CSDN: crosshairs
   #Twitter: twitter
   Weibo: weibo
+  E-mail: envelope
+  QQ: qq
 
 # Blog rolls
 links_title: 友情链接
