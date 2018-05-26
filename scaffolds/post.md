@@ -1,8 +1,10 @@
 ---
 title: {{ title }}
 date: {{ date }}
-top:
-categories: []
-tags: []
+description: ""
+categories: [""]
+tags: ["", "", ""]
 layout: true
+top:
+comments: true
 ---

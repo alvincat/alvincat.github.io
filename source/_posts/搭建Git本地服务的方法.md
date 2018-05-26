@@ -5,6 +5,7 @@ description: "博客摘要：本文简要的介绍了在本地搭建Git服务的
 categories: ["Git"]
 tags: ["Git", "搭建Git本地服务"]
 layout: true
+comments: true
 top: 
 ---
 

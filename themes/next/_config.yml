@@ -314,8 +314,8 @@ han: false
 
 # Disqus
 # disqus:
-  # enable: false
-  # shortname:
+  # enable: true
+  # shortname: alvincat-github-io
   # count: true
 
 # Hypercomments
@@ -343,7 +343,7 @@ livere_uid: MTAyMC8yOTk0Mi82NTA3
 ##  type: button
 
 # Share
-jiathis: true
+#jiathis: true
 # Warning: JiaThis does not support https.
 #add_this_id:
 
@@ -454,17 +454,17 @@ leancloud_visitors:
 #
 # API Documentation:
 # https://developers.google.com/google-apps/calendar/v3/reference/events/list
-calendar:
-  enable: false
-  calendar_id: <required>
-  api_key: <required>
-  orderBy: startTime
-  offsetMax: 24
-  offsetMin: 4
-  timeZone: Asia/Shanghai
-  showDeleted: false
-  singleEvents: true
-  maxResults: 250
+# calendar:
+  # enable: false
+  # calendar_id: <required>
+  # api_key: <required>
+  # orderBy: startTime
+  # offsetMax: 24
+  # offsetMin: 4
+  # timeZone: Asia/Shanghai
+  # showDeleted: false
+  # singleEvents: true
+  # maxResults: 250
 
 # Algolia Search
 algolia_search:
@@ -626,7 +626,6 @@ vendors:
   # https://github.com/ethantw/Han
   han:
 
-
 # Assets
 css: css
 js: js
@@ -635,10 +634,8 @@ images: images
 # Theme version
 version: 5.1.1
 
-
-
 # 文章末尾添加“本文结束”标记
-passage_end_tag:
+passage_end_tag: 
   enabled: true
 
   

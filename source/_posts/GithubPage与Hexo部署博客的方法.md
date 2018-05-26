@@ -5,6 +5,7 @@ description: "博客摘要：本文主要将hexo生成的静态网页部署到Gi
 categories: ["hexo"]
 tags: ["hexo", "部署博客"]
 layout: true
+comments: true
 top: 
 ---
 

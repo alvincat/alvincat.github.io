@@ -5,6 +5,7 @@ description: "博客摘要：本文的提供的主要内容是官方文档中没
 categories: ["Hugo"]
 tags: ["Github Page", "Hugo", "构建博客"]
 layout: true
+comments: true
 top: 
 ---
 
