@@ -7,6 +7,7 @@ tags: ["Github Page", "Hugo", "构建博客"]
 layout: true
 comments: true
 top: 
+copyright: true
 ---
 
 ## 侧边栏的修改

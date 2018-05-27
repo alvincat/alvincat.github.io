@@ -7,6 +7,7 @@ tags: ["Git", "搭建Git本地服务"]
 layout: true
 comments: true
 top: 
+copyright: true
 ---
 
 ## 安装Git及其相关设置

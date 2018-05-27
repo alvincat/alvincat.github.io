@@ -7,6 +7,7 @@ tags: ["hexo", "部署博客"]
 layout: true
 comments: true
 top: 
+copyright: true
 ---
 
 ## Github仓库准备
@@ -119,6 +120,7 @@ $ cd blog_fold
 
 #安装hexo命令行工具
 $ npm install -g hexo-cli
+$ npm install hexo
 $ npm install
 ```
 后面的步骤就和初始构建hexo博客系统一致。唯一不同之处在于，还原的Hexo系统已经有了初始的资源，不需要初始化，即不需要执行`hexo init`命令。

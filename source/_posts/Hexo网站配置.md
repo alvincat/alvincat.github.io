@@ -7,6 +7,7 @@ tags: ["Hexo page set", "Hexo"]
 layout: true
 comments: true
 top: 
+copyright: true
 ---
 
 在 Hexo 中有两份主要的配置文件，其名称都是 \_config.yml。 其中，一份位于站点根目录下，主要包含 Hexo 本身的配置；另一份位于`主题目录`下，这份配置由主题作者提供，主要用于配置主题相关的选项。

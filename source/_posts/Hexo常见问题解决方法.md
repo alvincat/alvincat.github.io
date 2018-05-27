@@ -7,6 +7,7 @@ tags: ["hexo problem"]
 layout: true
 comments: true
 top: 
+copyright: true
 ---
 
 ## 问题1 

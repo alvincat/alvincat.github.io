@@ -6,6 +6,7 @@ date: 2017-08-10 17:16:26
 layout: true
 comments: true
 top: 
+copyright: true
 ---
 
 摘要：本文内容摘自Hexo中文官网，主要内容为Hexo安装以及配置方法。若要转载，请尊重版权，注明来源。

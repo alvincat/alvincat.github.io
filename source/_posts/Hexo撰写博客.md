@@ -6,7 +6,8 @@ categories: ["Hexo"]
 tags: ["Hexo", "Hexo撰写博客"]
 layout: true
 comments: true
-top: 
+top: 10
+copyright: true
 ---
 
 ## Markdown文件头部格式
