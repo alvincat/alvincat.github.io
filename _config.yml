@@ -12,9 +12,10 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+#permalink的参数决定在public下生成文件的形式
 url: alvincat.github.io
 root: /
-permalink: :year-:month-:day-:title.html
+permalink: :year/:year-:month-:day-:title.html
 permalink_defaults:
 
 # Directory
