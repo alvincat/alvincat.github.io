@@ -1091,9 +1091,9 @@ X-Powered-By: HPHP
     <link href="alvincat.github.io/2017/2017-08-10-Hexo%E6%92%B0%E5%86%99%E5%8D%9A%E5%AE%A2.html"/>
     <id>alvincat.github.io/2017/2017-08-10-Hexo撰写博客.html</id>
     <published>2017-08-10T11:53:17.000Z</published>
-    <updated>2018-06-04T22:55:31.249Z</updated>
+    <updated>2018-06-04T23:33:17.508Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="Markdown文件头部格式"><a href="#Markdown文件头部格式" class="headerlink" title="Markdown文件头部格式"></a>Markdown文件头部格式</h2><p>　　要使一篇博客能够与博客系统的<code>标签</code>和 <code>分类</code>关联。必须在每篇博客对应的Markdown文件头部书写必要信息。格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &quot;&quot;		#文章标题</span><br><span class="line">date:                   #文件创建时间</span><br><span class="line">description:            #文章摘要</span><br><span class="line">categories: [&quot;&quot;]        #文章类别</span><br><span class="line">tags: [&quot;&quot;, &quot;&quot;]          #文章标签</span><br><span class="line">layout: true            #是否使用样式      </span><br><span class="line">comments: false         #是否添加文章评论</span><br><span class="line">top: 10			#置顶级别</span><br><span class="line">copyright: true         #是否添加版权信息</span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
+    <content type="html"><![CDATA[<h2 id="Markdown文件头部格式"><a href="#Markdown文件头部格式" class="headerlink" title="Markdown文件头部格式"></a>Markdown文件头部格式</h2><p>　　要使一篇博客能够与博客系统的<code>标签</code>和 <code>分类</code>关联。必须在每篇博客对应的Markdown文件头部书写必要信息。格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &quot;&quot;		#文章标题</span><br><span class="line">date:                   #文件创建时间,Hexo默认按照文件创建时间排序</span><br><span class="line">description:            #文章摘要</span><br><span class="line">categories: [&quot;&quot;]        #文章类别</span><br><span class="line">tags: [&quot;&quot;, &quot;&quot;]          #文章标签</span><br><span class="line">layout: true            #是否使用样式      </span><br><span class="line">comments: false         #是否添加文章评论</span><br><span class="line">top: 10			#置顶级别,数值越大，优先级越高</span><br><span class="line">copyright: true         #是否添加版权信息</span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
 <p>　　<strong>注意</strong>：属性冒号后必须要有一个空格，多个标签要使用方括号包围，以逗号分隔。例如本文的MarkDown文件头实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &quot;Hexo撰写博客&quot;</span><br><span class="line">date: 2017-08-10 19:53:17</span><br><span class="line">description: &quot;博客摘要：本文讲解怎么使用Markdown语法书写能够适用Hexo系统的博客文章的方法。&quot;</span><br><span class="line">categories: [&quot;Hexo&quot;]</span><br><span class="line">tags: [&quot;Hexo&quot;, &quot;Hexo撰写博客&quot;]</span><br><span class="line">layout: true</span><br><span class="line">comments: false</span><br><span class="line">top: 10</span><br><span class="line">copyright: true</span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
 <h2 id="书写博客摘要的方法"><a href="#书写博客摘要的方法" class="headerlink" title="书写博客摘要的方法"></a>书写博客摘要的方法</h2><h3 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a><code>方法1</code></h3><p>在Markdown源文件的头部信息中添加<code>description</code> 属性，然后将摘要内容用双引号(英文)包含即可。</p>
 <h3 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a><code>方法2</code></h3><p>　　除了使用方法1，也可以使用一下方法进行操作。首先，在MarkDown头部信息之后书写博客的摘要。然后在其后添加如下内容即可。注意以下内容的前后都要有个空行。</p>
@@ -1164,7 +1164,7 @@ X-Powered-By: HPHP
     <link href="alvincat.github.io/2017/2017-08-10-GithubPage%E4%B8%8EHexo%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%96%B9%E6%B3%95.html"/>
     <id>alvincat.github.io/2017/2017-08-10-GithubPage与Hexo部署博客的方法.html</id>
     <published>2017-08-10T11:08:19.000Z</published>
-    <updated>2018-06-04T20:53:13.655Z</updated>
+    <updated>2018-06-04T23:32:29.069Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Github仓库准备"><a href="#Github仓库准备" class="headerlink" title="Github仓库准备"></a>Github仓库准备</h2><ol>
 <li>创建仓库，<a href="http://your-github-username.github.io" target="_blank" rel="noopener">http://your-github-username.github.io</a></li>
@@ -1209,7 +1209,7 @@ X-Powered-By: HPHP
     
     </summary>
     
-      <category term="hexo" scheme="alvincat.github.io/categories/hexo/"/>
+      <category term="Hexo" scheme="alvincat.github.io/categories/Hexo/"/>
     
     
       <category term="hexo" scheme="alvincat.github.io/tags/hexo/"/>
@@ -1266,7 +1266,7 @@ X-Powered-By: HPHP
     <link href="alvincat.github.io/2017/2017-08-10-Hexo-Quick-Start-md.html"/>
     <id>alvincat.github.io/2017/2017-08-10-Hexo-Quick-Start-md.html</id>
     <published>2017-08-10T09:16:26.000Z</published>
-    <updated>2018-06-04T20:53:13.655Z</updated>
+    <updated>2018-06-04T23:32:41.941Z</updated>
     
     <content type="html"><![CDATA[<p>摘要：本文内容摘自Hexo中文官网，主要内容为Hexo安装以及配置方法。若要转载，请尊重版权，注明来源。</p>
 <a id="more"></a>
@@ -1498,7 +1498,7 @@ X-Powered-By: HPHP
     
     </summary>
     
-      <category term="hexo" scheme="alvincat.github.io/categories/hexo/"/>
+      <category term="Hexo" scheme="alvincat.github.io/categories/Hexo/"/>
     
     
       <category term="hexo install" scheme="alvincat.github.io/tags/hexo-install/"/>

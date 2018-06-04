@@ -1,189 +1,1469 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title><![CDATA[Hugo构建博客的小技巧]]></title>
-    <url>%2F2018%2F2018-05-24-Hugo%E6%9E%84%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7.html</url>
-    <content type="text"><![CDATA[侧边栏的修改本节主要说明与侧边栏修改有关的操作。 修改侧边栏的相对位置首先，官方文档提供的侧边栏标签创建过程如下： 在博客根目录下的data文件夹下新建Menu.toml文本文件。 然后将官方提供的文本复制到该文本中即可。官方提供的实例如下： 1234567891011[about] Name = &quot;About&quot; URL = &quot;/about&quot;[posts] Name = &quot;Posts&quot; Title = &quot;Show list of posts&quot; URL = &quot;/post&quot;[tags] Name = &quot;Tags&quot; Title = &quot;Show list of tags&quot; URL = &quot;/tags&quot; 而这种格式得到的页面往往不是我们想要的，要想改变这种情况，按以下方法处理即可。1234567891011[1] Name = &quot;Blogs Posts&quot; Title = &quot;Show list of posts&quot; URL = &quot;/post&quot; [2] Name = &quot;Blog Tags&quot; Title = &quot;Show list of tags&quot; URL = &quot;/tags&quot;[3] Name = &quot;About Me&quot; URL = &quot;/about&quot; 说明：按以上方式修改侧边栏标签，系统会根据标签的序号排序，序号越小，越靠前。因此，可以通过修改这些标签的顺序和编号来改变网页中的标签的排列顺序。 修改侧边栏的标题修改侧边栏的标签很容易。修改方法是：直接修改Menu.toml各个标签中的Name属性即可。 添加侧边栏标签针对hyde-y模板，可以添加topic ，keyword标签。此处以topic标签为例。首先在根目录的config.toml文件中添加以下内容。12[taxonomies] topic = &quot;categories&quot; 然后再Menu.toml添加对应的标签项(首先确定其名称和排列次序)。例如：1234[2] Name = &quot;Blog categories&quot; Title = &quot;Show list of categories&quot; URL = &quot;/categories&quot; 初始化md文件的头部信息使用Hugo构建文件时，一定要使用Hugo新建md文件，该文件一定要包含创建文件的时间信息。这个时间信息可以保证你在其他系统中构建网站是生成的网页能够和之前的顺序保持一致。 首先，在themes/hyde-y/archetypes目录下有一个default.md文件。该文件为hyde-y的默认初始化md文件头部信息的模板。其次，在博客根目录下的archetypes目录下，也有一个default.md文件。这是hugo新建md文件的默认模板。因此，可以将该文件更名，然后将hyde-y/archetypes目录下的文件复制到此处，然后进行修改。我修改后的文件如下：123456789---title: &quot;&#123;&#123; replace .Name &quot;-&quot; &quot; &quot; | title &#125;&#125;&quot;date: &#123;&#123; .Date &#125;&#125;draft: falseauthor: &quot;alvincat&quot;description: &quot;博客摘要：&quot;categories: [&quot;&quot;]tags: [&quot;&quot;, &quot;&quot;]--- 说明： title部分的格式在使用命令hugo new file_name.md时，直接将文件名(不包含后缀)导入到title字段。 data 部分会自动生成创建文件的时间。 draft部分若为true时，会将文件保存为草稿文件，因此默认为false 。 author 为发布博客的作者，会显示在博客标题下方。 description 为博客的摘要部分，是博客的简单说明，强烈建议填写。 categories 为博客的主题，该部分内容会呈现在网站的topic列表中。 tags为博客的标签，该内容会出现在博客标题的下方而且还会出现在网站的tags列表中。 修改浏览器标签的logo修改方法：用自己设计的logo图像(保存为favicon.png)替换替换主题hyde中的文件static/favicon.png即可。 hugo安装部署博客方法 hyde的安装和配置方法 hugo主题]]></content>
-      <categories>
-        <category>Hugo</category>
-      </categories>
-      <tags>
-        <tag>Github Page</tag>
-        <tag>Hugo</tag>
-        <tag>构建博客</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[搭建Git本地服务的方法]]></title>
-    <url>%2F2018%2F2018-05-20-%E6%90%AD%E5%BB%BAGit%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%96%B9%E6%B3%95.html</url>
-    <content type="text"><![CDATA[安装Git及其相关设置安装Git要想服务器提供Git托管代码服务或者使用Git托管代码，必须先安装Git软件。以下是主流系统安装Git的方法。 Debian系列(Debian,Ubuntu)Debian系列系统使用apt-get安装：1apt-get install git Redhat系列(Redhat, Fodara, CentOS)Redhat系列系统使用yum即可安装，命令如下：1yum install git-core Linux系统自定义安装一般使用系统自带的安装工具安装的Git多半不是最新版本。若要体验最新版的Git。需要自己下载最新的安装包并手动安装。手动安装的方法如下： 下载最新的Git软件包，假设为git-1.7.2.2.tar.gz。 然后编译并安装：12345tar -zxvf git-1.7.2.2.tar.gzcd git-1.7.2.2./configure prefixmakesudo make install Windows安装Gitwindows系统安装Git操作相对容易。在git官网下载与系统对应的版本(32位或64位)exe程序，安装即可。 创建管理Git仓库的git用户及其安全设置若要再Linux系统上提供Git代码托管服务，还需要一些额外的设置。设置内容如下： 创建git用户，专门用于管理Git管理的代码和登录 123su #切换为root权限adduser git #添加用户gitpasswd git #设置git用户登录密码 配置passwd文件，禁止git用户使用shell登录。使用vi打开/ect/passwd文件找到类似于git:x:1001:1001:,,,:/home/git:/bin/bash的行，修改为git:x:1001:1001:,,,:/home/git:/bin/bash-shell。这样git用户可以正常通过ssh的方式使用git，但是无法使用shell登录。 客户端生成RSA公钥客户端安装完Git后，需要生成RSA公钥，然后保存到服务端的公钥管理文件中。Git客户端机机器在安装完Git后，需要设置Git的配置文件。该设置相当于设置当前机器的唯一标识，用于Git服务器统一管理使用Git服务的用户。设置方法为输入如下命令(windows系统在Git bash中输入)：12git config --global user.name "your-name"git config --global user.email "your_email@xxx.com" 注意：git config命令中的--global参数，表示这台机器上的所有Git仓库都会使用这个配置。如果要在某个特定的项目中使用其他名字或者电邮，只要去掉 --global 选项重新配置即可，新的设定保存在当前项目的 .git/config 文件里。 Linux生成RSA公钥的方法 检查ssh key是否存在一般ssh key一般会放在当前用户目录下的.ssh目录下，名字为id_rsa.pub。若该目录下存在id_isa.pub文件，就不需要再创建了。否则，就需要手动创建。 生成ssh key在命令行下输入以下命令：1ssh-keygen -t rsa -C "your_email@xxx.com" 默认情况下，会在当前用户目录下生成id_ras和id_rsa.pub两个文件。 Windows生成RSA公钥的方法 在Git Bash中输入如下命令：ssh-keygen -t rsa -C &quot;your-email-address&quot; 然后会在目录c:\user\yourname\.ssh 目录下生成两个文件id_rsa和id_rsa.pub文件。 在服务端添加客户端RSA公钥1.打开服务端Git的RSA认证 123456vi /ect/ssh/sshd_config #打开sshd配置文件#取消一下几项的注释#RSAAuthentication yes#PubkeyAuthentication yes#AuthorizedKeysFile .ssh/authorized_keysservice sshd restart #重启sshd服务 2.将Git客户端生成SSH key复制到服务端机器上。 12345Linux系统scp -r id_rsa.pub example.git@192.168.20.1:/home/git/Windows用户pscp c:\user\yourname\.ssh\id_rsa.pub git@192.168.20.1:/home/git/ 3.然后将对应的SSH key添加到Git服务端的公钥管理文件中。Git服务端的公钥管理文件存放位置一般在/home/git/.ssh目录下，文件名为authorized_keys 。若服务端没有与之对应的目录和文件，可以手动创建对应的目录和文件。通过如下命令导入客户端的ssh key。 1cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys 在服务端部署git仓库直接在服务端部署在服务端执行以下命令即可：1234cd /home/gitmkdir example.gitcd example.gitgit --bare init 此时，就会在/home/git目录下生成一个example.git的代码托管文件夹。 在本体部署上传至服务端1.将现有仓库导出为裸仓库。假设当前仓库名为example。执行如下命令:1git clone --bare example example.git 2.然后将该仓库上传至服务器即可。假设服务器IP地址为：192.168.20.1 1scp -r example.git example.git@192.168.20.1:/home/git/ 在客户端克隆git仓库首先进入将要保存Git文件的文件夹，执行如下命令： 1git clone git@192.168.56.2:/home/git/sample.git 其中克隆Git仓库的地址可以是ssh协议地址：user_name@ip_address:file_path，可以是https协议地址：https://github.com/user_name/project_name，也可以是git://协议地址：git://github.com/schacon/grit.git 。]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-        <tag>搭建Git本地服务</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[线程同步方法]]></title>
-    <url>%2F2017%2F2017-09-19-%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E6%96%B9%E6%B3%95..html</url>
-    <content type="text"><![CDATA[Linux 线程同步的三种方法线程的最大特点是资源的共享性，但资源共享中的同步问题是多线程编程的难点。linux下提供了多种方式来处理线程同步，最常用的是互斥锁、条件变量和信号量。一、互斥锁(mutex)通过锁机制实现线程间的同步。 初始化锁。在Linux下，线程的互斥量数据类型是pthread_mutex_t。在使用前,要对它进行初始化。 静态分配：pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER; 动态分配：int pthread_mutex_init(pthread_mutex_t *mutex, const pthread_mutex_attr_t *mutexattr); 加锁。对共享资源的访问，要对互斥量进行加锁，如果互斥量已经上了锁，调用线程会阻塞，直到互斥量被解锁。 12int pthread_mutex_lock(pthread_mutex *mutex);int pthread_mutex_trylock(pthread_mutex_t *mutex); 解锁。在完成了对共享资源的访问后，要对互斥量进行解锁。1int pthread_mutex_unlock(pthread_mutex_t *mutex); 销毁锁。锁在是使用完成后，需要进行销毁以释放资源。1int pthread_mutex_destroy(pthread_mutex *mutex); 二、条件变量(cond)互斥锁不同，条件变量是用来等待而不是用来上锁的。条件变量用来自动阻塞一个线程，直到某特殊情况发生为止。通常条件变量和互斥锁同时使用。条件变量分为两部分: 条件和变量。条件本身是由互斥量保护的。线程在改变条件状态前先要锁住互斥量。条件变量使我们可以睡眠等待某种条件出现。条件变量是利用线程间共享的全局变量进行同步的一种机制，主要包括两个动作：一个线程等待”条件变量的条件成立”而挂起；另一个线程使”条件成立”（给出条件成立信号）。条件的检测是在互斥锁的保护下进行的。如果一个条件为假，一个线程自动阻塞，并释放等待状态改变的互斥锁。如果另一个线程改变了条件，它发信号给关联的条件变量，唤醒一个或多个等待它的线程，重新获得互斥锁，重新评价条件。如果两进程共享可读写的内存，条件变量可以被用来实现这两进程间的线程同步。 初始化条件变量。静态态初始化: 1pthread_cond_t cond = PTHREAD_COND_INITIALIER; 动态初始化: 1int pthread_cond_init(pthread_cond_t *cond, pthread_condattr_t *cond_attr); 等待条件成立。释放锁,同时阻塞等待条件变量为真才行。timewait()设置等待时间,仍未signal,返回ETIMEOUT(加锁保证只有一个线程wait) 12int pthread_cond_wait(pthread_cond_t *cond, pthread_mutex_t *mutex);int pthread_cond_timewait(pthread_cond_t *cond,pthread_mutex *mutex,const timespec *abstime); 激活条件变量。pthread_cond_signal,pthread_cond_broadcast（激活所有等待线程） 12int pthread_cond_signal(pthread_cond_t *cond);int pthread_cond_broadcast(pthread_cond_t *cond); //解除所有线程的阻塞 清除条件变量。无线程等待,否则返回EBUSY。 1int pthread_cond_destroy(pthread_cond_t *cond); 三、信号量(sem)如同进程一样，线程也可以通过信号量来实现通信，虽然是轻量级的。信号量函数的名字都以”sem_”打头。线程使用的基本信号量函数有四个。 信号量初始化。 1int sem_init (sem_t *sem , int pshared, unsigned int value); 这是对由sem指定的信号量进行初始化，设置好它的共享选项(linux 只支持为0，即表示它是当前进程的局部信号量)，然后给它一个初始值VALUE。 等待信号量。给信号量减1，然后等待直到信号量的值大于0。 1int sem_wait(sem_t *sem); 释放信号量。信号量值加1。并通知其他等待线程。1int sem_post(sem_t *sem); 销毁信号量。我们用完信号量后都它进行清理。归还占有的一切资源。 1int sem_destroy(sem_t *sem);]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>线程同步</tag>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[操作系统知识]]></title>
-    <url>%2F2017%2F2017-09-19-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9.html</url>
-    <content type="text"><![CDATA[进程管理1.进程与线程的区别 定义：线程是一个程序的独立执行单位。而线程是一个进程的一个子集。 访问数据段的方式：每个进程都会有其父进程数据段的一个拷贝；而线程可以直接访问所属进程的数据段。 通信方式：进程之间必须使用进程间通信的方式与其他进程通信。而线程可以直接与所属进程中的其他线程通信。 开销：进程具有相当大的开销；而线程几乎没有什么开销。 创建：创建新的进程需要复制父进程；而线程创建很简单。 控制：进程只能控制器子进程；而同一个进程中线程可以相互控制(kill，等待其他对等线程终止)。 改变：父进程的任何改变不会影响到子进程；任何主线程中的改变都会影响同一进程中的其他线程。 内存：进程运行在独立的内存空间；线程运行在一个共享的内存空间。 文件描述符：大部分的文件描述符无法再进程间共享；而线程共享文件描述符。 文件系统：进程之间不共享虚拟地址空间；而同一进程中的线程共享该进程的虚拟地址空间的整个内容。 信号：进程之间不共享信号；而线程之间共享信号。 控制方式：进程由操作系统控制；而线程由程序设计者控制； 独立性：进程是不独立的；而线程是独立的。 2.线程 线程独有的资源每个线程都有它自己的线程上下文(thread text)，包括一个唯一的线程ID、栈、栈指针、程序计数器、通用寄存器和条件码。所有运行在一个进程里的线程共享该进程的整个虚拟地址空间。 线程共享的资源进程的所有信息对该进程的所有线程都是共享的，包括可执行的程序文本，程序的全局变量和堆内存，栈以及文件描述符。 线程同步的方法互斥锁信号量条件变量常见问题 内核级线程和用户级线程的区别？ fork的原理？僵尸进程和孤儿进程的区别？怎样避免僵尸进程？ 3. 进程间通信(Inter-Process Communication)进程间通信是指两个进程或线程间传送数据或信号的技术或者方法。每个进程都有自己的一部分独立的系统资源，彼此是隔离的。为了能够使不同的进程互相访问资源并进行协调工作，就需要在进程之间进行通信。IPC的优点： 信息共享：多个进程之间可以共享文件。 提高相应速度： 模块化： 私有权分离： 进程间通信方式1. 信号信号是Unix/Linux系统在一定条件下生成的事件。信号是一种异步通信机制，进程不需要执行任何操作来等待信号的到达。信号异步通知接收信号的进程发生了某个事件，然后操作系统将会中断接收到信号的进程的执行，转而去执行相应的信号处理程序。 信号的特点： 可携带的信息极少。不适合需要经常携带数据的通信 不具备同步机制，类似于中断 2.信号量(semaphore) 信号量是一个计数器。信号量用于实现进程间的互斥和同步，而不是用于存储进程间通信数据。 信号量的特点： 信号量用于进程间同步，若要在进程间传递数据需要结合内存共享。 信号量基于操作系统的PV操作，程序对信号量的操作都是原子性的。 每次对信号量的PV操作不仅限于对信号量值得加1或减1，而且可以加减任意正整数。 支持信号量组。 说明 ：最简单的信号量是只能去0或1的变量，这是最常见的形式，叫做二值信号量(binary semaphore)。而可以取多个正整数的信号量被称为通用信号量。 3.(匿名)管道 管道，通常指无名管道，是UNIX系统中最古老的形式。例如：ls | wc -l 管道的特点： 它是半双工的(即数据只能在一个方向流动)，具有固定的读端和写端。 他只能用于具有亲缘关系的进程之间通信(父子进程或者兄弟进程)。 它可以看成一种特殊的文件，对于它的读写也可以使用普通的read()、write()等函数。但是它不是普通的文件，并不属于其他任何文件系统，并且只存在于内存中。 自身具备同步机制 说明：当一个管道建立时，它会创建两个文件描述符：fd[0]为读而打开，fd[1]为写而打开。 123#include &lt;stdio.h&gt;// a call to the pipe() function returns a pair of file descriptors. One of // // these descriptors is connected to the write end of the pipe, and the other // is connected to the read end.pipe(); 4.命名管道(FIFO, First In-First Out) FIFO，也称为命名管道，它是一种文件类型。 命名管道的特点： FIFO可以在无关的进程之间交换数据，与无名管道不同。 FIFO有路径名与之关联，它以一种特殊设备文件的形式存在于文件系统中。说明：FIFO的通信方式类似于在进程中使用文件来传输数据，只不过FIFO类型文件同时具有管道的特性。在数据读出时，FIFO管道中同时清除数据，并且是“先进先出”的。 相互之间没有关联的进程都可以打开(使用系统调用open())管道，然后进行数据读写操作。 自身具备同步机制 说明：12//create a FIFO and read,write as a nomal filemknod("myfifo", s_IFIFO | 0644, 0); 5.共享内存 共享内存(shared memory)是指两个或者多个进程共享一个给定的存储区。 共享内存的特点： 共享内存速度比较快，因为进程直接对内存进行存取 因为多个进程可以同时操作，因此需要同步 信号量和共享内存通常结合使用，信号量用来同步对共享资源的的访问。 6.消息队列 消息队列是消息的链接表，存放在内核中。一个消息队列中由一个标识符(即队列ID)来标识。 消息队列的特点 ： 消息队列是面向记录的，其中的消息具有特定的格式以及特定的优先级。 消息队列独立于发送和接收进程。进程终止时，消息队列及其内容不会被删除。 消息队列可以实现消息的随机查询，消息不一定要以先进先出的次序读取，也可以消息的类型读取。 具备同步机制 12345678910//connnetc to a queue or create it if it doesn't exist.// return the message queue ID on success, or -1 on failure.int msgget(key_t key, int msgflg);// the type key_t is actually just a long// The solution is to use the ftok() function which generates a key from two argumentskey_t ftok(const char *path, int id);//you want to connect to a queue, or create it if it doesn't existint msgget(key_t key, int msgflg); 7.套接字套接字(Socket)是由Berkeley在BSD系统中引入的一种基于连接的IPC，是对网络接口(硬件)和网络协议(软件)的抽象。套接字的特点： 既解决了无名管道只能在相关进程间单向通信的问题，又解决了网络上不同主机之间无法通信的问题。 该方式自身携带同步机制，不需要额外的方式来辅助实现同步。 随进程持续 8.内存映射9.文件10.文件描述符在C语言中，我们经常会使用fopen()，fclose()，fwrite()等文件操作函数。这些函数中都会有一个FIFE *。这实际上是有高级别函数实现的文件描述符，它们使用了诸如create(), open(), write(), close()等系统调用。文件描述符其实就是类似于stdio.h头文件中FILE *的一个整型数。例如stdin的文件描述符为“0”,stdout为“1”，stderror为“2”。任何一个文件都可以使用fopen()函数来获取它的文件描述符。 常见问题 Linux中怎样实现多线程?多线程之间有哪些同步方式？有什么区别？ 死锁常见问题 死锁？怎么检测？怎么预防？怎么避免？ UNIX环境中有哪些锁？各有什么区别？ 内存管理静态链接与动态链接静态链接的特点 静态链接方式中整个函数库在编译时都会被整合进目标代码中。因此编译后的执行程序不需要外部的函数库的支持。但是若其中某个函数库发生改变，需要重新编译程序。 代码更精简，不需要做版本检查。 程序分发时，文件个数少，因为所有函数都静态链接到源文件中了。程序中只包含编译需要的函数，而不需要整个库。 生成的可执行文件更大。 重复的库可能出现在多个进程中，造成资源浪费 动态链接库的特点 动态函数库在编译时并没有编译进目标代码中。当程序执行到对应的动态函数是才调用该函数库里对应的函数。因此，动态链接方式生成的可执行文件相对较小。 由于动态函数库没有在编译时整合到可执行程序中，而是在程序运行过程中动态的申请并调用，所以程序的运行环境中必须提供相应的库。 动态链接方式中，动态函数库的改变不会影响到可执行程序，因此动态链接方式便于程序升级。 某个程序在运行时要调用某个动态函数库函数时，OS首先检测对应的动态库是否已经被其他进程加载到内存中。若要使用到的库已经被加载到内存中，直接使用即可。若未被加载，才会被载入。这样做的优点就是节省内存空间。 若要升级某个软件，而该软件改变的部分在动态链接函数中，那只需要改变动态链接函数而不需要改变软件的其他部分。因此，升级方便。 常见问题 静态链接库和动态连接库的区别？各自的优缺点？ 静态链接库的特点动态链接库的特点： 设备管理常见问题 select,poll,epoll的区别？优缺点？ 工具使用GDB调试多进程的方法 单独调试子进程 子进程从本质上说也是一个进程，因此我们可以用通用的GDB调试方法来调试它。方法如下：首先我们先运行父进程，然后找到目标子进程的PID，再将其附加(attache)到GDB调试器上。 使用调试器选项follow-fork-mode gdb调试器的选项follow-fork-mode允许我们选择程序在执行fork系统调用后是继续调试父进程还是调试子进程。其方法如下：set follow-fork-mode mode 。其中，mode的可选值时parent和child，分别表示调试父进程和子进程。 GDB调试多线程的方法gdb有一组命令可辅助多线程程序的调试。下面仅列举出其中常用的一些： info threads 显示当前可调试的所有线程。gdb为每个线程分配一个ID，我们可以使用这个ID来操作对应的线程。ID前面有“*”号的线程是当前被调试的线程。 thread ID 调试目标ID指定的线程 set scheduler-locking [off|on|step] 调试多线程程序时，默认除了被调试的线程在执行外，其他线程也在执行。但有时候我们希望只让被调试的线程运行。这可以通过这个命令来实现。该命令设置scheduler-locking的值：off表示不锁定任何线程，这是默认值；on表示只有当前被调试的线程会继续执行；step表示在单步执行时，只有当前线程会执行。 Linux下怎样查看多线程中的资源占用情况使用strace， pstack strace：打印一个程序和它的子进程调用的每个系统调用的轨迹。用-static编译程序，能得到一个更清楚的轨迹，而不带有大量与共享库相关的输出。 pstack：显示每个进程的栈跟踪。pstack命令必须由相应进程的属主或 root 运行。可以使用 pstack 来确定进程挂起的位置。]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>进程</tag>
-        <tag>线程</tag>
-        <tag>进程间通信</tag>
-        <tag>IPC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[数据库知识]]></title>
-    <url>%2F2017%2F2017-09-19-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86.html</url>
-    <content type="text"><![CDATA[1索引和散列基本的索引类型有：顺序索引和散列索引。顺序索引：顺序索引是基于值的顺序排序。散列索引(hash index)：哈希索引是根据哈希函数计算关键字所属的散列桶的一种索引方法。 搜索码：用于在文件中查找记录的属性或属性集称为搜索码(search key)。 1.1顺序索引顺序索引按顺序存储搜索码的值，并将搜索码与包含该搜索码的记录关联起来。 索引文件中的记录自身可以按照某种排序顺序存储。一个文件可以有多个索引，分别对应不同的搜索码。 如果包含记录的文件按照某个搜索码指定的顺序排序，那么该搜索码对应的索引称为聚集索引(clustering index)。聚集索引也称为主索引(primary key)。 如果搜索码指定的顺序与文件中记录的物理顺序不同的索引称为非聚集索引(nonclustering index)或辅助索引(secondary index)。 1.2稠密索引和稀疏索引1.2.1 稠密索引和稀疏索引索引记录(index record)或索引项(index entry)由一个搜索码值和指向具有该搜索码值的一个或者多个记录的指针构成。 稠密索引：文件中的每一个搜索码值有一个索引记录。稀疏索引：只为搜索码的某些值建立索引记录。 1.2.2 多级索引1.2.4 辅助索引 辅助索引必须是稠密索引，对每个搜索码值都有一个索引项，而且对文件中的每个记录都有一个指针。 1.3 $B^+$树索引文件2常考知识点MySQL 主要引擎的区别MyISAM和InnoDB的区别 MyISAM是非事务安全型的，而InnoDB是事务安全型的； MyISAM锁的粒度是表级，而InnoDB支持行级锁； MyISAM支持全文类型索引，而InnoDB不支持全文索引； MyISAM相对简单，因此在效率上优于InnoDB，小型应用可以考虑使用MyIASM。 MyISAM表是以文件的形式保存。在跨平台的数据转移中使用MyISAM存储会省去不少麻烦。 InnoDB表比MyISAM表更安全，可以在保证数据不会丢失的情况下，切换非事务表到事务表。 MyISAM和InnoDB的应用 MyISAM管理非事务表。它提供高速存储和检索以及全文搜索能力。如果应用中需要执行大量的select查询，那么MyISAM是更好的选择。 InnoDB用于事务处理应用程序，具有众多特性，包括ACID事务支持。如果应用中需要执行大量的insert或update操作，则应该使用InnoDB，这样可以提高多用户并发操作的性能。 数据库范式 1NF：符合1NF关系中的每个属性都不可再分 2NF：在1NF基础上，消除了非主属性对于主码的部分函数依赖 3NF：在2NF的基础之上，消除了非主属性对主码的传递函数依赖。 消除传递依赖 BCNF：在 3NF 的基础上消除主属性对于主码的部分与传递函数依赖 4NF：要求把同一个表中多对多关系删除 5NF：从最终结构重新建立原始结构 范式中的几个依赖 函数依赖：若在一张表中，在属性（或属性组）X的值确定的情况下，必定能确定属性Y的值，那么就可以说Y函数依赖于X，写作 X → Y。 部分函数依赖：假如 Y 函数依赖于 X，但同时 Y 并不完全函数依赖于 X，那么我们就称 Y 部分函数依赖于 X，记作 X P→ Y。 完全函数依赖：在一张表中，若 X → Y，且对于 X 的任何一个真子集（假如属性组 X 包含超过一个属性的话），X ‘ → Y 不成立，那么我们称 Y 对于 X 完全函数依赖，记作 X F→ Y。 传递函数依赖：假如 Z 函数依赖于 Y，且 Y 函数依赖于 X （『Y 不包含于 X，且 X 不函数依赖于 Y』这个前提），那么我们就称 Z 传递函数依赖于 X ，记作 X T→ Z， 数据库范式解决的问题(https://www.zhihu.com/question/24696366) 数据冗余 插入异常 删除异常 修改异常 数据库中各种连接区别连接的类型：内连接(inner join)，外连接(outer join)和交叉连接(cross join) 内连接 等值连接：在连接条件中使用等于号(=)运算符，其查询结果中列出被连接表中的所有列，包括其中的重复列。 不等连接：在连接条件中使用除等于号之外运算符外连接 外连接分为左外连接，右外连接和全连接。 左外连接左外连接：返回左表中的所有行，如果左表中行在右表中没有匹配行，则结果中右表中的列返回空值 右外连接右外连接：返回右表中的所有行，如果右表中行在左表中没有匹配行，则结果中左表中的列返回空值。 全外连接全外连接：返回左表和右表中的所有行。当某行在另一表中没有匹配行，则另一表中的列返回空值。 交叉连接(笛卡尔积)交叉连接：没有where条件子句，它将会返回被连接的两个表的笛卡尔积，返回结果的行数等于两个表行数的乘积。有where子句，往往会先生成两个表行数乘积的数据表，然后才根据where条件从中选择。 ##事务 事务的特点(ACID) 原子性(Atomicity)：原子性是指事务包含的所有操作要么全部成功，要么全部失败然后回滚。 一致性(Consistency)：一致性是指事务必须使用数据库从一个一致性状态变换到另一个一致性状态，也就是说一个事务执行之前和执行之后都必须处于一致性状态。 隔离性(Isolation)：多个事务并发执行时，一个事务的执行不应影响其他事务的执行。 持久性(Durability)：一个事务一旦提交，它对数据库的修改应该永久保存在数据库中。即使数据库因故障而受到破坏，数据库也能够恢复(日志)。 事务的隔离级别 未提交读(read uncommitted)：在该隔离级别中，所有事务都可以看到其他未提交事务的结果。读取未提交的数据会导致脏读。 已提交读(read committed)：一个事务只能看到已经提交的事务所做的改变。被读取的数据可以被其他事务修改，因此可能导致不可重复读 。 可重复读(repeatable read): 该隔离级别是MySQL默认的隔离级别 。它确保同一事务的多个实例在并发读取数据时，会看到同样的数据行。但该级别可能导致幻读 。 串行化(serializable): 序列化是最高的隔离级别，他通过强制事务排序，使之不可能冲突，从而解决幻读问题。他是在每个读的数据行上加共享锁。在这个级别上，可能导致大量的超时现象和锁竞争。 4种隔离级别功能对比 隔离级别 脏读 不可重复读 不可重复读 未提交读 可能 可能 可能 已提交读 不可能 可能 可能 可重复读 不可能 不可能 可能 串行化 不可能· 不可能 不可能 脏读，不可重复读，幻读 脏读：脏读是指在一个事务处理过程中读取了另一个未提交的事务的数据。例如事务T1更新了一行记录的内容，但是并没有提交所做的修改。事务T2读取了修改的数据，然后T1执行了回滚操作，取消了刚才修改操作。 不可重复读：在一个事务的两次查询之中数据不一致。原因可能是两次查询过程中一个新的事务更新了原有的数据。 幻读：在一个事务的两次查询中数据量的不一致。例如，一个事务T1通过一个查询语句选择了几行数据，而另外一个事务T2此后插入了几行数据，导致T1两次查询的结果不一致。索引 索引的优点 可以大大加快 数据的检索速度，这也是创建索引的最主要的原因。 通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性。 可以加速表和表之间的连接，特别是在实现数据的参考完整性方面特别有意义。 在使用分组和排序 子句进行数据检索时，同样可以显著减少查询中分组和排序的时间。 通过使用索引，可以在查询的过程中，使用优化隐藏器，提高系统的性能。 索引的缺点 创建索引和维护索引要耗费时间，这种时间随着数据量的增加而增加。 索引需要占物理空间，除了数据表占数据空间之外，每一个索引还要占一定的物理空间，如果要建立聚簇索引，那么需要的空间就会更大。 当对表中的数据进行增加、删除和修改的时候，索引也要动态的维护，这样就降低了数据的维护速度。 需要创建索引的情形 在经常需要搜索的列上，可以加快搜索的速度； 在作为主键的列上，需要强制该列的唯一性和组织表中数据的排列结构； 在经常用在连接的列上，这些列主要是一些外键，可以加快连接的速度； 在经常需要根据范围进行搜索的列上创建索引。因为索引已经排序，其指定的范围是连续的； 在经常需要排序的列上创建索引。因为索引已经排序，这样查询可以利用索引的排序，加快排序查询时间； 在经常使用在WHERE子句中的列上面创建索引，加快条件的判断速度。 不应创建索引的情形 对于在查询中很少使用或者参考的列不应该创建索引。这是因为，既然这些列很少使用到，因此有索引或者无索引，并不能提高查询速度。相反，由于增加了索引，反而降低了系统的维护速度和增大了空间需求。 只有很少数据值的列也不应该增加索引。这是因为，由于这些列的取值很少，例如人事表的性别列，在查询的结果中，结果集的数据行占了表中数据行的很大比例，即需要在表中搜索的数据行的比例很大。增加索引，并不能明显加快检索速度。 定义为text, image和bit数据类型的列不应该增加索引。这是因为，这些列的数据量要么相当大，要么取值很少。 当修改性能远远大于检索性能时，不应该创建索引。这是因为，修改性能和检索性能是互相矛盾的。当增加索引时，会提高检索性能，但是会降低修改性能。当减少索引时，会提高修改性能，降低检索性能。因此，当修改性能远远大于检索性能时，不应该创建索引。 索引类别 唯一索引：不允许其中任何两行具有相同索引值的索引。 主键索引：主键索引是唯一索引的特定类型。该索引要求主键中的每个值都唯一。 聚集索引：表中行的物理顺序与键值的逻辑（索引）顺序相同。一个表只能包含一个聚集索引。聚集索引相对于非聚集索引具有更快的数据访问速度。 非聚集索引：表中行的物理顺序与键值的逻辑顺序不匹配。 B-树和$B^+树$B-树B树的属性： B树是一种多路平衡搜索树，定义任意非叶子结点最多有M个孩子且M&gt;2; 根结点的儿子个数为[2, M]; 除根节点以外的非叶子结点的孩子个数为[M/2, M]； 每个结点最少存放$\lceil M/2 -1 \rceil$ 和至多M-1个关键字； 非叶子结点关键字个数 = 指向孩子结点的指针个数 - 1； 非叶子结点的关键字k[1],k[2],…,k[M-1]满足k[i] &lt; k[i+1]； 非叶子结点的指针p[1],p[2],…,p[M]满足条件：p[1]指向关键字小于k[1]的子树，而p[i]指向关键字在$(k[i-1], k[i])$范围(开区间)内的的子树。 所有叶子结点位于同一层。 B树的特性： 关键字集合分布在整颗树中； 任何一个关键字出现且只出现在一个结点中； 搜索有可能在非叶子结点结束； 其搜索性能等价于在关键字集合内做二分查找； 具有自动层次控制能力 $B^+树$$B^+$ 树是B树的变体，也是多叉平衡搜索树。但又有一些不同之处： 非叶子结点的子树指针与关键字个数相同； 非叶子结点的子树指针p[i]指向关键字值属于$[k[i], k[i+1]]$ 范围(闭区间)的子树； 为所有叶子结点增加一个链接指针； 所有关键字都在叶子结点出现； $B^+$树的特性： 所有关键字都出现在叶子结点的链表中(稠密索引)，且链表中的关键字是有序的； 不可能在非叶子结点命中； 非叶子结点相当于叶子结点的索引(稀疏索引)，叶子结点相当于存储关键字的数据层； 更适合作为文件索引系统。 数据库优化的策略]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>数据库索引</tag>
-        <tag>数据库范式</tag>
-        <tag>MySQL</tag>
-        <tag>事务</tag>
-        <tag>隔离级别</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[计算机网络知识]]></title>
-    <url>%2F2017%2F2017-09-19-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86.html</url>
-    <content type="text"><![CDATA[运输层 运输层提供应用进程间的逻辑通信。网络层为主机之间提供逻辑通信，而运输层为应用进程之间提供端到端的逻辑通信。运输层还要对收到的报文进行差错检测。运输层向高层用户屏蔽了下面网络的核心细节。 运输层两个主要协议为传输控制协议TCP(Transmission Control Protocal)和用户数据报协议UDP(User Datagram Protocal)。 按照OSI的术语，两个对等运输实体在通信时传送的数据单位叫做运输协议数据单元TPDU(Transport Protocol Data Unit)。而在TCP/IP体系中，TCP的的TPDU称为TCP报文段(segment)，UDP的TPDU称为UDP用户数据报。 使用TCP和UDP协议的应用和应用层协议 应用 应用层协议 运输层协议 电子邮件协议 SMTP TCP 远程终端接入 TELNET TCP 万维网 HTTP TCP 文件传输 FTP TCP 名字转换 DNS UDP IP地址配置 DHCP UDP 路由选择协议 RIP UDP 网络管理 SNMP UDP (1)服务器端使用的端口号 熟知端口号 程序 FTP SSH TELNET SMTP DNS TFTP HTTP POP3 IMAP HTTTPS 端口号 20,21 22 23 25 53 69 80 110 143 443 UDP(User Datagram Protocol)用户数据报协议UDP的主要特点： UDP是无连接；即发送数据之前不需要建立连接。因此减少了开销和发送数据之前的时延。 UDP使用尽最大努力的交付；即不保证可靠交付。 UDP是面向报文的；应用层交给UDP多长的报文，UDP在报文上添加UDP首部后就向下交付给IP层。而从IP层接受的UDP用户数据报，在去除UDP首部后，直接交付给应用层。 UDP没有拥塞控制；即使网络出现拥塞，源主机也不会降低发送速率。 UDP支持一对一，一对多，多对一和多对多的交互通信。 UDP的首部开销小，只有8字节。 注意: 一些使用UDP的实时应用，需要对UDP的不可靠传输进行改进，以减少数据的丢失。再此情况下，应用程序应该增加一些提高可靠性的措施，如采用前向纠错或重传已丢失的报文。 TCP(Transmission Control Protocol)传输控制协议TCP的特点： TCP是面向连接的运输层协议； 每一条TCP连接只能是点对点的； TCP提供可靠交付； TCP具有流量控制、拥塞控制； TCP提供全双工通信； TCP是面向字节流的； TCP报文段的首部格式TCP可靠传输原理停止等待协议连续ARQ(Automatic Repeat reQuest)协议GBN协议(GO Back N)TCP可靠传输的实现以字节为单位的滑动窗口TCP的流量控制利用滑动窗口实现流量控制TCP的拥塞(con)控制几种拥塞控制方法 慢开始 拥塞避免(加法增大) 快重传(收到3个重复的确认；乘法减小) 快恢复(加法增大) TCP的运输连接管理TCP的连接有三个阶段：连接建立，数据传送，连接释放。 TCP的连接建立TCP三次握手建立TCP连接过程如下图： 常见问题 TCP使用3次握手而不是2次的原因?主要原因是防止已失效的连接请求报文段突然又传送到服务端而产生错误。情形：“已失效的连接”是指客户端A发出的连接请求报文丢失或者该请求报文在网络中长时间滞留，而导致A为收到服务端的确认。于是A在重传一次连接请求，后来收到了确认，建立的连接。若A第一次滞留在网络中的请求在A后来的连接释放以后的某个时间到达服务器B。本来是一个已经失效的报文段。但B收到此失效的报文段后，误认为是A又发出一次新的连接请求。于是B就向A发出确认报文段，同意建立连接。假定不采用三次握手，那么只要B发出确认，新的连接就建立了。由于A并没有发出建立连接的请求，因此，不会理睬B的确认，也不会向B发送数据。但是B却以为新的运输连接已经建立，并一直等待A发来数据。B的资源就白白浪费了。 简洁答案：防止服务端收到客户端“已经失效的连接请求”报文段，再次建立连接，导致服务端资源浪费。 TCP 3次握手中Socket编程的函数调用过程？服务端： 服务端调用socket()，创建一个socket。若创建成功，则返回一个socket文件描述符。 调用bind() 调用listen() 调用accept() 调用recv()和调用send() 调用close() 客户端： 服务端调用socket() 调用connect() 调用recv()和调用send() 调用close() TCP建立连接时，若没有accept()，两端会出现什么情况，各自处于什么状态？ 当TCP建立连接时，第三个报文丢失，会出现什么情况？ TCP建立连接可以没有第三次确认报文吗？为什么？ TCP的连接释放 数据传输结束后，通信双方都可以释放连接。TCP连接释放的过程如下图： TCP的有限状态自动机TCP的连接建立，数据传送，连接释放过程中的各种状态，以及之间的转换，可以用如下的有限状态自动机来表示。转态之间的箭头表示可能发生的状态变迁。粗实线箭头表示对客户进程的正常变迁。粗虚线箭头表示对服务器进程的正常变迁。另一种细线箭头表示异常变迁。 常见问题 可以将被动关闭端的二次确认数据报合并为一个报文吗？为什么？ TIME_WAIT等待2MSL的原因？MSL的时间多长？ 当主动关闭端处于TIME_WAIT状态时，新建socket可以使用它使用的端口号吗？为什么？ 当主动关闭端提出断开请求后，被动关闭端的recv()函数返回值是什么？ 什么是半关闭状态？ HTTP(超文本传输协议，Hyper Text Transfer Protocol )简介：http是互联网基础协议之一，是网页开发必备知识。最新版本是http/2。 http/0.9http是基于TCP/IP协议的应用层协议。他不涉及数据包传输，主要规定客户端和服务器之间的通信格式，默认使用80端口。最早的版本是1991年发布的0.9版。该版本很简单，只有一个命令Get。1GET /index.html 上面的命令表示，TCP连接建立后，客户端向服务器请求(request)网页index.html。协议规定，服务器只能响应html格式的字符串，不能回应其他格式。服务器发送完毕，就关闭TCP连接。 http/1.0简介http/1.0内容大大增加。首先，任何格式的内容都可以发送，因此使得互联网不仅可以传输文字，还能传输图像，视频，二进制文件。其次，除了GET命令，还引入了POST命令和HEAD命令，丰富了浏览器与服务器的互动手段。再次，http请求和回应的格式发生变化。除了数据部分外，每次通信都必须包括头信息(http header)，用来描述一些元数据。其他的新增功能包括状态码(status code)，多字符集支持、多部分发送(multi-part type)、权限(authorization)、缓存(cache)、内容编码(content encoding)等。 请求格式123GET / HTTP/1.0User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)Accept: */* 请求格式包括以下内容：第一行：请求方式 协议版本第二行：user-agent客户端使用的软件/设备信息第三行：accept，可以接受的数据类型 回应格式1234567891011HTTP/1.0 200 OK Content-Type: text/plain; charset=utf-8Content-Encoding: gzipContent-Length: 137582Expires: Thu, 05 Dec 1997 16:00:00 GMTLast-Modified: Wed, 5 August 1996 15:55:28 GMTServer: Apache 0.84&lt;html&gt; &lt;body&gt;Hello World&lt;/body&gt;&lt;/html&gt; 回应信息包括：第一行：http版本 状态码(status code)第二行：内容类型(content type)，包括信息格式和字符集等信息。因为http 1.0 规定，头部信息必须是ASCII码，后面的信息可以是任何格式。因此，服 务器回应时，必须告诉客户端数据的格式是什么。这就是content-type的 作用。第三行：压缩方法(content-encoding)，数据采用的压缩方法。第四行：数据长度(content-length)，发送数据的长度。其他信息：包括失效时间，修改时间，服务器名称等 缺点 http/1.0主要缺点是每个TCP连接只能发送一个请求。发送数据完毕，连接就关闭。如果还要请求其它资源，就必须在次新建一个连接。 TCP连接的新建成本很高，因为需要客户端和服务器三次握手，并且开始时发送速率较慢。因此，http/1.0性能较差。 为了解决这个问题，有些浏览器在请求时，使用了非标准的connection字段。connection: keep-alive 这个字段要求服务器不要关闭TCP连接，以便其他请求复用。服务器同样回应这个字段。connection: keep-alive至此，一个可复用的TCP连接就建立了，直到客户端或服务器主动关闭连接。但是，这是非标准字段，不同的实现行为可以可能不一致，因此不能从根本上解决问题。 http1.1简介 首先，任何格式的内容都可以发送。这使得互联网不仅可以传输文字，还能传输图像、视频、二进制文件。这为互联网的大发展奠定了基础。 其次，除了GET命令，还引入了POST命令和HEAD命令，丰富了浏览器与服务器的互动手段。 再次，HTTP请求和回应的格式也变了。除了数据部分，每次通信都必须包括头信息（HTTP header），用来描述一些元数据。 其他的新增功能还包括状态码（status code）、多字符集支持、多部分发送（multi-part type）、权限（authorization）、缓存（cache）、内容编码（content encoding）等。 持久连接 1.1版本最大的变化，就是引入了持久连接，即TCP连接默认不关闭，可以被多个请求复用，减少建立和关闭连接的消耗和延迟。这样就可以不用声明字段：connection: keep-alive 。客户端和服务器发现对方一段时间没有活动，就可以主动关闭连接。不过，规范的做法是，客户端在最后一个请求时，发送connection:close ，明确要求服务器关闭TCP连接。目前，对于同一个域名，大多数浏览器允许同时建立6个持久连接。 管道机制 1.1版还引入了管道机制，即在同一个TCP连接里，客户端可以同时发送多个请求。而且允许客户端不用等待上一次请求结果返回，就可以发出下一次请求。但是服务器必须按照收到客户端请求的先后顺序依次回送响应结果，以保证客户端能够区分出每次请求的响应内容。这样就可以进一个改进http协议的效率。例如，客户端需要请求两个资源。以前的做法是，在同一个TCP连接里面，先发送A请求，然后等待服务器作出回应，收到后再发送B请求。管道机制则是允许浏览器同时发送A请求和B请求，但是服务器还是按照顺序，先回应A请求，完成后再回应B请求。 content-length字段 一个TCP连接现在可以传送多个回应，势必就要有一种机制，区分数据包是属于哪一个回应的。这是Content-length字段的作用，声明本次回应的数据长度。content-length:3495 。 上面的代码告诉浏览器，本次回应的长度是3495个字节，后面的字节就属于下一个回应了。 在1.0版中，content-length字段不是必需的，因为浏览器发现服务器关闭了TCP连接，就表明收到数据包已经全了。 分块传输编码使用content-length字段的前提条件是，服务器发送回应之前，必须知道回应的数据的长度。对于一些很耗时的动态操作来说，服务器要等到所有的操作完成，才能发送数据，显然这样的效率不高。更好的处理方法是，产生一块数据，就发送一块，采用“流模式”取代“缓存模式”(buffer)。 1.1版本规定可以不使用content-length字段，而使用“分块传输编码”(chunked transfer encoding)。只要请求或回应的头信息有Transfer-Encoding字段，就表明回应将由数量未定的数据块组成。1transfer-encoding:chunked 每个非空的数据块之前，会有一个16进制的数值，表示这个块的长度。最后是一个大小为0的块，就表示本次回应的数据发送完了。例如：1234567891011121314151617HTTP/1.1 200 OKContent-Type: text/plainTransfer-Encoding: chunked25This is the data in the first chunk1Cand this is the second one3con8sequence0 host字段http/1.1中增加了host请求头字段，浏览器可以使用主机名来明确表示要访问的服务器上的那个站点，就可以将请求发往同一台服务器的不同网站。从而服务端可以实现在一台web服务器上使用同一个IP地址和端口号来创建多个虚拟的web站点。 其他改进htttp1.1还提供了与身份认证、状态管理和cache缓存等机制相关的请求和响应头。 缺点虽然1.1版本允许复用TCP连接，但是同一个。TCP连接里，所有的数据通信是按次序进行的。服务器只有处理完一个回应，才会进行下一个回应。若是前面的回应特别慢，后面就会有许多请求排队。这称为“队头堵塞”(head of line blocking)。 http/22015年，http/2发布。 二进制协议http/1.1 版的头信息肯定是文本，数据体可以是文本，也可以是二进制。http/2则是一个彻底的二进制协议，头信息和数据体都是二进制，并且统称为“帧”：头信息帧和数据帧。 多工htttp/2 复用TCP连接，在一个连接里，客户端和浏览器都可以同时发送多个请求或回应，而且不用按照顺序一一对应，这样就避免了“对头堵塞”。举例来说，在一个TCP连接里面，服务器同时收到了A请求和B请求，于是先回应A请求，结果发现处理过程非常耗时，于是就发送A请求已经处理好的部分， 接着回应B请求，完成后，再发送A请求剩下的部分。 这样双向的、实时的通信，就叫做多工（Multiplexing）。 数据流 因为 HTTP/2 的数据包是不按顺序发送的，同一个连接里面连续的数据包，可能属于不同的回应。因此，必须要对数据包做标记，指出它属于哪个回应。 HTTP/2 将每个请求或回应的所有数据包，称为一个数据流（stream）。每个数据流都有一个独一无二的编号。数据包发送的时候，都必须标记数据流ID，用来区分它属于哪个数据流。另外还规定，客户端发出的数据流，ID一律为奇数，服务器发出的，ID为偶数。 数据流发送到一半的时候，客户端和服务器都可以发送信号（RST_STREAM帧），取消这个数据流。1.1版取消数据流的唯一方法，就是关闭TCP连接。这就是说，HTTP/2 可以取消某一次请求，同时保证TCP连接还打开着，可以被其他请求使用。 客户端还可以指定数据流的优先级。优先级越高，服务器就会越早回应。 头信息压缩http协议不带有状态，每次请求都必须附上所有信息。所以，请求的很多字段都是重复的，比如cookie和User Agent，一模一样的内容，每次请求都必须附带，这会浪费很多带宽，也影响速度。HTTP/2 对这一点做了优化，引入了头信息压缩机制（header compression）。一方面，头信息使用gzip或compress压缩后再发送；另一方面，客户端和服务器同时维护一张头信息表，所有字段都会存入这个表，生成一个索引号，以后就不发送同样字段了，只发送索引号，这样就提高速度了。 服务器推送 HTTP/2 允许服务器未经请求，主动向客户端发送资源，这叫做服务器推送（server push）。 常见场景是客户端请求一个网页，这个网页里面包含很多静态资源。正常情况下，客户端必须收到网页后，解析HTML源码，发现有静态资源，再发出静态资源请求。其实，服务器可以预期到客户端请求网页后，很可能会再请求静态资源，所以就主动把这些静态资源随着网页一起发给客户端了。 总结： http各个版本的改进 http 0.9：极其简单的http版本，只有Get命令。只能传送html格式的字符串。 http 1.0：对0.9版本进行改进，最关键的地方是可以发送任何格式的内容。而且除了get命令，还引入了post命令和head命令。请求格式也发生了变化，除了数据信息，还必须包含头信息(http header)。还新增了状态码，多字符集支持，缓存，内容编码等。 http 1.1：1.1版本最大的改进就是引入了持久连接机制。还使用了管道机制，即在同一个TCP连接中同时发送多个请求。然后，使用了分块传输编码机制tansfer-eccoding:chunked 。还新增了许多动词，例如put,patch,head等。 http 2.0：2.0是一个二进制的协议。是多工的协议，服务器不是按照顺序处理请求的。http/2中每个请求和回应的数据包称为数据流。每个数据流必须使用数据流ID进行标记。客户端使用奇数，服务端使用偶数。头部信息压缩。服务推送功能，对于请求网页中的静态数据，直接推送，无需请求。 http请求报文关键字段请求头包括以下内容： Accept: text/html,application/xhtml+xml,application/xml; Accept-Encoding: gzip, deflate Accept-Language: zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3 Cache-Control: max-age=0 Connection: keep-alive Cookie: Host: www.baidu.com User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:56.0) Gecko/20100101 Firefox/56.0 请求头部主要信息说明：Accept: 指定客户端能够接收的内容类型，内容类型中的先后次序表示客户端接收的先后次序。Accept-Encoding:指定客户端浏览器可以支持的web服务器返回内容压缩编码类型。Accept-Language: HTTP客户端浏览器用来展示返回信息所优先选择的语言。Cache-Control: Cache -Control指定请求和响应遵循的缓存机制。1234Cache-Control: private/public Public:响应会被缓存，并且在多用户间共享。 Private: 响应只能够作为私有的缓存，不能再用户间共享。Cache-Control: no-cache：不进行缓存 Cache-Control: max-age=x：缓存时间 以秒为单位 Cache-Control: must-revalidate：如果页面是过期的 则去服务器进行获取。 Connection: 表示是否需要持久连接。Cookie:HTTP请求发送时，会把保存在该请求域名下的所有cookie值一起发送给web服务器。Host: 浏览器要访问的服务器上的那个站点名称User-Agent: HTTP客户端运行的浏览器类型的详细信息 http响应报文关键字段Cache-Control: private Connection: Keep-Alive Content-Encoding: gzip Content-Type: text/html; charset=utf-8 Server: BWS/1.1 Set-Cookie: Transfer-Encoding: chunked X-Powered-By: HPHP 响应头信息 详细说明：Cache-Control: Cache -Control指定请求和响应遵循的缓存机制。Connection: 表示是否需要持久连接。content-encoding: 数据采用的压缩方法。content type: 内容类型，包括信息格式和字符集等信息。因为http 1.0规定，头部信息必须是ASCII码，后面的信息可以是任何格式。因此，服务器回应时，必须告诉客户端数据的格式是什么。这就是content-type的作用。Server: 服务器名称Set-Cookie:Transfer-Encoding: chunkedX-Powered-By: 表示网站是用什么技术开发的其他信息：包括失效时间，修改时间等 get和post的区别 GET参数通过URL传递，POST放在Request body中。 GET在浏览器回退时无影响，而POST会再次提交请求。 GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。 GET请求在URL中传送的参数是有长度限制的，而POST没有 GET请求会被浏览器主动cache，而POST不会，除非手动设置。 GET产生的URL地址可以被Bookmark，而POST不可以。 GET请求只能进行url编码，而POST支持多种编码方式。 GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。 对参数的数据类型，GET只接受ASCII字符，而POST没有限制。 ​ 常用状态码及其含义123456789101112131xx：指示信息——表示请求已经接受，继续处理2xx：成功——表示请求已经被成功接收、理解、接受。3xx：重定向——要完成请求必须进行更进一步的操作4xx：客户端错误——请求有语法错误或请求无法实现5xx：服务器端错误——服务器未能实现合法的请求。常见状态代码、状态描述、说明：200 OK //客户端请求成功400 Bad Request //客户端请求有语法错误，不能被服务器所理解401 Unauthorized //请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用 403 Forbidden //服务器收到请求，但是拒绝提供服务404 Not Found //请求资源不存在，eg：输入了错误的URL500 Internal Server Error //服务器发生不可预期的错误503 Server Unavailable //服务器当前不能处理客户端的请求，一段时间后可能恢复正常 HTTPS产生背景http是不加密的通信，所有信息明文传输。具有以下风险： http传输的内容可能被窃听：非法获取内容 http传输的内容可能被篡改：修改通信内容 http传输的内容可能被冒充：非法冒充他人身份参与通信 因此，使用SSL/TLS协议是为了解决以上三个问题： 所有信息都是加密传播，防止窃听 具有校验机制，一旦被篡改，通信双方立刻发现 配备数字证书，防止身份被冒充 基本的运行过程SSL/TLS协议的基本思路：采用公钥加密算法，即客户端先向服务端索要公钥，然后用公钥加密信息，服务器收到密文后，用自己的私钥解密。 如何保证公钥不被篡改解决方法：将公钥放在数字证书中。只要证书是可信的，公钥就是可信的。 公钥加密计算量大，如何减少计算时间解决方法：每一次对话(session)，客户端和服务器端都生成一个”对话密钥”，用它来加密信息。由于“对话密钥”是对称加密，所以运算速度非常快，而服务器公钥只用于加密“对话密钥”本身，这样就减少了加密运算的消耗时间。 SSL协议的基本过程： 客户端向服务器端索要并验证公钥。 双方协商生成“对话密钥” 双方采用“对话密钥”进行加密通信。 握手阶段详细过程： 客户端向服务器发出加密通信请求(请求内容包括支持协议版本，客户端生成的随机数，支持的加密算法，支持的压缩算法) 服务器收到客户端请求后，向客户端发出回应。回应内容为：确认通信协议版本，服务器生成的随机数，确认加密算法，服务器证书。 客户端收到服务器回应后，首先验证服务器证书(是否是可信机构颁发，证书域名是否一致，证书是否过期)。若证书没有问题，客户端就会从证书中取出服务器的公钥。然后，向服务器发送确信信息(一个随机数pre-master key(使用服务器公钥加密)，编码改变通知，客户端握手结束通知)。 服务器收到客户端的第三个随机数pre-master key后，计算生成本次会话所用的“会话密钥”。最后向客户端发送确认信息(编码改变通知，服务器握手结束通知)。 至此，整个握手阶段全部结束。接下来，客户端和服务器进入加密通信，就完全使用普通的http协议，只不过用“回话密钥”加密传输内容。 说明 ： 对称加密 ：同一个密钥可以同时用作信息的加密和解密，这种加密方法称为对称加密，也称为单密钥加密。优点：算法公开、计算量小、加密速度快、加密效率高。缺点：如果一方的秘钥遭泄露，那么整个通信就会被破解。在对称加密算法中常用的算法有：DES，AES，IDEA。 非对称加密：非对称加密算法需要两个密钥：公开密钥（public key）和私有密钥（private key）。公开密钥与私有密钥是一对，如果用公开密钥对数据进行加密，只有用对应的私有密钥才能解密；如果用私有密钥对数据进行加密，那么只有用对应的公开密钥才能解密。因为加密和解密使用的是两个不同的密钥，所以这种算法叫作非对称加密算法。优点：其安全性更好。不需要在通信之前先同步秘钥。缺点：加密和解密花费时间长、速度慢，只适合对少量数据进行加密。非对称加密使用的主要算法：RSA、Elgamal、背包算法。 MD5，SHA MD5和SHA都是哈希(Hash)函数。MD5(Message Digest Algorithm)消息摘要算法。它们的特点如下： 都是不可逆的函数。不存在一个算法能够由哈希值到算出原始信息。 对原始信息的任何一点改变都会导致结果的哈希值巨大的改变。 运算代价相对较低 除非通过蛮力穷举，否则无法找到两段不同的信息而有相同的哈希值。]]></content>
-      <categories>
-        <category>计算机网络</category>
-      </categories>
-      <tags>
-        <tag>网络协议</tag>
-        <tag>TCP/IP</tag>
-        <tag>Http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[二叉搜索树]]></title>
-    <url>%2F2017%2F2017-09-19-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91.html</url>
-    <content type="text"><![CDATA[二叉搜索树二叉搜索树(二叉查找树/二叉排序树)(Binary search Tree)定义：一棵二叉树，若满足如下条件，即任何结点的键值一定大于其左子树中的每一个结点的值，并小于其右子树中的每一个结点的值。则该二叉树为二叉搜索树。二叉搜索树提供对数时间的插入和访问效率。 最小值：二叉搜索树中最左侧的结点，即为最小值。即沿根结点一直递归访问左子树，直到树的末端，最末端的结点即为所求。最大值：二叉搜索树中最右侧的结点，即为最大值。原理同上。插入操作: 插入新元素时,可从根结点开始,若新元素键值比当前结点的键值大,则进入当前结点的左子树;若新元素的键值比当前结点的键值大,则进入当前结点的右子树。如此递归，直到尾端，即为插入点。删除操作: 删除操作分为两种情况，情况如下： 若待删除结点A只有1个子结点，则直接将A的子结点连接至A结点的父节点，并将A结点删除即可。 若待删除结点A有两个子结点，则以右子树内的最小结点取代A结点即可。 平衡二叉搜索树(balanced binary search tree)定义：若一个二叉搜索树是平衡的，则该二叉树为平衡二叉搜索树。“平衡”的大致意义是没有任何一个结点过深。不同的平衡条件，具有不同的效率。根据平衡标准的不同，有AVL-tree,RB-Tree,AA-tree树。 自平衡二叉搜索树(AVL-tree,Adelson-Velskii-Landis tree)定义：若一棵二叉搜索树中，任何一个结点的左子树的高度与右子树的高度之差的绝对值小于等于1，则这颗二叉搜索树为自平衡二叉搜索树。 AVL-tree平衡调整当插入一个结点导致AVL树不平衡时。我们需要找到平衡状态被破坏的各个结点中最深的那个结点。我们将该结点记为X。 方法，根据插入点所处位置的结构特点分为如下4种情形： 插入结点位于X的左结点的左子树—左左 插入结点位于X的左结点的右子树—左右 插入结点位于X的右结点的左子树—右左 插入结点位于X的右结点的右子树—右右 说明： 情况1,4彼此对称，称为外侧(outside)插入，可以使用单旋转(single rotation)操作调整解决。 情况2,3彼此对称，称为内侧(inside)插入，可以使用双旋转(double rotation)操作调整解决。 单旋转(single rotation) 对于以上的情形1和情形4，可以使用单旋转实现平衡调整。如下图左-左的情形：调整过程：对于以X为头结点的子树，将XL结点连同其左子树上移，XL作为这棵子树的根结点；X结点(及其右子树)作为XL结点的右结点；XLR结点及其子树作为X结点的左子树。 如下图右-右情形：调整过程：对于以X为头结点的子树，将XR结点连同其右子树上移，XL作为这棵子树的根结点；X结点(连同其左子树)作为XR左子结点；XRL结点连同其子树作为X结点的右子树。 双旋转(double rotation)对于以上情形的2,3，可以使用双旋转实现平衡调整。例如下图所示的左-右情形： 调整过程：左右结构的情形分为两步完成。第1步：将XLR(连同其右子树)作为X结点的左子结点，XLR的左孩子(及其子树)作为XL结点的右孩子；XL结点(连同其子树)作为XLR结点的左孩子。第2步：经过第1部操作以后，得到类似于情形1的结构。在调整后的结构中，将X结点看做该子树的根结点。在此基础上，将当前XL结点(连同其左子树)作为该子树的根结点，当前XL结点的右孩子作为X结点的左孩子；X结点(连同其子树)作为当前XL结点的右孩子。 而对于下图的右-左情形，采用类似的调整方法：调整过程：右左结构的情形分为两步完成。第1步：将XRL结点(连同其左子树)作为X结点的右孩子，将XRL结点右孩子(及其子树)作为XR结点的左孩子；XR结点(连同其子树)作为XRL结点右孩子。第2步：经过第1部操作以后，得到类似于情形4的结构。在调整后的结构中，将X结点看做该子树的根结点。在此基础上，将当前XR结点(连同其右子树)作为该子树的根结点，当前XR结点的左孩子作为X结点的右孩子；X结点(连同其子树)作为XL结点的左孩子。 红黑树(RB-Tree,Red-Black Tree)红黑树是一棵平衡二叉查找树，其定义如下： 每个结点不是红色就是黑色； 根结点为黑色； 如果结点为红色，其子结点必须为黑色(父子结点不能同时为红)； 任一结点至NULL(树尾端)的任何路径，所含黑结点必须相同。 NULL结点为黑色调整条件：根据规则4，新结点必须为红色；根据规则3，新结点的父节点必须为黑色。当一个新结点根据二叉查找树的规则到达其插入点时，若未能符合上述条件时，就必须调整颜色并旋转树形。]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>二叉树</tag>
-        <tag>查找算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[树相关定义和基本操作]]></title>
-    <url>%2F2017%2F2017-09-19-%E6%A0%91%E7%9B%B8%E5%85%B3%E5%AE%9A%E4%B9%89%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html</url>
-    <content type="text"><![CDATA[树定义：树由结点和边构成。整棵树有一个最上端结点，称为根结点。相连结点中，在上者称为父节点(parent)，在下者称为子节点(child)。 无子结点的结点称为叶结点。 1 二叉树定义：若一棵树中，所有结点的叶结点最多只有两个，则这棵树为二叉树。 1.1 二叉树的基本操作 创建二叉树 释放二叉树的结点 二叉树的先序、中序、后序(递归、非递归)和层次遍历 根结点至某个结点的路径长度： 根结点至任何结点之间的路径所经过的变数，称为路径长度。 二叉树的深度：根结点至任一结点的路径长度即为该结点的深度。根结点的深度为0。 二叉树的高度：某个结点至其最深子结点的路径长度，称为该结点的高度。 二叉树的宽度：一棵树树中，各层结点个数的最大值即为数的宽度。 1.2 二叉树的扩展 线索二叉树(Thread Binary Tree) 二叉搜索树(二叉查找树/二叉排序树)(Binary search Tree) 定义：一棵二叉树，若满足如下条件，即任何结点的键值一定大于其左子树中的每一个结点的值，并小于其右子树中的每一个结点的值。则该二叉树为二叉搜索树。 平衡二叉搜索树(balanced binary search tree) 定义：若一棵二叉搜索树中，任何一个结点的左子树的高度与右子树的高度之差的绝对值小于等于1，则这颗二叉搜索树为平衡二叉搜索树。 自平衡二叉搜索树(AVL-tree,Adelson-Velskii-Landis tree) 红黑树(RB-Tree,Red-Black Tree) 哈夫曼树(Huffman Coding Tree) trie树 2 B树相关2.1 B树2.2 B-树2.3 B+树2.4 B*树]]></content>
-      <categories>
-        <category>数据结构</category>
-      </categories>
-      <tags>
-        <tag>二叉树</tag>
-        <tag>树</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[内省排序]]></title>
-    <url>%2F2017%2F2017-09-19-%E5%86%85%E7%9C%81%E6%8E%92%E5%BA%8F.html</url>
-    <content type="text"><![CDATA[STL sort内部实现STL sort主要是对Quick sort()进行优化。 快速排序代码如下：12345678910111213141516171819202122232425262728//quick_sortvoid quick_sort(int arr[], int le, int ri)&#123; int index = partition(int arr[], left, right); quick_sort(arr, le, index - 1); quick_sort(arr, index+1, right);&#125;int partition(int arr[], int left, int right)&#123; int i = left; int j = right + 1; int target = arr[left]; while (1)&#123; while (arr[++i] &lt; target) if (i == right) break; while (arr[--j] &gt; target) if (j == left) break; if (i &gt;= j) break; swap(arr[i], arr[j]); &#125; swap(arr[left], j); return j;&#125; 优化1：当枢轴选择不当时会造成分割产生一个空区间导致不当分割问题。解决方法通过三点中值法选取枢轴元素，避免不当分割问题。 STL sort由两部分构成：首先使用内省排序将原始元素调整成为多个接近有序的子序列，然后在使用final_insertion_sort函数将整个接近有序的序列调整成为完全有序的序列。1234567template&lt;class RandomAccessIterator&gt;inline void sort(RandomAccessIterator first, RandomAccessIterator&#123; last)&#123;if (first != last)&#123; __introsort_loop(first, last, value_type(first), _lg(last - fist) * 2); __final_insertion_sort(fist, last);&#125;&#125; ###内省式排序(Introspective sorting) _log()是用来控制分割恶化问题的。2 * _log()是最多允许分割层次。 优化2：当数据量较小时，使用插入排序的效率要优于快速排序。因为当数据量较小时，快速排序会因为产生较多的递归调用而影响效率。 优化3：当递归调用层次大于2*log(n)时，表明区间数据已基本有序，使用快速排序的效率就会下降为$n^2$ ，因此使用堆排序进行排序。因为堆排序的时间复杂度与初始序列是否有序无关。 final insertion sort思想：将一个待排序的序列划分成多个子序列，在将多个子序列变换为“几近排序但尚未完成”的状态，最后使用insertion sort将“几近排序但尚未完成”的子序列做最后一次完整的排序，其效率一般认为会比“将所有子序列彻底排序”更好。因为insertion sort在面对“几近排序”的序列时，效果更好。123456789template &lt;class RandomAccessInterator&gt;final_insertion_sort(RandomAccessInterator first, RandomAccessInterator last)&#123;if (last - first &gt; _stl_threshold)&#123;// &gt; 16 _insertion_sort(first, first + _stl_threshold); _unguarded_insertion_sort(first + stl_threshold, last);&#125;else _insertion_sort(first, last);&#125; 说明：数据个数小于16个时，直接调用插入排序。当数据个数大于16时，首先将最前面的16个元素进行插入排序，得到一个排序的结果。然后对后续元素调用_unguarded_linear_insert 。 使用unguard_linear_insert的原因：正常情况下，使用插入排序时，在内层循环中需要进行两次判断：即判断循环是否越界，判断相邻元素是否逆序。因为整个序列前面16个元素已经有序，所以最小值必定在内循环区间的最边缘，这样两个条件可以合二为一。对于大数据量的数据，可以大大减少判断次数。]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>优化算法</tag>
-        <tag>排序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[字符串匹配算法]]></title>
-    <url>%2F2017%2F2017-09-19-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95.html</url>
-    <content type="text"><![CDATA[字符串匹配算法(String Search Algorigthm)一点说明： 原串：即子串匹配过程中， 待查找的字符串； 搜索串：即用来匹配的特定的一个子串。 1 KMP算法 (The Knuth-Morris-Pratt Algorithm)优点：在暴力解法的基础上，减少匹配过程中查找字符串比较次数。 缺点：当待查找的字符串没有重复搜索串时，算法退化为暴力解法。 算法中的概念： 局部匹配表(partial match table):查找过程中的子串中真前缀和真后缀的最大公共长度。 字符串的真前缀(proper prefix)：例如 “S”, “Sn”, “Sna”, 和 “Snap” 都是 “Snape”的proper prefix。 字符串的真后缀(proper suffix)：例如“d”,“agrid”, “grid”, “rid”, “id”和 都是“Hagrid”的proper suffix。 计算局部匹配表(partial math table)局部匹配表有时也称为next数组。该表是由子串的内容决定的。计算过程如下(以下过程以字符串”abababca”为例)： 字符串长度为1时，字符串为”a”。因此对应表项为0。 字符串长度为2时，字符串为“ab”，proper prefix包含“a”；proper suffix包含“b”，因此对应表项为0。 字符串长度为3时，字符串为“aba”，proper prefix包含“a”, “ab”； proper suffix包含“a”,“ba”，因此对应表项为1。 字符串长度为4时，字符串为“abab”，proper prefix包含“a”, “ab”,“aba”；proper suffix包含“b”，“ab”，“bab”，因此对应表项为2。 字符串长度为5时，字符串为“ababa”，proper prefix包含“a”, “ab”,“aba”,“abab”；proper suffix包含“a”，“ba”，“aba”，“baba”，因此对应表项为3。 字符串长度为6时，字符串为“ababab”，proper prefix包含“a”, “ab”,“aba”,“abab”,“ababa”；proper suffix包含“b”，“ab”，“bab”，“abab”,，因此对应表项为3。 使用局部匹配表进行字符串匹配设局部匹配表为table。如果存在部分匹配值partial_match_length，而且table[partial_match_length] &gt; 1，则子串可以跳过的长度为：partial_match_length - table[partial_match_length - 1] 。例如： 第一次匹配情况，如下图所示：该匹配中部分匹配长度(partial_match_length)为1。而对应的值table[partial_match_length - 1]即table[0]等于0。因此我们不需要跳过任何字母。接下来的匹配情况如下图所示： 该匹配中部分匹配长度为(partial_match_length)为5。这个值对应的table[partial_match_length - 1](即table[4])值为3。这意味着partial_match_length - table[partial_match_length - 1](即5 - talbe[4]，即5-3，即2)。即子串向右移动2个字符。如图所示： 移动后的匹配情况如上图所示，匹配成功长度(partial_match_length)为3。对应的table[partial_match_length - 1](即table[2])值为1。意味着我们向后移动长度为：partial_match_length - table[partial_match_length - 1](即3 - table[2] = 3 - 1 = 2)。移动后的结果如图所示： 因子串尾部以超过原串长度，因此结束匹配。 2 BM算法 (Boyer-Moore Algorithm)1977年，德克萨斯大学的Robert S. Boyer教授和J Strother Moore教授发明了这种算法。因此取这两个人的名字而得。word中的查找功能就是使用该算法。 算法中的概念： 坏字符(bad character)：字符串匹配过程中，与搜索串不匹配的字符。 好后缀(good suffix): 即搜索串与原串尾部能够匹配的字符串。 坏字符实例，如下图： 好后缀实例，如下图： 比较规则：首先，将搜索串与原串对齐，从搜索串尾部从后往前比较。 坏字符移动规则: 后移位数 = 坏字符的位置 - 搜索词中的上一次出现位置。说明，若搜索串中不包含坏字符，则搜索串上一次出现位置为-1。若包含该字符，则为离坏字符位置最近的那个位置。 好后缀规则 :后移位数 = 好后缀的位置 - 搜索词中的上一次出现位置。好后缀位置以后缀最后一个位置为准。说明，若搜索串中不包含坏字符，则搜索串上一次出现位置为-1。例如： 如果字符串”ABCDAB”的后一个”AB”是”好后缀”。那么它的位置是5（从0开始计算，取最后的”B”的值），在”搜索词中的上一次出现位置”是1（第一个”B”的位置），所以后移 5 - 1 = 4位，前一个”AB”移到后一个”AB”的位置。 如果字符串”ABCDEF”的”EF”是好后缀，则”EF”的位置是5 ，上一次出现的位置是 -1（即未出现），所以后移 5 - (-1) = 6位，即整个字符串移到”F”的后一位。 注意： 以上两个规则的中的位置指的是搜索串中的位置。 当通过坏字符规则和好后缀移动规则得到的值不同时，取较大的值作为移动量。 下面以字符串为”HERE IS A SIMPLE EXAMPLE”，搜索词为”EXAMPLE”为例，进行说明： step1： 首先遇到坏字符，计算移动位置：6 - (-1) = 7.step2:遇到坏字符，计算移动位置：6 - 4 = 2. step3: 遇到好后缀，计算移动位置：6 - 0 = 6。 step4: 坏字符和好后缀的选择问题： 坏字符的结果：后后缀的结果： step5: 3 Sunday算法(Sunday Algorigthm)sunday算法是对BM算法的改进。改进之处：当匹配失败时，判断搜索串下次匹配位置的第一个字符是否与搜索串第一个字符是否相同。进而减少匹配次数。]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>字符串</tag>
-        <tag>字符串匹配</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hexo撰写博客]]></title>
-    <url>%2F2017%2F2017-08-10-Hexo%E6%92%B0%E5%86%99%E5%8D%9A%E5%AE%A2.html</url>
-    <content type="text"><![CDATA[Markdown文件头部格式 要使一篇博客能够与博客系统的标签和 分类关联。必须在每篇博客对应的Markdown文件头部书写必要信息。格式如下：1234567891011---title: &quot;&quot; #文章标题date: #文件创建时间description: #文章摘要categories: [&quot;&quot;] #文章类别tags: [&quot;&quot;, &quot;&quot;] #文章标签layout: true #是否使用样式 comments: false #是否添加文章评论top: 10 #置顶级别copyright: true #是否添加版权信息--- 注意：属性冒号后必须要有一个空格，多个标签要使用方括号包围，以逗号分隔。例如本文的MarkDown文件头实例如下：1234567891011---title: &quot;Hexo撰写博客&quot;date: 2017-08-10 19:53:17description: &quot;博客摘要：本文讲解怎么使用Markdown语法书写能够适用Hexo系统的博客文章的方法。&quot;categories: [&quot;Hexo&quot;]tags: [&quot;Hexo&quot;, &quot;Hexo撰写博客&quot;]layout: truecomments: falsetop: 10copyright: true--- 书写博客摘要的方法方法1在Markdown源文件的头部信息中添加description 属性，然后将摘要内容用双引号(英文)包含即可。 方法2 除了使用方法1，也可以使用一下方法进行操作。首先，在MarkDown头部信息之后书写博客的摘要。然后在其后添加如下内容即可。注意以下内容的前后都要有个空行。 1&lt;!-- more --&gt; #在博客摘要后，另起一行，输入本行中的内容即可 发布文章 除以上格式需要注意外，其他格式与普通的Markdown文件并无差别。但需要注意的是: Hexo中的Markdown文件中不能使用Tab，只能使用空格作为空白符 Hexo中在使用大花括号{时，要么使用网页中的转义，要么放在代码块中，否则会出错 若按上述格式编辑好文档，就可以发布并查看解析是否正确了。 发布方法：将编辑好的Markdown文件放置在Hexo根目录中的./source/_posts目录下即可。 本地测试 编写好的文档可以现在本地测试，解析正确无误后，再发布到github上，减少不必要的麻烦。操作步骤如下：123$ cd hexo-root-directory$ hexo generate(g)$ hexo server(s) 当打开本地Hexo-server后，即可看到Markdown在网页中的解析效果。若有一些偏差，可实时修改网页对应的Markdown文件。Markdown文件修改保存后，刷新网页即可看到修改后的效果，很方便，^__^。 上传至github 当本地调试无误后，即可上传至github。使用如下命令：12$ cd hexo-root-directory$ hexo g -d]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Hexo撰写博客</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hexo常见问题解决方法]]></title>
-    <url>%2F2017%2F2017-08-10-Hexo%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.html</url>
-    <content type="text"><![CDATA[问题1错误提示：FATAL can not read a block mapping entry;a multiline key may not be an implicit key at line 9,column 7:author: alvincat 原因：根目录下_config.yml的配置文件中，各个属性的属性值与属性右侧的冒号之间必须要有一个空格，否则就会出现以上错误。解决方法：查看_config.yml文件，检查各个属性冒号右侧有无空格与属性值分隔。 问题2错误提示：FATAL (unknown path) [Line 7, Column 533]Error: Unable to call now, which is undefined or falsey 原因：Markdown文件使用一些hexo特殊符号，导致Hexo对这些符号无法解析。这些符号主要是1&#123;&#123;&#125;&#125;，&#123;% %&#125; 解决方法：12将 &#123; &#125; 的大括号通过&amp;#123; &amp;#125; 进行转换 或者将&#123; &#125;及其中的内容包含在 ``` 代码中 问题3错误提示：ssh: Could not resolve hostname github.com: Name or service not known fatal: Could not read from remote repository. 原因：github的仓库使用ssh的连接方式，但是git未配置ssh连接密钥。 解决方法： 方法1：修改hexo对应仓库的clone连接方式为https 方法2：在本地git中创建和使用ssh，以ssh方式连接。制作方法参看git-ssh 配置和使用]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo problem</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[GithubPage与Hexo部署博客的方法]]></title>
-    <url>%2F2017%2F2017-08-10-GithubPage%E4%B8%8EHexo%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%96%B9%E6%B3%95.html</url>
-    <content type="text"><![CDATA[Github仓库准备 创建仓库，http://your-github-username.github.io 在第1步的仓库中创建两个分支，分别为master(默认分支)与Hexo。然后将Hexo分支设置为默认分支。 Hexo本地安装及测试Hexo本地安装1.安装node.js和Git。再次不在赘述。2.npm 安装 Hexo命令行工具。命令如下：1npm install -g hexo-cli 3.安装完Hexo后，执行如下命令： 12# 创建Hexo工作目录，并且在该目录下完成初始化工作。$ hexo init &lt;folder&gt; 执行完以上命令后，就会在指定目录下生成如下文件结构： 12345678910.├── node_modules├── scaffolds├── source| └── _posts└── themes| └── landscape├── _config.yml├── package.json└── package-lock.json 4.官方文档中说要接着执行以下命令： 12$ cd &lt;folder&gt;$ npm install 以上命令的目的是：更新hexo的工具包。 5.执行以下命令(在根目录下)安装Hexo本地服务器： 1$ npm install hexo-server --save 6.执行以下命令(在根目录下)安装Hexo Git部署工具： 1$ npm install hexo-deployer-git --save Hexo 本地构建博客及测试1.执行以下命令，生成静态网页： 12#或者使用`hexo g`hexo generate 说明 ：这一步执行成功后会在根目录下创建一个public文件夹，并在该目录下生成静态网站的所有数据。 2.执行以下命令，启动本地服务器： 12#或者使用`hexo s`hexo server 若以上命令没有错误，通过浏览器输入网址localhost:port (port 默认值为 4000，可在 _config.yml 设定)就可以在本地浏览Hexo生成的页面了。说明：通过以上步骤，就可以在本地测试博客的功能。若本地测试无误，就可以执行后续操作了。 Hexo和Github Page关联 修改_config.yml中的deploy参数，修改实例如下： 1234deploy: type: git repo: git@github.com:alvincat/alvincat.github.io.git branch: master 说明：此处使用的是ssh协议进行git通信。若您未配置ssh通信方式，请使用https协议传输(对应使用https格式的协议)。 2.然后，执行以下命令： 12#或者使用`hexo deploy`hexo d 说明：第2步的实际操作过程就是将博客根目录下的public目录中的所有文件推送到第1步指定的github仓库的指定分支中。若过程没有错误，就可以使用https://your-user-name.github.io访问生成的站点内容了。 Hexo博客源代码备份1.进入博客根目录下，执行以下命令： 1234git clone git@github.com:alvincat/alvincat.github.io.gitgit add -Agit commit -m "Fist commit"git push origin Hexo 若该过程不出错，博客源代码就会备份到hexo分支中。 博客内容还原当我们不小心删除了本地博客，或者想在其他设备上修改博客时，就可以使用我们已经备份好的博客源代码进行数据还原。还原方法如下：1.安装Git和node.js。2.然后再本地某个文件夹下执行如下命令，其中blog_fold为博客目录。1234567$ git clone git@github.com:alvincat/alvincat.github.io.git blog_fold$ cd blog_fold#安装hexo命令行工具$ npm install -g hexo-cli$ npm install hexo$ npm install 后面的步骤就和初始构建hexo博客系统一致。唯一不同之处在于，还原的Hexo系统已经有了初始的资源，不需要初始化，即不需要执行hexo init命令。]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>部署博客</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hexo网站配置]]></title>
-    <url>%2F2017%2F2017-08-10-Hexo%E7%BD%91%E7%AB%99%E9%85%8D%E7%BD%AE.html</url>
-    <content type="text"><![CDATA[在 Hexo 中有两份主要的配置文件，其名称都是 _config.yml。 其中，一份位于站点根目录下，主要包含 Hexo 本身的配置；另一份位于主题目录下，这份配置由主题作者提供，主要用于配置主题相关的选项。 为了描述方便，在以下说明中，将前者称为 站点配置文件， 后者称为主题配置文件。 更换主题安装NexT Hexo 安装主题的方式非常简单，只需要将主题文件拷贝至站点目录的 themes 目录下， 然后修改配置文件即可。具体到 NexT 来说，安装步骤如下。 下载主题 如果你熟悉 Git， 建议你使用 克隆最新版本 的方式，之后的更新可以通过 git pull 来快速更新， 而不用再次下载压缩包替换。 克隆最新版在终端窗口下，定位到 Hexo 站点目录下。使用 Git checkout 代码： 12$ cd your-hexo-site$ git clone https://github.com/iissnan/hexo-theme-next themes/next 启用主题​ 与所有 Hexo 主题启用的模式一样。当 克隆/下载 完成后，打开 站点配置文件，找到 theme 字段，并将其值更改为 next。1theme: next ​ 到此，NexT 主题安装完成。下一步我们将验证主题是否正确启用。在切换主题之后、验证之前，我们最好使用 hexo clean 来清除 Hexo 的缓存。 验证主题​ 首先启动 Hexo 本地站点，并开启调试模式（即加上 --debug），整个命令是 hexo s --debug。 在服务启动的过程，注意观察命令行输出是否有任何异常信息，如果你碰到问题，这些信息将帮助他人更好的定位错误。 当命令行输出中提示出：1INFO Hexo is running at http://0.0.0.0:4000/. Press Ctrl+C to stop. 此时即可使用浏览器访问 http://localhost:4000，检查站点是否正确运行。 主题设置其它设置请参照NexT文档进行设置。例如设置主题，语言，菜单，头像，昵称等内容。Next设置文档 若要使主页边栏中 分类 标签 关于 页面能够加载，需要进行以下设置。 创建文件夹(分类 标签 关于)1234$ cd your-hexo-site$ hexo new page categories$ hexo new page tags$ hexo new page about 上述操作其实是在hexo根目录中，./source目录下新建categories，tags， about文件夹。并在各个文件夹下新建一个index.md文件。 设置页面类型各个index.md的内容形如：123456---title: 标签date: 2017-08-01 10:20:57type: &quot;tags&quot;comments: false #禁用评论--- 其中type类型与index.md所在的文件夹的文件名一致。例如tags文件夹中的index.md的type属性为”tags”。 修改菜单在菜单中添加链接。编辑主题配置文件 ， 添加对应属性到 menu 中，如下:123456menu: home: / archives: /archives categories: /categories about: /about tags: /tags 至此，基本内容已经可以使用了。 参考文档：官方参考：NexT使用文档网上资源：hexo的next主题个性化教程：打造炫酷网站师弟的文档：github Pages + Hexo搭建个人博客（二） 提升篇]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Hexo page set</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hexo Quick Start]]></title>
-    <url>%2F2017%2F2017-08-10-Hexo-Quick-Start-md.html</url>
-    <content type="text"><![CDATA[摘要：本文内容摘自Hexo中文官网，主要内容为Hexo安装以及配置方法。若要转载，请尊重版权，注明来源。 什么是HexoHexo是一个简单快速高效的博客框架。Hexo使用 Markdown（或其他渲染引擎）解析文章，即可利用靓丽的主题生成静态网页。 安装安装前提安装 Hexo 相当简单。然而在安装前，您必须检查电脑中是否已安装下列应用程序： Git Node.js 安装Git Windows：下载并安装 Git Mac：使用 Homebrew, MacPorts ：brew install git;或下载 安装程序 安装。 Linux (Ubuntu, Debian)：sudo apt-get install git-core Linux (Fedora, Red Hat, CentOS)：sudo yum install git-core 安装Node.js 安装 Node.js 的最佳方式是使用nvm cURL:1$ curl https://raw.github.com/creationix/nvm/master/install.sh | sh Wget:1$ wget -qO- https://raw.github.com/creationix/nvm/master/install.sh | sh 安装完成后，重启终端并执行下列命令即可安装 Node.js。 1$ nvm install stable 或者您也可以下载 安装程序 来安装。 Windows 用户对于windows用户来说，建议使用安装程序进行安装。安装时，请勾选Add toPATH选项。另外，您也可以使用Git Bash，这是git for windows自带的一组程序，提供了Linux风格的shell，在该环境下，您可以直接用上面提到的命令来安装Node.js。打开它的方法很简单，在任意位置单击右键，选择“Git Bash Here”即可。由于Hexo的很多操作都涉及到命令行，您可以考虑始终使用Git Bash来进行操作。 安装 Hexo 所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。1$ npm install -g hexo-cli 建站 安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。123$ hexo init &lt;folder&gt; $ cd &lt;folder&gt;$ npm install 说明：为Hexo在本地的目录，windows可根据对应情况书写。第二条命令的目的是将新建的目录&lt;folder&gt;作为当前目录。第三部执行Hexo初始化操作，创建必要的文件。 新建完成后，指定文件夹的目录如下：12345678.├── _config.yml├── package.json├── scaffolds├── source| ├── _drafts| └── _posts└── themes _config.yml 网站的 配置 信息文件，您可以在此配置大部分的参数。 package.json 应用程序的信息。EJS, Stylus和 Markdown renderer已默认安装，您可以自由移除。123456789101112131415161718192021package.json&#123; &quot;name&quot;: &quot;hexo-site&quot;, &quot;version&quot;: &quot;0.0.0&quot;, &quot;private&quot;: true, &quot;hexo&quot;: &#123; &quot;version&quot;: &quot;&quot; &#125;, &quot;dependencies&quot;: &#123; &quot;hexo&quot;: &quot;^3.0.0&quot;, &quot;hexo-generator-archive&quot;: &quot;^0.1.0&quot;, &quot;hexo-generator-category&quot;: &quot;^0.1.0&quot;, &quot;hexo-generator-index&quot;: &quot;^0.1.0&quot;, &quot;hexo-generator-tag&quot;: &quot;^0.1.0&quot;, &quot;hexo-renderer-ejs&quot;: &quot;^0.1.0&quot;, &quot;hexo-renderer-stylus&quot;: &quot;^0.2.0&quot;, &quot;hexo-renderer-marked&quot;: &quot;^0.2.4&quot;, &quot;hexo-server&quot;: &quot;^0.1.2&quot; &#125;&#125; scaffolds模版 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。Hexo的模板是指在新建的Markdown文件中默认填充的内容。例如，如果您修改scaffold/post.md中的Front-matter内容，那么每次新建一篇文章时都会包含这个修改。 source资源文件夹是存放用户资源的地方。除 _posts 文件夹之外，开头命名为 _ (下划线)的文件 / 文件夹和隐藏的文件将会被忽略。Markdown 和 HTML 文件会被解析并放到 public 文件夹，而其他文件会被拷贝过去。 themes主题 文件夹。Hexo 会根据主题来生成静态页面。若想使用非默认主题，可以下载对应的主题，然后将对应的文件夹放在该目录下。 配置您可以在 _config.yml 中修改大部份的配置。 网站 参数 描述 title 网站标题 subtitle 网站副标题 description 网站描述 author 您的名字 language 网站使用的语言 timezone 网站时区。Hexo 默认使用您电脑的时区。时区列表。比如说：America/New_York, Japan, 和 UTC 。 其中，description主要用于SEO，告诉搜索引擎一个关于您站点的简单描述，通常建议在其中包含您网站的关键词。author参数用于主题显示文章的作者。 网址 参数 描述 默认值 url 网址 root 网站根目录 permalink 文章的 永久链接 格式 :year/:month/:day/:title/ permalink_defaults 永久链接中各部分的默认值 网站存放在子目录 如果您的网站存放在子目录中，例如 http://yoursite.com/blog，则请将您的 url 设为 http://yoursite.com/blog 并把 root 设为 /blog/。 其他设置请参考配置设置 生成文件使用 Hexo 生成静态文件快速而且简单。1$ hexo generate 监视文件变动Hexo 能够监视文件变动并立即重新生成静态文件，在生成时会比对文件的 SHA1 checksum，只有变动的文件才会写入。1$ hexo generate --watch 完成后部署您可执行下列的其中一个命令，让 Hexo 在生成完毕后自动部署网站，两个命令的作用是相同的。12$ hexo generate --deploy$ hexo deploy --generate 简写: 上面两个命令可以简写为12hexo g U+2212.dhexo d -g 搭建本地Hexo服务器Hexo-serverHexo 3.0 把服务器独立成了个别模块，您必须先安装 hexo-server 才能使用。 1$ npm install hexo-server --save 安装完成后，输入以下命令以启动服务器，您的网站会在 http://localhost:4000 下启动。在服务器启动期间，Hexo 会监视文件变动并自动更新，您无须重启服务器。 1$ hexo server 如果您想要更改端口，或是在执行时遇到了 EADDRINUSE 错误，可以在执行时使用 -p 选项指定其他端口，如下：1$ hexo server -p 5000 静态模式在静态模式下，服务器只处理 public 文件夹内的文件，而不会处理文件变动，在执行时，您应该先自行执行 hexo generate，此模式通常用于生产环境（production mode）下。1$ hexo server -s 自定义 IP服务器默认运行在 0.0.0.0，您可以覆盖默认的 IP 设置，如下：1$ hexo server -i 192.168.1.1 指定这个参数后，您就只能通过该IP才能访问站点。例如，对于一台使用无线网络的笔记本电脑，除了指向本机的127.0.0.1外，通常还有一个192.168.*.*的局域网IP，如果像上面那样使用-i参数，就不能用127.0.0.1来访问站点了。对于有公网IP的主机，如果您指定一个局域网IP作为-i参数的值，那么就无法通过公网来访问站点。 部署 Hexo 提供了快速方便的一键部署功能，让您只需一条命令就能将网站部署到服务器上。1$ hexo deploy 在开始之前，您必须先在 _config.yml 中修改参数，一个正确的部署配置中至少要有 type 参数，例如：12deploy: type: git 您可同时使用多个 deployer，Hexo 会依照顺序执行每个 deployer。12345deploy:- type: git repo:- type: heroku repo: 缩进 YAML依靠缩进来确定元素间的从属关系。因此，请确保每个deployer的缩进长度相同，并且使用空格缩进。 使用Git同步 安装 hexo-deployer-git。1$ npm install hexo-deployer-git --save 修改配置。12345deploy: type: git repo: &lt;repository url&gt; branch: [branch] message: [message] 参数 描述 repo 库(Repository)地址 branch 分支名称。如果您使用的是 GitHub 或 GitCafe 的话，程序会尝试自动检测。 message 自定义提交信息 1message自定义提交信息默认为 Site updated: &#123;&#123; now(&apos;YYYY-MM-DD HH:mm:ss&apos;) &#125;&#125;) 常用命令init1$ hexo init [folder] 新建一个网站。如果没有设置 folder ，Hexo 默认在目前的文件夹建立网站。 generate1$ hexo generate 生成静态文件。 选项 描述 -d, --deploy 文件生成后立即部署网站 -w, --watch 监视文件变动 该命令可以简写为1$ hexo g server1$ hexo server 启动服务器。默认情况下，访问网址为： http://localhost:4000/。 选项 描述 -p, --port 重设端口 -s, --static 只使用静态文件 -l, --log 启动日记记录，使用覆盖记录格式 该命令可以简写为：1$ hexo s deploy1$ hexo deploy 部署网站。 参数 描述 -g, --generate 部署之前预先生成静态文件 该命令可以简写为：1$ hexo d clean1$ hexo clean 清除缓存文件 (db.json) 和已生成的静态文件 (public)。在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。 version1$ hexo version 显示 Hexo 版本。 温馨提示： 当安装完node.js后，就可以使用npm命令。npm其实是同node.js一起安装的一个包管理工具。 当使用hexo命令时，必须当期目录切换至Hexo工程环境的根目录，即使用hexo init 命令创建的目录。 hexo-server开启服务时，支持对Markdown文件修改后实时刷新网页，更新结果。因此，不需要重启服务，即可展示修改后的效果。]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo install</tag>
-        <tag>hexo options</tag>
-      </tags>
-  </entry>
+<search> 
+  
+    
+    <entry>
+      <title><![CDATA[Hugo构建博客的小技巧]]></title>
+      <url>/2018/2018-05-24-Hugo%E6%9E%84%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7.html</url>
+      <content type="html"><![CDATA[<h2 id="侧边栏的修改"><a href="#侧边栏的修改" class="headerlink" title="侧边栏的修改"></a>侧边栏的修改</h2><p>本节主要说明与侧边栏修改有关的操作。</p>
+<h3 id="修改侧边栏的相对位置"><a href="#修改侧边栏的相对位置" class="headerlink" title="修改侧边栏的相对位置"></a>修改侧边栏的相对位置</h3><p>首先，官方文档提供的侧边栏标签创建过程如下：</p>
+<ol>
+<li>在博客根目录下的<code>data</code>文件夹下新建<code>Menu.toml</code>文本文件。</li>
+<li>然后将官方提供的文本复制到该文本中即可。<br>官方提供的实例如下：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[about]</span><br><span class="line">    Name = &quot;About&quot;</span><br><span class="line">    URL = &quot;/about&quot;</span><br><span class="line">[posts]</span><br><span class="line">    Name = &quot;Posts&quot;</span><br><span class="line">    Title = &quot;Show list of posts&quot;</span><br><span class="line">    URL = &quot;/post&quot;</span><br><span class="line">[tags]</span><br><span class="line">    Name = &quot;Tags&quot;</span><br><span class="line">    Title = &quot;Show list of tags&quot;</span><br><span class="line">    URL = &quot;/tags&quot;</span><br></pre></td></tr></table></figure>
+<p>而这种格式得到的页面往往不是我们想要的，要想改变这种情况，按以下方法处理即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[1]</span><br><span class="line">    Name = &quot;Blogs Posts&quot;</span><br><span class="line">    Title = &quot;Show list of posts&quot;</span><br><span class="line">    URL = &quot;/post&quot; </span><br><span class="line">[2]</span><br><span class="line">    Name = &quot;Blog Tags&quot;</span><br><span class="line">    Title = &quot;Show list of tags&quot;</span><br><span class="line">    URL = &quot;/tags&quot;</span><br><span class="line">[3]</span><br><span class="line">    Name = &quot;About Me&quot;</span><br><span class="line">    URL = &quot;/about&quot;</span><br></pre></td></tr></table></figure></p>
+<p>说明：按以上方式修改侧边栏标签，系统会根据标签的序号排序，序号越小，越靠前。因此，可以通过修改这些标签的顺序和编号来改变网页中的标签的排列顺序。</p>
+<h3 id="修改侧边栏的标题"><a href="#修改侧边栏的标题" class="headerlink" title="修改侧边栏的标题"></a>修改侧边栏的标题</h3><p>修改侧边栏的标签很容易。修改方法是：直接修改<code>Menu.toml</code>各个标签中的<code>Name</code>属性即可。</p>
+<h3 id="添加侧边栏标签"><a href="#添加侧边栏标签" class="headerlink" title="添加侧边栏标签"></a>添加侧边栏标签</h3><p>针对hyde-y模板，可以添加<code>topic</code> ，<code>keyword</code>标签。此处以<code>topic</code>标签为例。<br>首先在根目录的<code>config.toml</code>文件中添加以下内容。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[taxonomies]</span><br><span class="line">    topic = &quot;categories&quot;</span><br></pre></td></tr></table></figure></p>
+<p>然后再<code>Menu.toml</code>添加对应的标签项(首先确定其名称和排列次序)。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[2]</span><br><span class="line">    Name = &quot;Blog categories&quot;</span><br><span class="line">    Title = &quot;Show list of categories&quot;</span><br><span class="line">    URL = &quot;/categories&quot;</span><br></pre></td></tr></table></figure></p>
+<h2 id="初始化md文件的头部信息"><a href="#初始化md文件的头部信息" class="headerlink" title="初始化md文件的头部信息"></a>初始化md文件的头部信息</h2><p>使用Hugo构建文件时，一定要使用Hugo新建md文件，该文件一定要<strong>包含创建文件的时间信息</strong>。这个时间信息可以保证你在其他系统中构建网站是生成的网页能够和之前的顺序保持一致。</p>
+<p>首先，在<code>themes/hyde-y/archetypes</code>目录下有一个<code>default.md</code>文件。该文件为<code>hyde-y</code>的默认初始化md文件头部信息的模板。<br>其次，在博客根目录下的<code>archetypes</code>目录下，也有一个<code>default.md</code>文件。这是hugo新建md文件的默认模板。因此，可以将该文件更名，然后将<code>hyde-y/archetypes</code>目录下的文件复制到此处，然后进行修改。我修改后的文件如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &quot;&#123;&#123; replace .Name &quot;-&quot; &quot; &quot; | title &#125;&#125;&quot;</span><br><span class="line">date: &#123;&#123; .Date &#125;&#125;</span><br><span class="line">draft: false</span><br><span class="line">author: &quot;alvincat&quot;</span><br><span class="line">description: &quot;博客摘要：&quot;</span><br><span class="line">categories: [&quot;&quot;]</span><br><span class="line">tags: [&quot;&quot;, &quot;&quot;]</span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
+<p>说明：</p>
+<ol>
+<li><code>title</code>部分的格式在使用命令<code>hugo new file_name.md</code>时，直接将文件名(不包含后缀)导入到<code>title</code>字段。</li>
+<li><code>data</code> 部分会自动生成创建文件的时间。</li>
+<li><code>draft</code>部分若为<code>true</code>时，会将文件保存为草稿文件，因此默认为<code>false</code> 。</li>
+<li><code>author</code> 为发布博客的作者，会显示在博客标题下方。</li>
+<li><code>description</code> 为博客的摘要部分，是博客的简单说明，强烈建议填写。</li>
+<li><code>categories</code> 为博客的主题，该部分内容会呈现在网站的<code>topic</code>列表中。</li>
+<li><code>tags</code>为博客的标签，该内容会出现在博客标题的下方而且还会出现在网站的<code>tags</code>列表中。</li>
+</ol>
+<h2 id="修改浏览器标签的logo"><a href="#修改浏览器标签的logo" class="headerlink" title="修改浏览器标签的logo"></a>修改浏览器标签的logo</h2><p>修改方法：用自己设计的logo图像(保存为favicon.png)替换替换主题<code>hyde</code>中的文件<code>static/favicon.png</code>即可。</p>
+<p><a href="http://www.gohugo.org/" target="_blank" rel="noopener">hugo安装部署博客方法</a></p>
+<p><a href="http://www.gohugo.org/theme/hyde-y/" target="_blank" rel="noopener">hyde的安装和配置方法</a></p>
+<p><a href="http://www.gohugo.org/theme/" target="_blank" rel="noopener">hugo主题</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Hugo </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Github Page </tag>
+            
+            <tag> Hugo </tag>
+            
+            <tag> 构建博客 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[搭建Git本地服务的方法]]></title>
+      <url>/2018/2018-05-20-%E6%90%AD%E5%BB%BAGit%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%96%B9%E6%B3%95.html</url>
+      <content type="html"><![CDATA[<h2 id="安装Git及其相关设置"><a href="#安装Git及其相关设置" class="headerlink" title="安装Git及其相关设置"></a>安装Git及其相关设置</h2><h3 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h3><p>要想服务器提供Git托管代码服务或者使用Git托管代码，必须先安装Git软件。以下是主流系统安装Git的方法。</p>
+<h4 id="Debian系列-Debian-Ubuntu"><a href="#Debian系列-Debian-Ubuntu" class="headerlink" title="Debian系列(Debian,Ubuntu)"></a>Debian系列(Debian,Ubuntu)</h4><p>Debian系列系统使用<code>apt-get</code>安装：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install git</span><br></pre></td></tr></table></figure></p>
+<h4 id="Redhat系列-Redhat-Fodara-CentOS"><a href="#Redhat系列-Redhat-Fodara-CentOS" class="headerlink" title="Redhat系列(Redhat, Fodara, CentOS)"></a>Redhat系列(Redhat, Fodara, CentOS)</h4><p>Redhat系列系统使用<code>yum</code>即可安装，命令如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install git-core</span><br></pre></td></tr></table></figure></p>
+<h4 id="Linux系统自定义安装"><a href="#Linux系统自定义安装" class="headerlink" title="Linux系统自定义安装"></a>Linux系统自定义安装</h4><p>一般使用系统自带的安装工具安装的Git多半不是最新版本。若要体验最新版的Git。需要自己下载最新的安装包并手动安装。手动安装的方法如下：</p>
+<ol>
+<li>下载最新的Git软件包，假设为git-1.7.2.2.tar.gz。</li>
+<li>然后编译并安装：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf git-1.7.2.2.tar.gz</span><br><span class="line">cd git-1.7.2.2</span><br><span class="line">./configure prefix</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="Windows安装Git"><a href="#Windows安装Git" class="headerlink" title="Windows安装Git"></a>Windows安装Git</h4><p>windows系统安装Git操作相对容易。在<a href="https://git-scm.com/" target="_blank" rel="noopener">git官网</a>下载与系统对应的版本(32位或64位)exe程序，安装即可。</p>
+<h3 id="创建管理Git仓库的git用户及其安全设置"><a href="#创建管理Git仓库的git用户及其安全设置" class="headerlink" title="创建管理Git仓库的git用户及其安全设置"></a>创建管理Git仓库的git用户及其安全设置</h3><p>若要再Linux系统上提供Git代码托管服务，还需要一些额外的设置。设置内容如下：</p>
+<ol>
+<li><p>创建git用户，专门用于管理Git管理的代码和登录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">su			#切换为root权限</span><br><span class="line">adduser git  #添加用户git</span><br><span class="line">passwd git   #设置git用户登录密码</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置passwd文件，禁止git用户使用shell登录。使用<code>vi</code>打开<code>/ect/passwd</code>文件找到类似于<code>git:x:1001:1001:,,,:/home/git:/bin/bash</code>的行，修改为<code>git:x:1001:1001:,,,:/home/git:/bin/bash-shell</code>。这样git用户可以正常通过ssh的方式使用git，但是无法使用shell登录。</p>
+</li>
+</ol>
+<h2 id="客户端生成RSA公钥"><a href="#客户端生成RSA公钥" class="headerlink" title="客户端生成RSA公钥"></a>客户端生成RSA公钥</h2><p>客户端安装完Git后，需要生成RSA公钥，然后保存到服务端的公钥管理文件中。<br>Git客户端机机器在安装完Git后，需要设置Git的配置文件。该设置相当于设置当前机器的唯一标识，用于Git服务器统一管理使用Git服务的用户。设置方法为输入如下命令(windows系统在Git bash中输入)：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name "your-name"</span><br><span class="line">git config --global user.email "your_email@xxx.com"</span><br></pre></td></tr></table></figure></p>
+<p>注意：git config命令中的<code>--global</code>参数，表示这台机器上的所有Git仓库都会使用这个配置。如果要在某个特定的项目中使用其他名字或者电邮，只要去掉 <code>--global</code> 选项重新配置即可，新的设定保存在当前项目的 <code>.git/config</code> 文件里。</p>
+<h3 id="Linux生成RSA公钥的方法"><a href="#Linux生成RSA公钥的方法" class="headerlink" title="Linux生成RSA公钥的方法"></a>Linux生成RSA公钥的方法</h3><ol>
+<li>检查ssh key是否存在<br>一般ssh key一般会放在当前用户目录下的<code>.ssh</code>目录下，名字为id_rsa.pub。若该目录下存在id_isa.pub文件，就不需要再创建了。否则，就需要手动创建。</li>
+<li>生成ssh key<br>在命令行下输入以下命令：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C "your_email@xxx.com"</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>默认情况下，会在当前用户目录下生成id_ras和id_rsa.pub两个文件。</p>
+<h3 id="Windows生成RSA公钥的方法"><a href="#Windows生成RSA公钥的方法" class="headerlink" title="Windows生成RSA公钥的方法"></a>Windows生成RSA公钥的方法</h3><ol>
+<li>在Git Bash中输入如下命令：<code>ssh-keygen -t rsa -C &quot;your-email-address&quot;</code></li>
+<li>然后会在目录<code>c:\user\yourname\.ssh</code> 目录下生成两个文件id_rsa和id_rsa.pub文件。</li>
+</ol>
+<h2 id="在服务端添加客户端RSA公钥"><a href="#在服务端添加客户端RSA公钥" class="headerlink" title="在服务端添加客户端RSA公钥"></a>在服务端添加客户端RSA公钥</h2><p>1.打开服务端Git的RSA认证</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vi /ect/ssh/sshd_config #打开sshd配置文件</span><br><span class="line"><span class="meta">#</span><span class="bash">取消一下几项的注释</span></span><br><span class="line"><span class="meta">#</span><span class="bash">RSAAuthentication yes</span></span><br><span class="line"><span class="meta">#</span><span class="bash">PubkeyAuthentication yes</span></span><br><span class="line"><span class="meta">#</span><span class="bash">AuthorizedKeysFile .ssh/authorized_keys</span></span><br><span class="line">service sshd restart  #重启sshd服务</span><br></pre></td></tr></table></figure>
+<p>2.将Git客户端生成SSH key复制到服务端机器上。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Linux系统</span><br><span class="line">scp -r id_rsa.pub example.git@192.168.20.1:/home/git/</span><br><span class="line"></span><br><span class="line">Windows用户</span><br><span class="line">pscp c:\user\yourname\.ssh\id_rsa.pub git@192.168.20.1:/home/git/</span><br></pre></td></tr></table></figure>
+<p>3.然后将对应的SSH key添加到Git服务端的公钥管理文件中。Git服务端的公钥管理文件存放位置一般在<code>/home/git/.ssh</code>目录下，文件名为<code>authorized_keys</code> 。若服务端没有与之对应的目录和文件，可以手动创建对应的目录和文件。通过如下命令导入客户端的ssh key。</p>
+   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+<h2 id="在服务端部署git仓库"><a href="#在服务端部署git仓库" class="headerlink" title="在服务端部署git仓库"></a>在服务端部署git仓库</h2><h3 id="直接在服务端部署"><a href="#直接在服务端部署" class="headerlink" title="直接在服务端部署"></a>直接在服务端部署</h3><p>在服务端执行以下命令即可：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /home/git</span><br><span class="line">mkdir example.git</span><br><span class="line">cd example.git</span><br><span class="line">git --bare init</span><br></pre></td></tr></table></figure></p>
+<p>此时，就会在<code>/home/git</code>目录下生成一个<code>example.git</code>的代码托管文件夹。</p>
+<h3 id="在本体部署上传至服务端"><a href="#在本体部署上传至服务端" class="headerlink" title="在本体部署上传至服务端"></a>在本体部署上传至服务端</h3><p>1.将现有仓库导出为裸仓库。假设当前仓库名为<code>example</code>。执行如下命令:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone --bare example example.git</span><br></pre></td></tr></table></figure></p>
+<p>2.然后将该仓库上传至服务器即可。假设服务器IP地址为：192.168.20.1</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r example.git example.git@192.168.20.1:/home/git/</span><br></pre></td></tr></table></figure>
+<h2 id="在客户端克隆git仓库"><a href="#在客户端克隆git仓库" class="headerlink" title="在客户端克隆git仓库"></a>在客户端克隆git仓库</h2><p>首先进入将要保存Git文件的文件夹，执行如下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git@192.168.56.2:/home/git/sample.git</span><br></pre></td></tr></table></figure>
+<p>其中克隆Git仓库的地址可以是ssh协议地址：<code>user_name@ip_address:file_path</code>，可以是https协议地址：<code>https://github.com/user_name/project_name</code>，也可以是git://协议地址：<code>git://github.com/schacon/grit.git</code> 。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Git </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Git </tag>
+            
+            <tag> 搭建Git本地服务 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[线程同步方法]]></title>
+      <url>/2017/2017-09-19-%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E6%96%B9%E6%B3%95..html</url>
+      <content type="html"><![CDATA[<h2 id="Linux-线程同步的三种方法"><a href="#Linux-线程同步的三种方法" class="headerlink" title="Linux 线程同步的三种方法"></a>Linux 线程同步的三种方法</h2><p>线程的最大特点是资源的共享性，但资源共享中的同步问题是多线程编程的难点。linux下提供了多种方式来处理线程同步，最常用的是互斥锁、条件变量和信号量。<br>一、互斥锁(mutex)<br>通过锁机制实现线程间的同步。</p>
+<ol>
+<li>初始化锁。在Linux下，线程的互斥量数据类型是pthread_mutex_t。在使用前,要对它进行初始化。</li>
+</ol>
+<p>静态分配：<code>pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;</code></p>
+<p>动态分配：<code>int pthread_mutex_init(pthread_mutex_t *mutex, const pthread_mutex_attr_t *mutexattr);</code></p>
+<ol>
+<li>加锁。对共享资源的访问，要对互斥量进行加锁，如果互斥量已经上了锁，调用线程会阻塞，直到互斥量被解锁。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_mutex_lock</span><span class="params">(pthread_mutex *mutex)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_mutex_trylock</span><span class="params">(<span class="keyword">pthread_mutex_t</span> *mutex)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>解锁。在完成了对共享资源的访问后，要对互斥量进行解锁。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_mutex_unlock</span><span class="params">(<span class="keyword">pthread_mutex_t</span> *mutex)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>销毁锁。锁在是使用完成后，需要进行销毁以释放资源。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_mutex_destroy</span><span class="params">(pthread_mutex *mutex)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>二、条件变量(cond)<br>互斥锁不同，条件变量是用来等待而不是用来上锁的。条件变量用来自动阻塞一个线程，直到某特殊情况发生为止。通常条件变量和互斥锁同时使用。条件变量分为两部分: 条件和变量。条件本身是由互斥量保护的。线程在改变条件状态前先要锁住互斥量。条件变量使我们可以睡眠等待某种条件出现。条件变量是利用线程间共享的全局变量进行同步的一种机制，主要包括两个动作：一个线程等待”条件变量的条件成立”而挂起；另一个线程使”条件成立”（给出条件成立信号）。条件的检测是在互斥锁的保护下进行的。如果一个条件为假，一个线程自动阻塞，并释放等待状态改变的互斥锁。如果另一个线程改变了条件，它发信号给关联的条件变量，唤醒一个或多个等待它的线程，重新获得互斥锁，重新评价条件。如果两进程共享可读写的内存，条件变量可以被用来实现这两进程间的线程同步。</p>
+<ol>
+<li>初始化条件变量。<br>静态态初始化:</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pthread_cond_t</span> cond = PTHREAD_COND_INITIALIER;</span><br></pre></td></tr></table></figure>
+<p>动态初始化:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_cond_init</span><span class="params">(<span class="keyword">pthread_cond_t</span> *cond, <span class="keyword">pthread_condattr_t</span> *cond_attr)</span></span>;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>等待条件成立。释放锁,同时阻塞等待条件变量为真才行。timewait()设置等待时间,仍未signal,返回ETIMEOUT(加锁保证只有一个线程wait)</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_cond_wait</span><span class="params">(<span class="keyword">pthread_cond_t</span> *cond, <span class="keyword">pthread_mutex_t</span> *mutex)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_cond_timewait</span><span class="params">(<span class="keyword">pthread_cond_t</span> *cond,pthread_mutex *mutex,<span class="keyword">const</span> timespec *abstime)</span></span>;</span><br></pre></td></tr></table></figure>
+<p> 激活条件变量。pthread_cond_signal,pthread_cond_broadcast（激活所有等待线程）</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_cond_signal</span><span class="params">(<span class="keyword">pthread_cond_t</span> *cond)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_cond_broadcast</span><span class="params">(<span class="keyword">pthread_cond_t</span> *cond)</span></span>; <span class="comment">//解除所有线程的阻塞</span></span><br></pre></td></tr></table></figure>
+<p>清除条件变量。无线程等待,否则返回EBUSY。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pthread_cond_destroy</span><span class="params">(<span class="keyword">pthread_cond_t</span> *cond)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>三、信号量(sem)<br>如同进程一样，线程也可以通过信号量来实现通信，虽然是轻量级的。信号量函数的名字都以”sem_”打头。线程使用的基本信号量函数有四个。</p>
+<ol>
+<li>信号量初始化。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sem_init</span> <span class="params">(<span class="keyword">sem_t</span> *sem , <span class="keyword">int</span> pshared, <span class="keyword">unsigned</span> <span class="keyword">int</span> value)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>这是对由sem指定的信号量进行初始化，设置好它的共享选项(linux 只支持为0，即表示它是当前进程的局部信号量)，然后给它一个初始值VALUE。</p>
+<ol>
+<li>等待信号量。给信号量减1，然后等待直到信号量的值大于0。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sem_wait</span><span class="params">(<span class="keyword">sem_t</span> *sem)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>释放信号量。信号量值加1。并通知其他等待线程。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sem_post</span><span class="params">(<span class="keyword">sem_t</span> *sem)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>销毁信号量。我们用完信号量后都它进行清理。归还占有的一切资源。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sem_destroy</span><span class="params">(<span class="keyword">sem_t</span> *sem)</span></span>;</span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> 操作系统 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 线程同步 </tag>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[操作系统知识]]></title>
+      <url>/2017/2017-09-19-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9.html</url>
+      <content type="html"><![CDATA[<h1 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h1><h2 id="1-进程与线程的区别"><a href="#1-进程与线程的区别" class="headerlink" title="1.进程与线程的区别"></a>1.进程与线程的区别</h2><ul>
+<li>定义：线程是一个程序的独立执行单位。而线程是一个进程的一个子集。</li>
+<li>访问数据段的方式：每个进程都会有其父进程数据段的一个拷贝；而线程可以直接访问所属进程的数据段。</li>
+<li>通信方式：进程之间必须使用进程间通信的方式与其他进程通信。而线程可以直接与所属进程中的其他线程通信。</li>
+<li>开销：进程具有相当大的开销；而线程几乎没有什么开销。</li>
+<li>创建：创建新的进程需要复制父进程；而线程创建很简单。</li>
+<li>控制：进程只能控制器子进程；而同一个进程中线程可以相互控制(kill，等待其他对等线程终止)。</li>
+<li>改变：父进程的任何改变不会影响到子进程；任何主线程中的改变都会影响同一进程中的其他线程。</li>
+<li>内存：进程运行在独立的内存空间；线程运行在一个共享的内存空间。</li>
+<li>文件描述符：大部分的文件描述符无法再进程间共享；而线程共享文件描述符。</li>
+<li>文件系统：进程之间不共享虚拟地址空间；而同一进程中的线程共享该进程的虚拟地址空间的整个内容。</li>
+<li>信号：进程之间不共享信号；而线程之间共享信号。</li>
+<li>控制方式：进程由操作系统控制；而线程由程序设计者控制；</li>
+<li>独立性：进程是不独立的；而线程是独立的。</li>
+</ul>
+<h2 id="2-线程"><a href="#2-线程" class="headerlink" title="2.线程"></a>2.线程</h2><ul>
+<li>线程独有的资源<br>每个线程都有它自己的线程上下文(thread text)，包括一个唯一的线程ID、栈、栈指针、程序计数器、通用寄存器和条件码。所有运行在一个进程里的线程共享该进程的整个虚拟地址空间。</li>
+<li>线程共享的资源<br>进程的所有信息对该进程的所有线程都是共享的，包括可执行的程序文本，程序的全局变量和堆内存，栈以及文件描述符。</li>
+</ul>
+<h3 id="线程同步的方法"><a href="#线程同步的方法" class="headerlink" title="线程同步的方法"></a>线程同步的方法</h3><h3 id="互斥锁"><a href="#互斥锁" class="headerlink" title="互斥锁"></a>互斥锁</h3><h3 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h3><h3 id="条件变量"><a href="#条件变量" class="headerlink" title="条件变量"></a>条件变量</h3><h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><ol>
+<li>内核级线程和用户级线程的区别？</li>
+<li>fork的原理？僵尸进程和孤儿进程的区别？怎样避免僵尸进程？</li>
+</ol>
+<h2 id="3-进程间通信-Inter-Process-Communication"><a href="#3-进程间通信-Inter-Process-Communication" class="headerlink" title="3. 进程间通信(Inter-Process Communication)"></a>3. 进程间通信(Inter-Process Communication)</h2><p>进程间通信是指两个进程或线程间传送数据或信号的技术或者方法。每个进程都有自己的一部分独立的系统资源，彼此是隔离的。为了能够使不同的进程互相访问资源并进行协调工作，就需要在进程之间进行通信。<br>IPC的优点：</p>
+<ul>
+<li>信息共享：多个进程之间可以共享文件。</li>
+<li>提高相应速度：</li>
+<li>模块化：</li>
+<li>私有权分离：</li>
+</ul>
+<h3 id="进程间通信方式"><a href="#进程间通信方式" class="headerlink" title="进程间通信方式"></a>进程间通信方式</h3><h4 id="1-信号"><a href="#1-信号" class="headerlink" title="1. 信号"></a>1. 信号</h4><p>信号是Unix/Linux系统在一定条件下生成的事件。信号是一种异步通信机制，进程不需要执行任何操作来等待信号的到达。信号异步通知接收信号的进程发生了某个事件，然后操作系统将会中断接收到信号的进程的执行，转而去执行相应的信号处理程序。</p>
+<p><strong>信号的特点</strong>：</p>
+<ul>
+<li>可携带的信息极少。不适合需要经常携带数据的通信</li>
+<li>不具备同步机制，类似于中断</li>
+</ul>
+<h4 id="2-信号量-semaphore"><a href="#2-信号量-semaphore" class="headerlink" title="2.信号量(semaphore)"></a>2.信号量(semaphore)</h4><p>   信号量是一个计数器。信号量用于实现进程间的互斥和同步，而不是用于存储进程间通信数据。
+　　</p>
+<p><strong>信号量的特点</strong>：</p>
+<ul>
+<li>信号量用于进程间同步，若要在进程间传递数据需要结合内存共享。</li>
+<li>信号量基于操作系统的PV操作，程序对信号量的操作都是原子性的。</li>
+<li>每次对信号量的PV操作不仅限于对信号量值得加1或减1，而且可以加减任意正整数。</li>
+<li>支持信号量组。</li>
+</ul>
+<p><strong>说明</strong> ：最简单的信号量是只能去0或1的变量，这是最常见的形式，叫做二值信号量(binary semaphore)。而可以取多个正整数的信号量被称为通用信号量。</p>
+<h4 id="3-匿名-管道"><a href="#3-匿名-管道" class="headerlink" title="3.(匿名)管道"></a>3.(匿名)管道</h4><p>   管道，通常指无名管道，是UNIX系统中最古老的形式。例如：<code>ls | wc -l</code> </p>
+<p>   管道的特点：</p>
+<ul>
+<li>它是半双工的(即数据只能在一个方向流动)，具有固定的读端和写端。</li>
+<li>他只能用于具有亲缘关系的进程之间通信(父子进程或者兄弟进程)。</li>
+<li>它可以看成一种特殊的文件，对于它的读写也可以使用普通的read()、write()等函数。但是它不是普通的文件，并不属于其他任何文件系统，并且只存在于内存中。</li>
+<li>自身具备同步机制</li>
+</ul>
+<p><strong>说明</strong>：当一个管道建立时，它会创建两个文件描述符：fd[0]为读而打开，fd[1]为写而打开。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="comment">// a call to the pipe() function returns a pair of file descriptors. One of // // these descriptors is connected to the write end of the pipe, and the other  // is connected to the read end.</span></span><br><span class="line">pipe();</span><br></pre></td></tr></table></figure>
+<h4 id="4-命名管道-FIFO-First-In-First-Out"><a href="#4-命名管道-FIFO-First-In-First-Out" class="headerlink" title="4.命名管道(FIFO, First In-First Out)"></a>4.命名管道(FIFO, First In-First Out)</h4><p>  FIFO，也称为命名管道，它是一种文件类型。</p>
+<p><strong>命名管道的特点</strong>：</p>
+<ul>
+<li>FIFO可以在无关的进程之间交换数据，与无名管道不同。</li>
+<li>FIFO有路径名与之关联，它以一种特殊设备文件的形式存在于文件系统中。<br>说明：FIFO的通信方式类似于在进程中使用文件来传输数据，只不过FIFO类型文件同时具有管道的特性。在数据读出时，FIFO管道中同时清除数据，并且是“先进先出”的。</li>
+<li>相互之间没有关联的进程都可以打开(使用系统调用open())管道，然后进行数据读写操作。</li>
+<li>自身具备同步机制</li>
+</ul>
+<p><strong>说明</strong>：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//create a FIFO and read,write as a nomal file</span></span><br><span class="line">mknod(<span class="string">"myfifo"</span>, s_IFIFO | <span class="number">0644</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure></p>
+<h4 id="5-共享内存"><a href="#5-共享内存" class="headerlink" title="5.共享内存"></a>5.共享内存</h4><p>  共享内存(shared memory)是指两个或者多个进程共享一个给定的存储区。</p>
+<p><strong>共享内存的特点</strong>：</p>
+<ul>
+<li>共享内存速度比较快，因为进程直接对内存进行存取</li>
+<li>因为多个进程可以同时操作，因此需要同步</li>
+<li>信号量和共享内存通常结合使用，信号量用来同步对共享资源的的访问。</li>
+</ul>
+<h4 id="6-消息队列"><a href="#6-消息队列" class="headerlink" title="6.消息队列"></a>6.消息队列</h4><p>  消息队列是消息的链接表，存放在内核中。一个消息队列中由一个标识符(即队列ID)来标识。</p>
+<p><strong>消息队列的特点</strong> ：</p>
+<ul>
+<li>消息队列是面向记录的，其中的消息具有特定的格式以及特定的优先级。</li>
+<li>消息队列独立于发送和接收进程。进程终止时，消息队列及其内容不会被删除。</li>
+<li>消息队列可以实现消息的随机查询，消息不一定要以先进先出的次序读取，也可以消息的类型读取。</li>
+<li>具备同步机制</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//connnetc to a queue or create it if it doesn't exist.</span></span><br><span class="line"><span class="comment">// return the message queue ID on success, or -1 on failure.</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">msgget</span><span class="params">(<span class="keyword">key_t</span> key, <span class="keyword">int</span> msgflg)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// the type key_t is actually just a long</span></span><br><span class="line"><span class="comment">// The solution is to use the ftok() function which generates a key from two arguments</span></span><br><span class="line"><span class="keyword">key_t</span> ftok(<span class="keyword">const</span> <span class="keyword">char</span> *path, <span class="keyword">int</span> id);</span><br><span class="line"></span><br><span class="line"><span class="comment">//you want to connect to a queue, or create it if it doesn't exist</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">msgget</span><span class="params">(<span class="keyword">key_t</span> key, <span class="keyword">int</span> msgflg)</span></span>;</span><br></pre></td></tr></table></figure>
+<h4 id="7-套接字"><a href="#7-套接字" class="headerlink" title="7.套接字"></a>7.套接字</h4><p>套接字(Socket)是由Berkeley在BSD系统中引入的一种基于连接的IPC，是对网络接口(硬件)和网络协议(软件)的抽象。<br>套接字的特点：</p>
+<ul>
+<li>既解决了无名管道只能在相关进程间单向通信的问题，又解决了网络上不同主机之间无法通信的问题。</li>
+<li>该方式自身携带同步机制，不需要额外的方式来辅助实现同步。</li>
+<li>随进程持续</li>
+</ul>
+<h4 id="8-内存映射"><a href="#8-内存映射" class="headerlink" title="8.内存映射"></a>8.内存映射</h4><h4 id="9-文件"><a href="#9-文件" class="headerlink" title="9.文件"></a>9.文件</h4><h4 id="10-文件描述符"><a href="#10-文件描述符" class="headerlink" title="10.文件描述符"></a>10.文件描述符</h4><p>在C语言中，我们经常会使用fopen()，fclose()，fwrite()等文件操作函数。这些函数中都会有一个<code>FIFE *</code>。这实际上是有高级别函数实现的文件描述符，它们使用了诸如create(), open(), write(), close()等系统调用。文件描述符其实就是类似于stdio.h头文件中<code>FILE *</code>的一个整型数。例如stdin的文件描述符为“0”,stdout为“1”，stderror为“2”。任何一个文件都可以使用fopen()函数来获取它的文件描述符。</p>
+<h3 id="常见问题-1"><a href="#常见问题-1" class="headerlink" title="常见问题"></a>常见问题</h3><ol>
+<li>Linux中怎样实现多线程?多线程之间有哪些同步方式？有什么区别？</li>
+</ol>
+<h1 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h1><h3 id="常见问题-2"><a href="#常见问题-2" class="headerlink" title="常见问题"></a>常见问题</h3><ol>
+<li>死锁？怎么检测？怎么预防？怎么避免？</li>
+<li>UNIX环境中有哪些锁？各有什么区别？</li>
+</ol>
+<h1 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h1><h2 id="静态链接与动态链接"><a href="#静态链接与动态链接" class="headerlink" title="静态链接与动态链接"></a>静态链接与动态链接</h2><p>静态链接的特点</p>
+<ol>
+<li>静态链接方式中整个函数库在编译时都会被整合进目标代码中。因此编译后的执行程序不需要外部的函数库的支持。但是若其中某个函数库发生改变，需要重新编译程序。</li>
+<li>代码更精简，不需要做版本检查。</li>
+<li>程序分发时，文件个数少，因为所有函数都静态链接到源文件中了。程序中只包含编译需要的函数，而不需要整个库。</li>
+<li>生成的可执行文件更大。</li>
+<li>重复的库可能出现在多个进程中，造成资源浪费</li>
+</ol>
+<p>动态链接库的特点</p>
+<ol>
+<li>动态函数库在编译时并没有编译进目标代码中。当程序执行到对应的动态函数是才调用该函数库里对应的函数。因此，动态链接方式生成的可执行文件相对较小。</li>
+<li>由于动态函数库没有在编译时整合到可执行程序中，而是在程序运行过程中动态的申请并调用，所以程序的运行环境中必须提供相应的库。</li>
+<li>动态链接方式中，动态函数库的改变不会影响到可执行程序，因此动态链接方式便于程序升级。</li>
+<li>某个程序在运行时要调用某个动态函数库函数时，OS首先检测对应的动态库是否已经被其他进程加载到内存中。若要使用到的库已经被加载到内存中，直接使用即可。若未被加载，才会被载入。这样做的优点就是节省内存空间。</li>
+<li>若要升级某个软件，而该软件改变的部分在动态链接函数中，那只需要改变动态链接函数而不需要改变软件的其他部分。因此，升级方便。</li>
+</ol>
+<h3 id="常见问题-3"><a href="#常见问题-3" class="headerlink" title="常见问题"></a>常见问题</h3><ol>
+<li><p>静态链接库和动态连接库的区别？各自的优缺点？</p>
+<h2 id="静态链接库的特点"><a href="#静态链接库的特点" class="headerlink" title="静态链接库的特点"></a>静态链接库的特点</h2><p>动态链接库的特点：</p>
+</li>
+</ol>
+<h1 id="设备管理"><a href="#设备管理" class="headerlink" title="设备管理"></a>设备管理</h1><h2 id="常见问题-4"><a href="#常见问题-4" class="headerlink" title="常见问题"></a>常见问题</h2><ol>
+<li>select,poll,epoll的区别？优缺点？</li>
+</ol>
+<h1 id="工具使用"><a href="#工具使用" class="headerlink" title="工具使用"></a>工具使用</h1><h2 id="GDB调试多进程的方法"><a href="#GDB调试多进程的方法" class="headerlink" title="GDB调试多进程的方法"></a>GDB调试多进程的方法</h2><ul>
+<li><p>单独调试子进程</p>
+<p>子进程从本质上说也是一个进程，因此我们可以用通用的GDB调试方法来调试它。方法如下：首先我们先运行父进程，然后找到目标子进程的PID，再将其附加(attache)到GDB调试器上。</p>
+</li>
+<li><p>使用调试器选项follow-fork-mode</p>
+<p>gdb调试器的选项follow-fork-mode允许我们选择程序在执行fork系统调用后是继续调试父进程还是调试子进程。其方法如下：<code>set follow-fork-mode mode</code> 。其中，mode的可选值时parent和child，分别表示调试父进程和子进程。</p>
+<h2 id="GDB调试多线程的方法"><a href="#GDB调试多线程的方法" class="headerlink" title="GDB调试多线程的方法"></a>GDB调试多线程的方法</h2><p>gdb有一组命令可辅助多线程程序的调试。下面仅列举出其中常用的一些：</p>
+</li>
+<li><p>info threads    显示当前可调试的所有线程。gdb为每个线程分配一个ID，我们可以使用这个ID来操作对应的线程。ID前面有“*”号的线程是当前被调试的线程。</p>
+</li>
+<li>thread ID    调试目标ID指定的线程</li>
+<li>set scheduler-locking [off|on|step]    调试多线程程序时，默认除了被调试的线程在执行外，其他线程也在执行。但有时候我们希望只让被调试的线程运行。这可以通过这个命令来实现。该命令设置scheduler-locking的值：off表示不锁定任何线程，这是默认值；on表示只有当前被调试的线程会继续执行；step表示在单步执行时，只有当前线程会执行。</li>
+</ul>
+<h2 id="Linux下怎样查看多线程中的资源占用情况"><a href="#Linux下怎样查看多线程中的资源占用情况" class="headerlink" title="Linux下怎样查看多线程中的资源占用情况"></a>Linux下怎样查看多线程中的资源占用情况</h2><h3 id="使用strace，-pstack"><a href="#使用strace，-pstack" class="headerlink" title="使用strace， pstack"></a>使用strace， pstack</h3><p>   strace：打印一个程序和它的子进程调用的每个系统调用的轨迹。用-static编译程序，能得到一个更清楚的轨迹，而不带有大量与共享库相关的输出。</p>
+<p>   pstack：显示每个进程的栈跟踪。pstack命令必须由相应进程的属主或 root 运行。可以使用 pstack 来确定进程挂起的位置。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 操作系统 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 进程 </tag>
+            
+            <tag> 线程 </tag>
+            
+            <tag> 进程间通信 </tag>
+            
+            <tag> IPC </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[数据库知识]]></title>
+      <url>/2017/2017-09-19-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86.html</url>
+      <content type="html"><![CDATA[<h1 id="1索引和散列"><a href="#1索引和散列" class="headerlink" title="1索引和散列"></a>1索引和散列</h1><p>基本的索引类型有：顺序索引和散列索引。<br>顺序索引：顺序索引是基于值的顺序排序。<br>散列索引(hash index)：哈希索引是根据哈希函数计算关键字所属的散列桶的一种索引方法。</p>
+<p>搜索码：用于在文件中查找记录的属性或属性集称为搜索码(search key)。</p>
+<h2 id="1-1顺序索引"><a href="#1-1顺序索引" class="headerlink" title="1.1顺序索引"></a>1.1顺序索引</h2><p>顺序索引按顺序存储搜索码的值，并将搜索码与包含该搜索码的记录关联起来。</p>
+<p>索引文件中的记录自身可以按照某种排序顺序存储。一个文件可以有多个索引，分别对应不同的搜索码。</p>
+<p>如果包含记录的文件按照某个搜索码指定的顺序排序，那么该搜索码对应的索引称为<strong>聚集索引</strong>(clustering index)。聚集索引也称为<strong>主索引</strong>(primary key)。</p>
+<p>如果搜索码指定的顺序与文件中记录的物理顺序不同的索引称为非聚集索引(nonclustering index)或辅助索引(secondary index)。</p>
+<h2 id="1-2稠密索引和稀疏索引"><a href="#1-2稠密索引和稀疏索引" class="headerlink" title="1.2稠密索引和稀疏索引"></a>1.2稠密索引和稀疏索引</h2><h3 id="1-2-1-稠密索引和稀疏索引"><a href="#1-2-1-稠密索引和稀疏索引" class="headerlink" title="1.2.1 稠密索引和稀疏索引"></a>1.2.1 稠密索引和稀疏索引</h3><p>索引记录(index record)或索引项(index entry)由一个搜索码值和指向具有该搜索码值的一个或者多个记录的指针构成。</p>
+<p><strong>稠密索引</strong>：文件中的每一个搜索码值有一个索引记录。<br><strong>稀疏索引</strong>：只为搜索码的某些值建立索引记录。</p>
+<h3 id="1-2-2-多级索引"><a href="#1-2-2-多级索引" class="headerlink" title="1.2.2 多级索引"></a>1.2.2 多级索引</h3><h3 id="1-2-4-辅助索引"><a href="#1-2-4-辅助索引" class="headerlink" title="1.2.4 辅助索引"></a>1.2.4 辅助索引</h3><p>　　辅助索引必须是稠密索引，对每个搜索码值都有一个索引项，而且对文件中的每个记录都有一个指针。</p>
+<h2 id="1-3-B-树索引文件"><a href="#1-3-B-树索引文件" class="headerlink" title="1.3 $B^+$树索引文件"></a>1.3 $B^+$树索引文件</h2><h1 id="2常考知识点"><a href="#2常考知识点" class="headerlink" title="2常考知识点"></a>2常考知识点</h1><h2 id="MySQL-主要引擎的区别"><a href="#MySQL-主要引擎的区别" class="headerlink" title="MySQL 主要引擎的区别"></a>MySQL 主要引擎的区别</h2><h3 id="MyISAM和InnoDB的区别"><a href="#MyISAM和InnoDB的区别" class="headerlink" title="MyISAM和InnoDB的区别"></a>MyISAM和InnoDB的区别</h3><ol>
+<li>MyISAM是非事务安全型的，而InnoDB是事务安全型的；</li>
+<li>MyISAM锁的粒度是表级，而InnoDB支持行级锁；</li>
+<li>MyISAM支持全文类型索引，而InnoDB不支持全文索引；</li>
+<li>MyISAM相对简单，因此在效率上优于InnoDB，小型应用可以考虑使用MyIASM。</li>
+<li>MyISAM表是以文件的形式保存。在跨平台的数据转移中使用MyISAM存储会省去不少麻烦。</li>
+<li>InnoDB表比MyISAM表更安全，可以在保证数据不会丢失的情况下，切换非事务表到事务表。</li>
+</ol>
+<h3 id="MyISAM和InnoDB的应用"><a href="#MyISAM和InnoDB的应用" class="headerlink" title="MyISAM和InnoDB的应用"></a>MyISAM和InnoDB的应用</h3><ul>
+<li>MyISAM管理非事务表。它提供高速存储和检索以及全文搜索能力。如果应用中需要执行大量的select查询，那么MyISAM是更好的选择。</li>
+<li>InnoDB用于事务处理应用程序，具有众多特性，包括ACID事务支持。如果应用中需要执行大量的insert或update操作，则应该使用InnoDB，这样可以提高多用户并发操作的性能。</li>
+</ul>
+<h2 id="数据库范式"><a href="#数据库范式" class="headerlink" title="数据库范式"></a>数据库范式</h2><ul>
+<li>1NF：符合1NF关系中的每个属性都不可再分</li>
+<li>2NF：在1NF基础上，消除了非主属性对于主码的部分函数依赖</li>
+<li>3NF：在2NF的基础之上，消除了非主属性对主码的传递函数依赖。</li>
+<li>消除传递依赖</li>
+<li>BCNF：在 3NF 的基础上消除<strong>主属性</strong>对于主码的部分与传递函数依赖</li>
+<li>4NF：要求把同一个表中多对多关系删除</li>
+<li>5NF：从最终结构重新建立原始结构</li>
+</ul>
+<h3 id="范式中的几个依赖"><a href="#范式中的几个依赖" class="headerlink" title="范式中的几个依赖"></a>范式中的几个依赖</h3><ul>
+<li>函数依赖：若在一张表中，在属性（或属性组）X的值确定的情况下，必定能确定属性Y的值，那么就可以说Y函数依赖于X，写作 X → Y。</li>
+<li>部分函数依赖：假如 Y 函数依赖于 X，但同时 Y 并不完全函数依赖于 X，那么我们就称 Y 部分函数依赖于 X，记作 X  P→ Y。</li>
+<li>完全函数依赖：在一张表中，若 X → Y，且对于 X 的任何一个真子集（假如属性组 X 包含超过一个属性的话），X ‘ → Y 不成立，那么我们称 Y 对于 X <strong>完全函数依赖</strong>，记作 X F→ Y。</li>
+<li>传递函数依赖：假如 Z 函数依赖于 Y，且 Y 函数依赖于 X （『Y 不包含于 X，且 X 不函数依赖于 Y』这个前提），那么我们就称 Z 传递函数依赖于 X ，记作 X T→ Z，</li>
+</ul>
+<h3 id="数据库范式解决的问题-https-www-zhihu-com-question-24696366"><a href="#数据库范式解决的问题-https-www-zhihu-com-question-24696366" class="headerlink" title="数据库范式解决的问题(https://www.zhihu.com/question/24696366)"></a>数据库范式解决的问题(<a href="https://www.zhihu.com/question/24696366" target="_blank" rel="noopener">https://www.zhihu.com/question/24696366</a>)</h3><ul>
+<li>数据冗余</li>
+<li>插入异常</li>
+<li>删除异常</li>
+<li>修改异常</li>
+</ul>
+<h2 id="数据库中各种连接区别"><a href="#数据库中各种连接区别" class="headerlink" title="数据库中各种连接区别"></a>数据库中各种连接区别</h2><p>连接的类型：内连接(inner join)，外连接(outer join)和交叉连接(cross join)</p>
+<h3 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h3><ul>
+<li>等值连接：在连接条件中使用等于号(=)运算符，其查询结果中列出被连接表中的所有列，包括其中的重复列。</li>
+<li>不等连接：在连接条件中使用除等于号之外运算符<h3 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h3></li>
+</ul>
+<p>外连接分为左外连接，右外连接和全连接。</p>
+<h4 id="左外连接"><a href="#左外连接" class="headerlink" title="左外连接"></a>左外连接</h4><p>左外连接：返回<strong>左表中的所有行</strong>，如果左表中行在右表中没有匹配行，则结果中右表中的列返回空值</p>
+<h4 id="右外连接"><a href="#右外连接" class="headerlink" title="右外连接"></a>右外连接</h4><p>右外连接：返回<strong>右表中的所有行</strong>，如果右表中行在左表中没有匹配行，则结果中左表中的列返回空值。</p>
+<h4 id="全外连接"><a href="#全外连接" class="headerlink" title="全外连接"></a>全外连接</h4><p>全外连接：返回<strong>左表和右表中的所有行</strong>。当某行在另一表中没有匹配行，则另一表中的列返回空值。</p>
+<h3 id="交叉连接-笛卡尔积"><a href="#交叉连接-笛卡尔积" class="headerlink" title="交叉连接(笛卡尔积)"></a>交叉连接(笛卡尔积)</h3><p>交叉连接：没有where条件子句，它将会返回被连接的两个表的笛卡尔积，返回结果的行数等于两个表行数的乘积。有where子句，往往会先生成两个表行数乘积的数据表，然后才根据where条件从中选择。</p>
+<p>##事务</p>
+<h3 id="事务的特点-ACID"><a href="#事务的特点-ACID" class="headerlink" title="事务的特点(ACID)"></a>事务的特点(ACID)</h3><ol>
+<li>原子性(Atomicity)：原子性是指事务包含的所有操作要么全部成功，要么全部失败然后回滚。</li>
+<li>一致性(Consistency)：一致性是指事务必须使用数据库从一个一致性状态变换到另一个一致性状态，也就是说一个事务执行之前和执行之后都必须处于一致性状态。</li>
+<li>隔离性(Isolation)：多个事务并发执行时，一个事务的执行不应影响其他事务的执行。</li>
+<li><p>持久性(Durability)：一个事务一旦提交，它对数据库的修改应该永久保存在数据库中。即使数据库因故障而受到破坏，数据库也能够恢复(日志)。</p>
+<h3 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h3></li>
+<li><p>未提交读(read uncommitted)：在该隔离级别中，所有事务都可以看到其他未提交事务的结果。读取未提交的数据会导致<strong>脏读</strong>。</p>
+</li>
+<li>已提交读(read committed)：一个事务只能看到已经提交的事务所做的改变。被读取的数据可以被其他事务修改，因此可能导致<strong>不可重复读</strong> 。</li>
+<li>可重复读(repeatable read): 该隔离级别是<strong>MySQL默认的隔离级别</strong> 。它确保同一事务的多个实例在并发读取数据时，会看到同样的数据行。但该级别可能导致<strong>幻读</strong> 。</li>
+<li>串行化(serializable): 序列化是最高的隔离级别，他通过强制事务排序，使之不可能冲突，从而解决幻读问题。他是在每个读的数据行上加共享锁。在这个级别上，可能导致大量的超时现象和锁竞争。</li>
+</ol>
+<h3 id="4种隔离级别功能对比"><a href="#4种隔离级别功能对比" class="headerlink" title="4种隔离级别功能对比"></a>4种隔离级别功能对比</h3><table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>不可重复读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>未提交读</td>
+<td>可能</td>
+<td>可能</td>
+<td>可能</td>
+</tr>
+<tr>
+<td>已提交读</td>
+<td>不可能</td>
+<td>可能</td>
+<td>可能</td>
+</tr>
+<tr>
+<td>可重复读</td>
+<td>不可能</td>
+<td>不可能</td>
+<td>可能</td>
+</tr>
+<tr>
+<td>串行化</td>
+<td>不可能·</td>
+<td>不可能</td>
+<td>不可能</td>
+</tr>
+</tbody>
+</table>
+<h3 id="脏读，不可重复读，幻读"><a href="#脏读，不可重复读，幻读" class="headerlink" title="脏读，不可重复读，幻读"></a>脏读，不可重复读，幻读</h3><ul>
+<li>脏读：脏读是指在一个事务处理过程中读取了另一个未提交的事务的数据。例如事务T1更新了一行记录的内容，但是并没有提交所做的修改。事务T2读取了修改的数据，然后T1执行了回滚操作，取消了刚才修改操作。</li>
+<li>不可重复读：在一个事务的两次查询之中数据不一致。原因可能是两次查询过程中一个新的事务更新了原有的数据。</li>
+<li>幻读：在一个事务的两次查询中数据量的不一致。例如，一个事务T1通过一个查询语句选择了几行数据，而另外一个事务T2此后插入了几行数据，导致T1两次查询的结果不一致。<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2></li>
+</ul>
+<h3 id="索引的优点"><a href="#索引的优点" class="headerlink" title="索引的优点"></a>索引的优点</h3><ol>
+<li>可以大大加快 数据的检索速度，这也是创建索引的最主要的原因。</li>
+<li>通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性。 </li>
+<li>可以加速表和表之间的连接，特别是在实现数据的参考完整性方面特别有意义。 </li>
+<li>在使用分组和排序 子句进行数据检索时，同样可以显著减少查询中分组和排序的时间。 </li>
+<li>通过使用索引，可以在查询的过程中，使用优化隐藏器，提高系统的性能。 <h3 id="索引的缺点"><a href="#索引的缺点" class="headerlink" title="索引的缺点"></a>索引的缺点</h3></li>
+<li>创建索引和维护索引要耗费时间，这种时间随着数据量的增加而增加。</li>
+<li>索引需要占物理空间，除了数据表占数据空间之外，每一个索引还要占一定的物理空间，如果要建立聚簇索引，那么需要的空间就会更大。</li>
+<li>当对表中的数据进行增加、删除和修改的时候，索引也要动态的维护，这样就降低了数据的维护速度。</li>
+</ol>
+<h3 id="需要创建索引的情形"><a href="#需要创建索引的情形" class="headerlink" title="需要创建索引的情形"></a>需要创建索引的情形</h3><ul>
+<li>在经常需要搜索的列上，可以加快搜索的速度；</li>
+<li>在作为主键的列上，需要强制该列的唯一性和组织表中数据的排列结构；</li>
+<li>在<strong>经常用在连接的列上</strong>，这些列主要是一些外键，可以加快连接的速度；</li>
+<li>在经常需要<strong>根据范围进行搜索的列上</strong>创建索引。因为索引已经排序，其指定的范围是连续的；</li>
+<li>在经常需要排序的列上创建索引。因为索引已经排序，这样查询可以利用索引的排序，加快排序查询时间；</li>
+<li>在经常使用在WHERE子句中的列上面创建索引，加快条件的判断速度。</li>
+</ul>
+<h3 id="不应创建索引的情形"><a href="#不应创建索引的情形" class="headerlink" title="不应创建索引的情形"></a>不应创建索引的情形</h3><ul>
+<li>对于在查询中很少使用或者参考的列不应该创建索引。这是因为，既然这些列很少使用到，因此有索引或者无索引，并不能提高查询速度。相反，由于增加了索引，反而降低了系统的维护速度和增大了空间需求。</li>
+<li>只有很少数据值的列也不应该增加索引。这是因为，由于这些列的取值很少，例如人事表的性别列，在查询的结果中，结果集的数据行占了表中数据行的很大比例，即需要在表中搜索的数据行的比例很大。增加索引，并不能明显加快检索速度。</li>
+<li>定义为text, image和bit数据类型的列不应该增加索引。这是因为，这些列的数据量要么相当大，要么取值很少。</li>
+<li>当修改性能远远大于检索性能时，不应该创建索引。这是因为，<strong>修改性能和检索性能是互相矛盾的</strong>。当增加索引时，会提高检索性能，但是会降低修改性能。当减少索引时，会提高修改性能，降低检索性能。因此，当修改性能远远大于检索性能时，不应该创建索引。</li>
+</ul>
+<h3 id="索引类别"><a href="#索引类别" class="headerlink" title="索引类别"></a>索引类别</h3><ol>
+<li>唯一索引：不允许其中任何两行具有相同索引值的索引。</li>
+<li>主键索引：主键索引是唯一索引的特定类型。该索引要求主键中的每个值都唯一。</li>
+<li>聚集索引：表中行的物理顺序与键值的逻辑（索引）顺序相同。一个表只能包含一个聚集索引。聚集索引相对于非聚集索引具有更快的数据访问速度。</li>
+<li>非聚集索引：表中行的物理顺序与键值的逻辑顺序不匹配。</li>
+</ol>
+<h3 id="B-树和-B-树"><a href="#B-树和-B-树" class="headerlink" title="B-树和$B^+树$"></a>B-树和$B^+树$</h3><h4 id="B-树"><a href="#B-树" class="headerlink" title="B-树"></a>B-树</h4><p>B树的属性：</p>
+<ol>
+<li>B树是一种多路平衡搜索树，定义任意非叶子结点最多有M个孩子且M&gt;2;</li>
+<li>根结点的儿子个数为[2, M];</li>
+<li>除根节点以外的非叶子结点的孩子个数为[M/2, M]；</li>
+<li>每个结点最少存放$\lceil M/2 -1 \rceil$ 和至多M-1个关键字；</li>
+<li>非叶子结点关键字个数 = 指向孩子结点的指针个数 - 1；</li>
+<li>非叶子结点的关键字k[1],k[2],…,k[M-1]满足k[i] &lt; k[i+1]；</li>
+<li>非叶子结点的指针p[1],p[2],…,p[M]满足条件：p[1]指向关键字小于k[1]的子树，而p[i]指向关键字在$(k[i-1], k[i])$范围(开区间)内的的子树。</li>
+<li>所有叶子结点位于同一层。</li>
+</ol>
+<p>B树的特性：</p>
+<ol>
+<li>关键字集合分布在整颗树中；</li>
+<li>任何一个关键字出现且只出现在一个结点中；</li>
+<li>搜索有可能在非叶子结点结束；</li>
+<li>其搜索性能等价于在关键字集合内做二分查找；</li>
+<li>具有自动层次控制能力</li>
+</ol>
+<h3 id="B-树-1"><a href="#B-树-1" class="headerlink" title="$B^+树$"></a>$B^+树$</h3><p>$B^+$ 树是B树的变体，也是多叉平衡搜索树。但又有一些不同之处：</p>
+<ol>
+<li>非叶子结点的子树指针与关键字个数相同；</li>
+<li>非叶子结点的子树指针p[i]指向关键字值属于$[k[i], k[i+1]]$ 范围(闭区间)的子树；</li>
+<li>为所有叶子结点增加一个链接指针；</li>
+<li>所有关键字都在叶子结点出现；</li>
+</ol>
+<p>$B^+$树的特性：</p>
+<ul>
+<li>所有关键字都出现在叶子结点的链表中(稠密索引)，且链表中的关键字是有序的；</li>
+<li>不可能在非叶子结点命中；</li>
+<li>非叶子结点相当于叶子结点的索引(稀疏索引)，叶子结点相当于存储关键字的数据层；</li>
+<li>更适合作为文件索引系统。</li>
+</ul>
+<h2 id="数据库优化的策略"><a href="#数据库优化的策略" class="headerlink" title="数据库优化的策略"></a>数据库优化的策略</h2>]]></content>
+      
+        <categories>
+            
+            <category> 数据库 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 数据库索引 </tag>
+            
+            <tag> 数据库范式 </tag>
+            
+            <tag> MySQL </tag>
+            
+            <tag> 事务 </tag>
+            
+            <tag> 隔离级别 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[计算机网络知识]]></title>
+      <url>/2017/2017-09-19-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86.html</url>
+      <content type="html"><![CDATA[<h2 id="运输层"><a href="#运输层" class="headerlink" title="运输层"></a>运输层</h2><p>　　运输层提供应用进程间的逻辑通信。<strong>网络层</strong>为主机之间提供逻辑通信，而<strong>运输层</strong>为应用进程之间提供端到端的逻辑通信。运输层还要对收到的报文进行差错检测。运输层向高层用户屏蔽了下面网络的核心细节。<br>　　运输层两个主要协议为传输控制协议TCP(Transmission Control Protocal)和用户数据报协议UDP(User Datagram Protocal)。<br>　　按照OSI的术语，两个对等运输实体在通信时传送的数据单位叫做运输协议数据单元TPDU(Transport Protocol Data Unit)。而在TCP/IP体系中，TCP的的TPDU称为<u>TCP报文段</u>(segment)，UDP的TPDU称为<u>UDP用户数据报</u>。</p>
+<p>使用TCP和UDP协议的应用和应用层协议</p>
+<table>
+<thead>
+<tr>
+<th>应用</th>
+<th>应用层协议</th>
+<th>运输层协议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>电子邮件协议</td>
+<td>SMTP</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>远程终端接入</td>
+<td>TELNET</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>万维网</td>
+<td>HTTP</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>文件传输</td>
+<td>FTP</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>名字转换</td>
+<td>DNS</td>
+<td>UDP</td>
+</tr>
+<tr>
+<td>IP地址配置</td>
+<td>DHCP</td>
+<td>UDP</td>
+</tr>
+<tr>
+<td>路由选择协议</td>
+<td>RIP</td>
+<td>UDP</td>
+</tr>
+<tr>
+<td>网络管理</td>
+<td>SNMP</td>
+<td>UDP</td>
+</tr>
+</tbody>
+</table>
+<p>(1)服务器端使用的端口号</p>
+<p><strong>熟知端口号</strong></p>
+<table>
+<thead>
+<tr>
+<th>程序</th>
+<th>FTP</th>
+<th>SSH</th>
+<th>TELNET</th>
+<th>SMTP</th>
+<th>DNS</th>
+<th>TFTP</th>
+<th>HTTP</th>
+<th>POP3</th>
+<th>IMAP</th>
+<th>HTTTPS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>端口号</td>
+<td>20,21</td>
+<td>22</td>
+<td>23</td>
+<td>25</td>
+<td>53</td>
+<td>69</td>
+<td>80</td>
+<td>110</td>
+<td>143</td>
+<td>443</td>
+</tr>
+</tbody>
+</table>
+<h3 id="UDP-User-Datagram-Protocol-用户数据报协议"><a href="#UDP-User-Datagram-Protocol-用户数据报协议" class="headerlink" title="UDP(User  Datagram Protocol)用户数据报协议"></a>UDP(User  Datagram Protocol)用户数据报协议</h3><p>UDP的主要特点：</p>
+<ol>
+<li>UDP是无连接；即发送数据之前不需要建立连接。因此减少了开销和发送数据之前的时延。</li>
+<li>UDP使用尽最大努力的交付；即不保证可靠交付。</li>
+<li>UDP是面向报文的；应用层交给UDP多长的报文，UDP在报文上添加UDP首部后就向下交付给IP层。而从IP层接受的UDP用户数据报，在去除UDP首部后，直接交付给应用层。</li>
+<li>UDP没有拥塞控制；即使网络出现拥塞，源主机也不会降低发送速率。</li>
+<li>UDP支持一对一，一对多，多对一和多对多的交互通信。</li>
+<li>UDP的首部开销小，只有8字节。</li>
+</ol>
+<p><strong>注意</strong>: 一些使用UDP的实时应用，需要对UDP的不可靠传输进行改进，以减少数据的丢失。再此情况下，应用程序应该增加一些提高可靠性的措施，如采用前向纠错或重传已丢失的报文。</p>
+<h3 id="TCP-Transmission-Control-Protocol-传输控制协议"><a href="#TCP-Transmission-Control-Protocol-传输控制协议" class="headerlink" title="TCP(Transmission Control Protocol)传输控制协议"></a>TCP(Transmission Control Protocol)传输控制协议</h3><p>TCP的特点：</p>
+<ol>
+<li>TCP是面向连接的运输层协议；</li>
+<li>每一条TCP连接只能是点对点的；</li>
+<li>TCP提供可靠交付；</li>
+<li>TCP具有流量控制、拥塞控制；</li>
+<li>TCP提供全双工通信；</li>
+<li>TCP是面向字节流的；</li>
+</ol>
+<h4 id="TCP报文段的首部格式"><a href="#TCP报文段的首部格式" class="headerlink" title="TCP报文段的首部格式"></a>TCP报文段的首部格式</h4><h4 id="TCP可靠传输原理"><a href="#TCP可靠传输原理" class="headerlink" title="TCP可靠传输原理"></a>TCP可靠传输原理</h4><h5 id="停止等待协议"><a href="#停止等待协议" class="headerlink" title="停止等待协议"></a>停止等待协议</h5><h5 id="连续ARQ-Automatic-Repeat-reQuest-协议"><a href="#连续ARQ-Automatic-Repeat-reQuest-协议" class="headerlink" title="连续ARQ(Automatic Repeat reQuest)协议"></a>连续ARQ(Automatic Repeat reQuest)协议</h5><h5 id="GBN协议-GO-Back-N"><a href="#GBN协议-GO-Back-N" class="headerlink" title="GBN协议(GO Back N)"></a>GBN协议(GO Back N)</h5><h4 id="TCP可靠传输的实现"><a href="#TCP可靠传输的实现" class="headerlink" title="TCP可靠传输的实现"></a>TCP可靠传输的实现</h4><h5 id="以字节为单位的滑动窗口"><a href="#以字节为单位的滑动窗口" class="headerlink" title="以字节为单位的滑动窗口"></a>以字节为单位的滑动窗口</h5><h4 id="TCP的流量控制"><a href="#TCP的流量控制" class="headerlink" title="TCP的流量控制"></a>TCP的流量控制</h4><h5 id="利用滑动窗口实现流量控制"><a href="#利用滑动窗口实现流量控制" class="headerlink" title="利用滑动窗口实现流量控制"></a>利用滑动窗口实现流量控制</h5><h4 id="TCP的拥塞-con-控制"><a href="#TCP的拥塞-con-控制" class="headerlink" title="TCP的拥塞(con)控制"></a>TCP的拥塞(con)控制</h4><h5 id="几种拥塞控制方法"><a href="#几种拥塞控制方法" class="headerlink" title="几种拥塞控制方法"></a>几种拥塞控制方法</h5><ol>
+<li>慢开始</li>
+<li>拥塞避免(加法增大)</li>
+<li>快重传(收到3个重复的确认；乘法减小)</li>
+<li>快恢复(加法增大)</li>
+</ol>
+<h4 id="TCP的运输连接管理"><a href="#TCP的运输连接管理" class="headerlink" title="TCP的运输连接管理"></a>TCP的运输连接管理</h4><p>TCP的连接有三个阶段：连接建立，数据传送，连接释放。</p>
+<h5 id="TCP的连接建立"><a href="#TCP的连接建立" class="headerlink" title="TCP的连接建立"></a>TCP的连接建立</h5><p>TCP三次握手建立TCP连接过程如下图：<br><img src="/image/TCP_link01.jpg" alt="TCP_link01"></p>
+<h6 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h6><ol>
+<li><p>TCP使用3次握手而不是2次的原因?<br>主要原因是防止已失效的连接请求报文段突然又传送到服务端而产生错误。<br>情形：“已失效的连接”是指客户端A发出的连接请求报文丢失或者该请求报文在网络中长时间滞留，而导致A为收到服务端的确认。于是A在重传一次连接请求，后来收到了确认，建立的连接。若A第一次滞留在网络中的请求在A后来的连接释放以后的某个时间到达服务器B。本来是一个已经失效的报文段。但B收到此失效的报文段后，误认为是A又发出一次新的连接请求。于是B就向A发出确认报文段，同意建立连接。假定不采用三次握手，那么只要B发出确认，新的连接就建立了。由于A并没有发出建立连接的请求，因此，不会理睬B的确认，也不会向B发送数据。但是B却以为新的运输连接已经建立，并一直等待A发来数据。B的资源就白白浪费了。</p>
+<p>简洁答案：防止服务端收到客户端“已经失效的连接请求”报文段，再次建立连接，导致服务端资源浪费。</p>
+</li>
+<li><p>TCP 3次握手中Socket编程的函数调用过程？<br><img src="/image/socket_tcp.jpg" alt="socket_tcp"><br>服务端：</p>
+</li>
+</ol>
+<ul>
+<li>服务端调用socket()，创建一个socket。若创建成功，则返回一个socket文件描述符。</li>
+<li>调用bind()</li>
+<li>调用listen()</li>
+<li>调用accept()</li>
+<li>调用recv()和调用send()</li>
+<li>调用close()</li>
+</ul>
+<p>客户端：</p>
+<ul>
+<li>服务端调用socket()</li>
+<li>调用connect()</li>
+<li>调用recv()和调用send()</li>
+<li>调用close()</li>
+</ul>
+<ol>
+<li>TCP建立连接时，若没有accept()，两端会出现什么情况，各自处于什么状态？</li>
+<li>当TCP建立连接时，第三个报文丢失，会出现什么情况？</li>
+<li>TCP建立连接可以没有第三次确认报文吗？为什么？</li>
+</ol>
+<h5 id="TCP的连接释放"><a href="#TCP的连接释放" class="headerlink" title="TCP的连接释放"></a>TCP的连接释放</h5><p>　　数据传输结束后，通信双方都可以释放连接。TCP连接释放的过程如下图：<br><img src="/image/TCP_link02.jpg" alt="TCP_link02"></p>
+<h5 id="TCP的有限状态自动机"><a href="#TCP的有限状态自动机" class="headerlink" title="TCP的有限状态自动机"></a>TCP的有限状态自动机</h5><p>TCP的连接建立，数据传送，连接释放过程中的各种状态，以及之间的转换，可以用如下的有限状态自动机来表示。转态之间的箭头表示可能发生的状态变迁。<strong>粗实线箭头</strong>表示对客户进程的正常变迁。<strong>粗虚线箭头</strong>表示对服务器进程的正常变迁。另一种<strong>细线箭头</strong>表示异常变迁。<br><img src="/image/TCP_finite_state_machine.jpg" alt="TCP_finite_state_machine"></p>
+<h6 id="常见问题-1"><a href="#常见问题-1" class="headerlink" title="常见问题"></a>常见问题</h6><ol>
+<li>可以将被动关闭端的二次确认数据报合并为一个报文吗？为什么？</li>
+<li>TIME_WAIT等待2MSL的原因？MSL的时间多长？</li>
+<li>当主动关闭端处于TIME_WAIT状态时，新建socket可以使用它使用的端口号吗？为什么？</li>
+<li>当主动关闭端提出断开请求后，被动关闭端的recv()函数返回值是什么？</li>
+<li>什么是半关闭状态？</li>
+</ol>
+<h3 id="HTTP-超文本传输协议，Hyper-Text-Transfer-Protocol"><a href="#HTTP-超文本传输协议，Hyper-Text-Transfer-Protocol" class="headerlink" title="HTTP(超文本传输协议，Hyper Text  Transfer Protocol )"></a>HTTP(超文本传输协议，Hyper Text  Transfer Protocol )</h3><p>简介：http是互联网基础协议之一，是网页开发必备知识。最新版本是http/2。</p>
+<h4 id="http-0-9"><a href="#http-0-9" class="headerlink" title="http/0.9"></a>http/0.9</h4><p>http是基于TCP/IP协议的应用层协议。他不涉及数据包传输，主要规定客户端和服务器之间的通信格式，默认使用80端口。最早的版本是1991年发布的0.9版。该版本很简单，只有一个命令Get。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /index.html</span><br></pre></td></tr></table></figure></p>
+<p>上面的命令表示，TCP连接建立后，客户端向服务器请求(request)网页index.html。<br>协议规定，服务器<strong>只能响应html格式的字符串</strong>，不能回应其他格式。<br>服务器发送完毕，就关闭TCP连接。</p>
+<h4 id="http-1-0"><a href="#http-1-0" class="headerlink" title="http/1.0"></a>http/1.0</h4><h5 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h5><p>http/1.0内容大大增加。首先，任何格式的内容都可以发送，因此使得互联网不仅可以传输文字，还能传输图像，视频，二进制文件。<br>其次，除了GET命令，还引入了POST命令和HEAD命令，丰富了浏览器与服务器的互动手段。<br>再次，http请求和回应的格式发生变化。除了数据部分外，每次通信都必须包括头信息(http header)，用来描述一些元数据。<br>其他的新增功能包括状态码(status code)，多字符集支持、多部分发送(multi-part type)、权限(authorization)、缓存(cache)、内容编码(content encoding)等。</p>
+<h5 id="请求格式"><a href="#请求格式" class="headerlink" title="请求格式"></a>请求格式</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET / HTTP/1.0</span><br><span class="line">User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)</span><br><span class="line">Accept: */*</span><br></pre></td></tr></table></figure>
+<p>请求格式包括以下内容：<br>第一行：请求方式 协议版本<br>第二行：user-agent客户端使用的软件/设备信息<br>第三行：accept，可以接受的数据类型</p>
+<h5 id="回应格式"><a href="#回应格式" class="headerlink" title="回应格式"></a>回应格式</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.0 200 OK </span><br><span class="line">Content-Type: text/plain; charset=utf-8</span><br><span class="line">Content-Encoding: gzip</span><br><span class="line">Content-Length: 137582</span><br><span class="line">Expires: Thu, 05 Dec 1997 16:00:00 GMT</span><br><span class="line">Last-Modified: Wed, 5 August 1996 15:55:28 GMT</span><br><span class="line">Server: Apache 0.84</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;body&gt;Hello World&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>回应信息包括：<br>第一行：http版本 状态码(status code)<br>第二行：内容类型(content type)，包括信息格式和字符集等信息。因为http 1.0               规定，头部信息必须是ASCII码，后面的信息可以是任何格式。因此，服             务器回应时，必须告诉客户端数据的格式是什么。这就是content-type的             作用。<br>第三行：压缩方法(content-encoding)，数据采用的压缩方法。<br>第四行：数据长度(content-length)，发送数据的长度。<br>其他信息：包括失效时间，修改时间，服务器名称等</p>
+<h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5><p>　　http/1.0主要缺点是每个TCP连接只能发送一个请求。发送数据完毕，连接就关闭。如果还要请求其它资源，就必须在次新建一个连接。<br>　　TCP连接的新建成本很高，因为需要客户端和服务器三次握手，并且开始时发送速率较慢。因此，http/1.0性能较差。<br>　　为了解决这个问题，有些浏览器在请求时，使用了非标准的connection字段。<code>connection: keep-alive</code><br>　　这个字段要求服务器不要关闭TCP连接，以便其他请求复用。服务器同样回应这个字段。<code>connection: keep-alive</code><br>至此，一个可复用的TCP连接就建立了，直到客户端或服务器主动关闭连接。但是，这是非标准字段，不同的实现行为可以可能不一致，因此不能从根本上解决问题。</p>
+<h4 id="http1-1"><a href="#http1-1" class="headerlink" title="http1.1"></a>http1.1</h4><h4 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h4><p>　　首先，任何格式的内容都可以发送。这使得互联网不仅可以传输文字，还能传输图像、视频、二进制文件。这为互联网的大发展奠定了基础。<br>　　其次，除了<code>GET</code>命令，还引入了<code>POST</code>命令和<code>HEAD</code>命令，丰富了浏览器与服务器的互动手段。<br>　　再次，HTTP请求和回应的格式也变了。除了数据部分，每次通信都必须包括头信息（HTTP header），用来描述一些元数据。<br>　　其他的新增功能还包括状态码（status code）、多字符集支持、多部分发送（multi-part type）、权限（authorization）、缓存（cache）、内容编码（content encoding）等。</p>
+<h5 id="持久连接"><a href="#持久连接" class="headerlink" title="持久连接"></a>持久连接</h5><p>　　1.1版本最大的变化，就是引入了持久连接，即TCP连接默认不关闭，可以被多个请求复用，减少建立和关闭连接的消耗和延迟。这样就可以不用声明字段：<code>connection: keep-alive</code> 。<br>客户端和服务器发现对方一段时间没有活动，就可以主动关闭连接。不过，规范的做法是，客户端在最后一个请求时，发送<code>connection:close</code> ，明确要求服务器关闭TCP连接。<br>目前，对于同一个域名，大多数浏览器允许同时建立6个持久连接。</p>
+<h5 id="管道机制"><a href="#管道机制" class="headerlink" title="管道机制"></a>管道机制</h5><p>　　1.1版还引入了管道机制，即在同一个TCP连接里，客户端可以同时发送多个请求。而且允许客户端不用等待上一次请求结果返回，就可以发出下一次请求。但是服务器必须按照收到客户端请求的先后顺序依次回送响应结果，以保证客户端能够区分出每次请求的响应内容。这样就可以进一个改进http协议的效率。<br>例如，客户端需要请求两个资源。以前的做法是，在同一个TCP连接里面，先发送A请求，然后等待服务器作出回应，收到后再发送B请求。管道机制则是允许浏览器同时发送A请求和B请求，但是服务器还是按照顺序，先回应A请求，完成后再回应B请求。</p>
+<h5 id="content-length字段"><a href="#content-length字段" class="headerlink" title="content-length字段"></a>content-length字段</h5><p>　　一个TCP连接现在可以传送多个回应，势必就要有一种机制，区分数据包是属于哪一个回应的。这是Content-length字段的作用，声明本次回应的数据长度。<code>content-length:3495</code> 。<br>　　上面的代码告诉浏览器，本次回应的长度是3495个字节，后面的字节就属于下一个回应了。<br>　　在1.0版中，content-length字段不是必需的，因为浏览器发现服务器关闭了TCP连接，就表明收到数据包已经全了。</p>
+<h5 id="分块传输编码"><a href="#分块传输编码" class="headerlink" title="分块传输编码"></a>分块传输编码</h5><p>使用content-length字段的前提条件是，服务器发送回应之前，必须知道回应的数据的长度。<br>对于一些很耗时的动态操作来说，服务器要等到所有的操作完成，才能发送数据，显然这样的效率不高。更好的处理方法是，产生一块数据，就发送一块，采用“流模式”取代“缓存模式”(buffer)。<br> 1.1版本规定可以不使用content-length字段，而使用“分块传输编码”(chunked transfer encoding)。只要请求或回应的头信息有Transfer-Encoding字段，就表明回应将由数量未定的数据块组成。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transfer-encoding:chunked</span><br></pre></td></tr></table></figure></p>
+<p>每个非空的数据块之前，会有一个16进制的数值，表示这个块的长度。最后是一个大小为0的块，就表示本次回应的数据发送完了。<br>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type: text/plain</span><br><span class="line">Transfer-Encoding: chunked</span><br><span class="line"></span><br><span class="line">25</span><br><span class="line">This is the data in the first chunk</span><br><span class="line"></span><br><span class="line">1C</span><br><span class="line">and this is the second one</span><br><span class="line"></span><br><span class="line">3</span><br><span class="line">con</span><br><span class="line"></span><br><span class="line">8</span><br><span class="line">sequence</span><br><span class="line"></span><br><span class="line">0</span><br></pre></td></tr></table></figure></p>
+<h5 id="host字段"><a href="#host字段" class="headerlink" title="host字段"></a>host字段</h5><p>http/1.1中增加了host请求头字段，浏览器可以使用主机名来明确表示要访问的服务器上的那个站点，就可以将请求发往同一台服务器的不同网站。从而服务端可以实现在一台web服务器上使用同一个IP地址和端口号来创建多个虚拟的web站点。</p>
+<h5 id="其他改进"><a href="#其他改进" class="headerlink" title="其他改进"></a>其他改进</h5><p>htttp1.1还提供了与身份认证、状态管理和cache缓存等机制相关的请求和响应头。</p>
+<h5 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h5><p>虽然1.1版本允许复用TCP连接，但是同一个。TCP连接里，所有的数据通信是按次序进行的。服务器只有处理完一个回应，才会进行下一个回应。若是前面的回应特别慢，后面就会有许多请求排队。这称为“队头堵塞”(head of line blocking)。</p>
+<h4 id="http-2"><a href="#http-2" class="headerlink" title="http/2"></a>http/2</h4><p>2015年，http/2发布。</p>
+<h5 id="二进制协议"><a href="#二进制协议" class="headerlink" title="二进制协议"></a>二进制协议</h5><p>http/1.1 版的头信息肯定是文本，数据体可以是文本，也可以是二进制。http/2则是一个彻底的二进制协议，头信息和数据体都是二进制，并且统称为“帧”：头信息帧和数据帧。</p>
+<h5 id="多工"><a href="#多工" class="headerlink" title="多工"></a>多工</h5><p>htttp/2 复用TCP连接，在一个连接里，客户端和浏览器都可以同时发送多个请求或回应，而且不用按照顺序一一对应，这样就避免了“对头堵塞”。<br>举例来说，在一个TCP连接里面，服务器同时收到了A请求和B请求，于是先回应A请求，结果发现处理过程非常耗时，于是就发送A请求已经处理好的部分， 接着回应B请求，完成后，再发送A请求剩下的部分。</p>
+<p>这样双向的、实时的通信，就叫做多工（Multiplexing）。</p>
+<h5 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h5><p>　　因为 HTTP/2 的数据包是不按顺序发送的，同一个连接里面连续的数据包，可能属于不同的回应。因此，必须要对数据包做标记，指出它属于哪个回应。<br>　　HTTP/2 将每个请求或回应的所有数据包，称为一个数据流（stream）。每个数据流都有一个独一无二的编号。数据包发送的时候，都必须标记数据流ID，用来区分它属于哪个数据流。另外还规定，客户端发出的数据流，ID一律为奇数，服务器发出的，ID为偶数。<br>　　数据流发送到一半的时候，客户端和服务器都可以发送信号（RST_STREAM帧），取消这个数据流。1.1版取消数据流的唯一方法，就是关闭TCP连接。这就是说，HTTP/2 可以取消某一次请求，同时保证TCP连接还打开着，可以被其他请求使用。</p>
+<p>客户端还可以指定数据流的优先级。优先级越高，服务器就会越早回应。</p>
+<h5 id="头信息压缩"><a href="#头信息压缩" class="headerlink" title="头信息压缩"></a>头信息压缩</h5><p>http协议不带有状态，每次请求都必须附上所有信息。所以，请求的很多字段都是重复的，比如cookie和User Agent，一模一样的内容，每次请求都必须附带，这会浪费很多带宽，也影响速度。HTTP/2 对这一点做了优化，引入了头信息压缩机制（header compression）。<br>一方面，头信息使用gzip或compress压缩后再发送；另一方面，客户端和服务器同时维护一张头信息表，所有字段都会存入这个表，生成一个索引号，以后就不发送同样字段了，只发送索引号，这样就提高速度了。</p>
+<h5 id="服务器推送"><a href="#服务器推送" class="headerlink" title="服务器推送"></a>服务器推送</h5><p>　　HTTP/2 允许服务器未经请求，主动向客户端发送资源，这叫做服务器推送（server push）。<br>　　常见场景是客户端请求一个网页，这个网页里面包含很多静态资源。正常情况下，客户端必须收到网页后，解析HTML源码，发现有静态资源，再发出静态资源请求。其实，服务器可以预期到客户端请求网页后，很可能会再请求静态资源，所以就主动把这些静态资源随着网页一起发给客户端了。</p>
+<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><ol>
+<li>http各个版本的改进</li>
+</ol>
+<ul>
+<li>http 0.9：极其简单的http版本，只有Get命令。只能传送html格式的字符串。</li>
+<li>http 1.0：对0.9版本进行改进，最关键的地方是可以发送任何格式的内容。而且除了get命令，还引入了post命令和head命令。请求格式也发生了变化，除了数据信息，还必须包含头信息(http header)。还新增了状态码，多字符集支持，缓存，内容编码等。</li>
+<li>http 1.1：1.1版本最大的改进就是引入了持久连接机制。还使用了管道机制，即在同一个TCP连接中同时发送多个请求。然后，使用了分块传输编码机制<code>tansfer-eccoding:chunked</code> 。还新增了许多动词，例如put,patch,head等。</li>
+<li>http 2.0：2.0是一个二进制的协议。是多工的协议，服务器不是按照顺序处理请求的。http/2中每个请求和回应的数据包称为数据流。每个数据流必须使用数据流ID进行标记。客户端使用奇数，服务端使用偶数。头部信息压缩。服务推送功能，对于请求网页中的静态数据，直接推送，无需请求。</li>
+</ul>
+<h4 id="http请求报文关键字段"><a href="#http请求报文关键字段" class="headerlink" title="http请求报文关键字段"></a>http请求报文关键字段</h4><p><strong>请求头</strong>包括以下内容：<br>    Accept: text/html,application/xhtml+xml,application/xml;<br>    Accept-Encoding: gzip, deflate<br>    Accept-Language: zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3<br>    Cache-Control: max-age=0<br>    Connection: keep-alive<br>    Cookie:<br>    Host: www.baidu.com<br>    User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:56.0) Gecko/20100101 Firefox/56.0</p>
+<p>请求头部主要信息说明：<br>Accept: 指定客户端<u>能够接收的内容类型</u>，内容类型中的先后次序表示客户端接收的先后次序。<br>Accept-Encoding:指定客户端浏览器可以<u>支持的web服务器返回内容压缩编码类型</u>。<br>Accept-Language: HTTP客户端浏览器用来<u>展示返回信息所优先选择的语言</u>。<br>Cache-Control: Cache -Control指定请求和响应遵循的缓存机制。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control: private/public Public:响应会被缓存，并且在多用户间共享。 Private: 响应只能够作为私有的缓存，不能再用户间共享。</span><br><span class="line">Cache-Control: no-cache：不进行缓存 </span><br><span class="line">Cache-Control: max-age=x：缓存时间 以秒为单位 </span><br><span class="line">Cache-Control: must-revalidate：如果页面是过期的 则去服务器进行获取。</span><br></pre></td></tr></table></figure></p>
+<p>Connection: 表示是否需要持久连接。<br>Cookie:HTTP请求发送时，会把保存在该请求域名下的所有cookie值一起发送给web服务器。<br>Host: 浏览器要访问的服务器上的那个站点名称<br>User-Agent: HTTP客户端运行的浏览器类型的详细信息</p>
+<h4 id="http响应报文关键字段"><a href="#http响应报文关键字段" class="headerlink" title="http响应报文关键字段"></a>http响应报文关键字段</h4><pre><code>Cache-Control: private
+Connection: Keep-Alive
+Content-Encoding: gzip
+Content-Type: text/html; charset=utf-8
+Server: BWS/1.1
+Set-Cookie: 
+Transfer-Encoding: chunked
+X-Powered-By: HPHP
+</code></pre><p><strong>响应头信息</strong> 详细说明：<br>Cache-Control: Cache -Control指定请求和响应遵循的缓存机制。<br>Connection: 表示是否需要持久连接。<br>content-encoding: 数据采用的压缩方法。<br>content type: 内容类型，包括信息格式和字符集等信息。因为http 1.0规定，头部信息必须是ASCII码，后面的信息可以是任何格式。因此，服务器回应时，必须告诉客户端数据的格式是什么。这就是content-type的作用。<br>Server: 服务器名称<br>Set-Cookie:<br>Transfer-Encoding: chunked<br>X-Powered-By: 表示网站是用什么技术开发的<br>其他信息：包括失效时间，修改时间等</p>
+<h4 id="get和post的区别"><a href="#get和post的区别" class="headerlink" title="get和post的区别"></a>get和post的区别</h4><ul>
+<li>GET参数通过URL传递，POST放在Request body中。</li>
+<li>GET在浏览器回退时无影响，而POST会再次提交请求。</li>
+<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</li>
+<li>GET请求在URL中传送的参数是有长度限制的，而POST没有</li>
+<li>GET请求会被浏览器主动cache，而POST不会，除非手动设置。</li>
+<li>GET产生的URL地址可以被Bookmark，而POST不可以。</li>
+<li>GET请求只能进行url编码，而POST支持多种编码方式。</li>
+<li>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。</li>
+<li>对参数的数据类型，GET只接受ASCII字符，而POST没有限制。</li>
+</ul>
+<p>​    </p>
+<h4 id="常用状态码及其含义"><a href="#常用状态码及其含义" class="headerlink" title="常用状态码及其含义"></a>常用状态码及其含义</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1xx：指示信息——表示请求已经接受，继续处理</span><br><span class="line">2xx：成功——表示请求已经被成功接收、理解、接受。</span><br><span class="line">3xx：重定向——要完成请求必须进行更进一步的操作</span><br><span class="line">4xx：客户端错误——请求有语法错误或请求无法实现</span><br><span class="line">5xx：服务器端错误——服务器未能实现合法的请求。</span><br><span class="line">常见状态代码、状态描述、说明：</span><br><span class="line">200 OK      //客户端请求成功</span><br><span class="line">400 Bad Request  //客户端请求有语法错误，不能被服务器所理解</span><br><span class="line">401 Unauthorized //请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用 </span><br><span class="line">403 Forbidden  //服务器收到请求，但是拒绝提供服务</span><br><span class="line">404 Not Found  //请求资源不存在，eg：输入了错误的URL</span><br><span class="line">500 Internal Server Error //服务器发生不可预期的错误</span><br><span class="line">503 Server Unavailable  //服务器当前不能处理客户端的请求，一段时间后可能恢复正常</span><br></pre></td></tr></table></figure>
+<h4 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h4><h5 id="产生背景"><a href="#产生背景" class="headerlink" title="产生背景"></a>产生背景</h5><p>http是不加密的通信，所有信息明文传输。具有以下风险：</p>
+<ul>
+<li>http传输的内容可能被窃听：非法获取内容</li>
+<li>http传输的内容可能被篡改：修改通信内容</li>
+<li>http传输的内容可能被冒充：非法冒充他人身份参与通信</li>
+</ul>
+<p>因此，使用SSL/TLS协议是为了解决以上三个问题：</p>
+<ul>
+<li>所有信息都是加密传播，防止窃听</li>
+<li>具有校验机制，一旦被篡改，通信双方立刻发现</li>
+<li>配备数字证书，防止身份被冒充</li>
+</ul>
+<h5 id="基本的运行过程"><a href="#基本的运行过程" class="headerlink" title="基本的运行过程"></a>基本的运行过程</h5><p>SSL/TLS协议的基本思路：采用公钥加密算法，即客户端先向服务端索要公钥，然后用公钥加密信息，服务器收到密文后，用自己的私钥解密。</p>
+<ol>
+<li>如何保证公钥不被篡改<br>解决方法：将公钥放在数字证书中。只要证书是可信的，公钥就是可信的。</li>
+<li>公钥加密计算量大，如何减少计算时间<br>解决方法：每一次对话(session)，客户端和服务器端都生成一个”对话密钥”，用它来加密信息。由于“对话密钥”是对称加密，所以运算速度非常快，而服务器公钥只用于加密“对话密钥”本身，这样就减少了加密运算的消耗时间。</li>
+</ol>
+<p>SSL协议的基本过程：</p>
+<ul>
+<li>客户端向服务器端索要并验证公钥。</li>
+<li>双方协商生成“对话密钥”</li>
+<li>双方采用“对话密钥”进行加密通信。</li>
+</ul>
+<p>握手阶段详细过程：</p>
+<ol>
+<li><p>客户端向服务器发出加密通信请求(请求内容包括支持协议版本，客户端生成的随机数，支持的加密算法，支持的压缩算法)</p>
+</li>
+<li><p>服务器收到客户端请求后，向客户端发出回应。回应内容为：确认通信协议版本，服务器生成的随机数，确认加密算法，服务器证书。</p>
+</li>
+<li><p>客户端收到服务器回应后，首先验证服务器证书(是否是可信机构颁发，证书域名是否一致，证书是否过期)。若证书没有问题，客户端就会从证书中取出服务器的公钥。然后，向服务器发送确信信息(一个随机数pre-master key(使用服务器公钥加密)，编码改变通知，客户端握手结束通知)。</p>
+</li>
+<li><p>服务器收到客户端的第三个随机数pre-master key后，计算生成本次会话所用的“会话密钥”。最后向客户端发送确认信息(编码改变通知，服务器握手结束通知)。</p>
+</li>
+</ol>
+<p>至此，整个握手阶段全部结束。接下来，客户端和服务器进入加密通信，就完全使用普通的http协议，只不过用“回话密钥”加密传输内容。</p>
+<p><strong>说明</strong> ：</p>
+<p><strong>对称加密</strong> ：同一个密钥可以同时用作信息的加密和解密，这种加密方法称为对称加密，也称为单密钥加密。<br>优点：算法公开、计算量小、加密速度快、加密效率高。<br>缺点：如果一方的秘钥遭泄露，那么整个通信就会被破解。<br>在对称加密算法中常用的算法有：DES，AES，IDEA。</p>
+<p><strong>非对称加密</strong>：<br>非对称加密算法需要两个密钥：公开密钥（public key）和私有密钥（private key）。公开密钥与私有密钥是一对，如果用公开密钥对数据进行加密，只有用对应的私有密钥才能解密；如果用私有密钥对数据进行加密，那么只有用对应的公开密钥才能解密。因为加密和解密使用的是两个不同的密钥，所以这种算法叫作非对称加密算法。<br>优点：其安全性更好。不需要在通信之前先同步秘钥。<br>缺点：加密和解密花费时间长、速度慢，只适合对少量数据进行加密。<br>非对称加密使用的主要算法：RSA、Elgamal、背包算法。</p>
+<p><strong>MD5，SHA</strong></p>
+<p>MD5和SHA都是哈希(Hash)函数。MD5(Message Digest Algorithm)消息摘要算法。它们的特点如下：</p>
+<ul>
+<li>都是不可逆的函数。不存在一个算法能够由哈希值到算出原始信息。</li>
+<li>对原始信息的任何一点改变都会导致结果的哈希值巨大的改变。</li>
+<li>运算代价相对较低</li>
+<li>除非通过蛮力穷举，否则无法找到两段不同的信息而有相同的哈希值。</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 计算机网络 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 网络协议 </tag>
+            
+            <tag> TCP/IP </tag>
+            
+            <tag> Http </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[二叉搜索树]]></title>
+      <url>/2017/2017-09-19-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91.html</url>
+      <content type="html"><![CDATA[<h1 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h1><h2 id="二叉搜索树-二叉查找树-二叉排序树-Binary-search-Tree"><a href="#二叉搜索树-二叉查找树-二叉排序树-Binary-search-Tree" class="headerlink" title="二叉搜索树(二叉查找树/二叉排序树)(Binary search Tree)"></a>二叉搜索树(二叉查找树/二叉排序树)(Binary search Tree)</h2><p><strong>定义</strong>：一棵二叉树，若满足如下条件，即任何结点的键值一定大于其左子树中的每一个结点的值，并小于其右子树中的每一个结点的值。则该二叉树为二叉搜索树。<u>二叉搜索树提供对数时间的插入和访问效率。</u></p>
+<p><strong>最小值</strong>：二叉搜索树中最左侧的结点，即为最小值。即沿根结点一直递归访问左子树，直到树的末端，最末端的结点即为所求。<br><strong>最大值</strong>：二叉搜索树中最右侧的结点，即为最大值。原理同上。<br><strong>插入</strong>操作: 插入新元素时,可从根结点开始,若新元素键值比当前结点的键值大,则进入当前结点的左子树;若新元素的键值比当前结点的键值大,则进入当前结点的右子树。如此递归，直到尾端，即为插入点。<br><strong>删除</strong>操作: 删除操作分为两种情况，情况如下：</p>
+<ol>
+<li>若待删除结点A只有1个子结点，则直接将A的子结点连接至A结点的父节点，并将A结点删除即可。</li>
+<li>若待删除结点A有两个子结点，则以右子树内的最小结点取代A结点即可。</li>
+</ol>
+<h2 id="平衡二叉搜索树-balanced-binary-search-tree"><a href="#平衡二叉搜索树-balanced-binary-search-tree" class="headerlink" title="平衡二叉搜索树(balanced binary search tree)"></a>平衡二叉搜索树(balanced binary search tree)</h2><p>定义：若一个二叉搜索树是平衡的，则该二叉树为平衡二叉搜索树。“平衡”的大致意义是没有任何一个结点过深。不同的平衡条件，具有不同的效率。根据平衡标准的不同，有AVL-tree,RB-Tree,AA-tree树。</p>
+<h2 id="自平衡二叉搜索树-AVL-tree-Adelson-Velskii-Landis-tree"><a href="#自平衡二叉搜索树-AVL-tree-Adelson-Velskii-Landis-tree" class="headerlink" title="自平衡二叉搜索树(AVL-tree,Adelson-Velskii-Landis tree)"></a>自平衡二叉搜索树(AVL-tree,Adelson-Velskii-Landis tree)</h2><p><strong>定义</strong>：若一棵二叉搜索树中，任何一个结点的左子树的高度与右子树的高度之差的绝对值小于等于1，则这颗二叉搜索树为自平衡二叉搜索树。</p>
+<h3 id="AVL-tree平衡调整"><a href="#AVL-tree平衡调整" class="headerlink" title="AVL-tree平衡调整"></a>AVL-tree平衡调整</h3><p>当插入一个结点导致AVL树不平衡时。我们需要找到平衡状态被破坏的各个结点中最深的那个结点。我们将该结点记为X。</p>
+<p>方法，根据插入点所处位置的结构特点分为如下4种情形：</p>
+<ol>
+<li>插入结点位于X的左结点的左子树—左左</li>
+<li>插入结点位于X的左结点的右子树—左右</li>
+<li>插入结点位于X的右结点的左子树—右左</li>
+<li>插入结点位于X的右结点的右子树—右右</li>
+</ol>
+<p>说明：</p>
+<blockquote>
+<ul>
+<li>情况1,4彼此对称，称为外侧(outside)插入，可以使用单旋转(single rotation)操作调整解决。</li>
+<li>情况2,3彼此对称，称为内侧(inside)插入，可以使用双旋转(double rotation)操作调整解决。</li>
+</ul>
+</blockquote>
+<h3 id="单旋转-single-rotation"><a href="#单旋转-single-rotation" class="headerlink" title="单旋转(single rotation)"></a>单旋转(single rotation)</h3><p>　　对于以上的情形1和情形4，可以使用单旋转实现平衡调整。如下图左-左的情形：<br><img src="/image/AVL_01.jpg" alt="AVL_01"><br>调整过程：对于以X为头结点的子树，将XL结点连同其左子树上移，XL作为这棵子树的根结点；X结点(及其右子树)作为XL结点的右结点；XLR结点及其子树作为X结点的左子树。</p>
+<p>如下图右-右情形：<br><img src="/image/AVL_02.jpg" alt="AVL_02"><br>调整过程：对于以X为头结点的子树，将XR结点连同其右子树上移，XL作为这棵子树的根结点；X结点(连同其左子树)作为XR左子结点；XRL结点连同其子树作为X结点的右子树。</p>
+<h3 id="双旋转-double-rotation"><a href="#双旋转-double-rotation" class="headerlink" title="双旋转(double rotation)"></a>双旋转(double rotation)</h3><p>对于以上情形的2,3，可以使用双旋转实现平衡调整。例如下图所示的左-右情形：<br><img src="/image/AVL_03.jpg" alt="AVL_03"><br><img src="/image/AVL_04.jpg" alt="AVL_04"></p>
+<p>调整过程：左右结构的情形分为两步完成。<br>第1步：将XLR(连同其右子树)作为X结点的左子结点，XLR的左孩子(及其子树)作为XL结点的右孩子；XL结点(连同其子树)作为XLR结点的左孩子。<br>第2步：经过第1部操作以后，得到类似于情形1的结构。在调整后的结构中，将X结点看做该子树的根结点。在此基础上，将当前XL结点(连同其左子树)作为该子树的根结点，当前XL结点的右孩子作为X结点的左孩子；X结点(连同其子树)作为当前XL结点的右孩子。</p>
+<p>而对于下图的右-左情形，采用类似的调整方法：<br><img src="/image/AVL_05.jpg" alt="AVL_05"><br><img src="/image/AVL_06.jpg" alt="AVL_06"><br>调整过程：右左结构的情形分为两步完成。<br>第1步：将XRL结点(连同其左子树)作为X结点的右孩子，将XRL结点右孩子(及其子树)作为XR结点的左孩子；XR结点(连同其子树)作为XRL结点右孩子。<br>第2步：经过第1部操作以后，得到类似于情形4的结构。在调整后的结构中，将X结点看做该子树的根结点。在此基础上，将当前XR结点(连同其右子树)作为该子树的根结点，当前XR结点的左孩子作为X结点的右孩子；X结点(连同其子树)作为XL结点的左孩子。</p>
+<h2 id="红黑树-RB-Tree-Red-Black-Tree"><a href="#红黑树-RB-Tree-Red-Black-Tree" class="headerlink" title="红黑树(RB-Tree,Red-Black Tree)"></a>红黑树(RB-Tree,Red-Black Tree)</h2><p>红黑树是一棵平衡二叉查找树，其定义如下：</p>
+<ol>
+<li>每个结点不是红色就是黑色；</li>
+<li>根结点为黑色；</li>
+<li>如果结点为红色，其子结点必须为黑色(父子结点不能同时为红)；</li>
+<li>任一结点至NULL(树尾端)的任何路径，所含黑结点必须相同。</li>
+<li>NULL结点为黑色<br>调整条件：根据规则4，新结点必须为红色；根据规则3，新结点的父节点必须为黑色。当一个新结点根据二叉查找树的规则到达其插入点时，若未能符合上述条件时，就必须调整颜色并旋转树形。</li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> 算法 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 二叉树 </tag>
+            
+            <tag> 查找算法 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[树相关定义和基本操作]]></title>
+      <url>/2017/2017-09-19-%E6%A0%91%E7%9B%B8%E5%85%B3%E5%AE%9A%E4%B9%89%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C.html</url>
+      <content type="html"><![CDATA[<h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><p>定义：树由结点和边构成。整棵树有一个最上端结点，称为根结点。相连结点中，在上者称为父节点(parent)，在下者称为子节点(child)。 无子结点的结点称为叶结点。</p>
+<h2 id="1-二叉树"><a href="#1-二叉树" class="headerlink" title="1 二叉树"></a>1 二叉树</h2><p>定义：若一棵树中，所有结点的叶结点最多只有两个，则这棵树为二叉树。</p>
+<h3 id="1-1-二叉树的基本操作"><a href="#1-1-二叉树的基本操作" class="headerlink" title="1.1 二叉树的基本操作"></a>1.1 二叉树的基本操作</h3><ol>
+<li>创建二叉树</li>
+<li>释放二叉树的结点</li>
+<li>二叉树的先序、中序、后序(递归、非递归)和层次遍历</li>
+<li>根结点至某个结点的<strong>路径长度</strong>： 根结点至任何结点之间的路径所经过的变数，称为路径长度。</li>
+<li>二叉树的深度：根结点至任一结点的路径长度即为该结点的深度。根结点的深度为0。</li>
+<li>二叉树的高度：某个结点至其最深子结点的路径长度，称为该结点的高度。</li>
+<li>二叉树的宽度：一棵树树中，各层结点个数的最大值即为数的宽度。</li>
+</ol>
+<h3 id="1-2-二叉树的扩展"><a href="#1-2-二叉树的扩展" class="headerlink" title="1.2 二叉树的扩展"></a>1.2 二叉树的扩展</h3><ol>
+<li><p>线索二叉树(Thread Binary Tree)</p>
+</li>
+<li><p>二叉搜索树(二叉查找树/二叉排序树)(Binary search Tree)</p>
+<p><strong>定义</strong>：一棵二叉树，若满足如下条件，即任何结点的键值一定大于其左子树中的每一个结点的值，并小于其右子树中的每一个结点的值。则该二叉树为二叉搜索树。</p>
+</li>
+<li><p>平衡二叉搜索树(balanced binary search tree)</p>
+<p><strong>定义</strong>：若一棵二叉搜索树中，任何一个结点的左子树的高度与右子树的高度之差的绝对值小于等于1，则这颗二叉搜索树为平衡二叉搜索树。</p>
+</li>
+<li><p>自平衡二叉搜索树(AVL-tree,Adelson-Velskii-Landis tree)</p>
+</li>
+<li><p>红黑树(RB-Tree,Red-Black Tree)</p>
+</li>
+<li><p>哈夫曼树(Huffman Coding Tree)</p>
+</li>
+<li><p>trie树</p>
+</li>
+</ol>
+<h2 id="2-B树相关"><a href="#2-B树相关" class="headerlink" title="2 B树相关"></a>2 B树相关</h2><h3 id="2-1-B树"><a href="#2-1-B树" class="headerlink" title="2.1 B树"></a>2.1 B树</h3><h3 id="2-2-B-树"><a href="#2-2-B-树" class="headerlink" title="2.2 B-树"></a>2.2 B-树</h3><h3 id="2-3-B-树"><a href="#2-3-B-树" class="headerlink" title="2.3 B+树"></a>2.3 B+树</h3><h3 id="2-4-B-树"><a href="#2-4-B-树" class="headerlink" title="2.4 B*树"></a>2.4 B*树</h3>]]></content>
+      
+        <categories>
+            
+            <category> 数据结构 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 二叉树 </tag>
+            
+            <tag> 树 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[内省排序]]></title>
+      <url>/2017/2017-09-19-%E5%86%85%E7%9C%81%E6%8E%92%E5%BA%8F.html</url>
+      <content type="html"><![CDATA[<h2 id="STL-sort内部实现"><a href="#STL-sort内部实现" class="headerlink" title="STL sort内部实现"></a>STL sort内部实现</h2><p>STL sort主要是对Quick sort()进行优化。</p>
+<p>快速排序代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//quick_sort</span><br><span class="line">void quick_sort(int arr[], int le, int ri)&#123;</span><br><span class="line">	int index = partition(int arr[], left, right);</span><br><span class="line">	quick_sort(arr, le, index - 1);</span><br><span class="line">	quick_sort(arr, index+1, right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int partition(int arr[], int left, int right)&#123;</span><br><span class="line">	int i = left;</span><br><span class="line">	int j = right + 1;</span><br><span class="line">	int target = arr[left];</span><br><span class="line">	</span><br><span class="line">	while (1)&#123;</span><br><span class="line">    	while (arr[++i] &lt; target)</span><br><span class="line">    		if (i == right) break;</span><br><span class="line">    	</span><br><span class="line">    	while (arr[--j] &gt; target)</span><br><span class="line">    		if (j == left) break;</span><br><span class="line">    	</span><br><span class="line">    	if (i &gt;= j)</span><br><span class="line">    		break;</span><br><span class="line">    	</span><br><span class="line">    	swap(arr[i], arr[j]);</span><br><span class="line">	&#125;</span><br><span class="line">	swap(arr[left], j);</span><br><span class="line">	</span><br><span class="line">	return j;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>优化1：当枢轴选择不当时会造成分割产生一个空区间导致不当分割问题。解决方法通过三点中值法选取枢轴元素，避免不当分割问题。</p>
+<p>STL sort由两部分构成：首先使用内省排序将原始元素调整成为多个接近有序的子序列，然后在使用final_insertion_sort函数将整个接近有序的序列调整成为完全有序的序列。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">RandomAccessIterator</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">inline</span> <span class="title">void</span> <span class="title">sort</span>(<span class="title">RandomAccessIterator</span> <span class="title">first</span>, <span class="title">RandomAccessIterator</span>&#123;</span> last)&#123;</span><br><span class="line"><span class="keyword">if</span> (first != last)&#123;</span><br><span class="line">	__introsort_loop(first, last, value_type(first), _lg(last - fist) * <span class="number">2</span>);</span><br><span class="line">	__final_insertion_sort(fist, last);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>###内省式排序(Introspective sorting)</p>
+<p>_log()是用来控制分割恶化问题的。2 * _log()是最多允许分割层次。</p>
+<p>优化2：当数据量较小时，使用插入排序的效率要优于快速排序。因为当数据量较小时，快速排序会因为产生较多的递归调用而影响效率。</p>
+<p>优化3：当递归调用层次大于2*log(n)时，表明区间数据已基本有序，使用快速排序的效率就会下降为$n^2$ ，因此使用堆排序进行排序。因为堆排序的时间复杂度与初始序列是否有序无关。</p>
+<h3 id="final-insertion-sort"><a href="#final-insertion-sort" class="headerlink" title="final insertion sort"></a>final insertion sort</h3><p>思想：将一个待排序的序列划分成多个子序列，在将多个子序列变换为“几近排序但尚未完成”的状态，最后使用insertion sort将“几近排序但尚未完成”的子序列做最后一次完整的排序，其效率一般认为会比“将所有子序列彻底排序”更好。<br>因为insertion sort在面对“几近排序”的序列时，效果更好。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">RandomAccessInterator</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">final_insertion_sort</span>(<span class="title">RandomAccessInterator</span> <span class="title">first</span>, <span class="title">RandomAccessInterator</span> <span class="title">last</span>)&#123;</span></span><br><span class="line"><span class="keyword">if</span> (last - first &gt; _stl_threshold)&#123;<span class="comment">// &gt; 16</span></span><br><span class="line">	_insertion_sort(first, first + _stl_threshold);</span><br><span class="line">	_unguarded_insertion_sort(first + stl_threshold, last);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	_insertion_sort(first, last);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>说明：数据个数小于16个时，直接调用插入排序。当数据个数大于16时，首先将最前面的16个元素进行插入排序，得到一个排序的结果。然后对后续元素调用<code>_unguarded_linear_insert</code> 。</p>
+<p>使用unguard_linear_insert的原因：正常情况下，使用插入排序时，在内层循环中需要进行两次判断：即判断循环是否越界，判断相邻元素是否逆序。因为整个序列前面16个元素已经有序，所以最小值必定在内循环区间的最边缘，这样两个条件可以合二为一。对于大数据量的数据，可以大大减少判断次数。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 算法 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 优化算法 </tag>
+            
+            <tag> 排序 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[字符串匹配算法]]></title>
+      <url>/2017/2017-09-19-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95.html</url>
+      <content type="html"><![CDATA[<h1 id="字符串匹配算法-String-Search-Algorigthm"><a href="#字符串匹配算法-String-Search-Algorigthm" class="headerlink" title="字符串匹配算法(String Search Algorigthm)"></a>字符串匹配算法(String Search Algorigthm)</h1><p>一点说明：</p>
+<p>原串：即子串匹配过程中， 待查找的字符串；</p>
+<p>搜索串：即用来匹配的特定的一个子串。</p>
+<h2 id="1-KMP算法-The-Knuth-Morris-Pratt-Algorithm"><a href="#1-KMP算法-The-Knuth-Morris-Pratt-Algorithm" class="headerlink" title="1 KMP算法 (The Knuth-Morris-Pratt Algorithm)"></a>1 KMP算法 (The Knuth-Morris-Pratt Algorithm)</h2><p>优点：在暴力解法的基础上，减少匹配过程中查找字符串比较次数。</p>
+<p>缺点：当待查找的字符串没有重复搜索串时，算法退化为暴力解法。</p>
+<p>算法中的概念：</p>
+<blockquote>
+<ol>
+<li>局部匹配表(partial match table):查找过程中的子串中真前缀和真后缀的最大公共长度。</li>
+</ol>
+<ol>
+<li>字符串的真前缀(proper prefix)：例如 “S”, “Sn”, “Sna”, 和 “Snap” 都是 “Snape”的proper prefix。</li>
+<li>字符串的真后缀(proper suffix)：例如“d”,“agrid”, “grid”, “rid”, “id”和  都是“Hagrid”的proper suffix。</li>
+</ol>
+</blockquote>
+<h3 id="计算局部匹配表-partial-math-table"><a href="#计算局部匹配表-partial-math-table" class="headerlink" title="计算局部匹配表(partial math table)"></a>计算局部匹配表(partial math table)</h3><p>局部匹配表有时也称为next数组。该表是由子串的内容决定的。计算过程如下(以下过程以字符串”abababca”为例)：</p>
+<ol>
+<li>字符串长度为1时，字符串为”a”。因此对应表项为0。</li>
+</ol>
+<ol>
+<li>字符串长度为2时，字符串为“ab”，proper prefix包含“a”；proper suffix包含“b”，因此对应表项为0。</li>
+<li>字符串长度为3时，字符串为“aba”，proper prefix包含“a”, “ab”； proper suffix包含“a”,“ba”，因此对应表项为1。</li>
+<li>字符串长度为4时，字符串为“abab”，proper prefix包含“a”, “ab”,“aba”；proper suffix包含“b”，“ab”，“bab”，因此对应表项为2。</li>
+<li>字符串长度为5时，字符串为“ababa”，proper prefix包含“a”, “ab”,“aba”,“abab”；proper suffix包含“a”，“ba”，“aba”，“baba”，因此对应表项为3。</li>
+<li>字符串长度为6时，字符串为“ababab”，proper prefix包含“a”, “ab”,“aba”,“abab”,“ababa”；proper suffix包含“b”，“ab”，“bab”，“abab”,，因此对应表项为3。<br><img src="/image/01.jpg" alt="01"></li>
+</ol>
+<h3 id="使用局部匹配表进行字符串匹配"><a href="#使用局部匹配表进行字符串匹配" class="headerlink" title="使用局部匹配表进行字符串匹配"></a>使用局部匹配表进行字符串匹配</h3><p>设局部匹配表为table。如果存在部分匹配值<code>partial_match_length</code>，而且<code>table[partial_match_length] &gt; 1</code>，则子串可以跳过的长度为：<code>partial_match_length - table[partial_match_length - 1]</code> 。例如：</p>
+<p><img src="/image/02.jpg" alt="02"><br>第一次匹配情况，如下图所示：<img src="/image/03.jpg" alt="图3"><br>该匹配中部分匹配长度(partial_match_length)为1。而对应的值table[partial_match_length - 1]即table[0]等于0。因此我们不需要跳过任何字母。<br>接下来的匹配情况如下图所示：<img src="/image/04.jpg" alt="04"></p>
+<p>该匹配中部分匹配长度为(partial_match_length)为5。这个值对应的table[partial_match_length - 1](即table[4])值为3。这意味着partial_match_length - table[partial_match_length - 1](即5 - talbe[4]，即5-3，即2)。即子串向右移动2个字符。如图所示：<img src="/image/05.jpg" alt="05"></p>
+<p>移动后的匹配情况如上图所示，匹配成功长度(partial_match_length)为3。对应的table[partial_match_length - 1](即table[2])值为1。意味着我们向后移动长度为：<code>partial_match_length - table[partial_match_length - 1]</code>(即3 - table[2] = 3 - 1 = 2)。移动后的结果如图所示：<img src="/image/06.jpg" alt="图6"></p>
+<p>因子串尾部以超过原串长度，因此结束匹配。</p>
+<h2 id="2-BM算法-Boyer-Moore-Algorithm"><a href="#2-BM算法-Boyer-Moore-Algorithm" class="headerlink" title="2 BM算法 (Boyer-Moore Algorithm)"></a>2 BM算法 (Boyer-Moore Algorithm)</h2><p>1977年，德克萨斯大学的Robert S. Boyer教授和J Strother Moore教授发明了这种算法。因此取这两个人的名字而得。word中的查找功能就是使用该算法。</p>
+<p>算法中的概念：</p>
+<blockquote>
+<ol>
+<li>坏字符(<strong>bad character</strong>)：字符串匹配过程中，与搜索串不匹配的字符。</li>
+<li>好后缀(<strong>good suffix</strong>): 即搜索串与原串尾部能够匹配的字符串。</li>
+</ol>
+</blockquote>
+<p>坏字符实例，如下图：<br><img src="/image/07.jpg" alt="图7 坏字符1"> </p>
+<p><img src="/image/bad_ch02.jpg" alt="图8 坏字符1"> </p>
+<p><img src="/image/good_suffix01.jpg" alt="bad_ch02"></p>
+<p>好后缀实例，如下图：</p>
+<p><img src="/image/good_suffix01.jpg" alt="good_suffix01"></p>
+<p><strong>比较规则</strong>：首先，将搜索串与原串对齐，从搜索串尾部从后往前比较。</p>
+<p><strong>坏字符移动规则</strong>: <code>后移位数 = 坏字符的位置 - 搜索词中的上一次出现位置</code>。说明，若搜索串中不包含坏字符，则<code>搜索串上一次出现位置</code>为-1。若包含该字符，则为离坏字符位置最近的那个位置。</p>
+<p><strong>好后缀规则</strong> :后移位数 = 好后缀的位置 - 搜索词中的上一次出现位置。好后缀位置以后缀最后一个位置为准。说明，若搜索串中不包含坏字符，则<code>搜索串上一次出现位置</code>为-1。例如：</p>
+<blockquote>
+<ul>
+<li>如果字符串”ABCDAB”的后一个”AB”是”好后缀”。那么它的位置是5（从0开始计算，<strong>取最后的”B”的值</strong>），在”搜索词中的上一次出现位置”是1（第一个”B”的位置），所以后移 5 - 1 = 4位，前一个”AB”移到后一个”AB”的位置。</li>
+<li>如果字符串”ABCDEF”的”EF”是好后缀，则”EF”的位置是5 ，上一次出现的位置是 -1（即未出现），所以后移 5 - (-1) = 6位，即整个字符串移到”F”的后一位。</li>
+</ul>
+</blockquote>
+<p>注意：</p>
+<ol>
+<li>以上两个规则的中的位置指的是搜索串中的位置。</li>
+<li>当通过坏字符规则和好后缀移动规则得到的值不同时，取较大的值作为移动量。</li>
+</ol>
+<p>下面以字符串为”HERE IS A SIMPLE EXAMPLE”，搜索词为”EXAMPLE”为例，进行说明：</p>
+<p>step1：<br><img src="/image/ex01.jpg" alt="ex01"></p>
+<p>首先遇到坏字符，计算移动位置：6 - (-1) = 7.<br>step2:<br><img src="/image/ex02.jpg" alt="ex02"><br>遇到坏字符，计算移动位置：6 - 4 = 2.</p>
+<p>step3:</p>
+<p><img src="/image/ex03.jpg" alt="ex03"></p>
+<p>遇到好后缀，计算移动位置：6 - 0 = 6。</p>
+<p>step4:</p>
+<p><img src="/image/ex04.jpg" alt="ex04"><br>坏字符和好后缀的选择问题：</p>
+<p>坏字符的结果：<br><img src="/image/ex05.jpg" alt="ex05"><br>后后缀的结果：<br><img src="/image/ex06.jpg" alt="ex06"></p>
+<p>step5:</p>
+<p><img src="/image/ex07.jpg" alt="ex07"></p>
+<h2 id="3-Sunday算法-Sunday-Algorigthm"><a href="#3-Sunday算法-Sunday-Algorigthm" class="headerlink" title="3 Sunday算法(Sunday Algorigthm)"></a>3 Sunday算法(Sunday Algorigthm)</h2><p>sunday算法是对BM算法的改进。改进之处：当匹配失败时，判断搜索串下次匹配位置的第一个字符是否与搜索串第一个字符是否相同。进而减少匹配次数。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 算法 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 字符串 </tag>
+            
+            <tag> 字符串匹配 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hexo撰写博客]]></title>
+      <url>/2017/2017-08-10-Hexo%E6%92%B0%E5%86%99%E5%8D%9A%E5%AE%A2.html</url>
+      <content type="html"><![CDATA[<h2 id="Markdown文件头部格式"><a href="#Markdown文件头部格式" class="headerlink" title="Markdown文件头部格式"></a>Markdown文件头部格式</h2><p>　　要使一篇博客能够与博客系统的<code>标签</code>和 <code>分类</code>关联。必须在每篇博客对应的Markdown文件头部书写必要信息。格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &quot;&quot;		#文章标题</span><br><span class="line">date:                   #文件创建时间,Hexo默认按照文件创建时间排序</span><br><span class="line">description:            #文章摘要</span><br><span class="line">categories: [&quot;&quot;]        #文章类别</span><br><span class="line">tags: [&quot;&quot;, &quot;&quot;]          #文章标签</span><br><span class="line">layout: true            #是否使用样式      </span><br><span class="line">comments: false         #是否添加文章评论</span><br><span class="line">top: 10			#置顶级别,数值越大，优先级越高</span><br><span class="line">copyright: true         #是否添加版权信息</span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
+<p>　　<strong>注意</strong>：属性冒号后必须要有一个空格，多个标签要使用方括号包围，以逗号分隔。例如本文的MarkDown文件头实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &quot;Hexo撰写博客&quot;</span><br><span class="line">date: 2017-08-10 19:53:17</span><br><span class="line">description: &quot;博客摘要：本文讲解怎么使用Markdown语法书写能够适用Hexo系统的博客文章的方法。&quot;</span><br><span class="line">categories: [&quot;Hexo&quot;]</span><br><span class="line">tags: [&quot;Hexo&quot;, &quot;Hexo撰写博客&quot;]</span><br><span class="line">layout: true</span><br><span class="line">comments: false</span><br><span class="line">top: 10</span><br><span class="line">copyright: true</span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
+<h2 id="书写博客摘要的方法"><a href="#书写博客摘要的方法" class="headerlink" title="书写博客摘要的方法"></a>书写博客摘要的方法</h2><h3 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a><code>方法1</code></h3><p>在Markdown源文件的头部信息中添加<code>description</code> 属性，然后将摘要内容用双引号(英文)包含即可。</p>
+<h3 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a><code>方法2</code></h3><p>　　除了使用方法1，也可以使用一下方法进行操作。首先，在MarkDown头部信息之后书写博客的摘要。然后在其后添加如下内容即可。注意以下内容的前后都要有个空行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- more --&gt;    #在博客摘要后，另起一行，输入本行中的内容即可</span><br></pre></td></tr></table></figure>
+<h2 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h2><p>　　除以上格式需要注意外，其他格式与普通的Markdown文件并无差别。但需要注意的是:</p>
+<ul>
+<li>Hexo中的Markdown文件中不能使用Tab，只能使用空格作为空白符</li>
+<li>Hexo中在使用大花括号<code>{</code>时，要么使用网页中的转义，要么放在代码块中，否则会出错</li>
+</ul>
+<p>　　若按上述格式编辑好文档，就可以发布并查看解析是否正确了。</p>
+<p>　　发布方法：将编辑好的Markdown文件放置在Hexo根目录中的./source/_posts目录下即可。</p>
+<h2 id="本地测试"><a href="#本地测试" class="headerlink" title="本地测试"></a>本地测试</h2><p>　　编写好的文档可以现在本地测试，解析正确无误后，再发布到github上，减少不必要的麻烦。操作步骤如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cd hexo-root-directory</span><br><span class="line">$ hexo generate(g)</span><br><span class="line">$ hexo server(s)</span><br></pre></td></tr></table></figure></p>
+<p>　　当打开本地Hexo-server后，即可看到Markdown在网页中的解析效果。若有一些偏差，可实时修改网页对应的Markdown文件。Markdown文件修改保存后，刷新网页即可看到修改后的效果，很方便，^__^。</p>
+<h2 id="上传至github"><a href="#上传至github" class="headerlink" title="上传至github"></a>上传至github</h2><p>　　当本地调试无误后，即可上传至github。使用如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd hexo-root-directory</span><br><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Hexo </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> Hexo撰写博客 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hexo常见问题解决方法]]></title>
+      <url>/2017/2017-08-10-Hexo%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.html</url>
+      <content type="html"><![CDATA[<h2 id="问题1"><a href="#问题1" class="headerlink" title="问题1"></a>问题1</h2><p><strong>错误提示</strong>：<br>FATAL can not read a block mapping entry;a multiline key may not be an implicit key at line 9,column 7:<br>author: alvincat</p>
+<p><strong>原因</strong>：根目录下_config.yml的配置文件中，各个属性的属性值与属性右侧的冒号之间必须要有一个空格，否则就会出现以上错误。<br><strong>解决方法</strong>：查看_config.yml文件，检查各个属性冒号右侧有无空格与属性值分隔。</p>
+<h2 id="问题2"><a href="#问题2" class="headerlink" title="问题2"></a>问题2</h2><p><strong>错误提示</strong>：<br>FATAL (unknown path) [Line 7, Column 533]<br>Error: Unable to call <code>now</code>, which is undefined or falsey</p>
+<p><strong>原因</strong>：Markdown文件使用一些hexo特殊符号，导致Hexo对这些符号无法解析。这些符号主要是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&#125;&#125;，&#123;% %&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>解决方法</strong>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">将 &#123; &#125; 的大括号通过&amp;#123; &amp;#125; 进行转换  </span><br><span class="line">或者将&#123; &#125;及其中的内容包含在 ``` 代码中</span><br></pre></td></tr></table></figure></p>
+<h2 id="问题3"><a href="#问题3" class="headerlink" title="问题3"></a>问题3</h2><p><strong>错误提示</strong>：<br>ssh: Could not resolve hostname github.com: Name or service not known fatal: Could not read from remote repository.</p>
+<p><strong>原因</strong>：github的仓库使用ssh的连接方式，但是git未配置ssh连接密钥。</p>
+<p><strong>解决方法</strong>：</p>
+<blockquote>
+<p>方法1：修改hexo对应仓库的clone连接方式为https</p>
+<p>方法2：在本地git中创建和使用ssh，以ssh方式连接。制作方法参看<a href="https://segmentfault.com/a/1190000002645623" target="_blank" rel="noopener">git-ssh 配置和使用</a></p>
+</blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> Hexo </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> hexo problem </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[GithubPage与Hexo部署博客的方法]]></title>
+      <url>/2017/2017-08-10-GithubPage%E4%B8%8EHexo%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%96%B9%E6%B3%95.html</url>
+      <content type="html"><![CDATA[<h2 id="Github仓库准备"><a href="#Github仓库准备" class="headerlink" title="Github仓库准备"></a>Github仓库准备</h2><ol>
+<li>创建仓库，<a href="http://your-github-username.github.io" target="_blank" rel="noopener">http://your-github-username.github.io</a></li>
+<li>在第1步的仓库中创建两个分支，分别为master(默认分支)与Hexo。然后将Hexo分支设置为默认分支。</li>
+</ol>
+<h2 id="Hexo本地安装及测试"><a href="#Hexo本地安装及测试" class="headerlink" title="Hexo本地安装及测试"></a>Hexo本地安装及测试</h2><h3 id="Hexo本地安装"><a href="#Hexo本地安装" class="headerlink" title="Hexo本地安装"></a>Hexo本地安装</h3><p>1.安装node.js和Git。再次不在赘述。<br>2.npm 安装 Hexo命令行工具。命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
+<p>3.安装完Hexo后，执行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建Hexo工作目录，并且在该目录下完成初始化工作。</span></span><br><span class="line">$ hexo init &lt;folder&gt;</span><br></pre></td></tr></table></figure>
+<p>执行完以上命令后，就会在指定目录下生成如下文件结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── node_modules</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br><span class="line">|   └── landscape</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">└── package-lock.json</span><br></pre></td></tr></table></figure>
+<p>4.官方文档中说要接着执行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd &lt;folder&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<p>以上命令的目的是：更新hexo的工具包。</p>
+<p>5.执行以下命令(在根目录下)安装Hexo本地服务器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-server --save</span><br></pre></td></tr></table></figure>
+<p>6.执行以下命令(在根目录下)安装Hexo Git部署工具：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<h3 id="Hexo-本地构建博客及测试"><a href="#Hexo-本地构建博客及测试" class="headerlink" title="Hexo 本地构建博客及测试"></a>Hexo 本地构建博客及测试</h3><p>1.执行以下命令，生成静态网页：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#或者使用`hexo g`</span></span><br><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+<p><strong>说明</strong> ：这一步执行成功后会在根目录下创建一个<code>public</code>文件夹，并在该目录下生成静态网站的所有数据。</p>
+<p>2.执行以下命令，启动本地服务器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#或者使用`hexo s`</span></span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<p>若以上命令没有错误，通过浏览器输入网址<code>localhost:port</code> (port 默认值为 4000，可在 _config.yml 设定)就可以在本地浏览Hexo生成的页面了。<br>说明：通过以上步骤，就可以在本地测试博客的功能。若本地测试无误，就可以执行后续操作了。</p>
+<h2 id="Hexo和Github-Page关联"><a href="#Hexo和Github-Page关联" class="headerlink" title="Hexo和Github Page关联"></a>Hexo和Github Page关联</h2><ol>
+<li>修改_config.yml中的deploy参数，修改实例如下：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy: </span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:alvincat/alvincat.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<p>说明：此处使用的是ssh协议进行git通信。若您未配置ssh通信方式，请使用https协议传输(对应使用https格式的协议)。</p>
+<p>2.然后，执行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">或者使用`hexo deploy`</span></span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>说明：第2步的实际操作过程就是将博客根目录下的<code>public</code>目录中的所有文件推送到第1步指定的github仓库的指定分支中。若过程没有错误，就可以使用<code>https://your-user-name.github.io</code>访问生成的站点内容了。</p>
+<h2 id="Hexo博客源代码备份"><a href="#Hexo博客源代码备份" class="headerlink" title="Hexo博客源代码备份"></a>Hexo博客源代码备份</h2><p>1.进入博客根目录下，执行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:alvincat/alvincat.github.io.git</span><br><span class="line">git add -A</span><br><span class="line">git commit -m "Fist commit"</span><br><span class="line">git push origin Hexo</span><br></pre></td></tr></table></figure>
+<p>若该过程不出错，博客源代码就会备份到hexo分支中。</p>
+<h2 id="博客内容还原"><a href="#博客内容还原" class="headerlink" title="博客内容还原"></a>博客内容还原</h2><p>当我们不小心删除了本地博客，或者想在其他设备上修改博客时，就可以使用我们已经备份好的博客源代码进行数据还原。还原方法如下：<br>1.安装Git和node.js。<br>2.然后再本地某个文件夹下执行如下命令，其中blog_fold为博客目录。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> git@github.com:alvincat/alvincat.github.io.git blog_fold</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> blog_fold</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">安装hexo命令行工具</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install -g hexo-cli</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install hexo</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install</span></span><br></pre></td></tr></table></figure></p>
+<p>后面的步骤就和初始构建hexo博客系统一致。唯一不同之处在于，还原的Hexo系统已经有了初始的资源，不需要初始化，即不需要执行<code>hexo init</code>命令。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Hexo </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> hexo </tag>
+            
+            <tag> 部署博客 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hexo网站配置]]></title>
+      <url>/2017/2017-08-10-Hexo%E7%BD%91%E7%AB%99%E9%85%8D%E7%BD%AE.html</url>
+      <content type="html"><![CDATA[<p>在 Hexo 中有两份主要的配置文件，其名称都是 _config.yml。 其中，一份位于站点根目录下，主要包含 Hexo 本身的配置；另一份位于<code>主题目录</code>下，这份配置由主题作者提供，主要用于配置主题相关的选项。</p>
+<p>为了描述方便，在以下说明中，将前者称为 <code>站点配置文件</code>， 后者称为<code>主题配置文件</code>。 </p>
+<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><h3 id="安装NexT"><a href="#安装NexT" class="headerlink" title="安装NexT"></a>安装NexT</h3><p>　　Hexo 安装主题的方式非常简单，只需要将主题文件拷贝至站点目录的 themes 目录下， 然后修改配置文件即可。具体到 NexT 来说，安装步骤如下。</p>
+<h3 id="下载主题"><a href="#下载主题" class="headerlink" title="下载主题"></a>下载主题</h3><p>　　如果你熟悉 Git， 建议你使用 克隆最新版本 的方式，之后的更新可以通过 git pull 来快速更新， 而不用再次下载压缩包替换。 </p>
+<p><strong>克隆最新版</strong><br>在终端窗口下，定位到 Hexo 站点目录下。使用 <code>Git</code> checkout 代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd your-hexo-site</span><br><span class="line">$ git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<h3 id="启用主题"><a href="#启用主题" class="headerlink" title="启用主题"></a>启用主题</h3><p>​      与所有 Hexo 主题启用的模式一样。当 克隆/下载 完成后，打开 站点配置文件，找到 <code>theme</code> 字段，并将其值更改为 <code>next</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure></p>
+<p>​      到此，NexT 主题安装完成。下一步我们将验证主题是否正确启用。在切换主题之后、验证之前，我们最好使用 <code>hexo clean</code> 来清除 Hexo 的缓存。</p>
+<h3 id="验证主题"><a href="#验证主题" class="headerlink" title="验证主题"></a>验证主题</h3><p>​      首先启动 Hexo 本地站点，并开启调试模式（即加上 <code>--debug</code>），整个命令是 <code>hexo s --debug</code>。      在服务启动的过程，注意观察命令行输出是否有任何异常信息，如果你碰到问题，这些信息将帮助他人更好的定位错误。      当命令行输出中提示出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO  Hexo is running at http://0.0.0.0:4000/. Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure></p>
+<p>此时即可使用浏览器访问 <code>http://localhost:4000</code>，检查站点是否正确运行。    </p>
+<h2 id="主题设置"><a href="#主题设置" class="headerlink" title="主题设置"></a>主题设置</h2><p>其它设置请参照NexT文档进行设置。例如设置主题，语言，菜单，头像，昵称等内容。<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">Next设置文档</a></p>
+<p>若要使主页边栏中 <code>分类</code> <code>标签</code> <code>关于</code> 页面能够加载，需要进行以下设置。</p>
+<h3 id="创建文件夹-分类-标签-关于"><a href="#创建文件夹-分类-标签-关于" class="headerlink" title="创建文件夹(分类 标签 关于)"></a>创建文件夹(分类 标签 关于)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ cd your-hexo-site</span><br><span class="line">$ hexo new page categories</span><br><span class="line">$ hexo new page tags</span><br><span class="line">$ hexo new page about</span><br></pre></td></tr></table></figure>
+<p>上述操作其实是在hexo根目录中，./source目录下新建<code>categories</code>，<code>tags</code>， <code>about</code>文件夹。并在各个文件夹下新建一个index.md文件。</p>
+<h3 id="设置页面类型"><a href="#设置页面类型" class="headerlink" title="设置页面类型"></a>设置页面类型</h3><p>各个index.md的内容形如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">date: 2017-08-01 10:20:57</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">comments: false #禁用评论</span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
+<p>其中type类型与index.md所在的文件夹的文件名一致。例如tags文件夹中的index.md的type属性为”tags”。</p>
+<h3 id="修改菜单"><a href="#修改菜单" class="headerlink" title="修改菜单"></a>修改菜单</h3><p>在菜单中添加链接。编辑<code>主题配置</code>文件 ， 添加对应属性到 menu 中，如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">menu: </span><br><span class="line">  home: /</span><br><span class="line">  archives: /archives</span><br><span class="line">  categories: /categories</span><br><span class="line">  about: /about</span><br><span class="line">  tags: /tags</span><br></pre></td></tr></table></figure></p>
+<p>至此，基本内容已经可以使用了。</p>
+<p>参考文档：<br>官方参考：<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">NexT使用文档</a><br>网上资源：<a href="http://blog.csdn.net/qq_33699981/article/details/72716951" target="_blank" rel="noopener">hexo的next主题个性化教程：打造炫酷网站</a><br>师弟的文档：<a href="http://wangxinri.cn" target="_blank" rel="noopener">github Pages + Hexo搭建个人博客（二） 提升篇</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Hexo </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> Hexo page set </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hexo Quick Start]]></title>
+      <url>/2017/2017-08-10-Hexo-Quick-Start-md.html</url>
+      <content type="html"><![CDATA[<p>摘要：本文内容摘自Hexo中文官网，主要内容为Hexo安装以及配置方法。若要转载，请尊重版权，注明来源。</p>
+<a id="more"></a>
+<h2 id="什么是Hexo"><a href="#什么是Hexo" class="headerlink" title="什么是Hexo"></a>什么是Hexo</h2><p><a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a>是一个简单快速高效的博客框架。Hexo使用 Markdown（或其他渲染引擎）解析文章，即可利用靓丽的主题生成静态网页。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="安装前提"><a href="#安装前提" class="headerlink" title="安装前提"></a>安装前提</h3><p>安装 Hexo 相当简单。然而在安装前，您必须检查电脑中是否已安装下列应用程序：</p>
+<ul>
+<li>Git</li>
+<li>Node.js</li>
+</ul>
+<h3 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h3><ul>
+<li>Windows：下载并安装 <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">Git</a></li>
+<li>Mac：使用 Homebrew, MacPorts ：brew install git;或下载 安装程序 安装。</li>
+<li>Linux (Ubuntu, Debian)：sudo apt-get install git-core</li>
+<li>Linux (Fedora, Red Hat, CentOS)：sudo yum install git-core</li>
+</ul>
+<h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><p>  安装 Node.js 的最佳方式是使用<a href="https://github.com/creationix/nvm" target="_blank" rel="noopener">nvm</a></p>
+<p>cURL:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl https://raw.github.com/creationix/nvm/master/install.sh | sh</span><br></pre></td></tr></table></figure></p>
+<p>Wget:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget -qO- https://raw.github.com/creationix/nvm/master/install.sh | sh</span><br></pre></td></tr></table></figure></p>
+<p>安装完成后，重启终端并执行下列命令即可安装 Node.js。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm install stable</span><br></pre></td></tr></table></figure>
+<p>或者您也可以下载 <a href="http://nodejs.org/" target="_blank" rel="noopener">安装程序</a> 来安装。</p>
+<blockquote>
+<p><strong>Windows 用户</strong><br>对于windows用户来说，建议使用安装程序进行安装。安装时，请勾选Add to<br>PATH选项。另外，您也可以使用Git Bash，这是git for windows自带的一组程序，提供了Linux风格的shell，在该环境下，您可以直接用上面提到的命令来安装Node.js。打开它的方法很简单，在任意位置单击右键，选择“Git  Bash Here”即可。由于Hexo的很多操作都涉及到命令行，您可以考虑始终使用Git Bash来进行操作。</p>
+</blockquote>
+<h3 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h3><p>　　所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
+<h2 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h2><p>　　安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt; </span><br><span class="line">$ cd &lt;folder&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure></p>
+<p><strong>说明</strong>：为Hexo在本地的目录，windows可根据对应情况书写。第二条命令的目的是将新建的目录<code>&lt;folder&gt;</code>作为当前目录。第三部执行Hexo初始化操作，创建必要的文件。</p>
+<p>新建完成后，指定文件夹的目录如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure></p>
+<h3 id="config-yml"><a href="#config-yml" class="headerlink" title="_config.yml"></a>_config.yml</h3><p>　　网站的 <a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="noopener">配置</a> 信息文件，您可以在此配置大部分的参数。</p>
+<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><p>　　应用程序的信息。EJS, Stylus和 Markdown renderer已默认安装，您可以自由移除。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">package.json</span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;hexo-site&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;0.0.0&quot;,</span><br><span class="line">  &quot;private&quot;: true,</span><br><span class="line">  &quot;hexo&quot;: &#123;</span><br><span class="line">    &quot;version&quot;: &quot;&quot;</span><br><span class="line">  &#125;,</span><br><span class="line"> </span><br><span class="line"> &quot;dependencies&quot;: &#123;</span><br><span class="line">    &quot;hexo&quot;: &quot;^3.0.0&quot;,</span><br><span class="line">    &quot;hexo-generator-archive&quot;: &quot;^0.1.0&quot;,</span><br><span class="line">    &quot;hexo-generator-category&quot;: &quot;^0.1.0&quot;,</span><br><span class="line">    &quot;hexo-generator-index&quot;: &quot;^0.1.0&quot;,</span><br><span class="line">    &quot;hexo-generator-tag&quot;: &quot;^0.1.0&quot;,</span><br><span class="line">    &quot;hexo-renderer-ejs&quot;: &quot;^0.1.0&quot;,</span><br><span class="line">    &quot;hexo-renderer-stylus&quot;: &quot;^0.2.0&quot;,</span><br><span class="line">    &quot;hexo-renderer-marked&quot;: &quot;^0.2.4&quot;,</span><br><span class="line">    &quot;hexo-server&quot;: &quot;^0.1.2&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="scaffolds"><a href="#scaffolds" class="headerlink" title="scaffolds"></a>scaffolds</h3><p><a href="https://hexo.io/zh-cn/docs/writing.html" target="_blank" rel="noopener">模版</a> 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。<br>Hexo的模板是指在新建的Markdown文件中默认填充的内容。例如，如果您修改scaffold/post.md中的Front-matter内容，那么每次新建一篇文章时都会包含这个修改。</p>
+<h3 id="source"><a href="#source" class="headerlink" title="source"></a>source</h3><p>资源文件夹是存放用户资源的地方。除 <code>_posts</code> 文件夹之外，开头命名为 <code>_</code> (下划线)的文件 / 文件夹和隐藏的文件将会被忽略。Markdown 和 HTML 文件会被解析并放到 <code>public</code> 文件夹，而其他文件会被拷贝过去。</p>
+<h3 id="themes"><a href="#themes" class="headerlink" title="themes"></a>themes</h3><p><a href="https://hexo.io/zh-cn/docs/themes.html" target="_blank" rel="noopener">主题</a> 文件夹。Hexo 会根据主题来生成静态页面。若想使用非默认主题，可以下载对应的主题，然后将对应的文件夹放在该目录下。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>您可以在 <code>_config.yml</code> 中修改大部份的配置。</p>
+<h3 id="网站"><a href="#网站" class="headerlink" title="网站"></a>网站</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>网站标题</td>
+</tr>
+<tr>
+<td><code>subtitle</code></td>
+<td>网站副标题</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>网站描述</td>
+</tr>
+<tr>
+<td><code>author</code></td>
+<td>您的名字</td>
+</tr>
+<tr>
+<td><code>language</code></td>
+<td>网站使用的语言</td>
+</tr>
+<tr>
+<td><code>timezone</code></td>
+<td>网站时区。Hexo 默认使用您电脑的时区。<a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" target="_blank" rel="noopener">时区列表</a>。比如说：<code>America/New_York</code>, <code>Japan</code>, 和 <code>UTC</code> 。</td>
+</tr>
+</tbody>
+</table>
+<p>其中，<code>description</code>主要用于SEO，告诉搜索引擎一个关于您站点的简单描述，通常建议在其中包含您网站的关键词。<code>author</code>参数用于主题显示文章的作者。</p>
+<h3 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>url</code></td>
+<td>网址</td>
+<td></td>
+</tr>
+<tr>
+<td><code>root</code></td>
+<td>网站根目录</td>
+<td></td>
+</tr>
+<tr>
+<td><code>permalink</code></td>
+<td>文章的 <a href="https://hexo.io/zh-cn/docs/permalinks.html" target="_blank" rel="noopener">永久链接</a> 格式</td>
+<td><code>:year/:month/:day/:title/</code></td>
+</tr>
+<tr>
+<td><code>permalink_defaults</code></td>
+<td>永久链接中各部分的默认值</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>网站存放在子目录</p>
+<p>如果您的网站存放在子目录中，例如 <code>http://yoursite.com/blog</code>，则请将您的 <code>url</code> 设为 <code>http://yoursite.com/blog</code> 并把 <code>root</code> 设为 <code>/blog/</code>。</p>
+</blockquote>
+<p>其他设置请参考<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="noopener">配置设置</a></p>
+<h2 id="生成文件"><a href="#生成文件" class="headerlink" title="生成文件"></a>生成文件</h2><p>使用 Hexo 生成静态文件快速而且简单。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></p>
+<h3 id="监视文件变动"><a href="#监视文件变动" class="headerlink" title="监视文件变动"></a>监视文件变动</h3><p>Hexo 能够监视文件变动并立即重新生成静态文件，在生成时会比对文件的 SHA1 checksum，只有变动的文件才会写入。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate --watch</span><br></pre></td></tr></table></figure></p>
+<h3 id="完成后部署"><a href="#完成后部署" class="headerlink" title="完成后部署"></a>完成后部署</h3><p>您可执行下列的其中一个命令，让 Hexo 在生成完毕后自动部署网站，两个命令的作用是相同的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate --deploy</span><br><span class="line">$ hexo deploy --generate</span><br></pre></td></tr></table></figure></p>
+<p>简写: 上面两个命令可以简写为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g U+2212.d</span><br><span class="line">hexo d  -g</span><br></pre></td></tr></table></figure></p>
+<h2 id="搭建本地Hexo服务器"><a href="#搭建本地Hexo服务器" class="headerlink" title="搭建本地Hexo服务器"></a>搭建本地Hexo服务器</h2><h3 id="Hexo-server"><a href="#Hexo-server" class="headerlink" title="Hexo-server"></a>Hexo-server</h3><p>Hexo 3.0 把服务器独立成了个别模块，您必须先安装 <a href="https://github.com/hexojs/hexo-server" target="_blank" rel="noopener">hexo-server</a> 才能使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-server --save</span><br></pre></td></tr></table></figure>
+<p>安装完成后，输入以下命令以启动服务器，您的网站会在 <code>http://localhost:4000</code> 下启动。在服务器启动期间，Hexo 会监视文件变动并自动更新，您无须重启服务器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>如果您想要更改端口，或是在执行时遇到了 <code>EADDRINUSE</code> 错误，可以在执行时使用 <code>-p</code> 选项指定其他端口，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server -p 5000</span><br></pre></td></tr></table></figure></p>
+<h3 id="静态模式"><a href="#静态模式" class="headerlink" title="静态模式"></a>静态模式</h3><p>在静态模式下，服务器只处理 <code>public</code> 文件夹内的文件，而不会处理文件变动，在执行时，您应该先自行执行 <code>hexo generate</code>，此模式通常用于生产环境（production mode）下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server -s</span><br></pre></td></tr></table></figure></p>
+<h3 id="自定义-IP"><a href="#自定义-IP" class="headerlink" title="自定义 IP"></a>自定义 IP</h3><p>服务器默认运行在 <code>0.0.0.0</code>，您可以覆盖默认的 IP 设置，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server -i 192.168.1.1</span><br></pre></td></tr></table></figure></p>
+<p>　　指定这个参数后，您就只能通过该IP才能访问站点。例如，对于一台使用无线网络的笔记本电脑，除了指向本机的<code>127.0.0.1</code>外，通常还有一个<code>192.168.*.*</code>的局域网IP，如果像上面那样使用<code>-i</code>参数，就不能用<code>127.0.0.1</code>来访问站点了。对于有公网IP的主机，如果您指定一个局域网IP作为<code>-i</code>参数的值，那么就无法通过公网来访问站点。</p>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>　　Hexo 提供了快速方便的一键部署功能，让您只需一条命令就能将网站部署到服务器上。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></p>
+<p>　　在开始之前，您必须先在 <code>_config.yml</code> 中修改参数，一个正确的部署配置中至少要有 <code>type</code> 参数，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br></pre></td></tr></table></figure></p>
+<p>　　您可同时使用多个 deployer，Hexo 会依照顺序执行每个 deployer。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">- type: git</span><br><span class="line">  repo:</span><br><span class="line">- type: heroku</span><br><span class="line">  repo:</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>缩进</p>
+<p>YAML依靠缩进来确定元素间的从属关系。因此，请确保每个deployer的缩进长度相同，并且使用空格缩进。</p>
+</blockquote>
+<h3 id="使用Git同步"><a href="#使用Git同步" class="headerlink" title="使用Git同步"></a>使用Git同步</h3><p>　　安装 <a href="https://github.com/hexojs/hexo-deployer-git" target="_blank" rel="noopener">hexo-deployer-git</a>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
+<p>修改配置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: &lt;repository url&gt;</span><br><span class="line">  branch: [branch]</span><br><span class="line">  message: [message]</span><br></pre></td></tr></table></figure></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>repo</code></td>
+<td>库(Repository)地址</td>
+</tr>
+<tr>
+<td><code>branch</code></td>
+<td>分支名称。如果您使用的是 GitHub 或 GitCafe 的话，程序会尝试自动检测。</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>自定义提交信息</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">message自定义提交信息默认为  Site updated: &#123;&#123; now(&apos;YYYY-MM-DD HH:mm:ss&apos;) &#125;&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="init"><a href="#init" class="headerlink" title="init"></a>init</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init [folder]</span><br></pre></td></tr></table></figure>
+<p>　　新建一个网站。如果没有设置 <code>folder</code> ，Hexo 默认在目前的文件夹建立网站。</p>
+<h3 id="generate"><a href="#generate" class="headerlink" title="generate"></a>generate</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>生成静态文件。</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-d</code>, <code>--deploy</code></td>
+<td>文件生成后立即部署网站</td>
+</tr>
+<tr>
+<td><code>-w</code>, <code>--watch</code></td>
+<td>监视文件变动</td>
+</tr>
+</tbody>
+</table>
+<p>该命令可以简写为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure></p>
+<h3 id="server"><a href="#server" class="headerlink" title="server"></a>server</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>　　启动服务器。默认情况下，访问网址为： <code>http://localhost:4000/</code>。</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-p</code>, <code>--port</code></td>
+<td>重设端口</td>
+</tr>
+<tr>
+<td><code>-s</code>, <code>--static</code></td>
+<td>只使用静态文件</td>
+</tr>
+<tr>
+<td><code>-l</code>, <code>--log</code></td>
+<td>启动日记记录，使用覆盖记录格式</td>
+</tr>
+</tbody>
+</table>
+<p>该命令可以简写为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br></pre></td></tr></table></figure></p>
+<h3 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>部署网站。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-g</code>, <code>--generate</code></td>
+<td>部署之前预先生成静态文件</td>
+</tr>
+</tbody>
+</table>
+<p>该命令可以简写为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure></p>
+<h3 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
+<p>　　清除缓存文件 (<code>db.json</code>) 和已生成的静态文件 (<code>public</code>)。在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。</p>
+<h3 id="version"><a href="#version" class="headerlink" title="version"></a>version</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo version</span><br></pre></td></tr></table></figure>
+<p>显示 Hexo 版本。</p>
+<p><strong>温馨提示</strong>：</p>
+<ol>
+<li>当安装完node.js后，就可以使用npm命令。npm其实是同node.js一起安装的一个包管理工具。</li>
+<li>当使用hexo命令时，必须当期目录切换至Hexo工程环境的根目录，即使用<code>hexo init</code> 命令创建的目录。</li>
+<li>hexo-server开启服务时，支持对Markdown文件修改后实时刷新网页，更新结果。因此，不需要重启服务，即可展示修改后的效果。</li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> Hexo </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> hexo install </tag>
+            
+            <tag> hexo options </tag>
+            
+        </tags>
+        
+    </entry>
+    
+  
+  
 </search>
