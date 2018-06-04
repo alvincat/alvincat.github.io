@@ -15,13 +15,13 @@ copyright: true
 ```
 ---
 title: ""		#文章标题
-date:                   #文件创建时间
+date:                   #文件创建时间,Hexo默认按照文件创建时间排序
 description:            #文章摘要
 categories: [""]        #文章类别
 tags: ["", ""]          #文章标签
 layout: true            #是否使用样式      
 comments: false         #是否添加文章评论
-top: 10			#置顶级别
+top: 10			#置顶级别,数值越大，优先级越高
 copyright: true         #是否添加版权信息
 ---
 ```
