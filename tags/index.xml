@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Fri, 15 Nov 2024 17:42:30 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 15 Nov 2024 17:52:42 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>链表</title>
+      <link>http://localhost:1313/tags/%E9%93%BE%E8%A1%A8/</link>
+      <pubDate>Fri, 15 Nov 2024 17:52:42 +0800</pubDate>
+      <guid>http://localhost:1313/tags/%E9%93%BE%E8%A1%A8/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Linux常用命令</title>
       <link>http://localhost:1313/tags/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>

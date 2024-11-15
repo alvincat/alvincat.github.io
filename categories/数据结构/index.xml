@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据结构 on Alvincat&#39;s Blog</title>
+    <link>http://localhost:1313/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+    <description>Recent content in 数据结构 on Alvincat&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>alvincat</copyright>
+    <lastBuildDate>Fri, 15 Nov 2024 17:52:42 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>链表及其相关</title>
+      <link>http://localhost:1313/post/datastructure/linklist/</link>
+      <pubDate>Fri, 15 Nov 2024 17:52:42 +0800</pubDate>
+      <guid>http://localhost:1313/post/datastructure/linklist/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
