@@ -2,53 +2,53 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Alvincat&#39;s Blog</title>
-    <link>http://localhost:5503/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on Alvincat&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Fri, 15 Nov 2024 17:13:30 +0800</lastBuildDate>
-    <atom:link href="http://localhost:5503/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 15 Nov 2024 17:42:30 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux常用命令的用法</title>
-      <link>http://localhost:5503/post/linux/linux_common_tools/</link>
+      <link>http://localhost:1313/post/linux/linux_common_tools/</link>
       <pubDate>Fri, 15 Nov 2024 17:13:30 +0800</pubDate>
-      <guid>http://localhost:5503/post/linux/linux_common_tools/</guid>
+      <guid>http://localhost:1313/post/linux/linux_common_tools/</guid>
       <description>&lt;p&gt;本文记录Linux常用命令。&lt;/p&gt;</description>
     </item>
     <item>
       <title>字符串匹配算法</title>
-      <link>http://localhost:5503/post/algorithm/string_match_algorightm/</link>
+      <link>http://localhost:1313/post/algorithm/string_match_algorightm/</link>
       <pubDate>Fri, 15 Nov 2024 16:01:16 +0800</pubDate>
-      <guid>http://localhost:5503/post/algorithm/string_match_algorightm/</guid>
+      <guid>http://localhost:1313/post/algorithm/string_match_algorightm/</guid>
       <description>&lt;p&gt;本文记录字符串匹配算法的演进已经具体实现。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hugo中一些实用的配置</title>
-      <link>http://localhost:5503/post/hugo/hugo_some_usful_setting/</link>
+      <link>http://localhost:1313/post/hugo/hugo_some_usful_setting/</link>
       <pubDate>Thu, 14 Nov 2024 23:34:32 +0800</pubDate>
-      <guid>http://localhost:5503/post/hugo/hugo_some_usful_setting/</guid>
+      <guid>http://localhost:1313/post/hugo/hugo_some_usful_setting/</guid>
       <description>&lt;p&gt;Hugo中一些实用的配置。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Git常用命令</title>
-      <link>http://localhost:5503/post/git/git_commond/</link>
+      <link>http://localhost:1313/post/git/git_commond/</link>
       <pubDate>Thu, 14 Nov 2024 17:13:30 +0800</pubDate>
-      <guid>http://localhost:5503/post/git/git_commond/</guid>
+      <guid>http://localhost:1313/post/git/git_commond/</guid>
       <description>&lt;p&gt;本文记录Git常用命令。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hugo配置github静态页面的方法</title>
-      <link>http://localhost:5503/post/hugo/hugo_build_static_page/</link>
+      <link>http://localhost:1313/post/hugo/hugo_build_static_page/</link>
       <pubDate>Thu, 14 Nov 2024 16:51:30 +0800</pubDate>
-      <guid>http://localhost:5503/post/hugo/hugo_build_static_page/</guid>
+      <guid>http://localhost:1313/post/hugo/hugo_build_static_page/</guid>
       <description>&lt;p&gt;本文记录Hugo配置github静态页面的关键步骤。&lt;/p&gt;</description>
     </item>
     <item>
       <title>关于我</title>
-      <link>http://localhost:5503/about/</link>
+      <link>http://localhost:1313/about/</link>
       <pubDate>Thu, 14 Nov 2024 11:16:25 +0800</pubDate>
-      <guid>http://localhost:5503/about/</guid>
+      <guid>http://localhost:1313/about/</guid>
       <description></description>
     </item>
   </channel>

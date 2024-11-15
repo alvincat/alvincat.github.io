@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Alvincat&#39;s Blog</title>
-    <link>http://localhost:5503/categories/</link>
+    <link>http://localhost:1313/categories/</link>
     <description>Recent content in Categories on Alvincat&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Fri, 15 Nov 2024 17:13:30 +0800</lastBuildDate>
-    <atom:link href="http://localhost:5503/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 15 Nov 2024 17:42:30 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux</title>
-      <link>http://localhost:5503/categories/linux/</link>
+      <link>http://localhost:1313/categories/linux/</link>
       <pubDate>Fri, 15 Nov 2024 17:13:30 +0800</pubDate>
-      <guid>http://localhost:5503/categories/linux/</guid>
+      <guid>http://localhost:1313/categories/linux/</guid>
       <description></description>
     </item>
     <item>
       <title>算法</title>
-      <link>http://localhost:5503/categories/%E7%AE%97%E6%B3%95/</link>
+      <link>http://localhost:1313/categories/%E7%AE%97%E6%B3%95/</link>
       <pubDate>Fri, 15 Nov 2024 16:01:16 +0800</pubDate>
-      <guid>http://localhost:5503/categories/%E7%AE%97%E6%B3%95/</guid>
+      <guid>http://localhost:1313/categories/%E7%AE%97%E6%B3%95/</guid>
       <description></description>
     </item>
     <item>
       <title>环境搭建</title>
-      <link>http://localhost:5503/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
+      <link>http://localhost:1313/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Thu, 14 Nov 2024 23:34:32 +0800</pubDate>
-      <guid>http://localhost:5503/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
+      <guid>http://localhost:1313/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
       <description></description>
     </item>
     <item>
       <title>其它</title>
-      <link>http://localhost:5503/categories/%E5%85%B6%E5%AE%83/</link>
+      <link>http://localhost:1313/categories/%E5%85%B6%E5%AE%83/</link>
       <pubDate>Thu, 14 Nov 2024 11:16:25 +0800</pubDate>
-      <guid>http://localhost:5503/categories/%E5%85%B6%E5%AE%83/</guid>
+      <guid>http://localhost:1313/categories/%E5%85%B6%E5%AE%83/</guid>
       <description></description>
     </item>
   </channel>
