@@ -55,7 +55,7 @@
   <meta itemprop="description" content="本文记录Git常用命令。">
   <meta itemprop="datePublished" content="2024-11-14T17:13:30+08:00">
   <meta itemprop="dateModified" content="2024-11-14T17:13:30+08:00">
-  <meta itemprop="wordCount" content="243">
+  <meta itemprop="wordCount" content="507">
   <meta itemprop="keywords" content="Git">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Git常用命令">
@@ -143,8 +143,8 @@
         <div class="post-category">
             <a href="/categories/linux%E5%9F%BA%E7%A1%80/"> Linux基础 </a>
             </div>
-          <span class="more-meta"> 243 words </span>
-          <span class="more-meta"> 1 min read </span>
+          <span class="more-meta"> 507 words </span>
+          <span class="more-meta"> 2 mins read </span>
         
       </div>
     </header>
@@ -154,17 +154,31 @@
   <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#1-代码下载上传">1 代码下载上传</a></li>
-    <li><a href="#2-分支相关操作">2 分支相关操作</a></li>
-    <li><a href="#3-修改相关操作">3 修改相关操作</a></li>
-    <li><a href="#4-查询命令">4 查询命令</a></li>
+    <li><a href="#1-查询命令">1 查询命令</a></li>
+    <li><a href="#2-代码下载上传">2 代码下载上传</a></li>
+    <li><a href="#3-分支相关操作">3 分支相关操作</a></li>
+    <li><a href="#4-修改相关操作">4 修改相关操作</a></li>
+    <li><a href="#5-远程仓库操作">5 远程仓库操作</a></li>
   </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <p>本文记录Git常用命令。</p>
-<h1 id="1-代码下载上传">1 代码下载上传</h1>
+<h1 id="1-查询命令">1 查询命令</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git status <span class="c1"># 查看当前git状态</span>
+</span></span><span class="line"><span class="cl">git log    <span class="c1"># 查询修改记录</span>
+</span></span><span class="line"><span class="cl">git tag -l <span class="c1"># 查询tag</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="2-代码下载上传">2 代码下载上传</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -185,22 +199,26 @@
 </span></span><span class="line"><span class="cl">git push --set-upstream origin gh_pages <span class="c1"># upload new branch</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="2-分支相关操作">2 分支相关操作</h1>
+</div><h1 id="3-分支相关操作">3 分支相关操作</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git checkout branch_name <span class="c1"># 切换分支</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git branch <span class="c1"># 查看本地所有分支</span>
+</span></span><span class="line"><span class="cl">git branch <span class="p">|</span> grep <span class="s2">&#34;*&#34;</span>  <span class="c1">#查看当前分支</span>
+</span></span><span class="line"><span class="cl">git checkout branch_name <span class="c1"># 切换分支</span>
 </span></span><span class="line"><span class="cl">git checkout -b gh_pages <span class="c1"># create branch</span>
 </span></span><span class="line"><span class="cl">git branch -D gh_pages   <span class="c1"># 删除本地分支</span>
 </span></span><span class="line"><span class="cl">git push origin --delete main  <span class="c1"># 删除远端分支</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="3-修改相关操作">3 修改相关操作</h1>
+</div><h1 id="4-修改相关操作">4 修改相关操作</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -229,15 +247,35 @@
 </span></span><span class="line"><span class="cl">git cherry-pick commit_id
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="4-查询命令">4 查询命令</h1>
+</div><h1 id="5-远程仓库操作">5 远程仓库操作</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git log    <span class="c1"># 查询修改记录</span>
-</span></span><span class="line"><span class="cl">git tag -l <span class="c1"># 查询tag</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 查询本地关联的代码仓</span>
+</span></span><span class="line"><span class="cl">git remote -v
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加远程分支, 其中origin为远程代码仓在本地的name, 本地代码可以关联多个远程代码仓</span>
+</span></span><span class="line"><span class="cl">git remote origin  https://github.com/olOwOlo/hugo-theme-even
+</span></span><span class="line"><span class="cl">git remote add myEvenBackup git@github.com:alvincat/HugoThemeEven.git
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 提交代码时可以指定代码仓进行</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 提交代码至https://github.com/olOwOlo/hugo-theme-even的master分支</span>
+</span></span><span class="line"><span class="cl">git push -u origin master
+</span></span><span class="line"><span class="cl"><span class="c1"># 提交代码至git@github.com:alvincat/HugoThemeEven.git的master分支</span>
+</span></span><span class="line"><span class="cl">git push -u myEvenBackup master
 </span></span></code></pre></td></tr></table>
 </div>
 </div>

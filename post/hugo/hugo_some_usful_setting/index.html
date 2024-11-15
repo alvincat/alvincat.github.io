@@ -55,7 +55,7 @@
   <meta itemprop="description" content="Hugo中一些实用的配置。">
   <meta itemprop="datePublished" content="2024-11-14T23:34:32+08:00">
   <meta itemprop="dateModified" content="2024-11-14T23:34:32+08:00">
-  <meta itemprop="wordCount" content="195">
+  <meta itemprop="wordCount" content="307">
   <meta itemprop="keywords" content="Hugo">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Hugo中一些实用的配置">
@@ -143,7 +143,7 @@
         <div class="post-category">
             <a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"> 环境搭建 </a>
             </div>
-          <span class="more-meta"> 195 words </span>
+          <span class="more-meta"> 307 words </span>
           <span class="more-meta"> 1 min read </span>
         
       </div>
@@ -156,6 +156,7 @@
   <ul>
     <li><a href="#1-设置网站的页面宽度">1 设置网站的页面宽度</a></li>
     <li><a href="#2-hugo中使用图片的方法">2 Hugo中使用图片的方法</a></li>
+    <li><a href="#3-修改hugo-even主题主页的字体">3 修改Hugo even主题主页的字体</a></li>
   </ul>
 </nav>
   </div>
@@ -167,6 +168,23 @@
 调整这个值就可以改变网站中页面的宽度。</p>
 <h1 id="2-hugo中使用图片的方法">2 Hugo中使用图片的方法</h1>
 <p>在根目录static目录下创建目录放置图片即可。在markdown文件中按照形如<code>/image/logo.png</code>的方式进行引用即可。</p>
+<h1 id="3-修改hugo-even主题主页的字体">3 修改Hugo even主题主页的字体</h1>
+<p>将文件<code>themes\even\assets\sass\_partial\_header\_logo.scss</code> 中.logo的font-fami属性按照如下形式修改即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl">  <span class="nc">.logo</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">font-size</span><span class="o">:</span> <span class="nv">$logo-font-size</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">font-family</span><span class="o">:</span> <span class="nv">$global-serif-font-family</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
     </div>
 
     

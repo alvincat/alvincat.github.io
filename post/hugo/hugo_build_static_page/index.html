@@ -55,7 +55,7 @@
   <meta itemprop="description" content="本文记录Hugo配置github静态页面的关键步骤。">
   <meta itemprop="datePublished" content="2024-11-14T16:51:30+08:00">
   <meta itemprop="dateModified" content="2024-11-14T16:51:30+08:00">
-  <meta itemprop="wordCount" content="1913">
+  <meta itemprop="wordCount" content="2410">
   <meta itemprop="keywords" content="Hugo">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Hugo配置github静态页面的方法">
@@ -143,8 +143,8 @@
         <div class="post-category">
             <a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"> 环境搭建 </a>
             </div>
-          <span class="more-meta"> 1913 words </span>
-          <span class="more-meta"> 4 mins read </span>
+          <span class="more-meta"> 2410 words </span>
+          <span class="more-meta"> 5 mins read </span>
         
       </div>
     </header>
@@ -155,32 +155,45 @@
     <nav id="TableOfContents">
   <ul>
     <li><a href="#1-hugo简介">1 Hugo简介</a></li>
-    <li><a href="#2-使用hugo发布静态网站的准备工作">2 使用Hugo发布静态网站的准备工作</a></li>
-    <li><a href="#21-创建代码仓">2.1 创建代码仓</a></li>
-    <li><a href="#22-下载代码">2.2 下载代码</a></li>
-    <li><a href="#23-初始化网站">2.3 初始化网站</a></li>
-    <li><a href="#24-下载hugo-even模板">2.4 下载Hugo even模板</a>
+    <li><a href="#2-使用hugo发布静态网站的准备工作">2 使用Hugo发布静态网站的准备工作</a>
       <ul>
-        <li><a href="#35-even模板配置">3.5 even模板配置</a></li>
-        <li><a href="#36-even文章模板配置">3.6 even文章模板配置</a></li>
+        <li><a href="#21-下载安装部署网站工具">2.1 下载安装部署网站工具</a>
+          <ul>
+            <li><a href="#211-下载安装git">2.1.1 下载安装git</a></li>
+            <li><a href="#212-下载安装go">2.1.2 下载安装go</a></li>
+            <li><a href="#213-下载安装hugo-extend">2.1.3 下载安装hugo-extend</a></li>
+          </ul>
+        </li>
+        <li><a href="#22-创建代码仓">2.2 创建代码仓</a></li>
+        <li><a href="#23-下载代码">2.3 下载代码</a></li>
+        <li><a href="#24-初始化网站">2.4 初始化网站</a></li>
+        <li><a href="#25-hugo使用even模板">2.5 Hugo使用even模板</a>
+          <ul>
+            <li><a href="#251-下载even模板">2.5.1 下载even模板</a></li>
+            <li><a href="#252-even模板配置">2.5.2 even模板配置</a></li>
+            <li><a href="#253-even文章模板配置">2.5.3 even文章模板配置</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#4-使用hugo-生成文章">4 使用Hugo 生成文章</a>
+    <li><a href="#3-使用hugo撰写博客">3 使用Hugo撰写博客</a>
       <ul>
-        <li><a href="#41-本地调试">4.1 本地调试</a></li>
-        <li><a href="#42-创建gitignore文件忽略部分文件">4.2 创建.gitignore文件，忽略部分文件</a></li>
-        <li><a href="#43-本地调试完成后提交代码至github">4.3 本地调试完成后，提交代码至github</a></li>
+        <li><a href="#31-使用hugo创建文件">3.1 使用hugo创建文件</a></li>
+        <li><a href="#32-hugo本地调试博客文章">3.2 hugo本地调试博客文章</a></li>
+        <li><a href="#33-测试最终生成的内容">3.3 测试最终生成的内容</a></li>
+        <li><a href="#34-创建gitignore文件忽略部分文件">3.4 创建.gitignore文件，忽略部分文件</a></li>
+        <li><a href="#35-本地调试完成后提交代码至github">3.5 本地调试完成后，提交代码至github</a></li>
       </ul>
     </li>
-    <li><a href="#5-使用github-actions功能自动发布网站的方法">5 使用github actions功能自动发布网站的方法</a>
+    <li><a href="#4-使用github-actions功能自动发布网站的方法">4 使用github actions功能自动发布网站的方法</a>
       <ul>
-        <li><a href="#51-创建personal-access-token">5.1 创建personal access token</a></li>
-        <li><a href="#52-添加secrets">5.2 添加secrets</a></li>
-        <li><a href="#53-添加active自动化配置文件">5.3 添加active自动化配置文件</a></li>
-        <li><a href="#54-修改usernamegithubio代码仓的page页面关联分支">5.4 修改username.github.io代码仓的page页面关联分支</a></li>
+        <li><a href="#41-创建personal-access-token">4.1 创建personal access token</a></li>
+        <li><a href="#42-添加secrets">4.2 添加secrets</a></li>
+        <li><a href="#43-添加active自动化配置文件">4.3 添加active自动化配置文件</a></li>
+        <li><a href="#44-修改usernamegithubio代码仓的page页面关联分支">4.4 修改username.github.io代码仓的page页面关联分支</a></li>
       </ul>
     </li>
-    <li><a href="#6-参考文献">6 参考文献</a></li>
+    <li><a href="#5-参考文献">5 参考文献</a></li>
   </ul>
 </nav>
   </div>
@@ -188,14 +201,32 @@
     <div class="post-content">
       <p>本文记录Hugo配置github静态页面的关键步骤。</p>
 <h1 id="1-hugo简介">1 Hugo简介</h1>
+<p><em>Hugo</em>是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。</p>
+<p>Hugo官网：<a href="https://gohugo.io/">Hugo官网</a></p>
+<p>Hugo的官方文档：<a href="https://www.gohugo.org/">Hugo中文文档</a></p>
 <h1 id="2-使用hugo发布静态网站的准备工作">2 使用Hugo发布静态网站的准备工作</h1>
-<h1 id="21-创建代码仓">2.1 创建代码仓</h1>
+<h2 id="21-下载安装部署网站工具">2.1 下载安装部署网站工具</h2>
+<h3 id="211-下载安装git">2.1.1 下载安装git</h3>
+<p>Git下载地址：<a href="https://git-scm.com/downloads">Download Git</a></p>
+<p>Windows下安装方法：运行二进制程序，然后按照提示操作即可。</p>
+<h3 id="212-下载安装go">2.1.2 下载安装go</h3>
+<p>官方下载地址：<a href="https://go.dev/doc/install">Download and install - The Go Programming Language</a></p>
+<p>Go语言中文网下载地址：<a href="https://studygolang.com/dl">Go语言中文网下载地址</a></p>
+<p>我下载的go版本是：go1.17.3</p>
+<p>安装配置完成后，使用命令<code>go version</code> 查看版本号。</p>
+<p><strong>温馨提示</strong>：若下载的是免安装版本，需要手动配置环境变量，否则无法使用。</p>
+<h3 id="213-下载安装hugo-extend">2.1.3 下载安装hugo-extend</h3>
+<p>Hugo v0.138.0下载地址： <a href="https://github.com/gohugoio/hugo/releases/tag/v0.138.0">Hugo v0.138.0下载地址</a></p>
+<p>我下载的是：<a href="https://github.com/gohugoio/hugo/releases/download/v0.138.0/hugo_extended_withdeploy_0.138.0_windows-amd64.zip">hugo_extended_withdeploy_0.138.0_windows-amd64.zip</a></p>
+<p>安装配置完成后，使用命令<code>hugo version</code> 查看版本号。</p>
+<p><strong>温馨提示</strong>：若下载的是免安装版本，需要手动配置环境变量，否则无法使用。</p>
+<h2 id="22-创建代码仓">2.2 创建代码仓</h2>
 <ol>
 <li>在github创建私有库MyGithubWebsite: 用于存放网站工程源码</li>
 <li>在github创建公共代码username.github.io: 用于保存网站内容。<br>
 github规定必须将网站内容放在形如username.github.io的代码仓中，此处的username为你的github的用户名。</li>
 </ol>
-<h1 id="22-下载代码">2.2 下载代码</h1>
+<h2 id="23-下载代码">2.3 下载代码</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -204,16 +235,19 @@ github规定必须将网站内容放在形如username.github.io的代码仓中�
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git clone git@github.com:alvincat/MyGithubWebsite.git MyWebsite
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="23-初始化网站">2.3 初始化网站</h1>
+</div><h2 id="24-初始化网站">2.4 初始化网站</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hugo new site MyWebsite --force <span class="c1"># MyWebsite为网站工程根目录</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"> <span class="c1"># 在网站根目录的上层目录执行命令，MyWebsite为网站工程根目录名</span>
+</span></span><span class="line"><span class="cl">hugo new site MyWebsite --force
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="24-下载hugo-even模板">2.4 下载Hugo even模板</h1>
+</div><h2 id="25-hugo使用even模板">2.5 Hugo使用even模板</h2>
+<h3 id="251-下载even模板">2.5.1 下载even模板</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -224,7 +258,7 @@ github规定必须将网站内容放在形如username.github.io的代码仓中�
 </span></span><span class="line"><span class="cl"> git clone https://github.com/olOwOlo/hugo-theme-even themes/even
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="35-even模板配置">3.5 even模板配置</h2>
+</div><h3 id="252-even模板配置">2.5.2 even模板配置</h3>
 <p>在even主题的 exampleSite 目录下有一个 config.toml 文件，将这个 config.toml 文件复制到你的站点根目录下，根据自己的需求更改即可。</p>
 <p>为了定制 favicon，你需要在站点根目录的 static 文件夹下放置下述所有文件，这将覆盖 themes/even/static/ 文件夹下的那些文件。</p>
 <ul>
@@ -239,10 +273,11 @@ github规定必须将网站内容放在形如username.github.io的代码仓中�
 <li>mstile-150x150.png</li>
 <li>safari-pinned-tab.svg</li>
 </ul>
-<h2 id="36-even文章模板配置">3.6 even文章模板配置</h2>
+<h3 id="253-even文章模板配置">2.5.3 even文章模板配置</h3>
 <p>你可以通过 front-matter 针对每一篇文章单独进行设置。themes/even/archetypes/default.md 文件陈列了所有可用的参数。<br>
 将该文件复制到站点根目录的 archetypes 文件夹下将会有所帮助。</p>
-<h1 id="4-使用hugo-生成文章">4 使用Hugo 生成文章</h1>
+<h1 id="3-使用hugo撰写博客">3 使用Hugo撰写博客</h1>
+<h2 id="31-使用hugo创建文件">3.1 使用hugo创建文件</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -256,7 +291,7 @@ github规定必须将网站内容放在形如username.github.io的代码仓中�
 <li>对于even这个主题，你应该使用 post 而不是 posts，即 <code>hugo new post/some-content.md</code></li>
 <li>建议使用<code>hugo new</code>命令来新建文件，而不要直接在post目录下创建文件。</li>
 </ol>
-<h2 id="41-本地调试">4.1 本地调试</h2>
+<h2 id="32-hugo本地调试博客文章">3.2 hugo本地调试博客文章</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -266,8 +301,18 @@ github规定必须将网站内容放在形如username.github.io的代码仓中�
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>登陆浏览器查看结果：<a href="http://localhost:1313/">localhost</a></p>
-<h2 id="42-创建gitignore文件忽略部分文件">4.2 创建.gitignore文件，忽略部分文件</h2>
-<h2 id="43-本地调试完成后提交代码至github">4.3 本地调试完成后，提交代码至github</h2>
+<h2 id="33-测试最终生成的内容">3.3 测试最终生成的内容</h2>
+<p>在站点根目录执行 Hugo 命令生成最终页面：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hugo --theme<span class="o">=</span>hyde --baseUrl<span class="o">=</span><span class="s2">&#34;http://coderzh.github.io/&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="34-创建gitignore文件忽略部分文件">3.4 创建.gitignore文件，忽略部分文件</h2>
+<h2 id="35-本地调试完成后提交代码至github">3.5 本地调试完成后，提交代码至github</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -282,8 +327,8 @@ github规定必须将网站内容放在形如username.github.io的代码仓中�
 </div>
 </div><p><strong>温馨提示：</strong></p>
 <p>在本地调试完成提交前，建议先将public目录下的内容清空，重新编译后再提交，以免public目录存在修改的残留文件。</p>
-<h1 id="5-使用github-actions功能自动发布网站的方法">5 使用github actions功能自动发布网站的方法</h1>
-<h2 id="51-创建personal-access-token">5.1 创建personal access token</h2>
+<h1 id="4-使用github-actions功能自动发布网站的方法">4 使用github actions功能自动发布网站的方法</h1>
+<h2 id="41-创建personal-access-token">4.1 创建personal access token</h2>
 <ol>
 <li>按照setting -&gt; Developer Settings -&gt; Personal access tokens的顺序打开创建token界面。如下图所示。</li>
 </ol>
@@ -300,7 +345,7 @@ github规定必须将网站内容放在形如username.github.io的代码仓中�
 <li>点击创建后，就会生成一串token编码。此时需要复制这串编码，后面添加的时候需要使用。</li>
 </ol>
 <p><img src="/web_image/hugo/hugo_github_actions_04.png" alt="创建personal access token"></p>
-<h2 id="52-添加secrets">5.2 添加secrets</h2>
+<h2 id="42-添加secrets">4.2 添加secrets</h2>
 <ol>
 <li>进入网站工程的setting界面，如下图所示：</li>
 </ol>
@@ -316,7 +361,7 @@ github规定必须将网站内容放在形如username.github.io的代码仓中�
 </li>
 </ol>
 <p><img src="/web_image/hugo/hugo_github_actions_08.png" alt="添加secrets"></p>
-<h2 id="53-添加active自动化配置文件">5.3 添加active自动化配置文件</h2>
+<h2 id="43-添加active自动化配置文件">4.3 添加active自动化配置文件</h2>
 <p>在网站工程根目录创建目录<code>.github/workflows/</code>，然后再该目录下创建一个yml文件，文件名自定。此处文件名为hugo.yml。文件内容如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -416,11 +461,11 @@ github规定必须将网站内容放在形如username.github.io的代码仓中�
 </span></span><span class="line"><span class="cl">git push origin gh-pages
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="54-修改usernamegithubio代码仓的page页面关联分支">5.4 修改username.github.io代码仓的page页面关联分支</h2>
+</div><h2 id="44-修改usernamegithubio代码仓的page页面关联分支">4.4 修改username.github.io代码仓的page页面关联分支</h2>
 <p>当步骤5.4更新成功后，就会将生成的网站内容推送到username.github.io代码仓的gh-pages分支。因此需要将username.github.io代码仓的page关联分支切换为gh-pages。</p>
 <p>修改方法如下：<br>
 <img src="/web_image/hugo/hugo_github_actions_10.png" alt="修改page关联的分支"></p>
-<h1 id="6-参考文献">6 参考文献</h1>
+<h1 id="5-参考文献">5 参考文献</h1>
 <p><a href="https://simumis.com/posts/deploy-to-github/">将Hugo静态网站部署到Github Pages</a></p>
 <p><a href="https://juejin.cn/post/7044104583848673310">Hugo + even + GitHub Pages+ Utterances搭建个人博客</a></p>
 <p><a href="https://lucumt.info/post/hugo/using-github-action-to-auto-build-deploy/">利用GitHub Action实现Hugo博客在GitHub Pages自动部署</a></p>
