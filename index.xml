@@ -2,67 +2,67 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Alvincat&#39;s Blog</title>
-    <link>http://localhost:1313/</link>
+    <link>http://localhost:8719/</link>
     <description>Recent content on Alvincat&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
     <lastBuildDate>Fri, 15 Nov 2024 22:52:34 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:8719/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C语言结构体字节对齐问题</title>
-      <link>http://localhost:1313/post/linux/struct_alignment/</link>
+      <link>http://localhost:8719/post/linux/struct_alignment/</link>
       <pubDate>Fri, 15 Nov 2024 22:52:34 +0800</pubDate>
-      <guid>http://localhost:1313/post/linux/struct_alignment/</guid>
+      <guid>http://localhost:8719/post/linux/struct_alignment/</guid>
       <description>&lt;p&gt;这篇文章介绍C语言结构体字节对齐的问题。&lt;/p&gt;</description>
     </item>
     <item>
       <title>链表及其相关操作</title>
-      <link>http://localhost:1313/post/datastructure/linklist/</link>
+      <link>http://localhost:8719/post/datastructure/linklist/</link>
       <pubDate>Fri, 15 Nov 2024 17:52:42 +0800</pubDate>
-      <guid>http://localhost:1313/post/datastructure/linklist/</guid>
+      <guid>http://localhost:8719/post/datastructure/linklist/</guid>
       <description>&lt;p&gt;本文介绍链表的基本特性以及链表常用的操作。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Linux常用命令的用法</title>
-      <link>http://localhost:1313/post/linux/linux_common_tools/</link>
+      <link>http://localhost:8719/post/linux/linux_common_tools/</link>
       <pubDate>Fri, 15 Nov 2024 17:13:30 +0800</pubDate>
-      <guid>http://localhost:1313/post/linux/linux_common_tools/</guid>
+      <guid>http://localhost:8719/post/linux/linux_common_tools/</guid>
       <description>&lt;p&gt;本文记录Linux常用命令。&lt;/p&gt;</description>
     </item>
     <item>
       <title>字符串匹配算法</title>
-      <link>http://localhost:1313/post/algorithm/string_match_algorightm/</link>
+      <link>http://localhost:8719/post/algorithm/string_match_algorightm/</link>
       <pubDate>Fri, 15 Nov 2024 16:01:16 +0800</pubDate>
-      <guid>http://localhost:1313/post/algorithm/string_match_algorightm/</guid>
+      <guid>http://localhost:8719/post/algorithm/string_match_algorightm/</guid>
       <description>&lt;p&gt;本文记录字符串匹配算法的演进已经具体实现。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hugo中一些实用的配置</title>
-      <link>http://localhost:1313/post/hugo/hugo_some_usful_setting/</link>
+      <link>http://localhost:8719/post/hugo/hugo_some_usful_setting/</link>
       <pubDate>Thu, 14 Nov 2024 23:34:32 +0800</pubDate>
-      <guid>http://localhost:1313/post/hugo/hugo_some_usful_setting/</guid>
+      <guid>http://localhost:8719/post/hugo/hugo_some_usful_setting/</guid>
       <description>&lt;p&gt;Hugo中一些实用的配置。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Git常用命令</title>
-      <link>http://localhost:1313/post/git/git_commond/</link>
+      <link>http://localhost:8719/post/git/git_commond/</link>
       <pubDate>Thu, 14 Nov 2024 17:13:30 +0800</pubDate>
-      <guid>http://localhost:1313/post/git/git_commond/</guid>
+      <guid>http://localhost:8719/post/git/git_commond/</guid>
       <description>&lt;p&gt;本文记录Git常用命令。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hugo配置github静态页面的方法</title>
-      <link>http://localhost:1313/post/hugo/hugo_build_static_page/</link>
+      <link>http://localhost:8719/post/hugo/hugo_build_static_page/</link>
       <pubDate>Thu, 14 Nov 2024 16:51:30 +0800</pubDate>
-      <guid>http://localhost:1313/post/hugo/hugo_build_static_page/</guid>
+      <guid>http://localhost:8719/post/hugo/hugo_build_static_page/</guid>
       <description>&lt;p&gt;本文记录Hugo配置github静态页面的关键步骤。&lt;/p&gt;</description>
     </item>
     <item>
       <title>关于我</title>
-      <link>http://localhost:1313/about/</link>
+      <link>http://localhost:8719/about/</link>
       <pubDate>Thu, 14 Nov 2024 11:16:25 +0800</pubDate>
-      <guid>http://localhost:1313/about/</guid>
+      <guid>http://localhost:8719/about/</guid>
       <description>&lt;p&gt;关于我的详细信息。&lt;/p&gt;</description>
     </item>
   </channel>
