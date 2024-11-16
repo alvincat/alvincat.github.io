@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>链表 on Alvincat&#39;s Blog</title>
-    <link>https://alvincat.github.io/tags/%E9%93%BE%E8%A1%A8/</link>
+    <link>http://localhost:1313/tags/%E9%93%BE%E8%A1%A8/</link>
     <description>Recent content in 链表 on Alvincat&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
     <lastBuildDate>Fri, 15 Nov 2024 17:52:42 +0800</lastBuildDate>
-    <atom:link href="https://alvincat.github.io/tags/%E9%93%BE%E8%A1%A8/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/%E9%93%BE%E8%A1%A8/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>链表及其相关操作</title>
-      <link>https://alvincat.github.io/post/datastructure/linklist/</link>
+      <link>http://localhost:1313/post/datastructure/linklist/</link>
       <pubDate>Fri, 15 Nov 2024 17:52:42 +0800</pubDate>
-      <guid>https://alvincat.github.io/post/datastructure/linklist/</guid>
+      <guid>http://localhost:1313/post/datastructure/linklist/</guid>
       <description>&lt;p&gt;本文介绍链表的基本特性以及链表常用的操作。&lt;/p&gt;</description>
     </item>
   </channel>
