@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Hugo配置github静态页面的方法 - Alvincat&#39;s Blog</title>
@@ -27,7 +27,7 @@
 <meta name="generator" content="Hugo 0.138.0 with theme even" />
 
 
-<link rel="canonical" href="http://localhost:1313/post/hugo/hugo_build_static_page/" />
+<link rel="canonical" href="https://alvincat.github.io/post/hugo/hugo_build_static_page/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,7 +40,7 @@
 <link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
 
 
-<meta property="og:url" content="http://localhost:1313/post/hugo/hugo_build_static_page/">
+<meta property="og:url" content="https://alvincat.github.io/post/hugo/hugo_build_static_page/">
   <meta property="og:site_name" content="Alvincat&#39;s Blog">
   <meta property="og:title" content="Hugo配置github静态页面的方法">
   <meta property="og:description" content="本文记录Hugo配置github静态页面的关键步骤。">
@@ -55,7 +55,7 @@
   <meta itemprop="description" content="本文记录Hugo配置github静态页面的关键步骤。">
   <meta itemprop="datePublished" content="2024-11-14T16:51:30+08:00">
   <meta itemprop="dateModified" content="2024-11-14T16:51:30+08:00">
-  <meta itemprop="wordCount" content="2410">
+  <meta itemprop="wordCount" content="2480">
   <meta itemprop="keywords" content="Hugo">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Hugo配置github静态页面的方法">
@@ -145,7 +145,7 @@
         <div class="post-category">
             <a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"> 环境搭建 </a>
             </div>
-          <span class="more-meta"> 约 2410 字 </span>
+          <span class="more-meta"> 约 2480 字 </span>
           <span class="more-meta"> 预计阅读 5 分钟 </span>
         
       </div>
@@ -182,7 +182,7 @@
       <ul>
         <li><a href="#31-使用hugo创建文件">3.1 使用hugo创建文件</a></li>
         <li><a href="#32-hugo本地调试博客文章">3.2 hugo本地调试博客文章</a></li>
-        <li><a href="#33-测试最终生成的内容">3.3 测试最终生成的内容</a></li>
+        <li><a href="#33-发布网站">3.3 发布网站</a></li>
         <li><a href="#34-创建gitignore文件忽略部分文件">3.4 创建.gitignore文件，忽略部分文件</a></li>
         <li><a href="#35-本地调试完成后提交代码至github">3.5 本地调试完成后，提交代码至github</a></li>
       </ul>
@@ -303,17 +303,19 @@ github规定必须将网站内容放在形如username.github.io的代码仓中�
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>登陆浏览器查看结果：<a href="http://localhost:1313/">localhost</a></p>
-<h2 id="33-测试最终生成的内容">3.3 测试最终生成的内容</h2>
-<p>在站点根目录执行 Hugo 命令生成最终页面：</p>
+<h2 id="33-发布网站">3.3 发布网站</h2>
+<p>在站点根目录执行 以下Hugo 命令生成最终页面：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hugo --theme<span class="o">=</span>hyde --baseURL<span class="o">=</span><span class="s2">&#34;http://coderzh.github.io/&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hugo -D --baseURL<span class="o">=</span><span class="s2">&#34;https://alvinccat.github.io/&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="34-创建gitignore文件忽略部分文件">3.4 创建.gitignore文件，忽略部分文件</h2>
+</div><p>执行这条命令，就会在public目录下生成最终网站内容。<br>
+将public的内容推送到username.github.io仓库，就可以访问网站了</p>
+<h2 id="34-创建gitignore文件忽略部分文件">3.4 创建.gitignore文件，忽略部分文件</h2>
 <h2 id="35-本地调试完成后提交代码至github">3.5 本地调试完成后，提交代码至github</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
