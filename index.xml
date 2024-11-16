@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Fri, 15 Nov 2024 22:52:34 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 16 Nov 2024 15:35:21 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>站内搜索结果</title>
+      <link>http://localhost:1313/search/</link>
+      <pubDate>Sat, 16 Nov 2024 15:35:21 +0800</pubDate>
+      <guid>http://localhost:1313/search/</guid>
+      <description></description>
+    </item>
     <item>
       <title>C语言结构体字节对齐问题</title>
       <link>http://localhost:1313/post/linux/struct_alignment/</link>

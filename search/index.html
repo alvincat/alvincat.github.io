@@ -3,7 +3,7 @@
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>环境搭建 · Alvincat&#39;s Blog</title>
+  <title>站内搜索结果 - Alvincat&#39;s Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="" /><meta name="description" content="Hugo theme even example site." /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="alvincat" /><meta name="description" content="" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,9 +26,7 @@
 <meta name="generator" content="Hugo 0.138.0 with theme even" />
 
 
-<link rel="canonical" href="http://localhost:1313/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" />
-  <link href="http://localhost:1313/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/index.xml" rel="alternate" type="application/rss+xml" title="Alvincat&#39;s Blog" />
-  <link href="http://localhost:1313/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/index.xml" rel="feed" type="application/rss+xml" title="Alvincat&#39;s Blog" />
+<link rel="canonical" href="http://localhost:1313/search/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -41,19 +39,21 @@
 <link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
 
 
-<meta property="og:url" content="http://localhost:1313/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
+<meta property="og:url" content="http://localhost:1313/search/">
   <meta property="og:site_name" content="Alvincat&#39;s Blog">
-  <meta property="og:title" content="环境搭建">
+  <meta property="og:title" content="站内搜索结果">
   <meta property="og:description" content="Hugo theme even example site.">
   <meta property="og:locale" content="en">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2024-11-16T15:35:21+08:00">
+    <meta property="article:modified_time" content="2024-11-16T15:35:21+08:00">
 
-  <meta itemprop="name" content="环境搭建">
+  <meta itemprop="name" content="站内搜索结果">
   <meta itemprop="description" content="Hugo theme even example site.">
-  <meta itemprop="datePublished" content="2024-11-14T23:34:32+08:00">
-  <meta itemprop="dateModified" content="2024-11-14T23:34:32+08:00">
+  <meta itemprop="datePublished" content="2024-11-16T15:35:21+08:00">
+  <meta itemprop="dateModified" content="2024-11-16T15:35:21+08:00">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="环境搭建">
+  <meta name="twitter:title" content="站内搜索结果">
   <meta name="twitter:description" content="Hugo theme even example site.">
 
 <!--[if lte IE 9]>
@@ -127,45 +127,29 @@
   </ul>
 </nav>
 
-    </header><main id="main" class="main">
-      <div class="content-wrapper">
-        <div id="content" class="content">
-          <section id="archive" class="archive">
-  <div class="archive-title category">
-        <h2 class="archive-name">环境搭建</h2>
-      </div>
+    </header>
+	<section>
+	  <div>
+		<form action="http://localhost:1313/search">
+		  <input id="search-query" name="s"/>
+		</form>
+		<div id="search-results">
+		 <h3 id="search-results-info">Matching pages</h3>
+		</div>
+	  </div>
+	</section>
+	<script id="search-result-template" type="text/x-js-template">
+	  <div id="summary-${key}" class="search_list">
+		<h4><a href="${link}">${title}</a></h4>
+		<p>${snippet}</p>
+		<small>
+			${ isset tags }<div><b>标签:</b> ${tags}</div>${ end }
+			${ isset categories }<div><b>类别:</b> ${categories}</div>${ end }
+			<span class="post-time"><b>时间:</b> ${date}</span>
+		</small>
+	  </div>
+	</script>
 
-  <div class="archive-post">
-      <span class="archive-post-time">
-        2024-11-14
-      </span>
-      <span class="archive-post-title">
-        <a href="/post/hugo/hugo_some_usful_setting/" class="archive-post-link">
-          Hugo中一些实用的配置
-        </a>
-      </span>
-    </div><div class="archive-post">
-      <span class="archive-post-time">
-        2024-11-14
-      </span>
-      <span class="archive-post-title">
-        <a href="/post/hugo/hugo_build_static_page/" class="archive-post-link">
-          Hugo配置github静态页面的方法
-        </a>
-      </span>
-    </div>
-</section>
-
-<nav class="pagination">
-  
-  
-</nav>
-        </div>
-        
-
-      </div>
-    </main>
-    
 
     <footer id="footer" class="footer">
       <div class="social-links">
@@ -177,8 +161,6 @@
       <a href="https://www.douban.com" class="iconfont icon-douban" title="douban"></a>
       <a href="https://www.bilibili.com" class="iconfont icon-bilibili" title="bilibili"></a>
   
-        <a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"><a/>
-      
 </div>
 
 <div class="copyright">
@@ -213,6 +195,14 @@
 
 
 <script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
 
 
 

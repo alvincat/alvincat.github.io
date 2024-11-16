@@ -3,7 +3,14 @@
   
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2024-11-15T22:52:34+08:00</lastmod>
+    <lastmod>2024-11-16T15:35:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/search/</loc>
+    <lastmod>2024-11-16T15:35:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
