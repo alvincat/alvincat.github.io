@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Fri, 15 Nov 2024 22:52:34 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 Nov 2024 21:39:06 +0800</lastBuildDate>
     <atom:link href="https://alvincat.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>c语言编码注意事项</title>
+      <link>https://alvincat.github.io/post/linux/c_language_usful_tips/</link>
+      <pubDate>Sun, 17 Nov 2024 21:39:06 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/linux/c_language_usful_tips/</guid>
+      <description>&lt;p&gt;本文主要记录c语言编码过程中的一些注意事项。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>C语言结构体字节对齐问题</title>
       <link>https://alvincat.github.io/post/linux/struct_alignment/</link>
