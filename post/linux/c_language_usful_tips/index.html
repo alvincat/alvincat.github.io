@@ -55,7 +55,7 @@
   <meta itemprop="description" content="本文主要记录c语言编码过程中的一些注意事项。">
   <meta itemprop="datePublished" content="2024-11-17T21:39:06+08:00">
   <meta itemprop="dateModified" content="2024-11-17T21:39:06+08:00">
-  <meta itemprop="wordCount" content="295">
+  <meta itemprop="wordCount" content="421">
   <meta itemprop="keywords" content="C语言">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="c语言编码注意事项">
@@ -145,7 +145,7 @@
         <div class="post-category">
             <a href="/categories/linux/"> Linux </a>
             </div>
-          <span class="more-meta"> 约 295 字 </span>
+          <span class="more-meta"> 约 421 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
         
       </div>
@@ -160,6 +160,11 @@
       <ul>
         <li><a href="#11-申请的动态内存一定要做初始化工作">1.1 申请的动态内存一定要做初始化工作</a></li>
         <li><a href="#12-对结构体变量初始化时需要初始化所有的变量">1.2 对结构体变量初始化时，需要初始化所有的变量</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-c语言编译相关">2 c语言编译相关</a>
+      <ul>
+        <li><a href="#21-c语言使用asan的方法">2.1 C语言使用asan的方法</a></li>
       </ul>
     </li>
   </ul>
@@ -185,7 +190,6 @@
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
-</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">initHashTable</span><span class="p">(</span><span class="n">HashTable</span><span class="o">*</span> <span class="n">table</span><span class="p">,</span> <span class="kt">int</span> <span class="n">bucket_num</span><span class="p">)</span>
@@ -196,8 +200,7 @@
 </span></span><span class="line"><span class="cl">       <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Alloc memory failed.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">       <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">   <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">// 注意此处一定要将申请的内存清0初始化，否则有可能访问到非法内存
+</span></span><span class="line"><span class="cl">    <span class="c1">// 此处一定要做初始化工作，否则可能存在非法内存访问的情况
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="nf">memset</span><span class="p">(</span><span class="n">table</span><span class="o">-&gt;</span><span class="n">bucket</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">HashNode</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="n">bucket_num</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -236,12 +239,35 @@
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="n">node</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 注意此处next指针一定要初始化，否则有可能访问到非法内存
+</span></span><span class="line"><span class="cl">     <span class="c1">// 注意此处一定要初始化，否则有可能访问到非法内存
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">node</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
+</div><h1 id="2-c语言编译相关">2 c语言编译相关</h1>
+<h2 id="21-c语言使用asan的方法">2.1 C语言使用asan的方法</h2>
+<p>C语言使用asan的方法:</p>
+<ol>
+<li>环境安装和gcc版本对应的libasan版本。</li>
+<li>编译代码时添加<code>-fsanitize=address</code>参数。</li>
+</ol>
+<p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">gcc  -Wall -g -std<span class="o">=</span>c99 -fsanitize<span class="o">=</span>address lru.c -o lru
+</span></span></code></pre></td></tr></table>
 </div>
+</div><p>备注：ubuntu系统中不同asan版本和gcc的对应关系。</p>
+<ul>
+<li>libasan0: gcc-4.8</li>
+<li>libasan2: gcc-5</li>
+<li>libasan3: gcc-6</li>
+<li>libasan4: gcc-7</li>
+<li>libasan5: gcc-8</li>
+</ul>
     </div>
 
     
@@ -250,7 +276,11 @@
           <a href="/tags/c%E8%AF%AD%E8%A8%80/">c语言</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/datastructure/hash_table/lru/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">LRU</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/post/datastructure/hash_table/hash_table/">
             <span class="next-text nav-default">哈希表</span>
             <span class="next-text nav-mobile">下一篇</span>

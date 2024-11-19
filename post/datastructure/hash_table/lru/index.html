@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Linux常用命令的用法 - Alvincat&#39;s Blog</title>
+  <title>LRU - Alvincat&#39;s Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="alvincat" /><meta name="description" content="本文记录Linux常用命令的用法。
+<meta name="author" content="alvincat" /><meta name="description" content="本文介绍LRU的原理和具体c代码实现。
 " /><meta name="keywords" content="Hugo, theme, even" />
 
 
@@ -27,7 +27,7 @@
 <meta name="generator" content="Hugo 0.138.0 with theme even" />
 
 
-<link rel="canonical" href="https://alvincat.github.io/post/linux/linux_common_tools/" />
+<link rel="canonical" href="https://alvincat.github.io/post/datastructure/hash_table/lru/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,26 +40,24 @@
 <link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
 
 
-<meta property="og:url" content="https://alvincat.github.io/post/linux/linux_common_tools/">
+<meta property="og:url" content="https://alvincat.github.io/post/datastructure/hash_table/lru/">
   <meta property="og:site_name" content="Alvincat&#39;s Blog">
-  <meta property="og:title" content="Linux常用命令的用法">
-  <meta property="og:description" content="本文记录Linux常用命令的用法。">
+  <meta property="og:title" content="LRU">
+  <meta property="og:description" content="本文介绍LRU的原理和具体c代码实现。">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
-    <meta property="article:published_time" content="2024-11-15T17:13:30+08:00">
-    <meta property="article:modified_time" content="2024-11-15T17:13:30+08:00">
-    <meta property="article:tag" content="Linux常用命令">
+    <meta property="article:published_time" content="2024-11-18T17:06:55+08:00">
+    <meta property="article:modified_time" content="2024-11-18T17:06:55+08:00">
 
-  <meta itemprop="name" content="Linux常用命令的用法">
-  <meta itemprop="description" content="本文记录Linux常用命令的用法。">
-  <meta itemprop="datePublished" content="2024-11-15T17:13:30+08:00">
-  <meta itemprop="dateModified" content="2024-11-15T17:13:30+08:00">
-  <meta itemprop="wordCount" content="55">
-  <meta itemprop="keywords" content="Linux常用命令">
+  <meta itemprop="name" content="LRU">
+  <meta itemprop="description" content="本文介绍LRU的原理和具体c代码实现。">
+  <meta itemprop="datePublished" content="2024-11-18T17:06:55+08:00">
+  <meta itemprop="dateModified" content="2024-11-18T17:06:55+08:00">
+  <meta itemprop="wordCount" content="132">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Linux常用命令的用法">
-  <meta name="twitter:description" content="本文记录Linux常用命令的用法。">
+  <meta name="twitter:title" content="LRU">
+  <meta name="twitter:description" content="本文介绍LRU的原理和具体c代码实现。">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -138,14 +136,14 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Linux常用命令的用法</h1>
+      <h1 class="post-title">LRU</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2024-11-15 </span>
+        <span class="post-time"> 2024-11-18 </span>
         <div class="post-category">
-            <a href="/categories/linux/"> Linux </a>
+            <a href="/categories//">  </a>
             </div>
-          <span class="more-meta"> 约 55 字 </span>
+          <span class="more-meta"> 约 132 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
         
       </div>
@@ -153,60 +151,41 @@
 
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
-  <div class="post-toc-content">
+  <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#1-linux命令的综合使用">1 linux命令的综合使用</a></li>
+    <li><a href="#1-lru的c代码实现">1 LRU的C代码实现</a></li>
   </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <p>本文记录Linux常用命令的用法。</p>
-<h1 id="1-linux命令的综合使用">1 linux命令的综合使用</h1>
+      <p>本文介绍LRU的原理和具体c代码实现。</p>
+<p>LRU的引文全称为Least Recently Used，即最近最少使用。该算法为cache淘汰算法，将最近最少使用的元素淘汰掉。具体代码是由hashTable和一个双向链表实现的。
+通常来讲，对数据的读写都算做对数据的使用。</p>
+<h1 id="1-lru的c代码实现">1 LRU的C代码实现</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
+<pre tabindex="0" class="chroma"><code></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 删除出指定文件之外的文件</span>
-</span></span><span class="line"><span class="cl">ls <span class="p">|</span> grep -xvF file.txt <span class="p">|</span> xargs rm -rf --
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"></code></pre></td></tr></table>
 </div>
 </div>
     </div>
 
-    <div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">文章作者</span>
-    <span class="item-content">alvincat</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">上次更新</span>
-    <span class="item-content">
-        2024-11-15
-        
-    </span>
-  </p>
-  
-  <p class="copyright-item">
-    <span class="item-title">许可协议</span>
-    <span class="item-content">true</span>
-  </p>
-</div>
+    
 <footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Linux常用命令</a>
+          <a href="/tags//"></a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/datastructure/linklist/link_list_introduction/">
+        <a class="prev" href="/post/linux/ubuntu_setting/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">链表基本特性及其相关操作</span>
+            <span class="prev-text nav-default">Ubuntu系统常用设置和命令</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/algorithm/string_match_algorightm/">
-            <span class="next-text nav-default">字符串匹配算法</span>
+        <a class="next" href="/post/linux/c_language_usful_tips/">
+            <span class="next-text nav-default">c语言编码注意事项</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>

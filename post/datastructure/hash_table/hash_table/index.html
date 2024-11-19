@@ -55,7 +55,7 @@
   <meta itemprop="description" content="本文介绍哈希表的基本特性和具体实现。">
   <meta itemprop="datePublished" content="2024-11-16T22:09:29+08:00">
   <meta itemprop="dateModified" content="2024-11-16T22:09:29+08:00">
-  <meta itemprop="wordCount" content="630">
+  <meta itemprop="wordCount" content="796">
   <meta itemprop="keywords" content="哈希表">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="哈希表">
@@ -145,7 +145,7 @@
         <div class="post-category">
             <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"> 数据结构 </a>
             </div>
-          <span class="more-meta"> 约 630 字 </span>
+          <span class="more-meta"> 约 796 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
@@ -158,6 +158,7 @@
   <ul>
     <li><a href="#1-哈希表的基本特性">1 哈希表的基本特性</a></li>
     <li><a href="#2-哈希表拉链法的c语言实现">2 哈希表(拉链法)的c语言实现</a></li>
+    <li><a href="#3-哈希函数">3 哈希函数</a></li>
   </ul>
 </nav>
   </div>
@@ -342,8 +343,8 @@
 </span></span><span class="line"><span class="cl"><span class="c1">// hashTable的定义
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="n">HashTable</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">initHashTable</span><span class="p">)(</span><span class="k">struct</span> <span class="n">HashTable</span><span class="o">*</span> <span class="n">table</span><span class="p">,</span> <span class="kt">int</span> <span class="n">bucket_num</span><span class="p">);</span>   <span class="c1">// init function
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">destroyHashTable</span><span class="p">)(</span><span class="k">struct</span> <span class="n">HashTable</span><span class="o">*</span> <span class="n">table</span><span class="p">);</span>			     <span class="c1">// destroy function
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">hashFunc</span><span class="p">)(</span><span class="k">struct</span> <span class="n">HashTable</span><span class="o">*</span> <span class="n">table</span><span class="p">,</span> <span class="n">KEY</span> <span class="n">key</span><span class="p">);</span>			     <span class="c1">// hash function
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">destroyHashTable</span><span class="p">)(</span><span class="k">struct</span> <span class="n">HashTable</span><span class="o">*</span> <span class="n">table</span><span class="p">);</span>                 <span class="c1">// destroy function
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">hashFunc</span><span class="p">)(</span><span class="k">struct</span> <span class="n">HashTable</span><span class="o">*</span> <span class="n">table</span><span class="p">,</span> <span class="n">KEY</span> <span class="n">key</span><span class="p">);</span>                 <span class="c1">// hash function
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">HashNode</span><span class="o">*</span> <span class="p">(</span><span class="o">*</span><span class="n">find</span><span class="p">)(</span><span class="k">struct</span> <span class="n">HashTable</span><span class="o">*</span> <span class="n">table</span><span class="p">,</span> <span class="n">KEY</span> <span class="n">key</span><span class="p">);</span>             <span class="c1">// find function
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">insertHashNode</span><span class="p">)(</span><span class="k">struct</span> <span class="n">HashTable</span><span class="o">*</span> <span class="n">table</span><span class="p">,</span> <span class="n">HashNode</span><span class="o">*</span> <span class="n">node</span><span class="p">);</span> <span class="c1">// insert function
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">HashNode</span><span class="o">**</span> <span class="n">bucket</span><span class="p">;</span>  <span class="c1">// bucket array
@@ -466,6 +467,48 @@
 </span></span><span class="line"><span class="cl">    <span class="n">node</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">node</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="3-哈希函数">3 哈希函数</h1>
+<p>针对key为整数的情况，直接使用对桶大小取余的方式就可以。但是针对复杂的key，例如key为一个链表结点的地址，就需要更加复杂的哈希函数。以下是针对复杂的key的哈希算法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">size_t</span> <span class="nf">_Hash_bytes</span><span class="p">(</span><span class="k">const</span> <span class="kt">void</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">len</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">seed</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">size_t</span> <span class="n">hash</span> <span class="o">=</span> <span class="n">seed</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">cptr</span> <span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span><span class="p">)(</span><span class="n">ptr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(;</span> <span class="n">len</span><span class="p">;</span> <span class="o">--</span><span class="n">len</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">hash</span> <span class="o">=</span> <span class="p">(</span><span class="n">hash</span> <span class="o">*</span> <span class="mi">131</span><span class="p">)</span> <span class="o">+</span> <span class="o">*</span><span class="n">cptr</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">hash</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">hashFunc</span><span class="p">(</span><span class="n">HashTable</span><span class="o">*</span> <span class="n">table</span><span class="p">,</span> <span class="n">KEY</span> <span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">void</span><span class="o">*</span> <span class="n">ptr</span> <span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="kt">void</span><span class="o">*</span><span class="p">)(</span><span class="n">key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">size_t</span> <span class="n">hash</span> <span class="o">=</span> <span class="nf">_Hash_bytes</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nf">rand</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nf">abs</span><span class="p">(</span><span class="n">hash</span><span class="p">)</span> <span class="o">%</span> <span class="n">table</span><span class="o">-&gt;</span><span class="n">bucket_num</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
