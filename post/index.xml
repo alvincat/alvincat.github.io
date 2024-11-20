@@ -17,11 +17,11 @@
       <description>&lt;p&gt;本文记录Linux系统常用的系统设置的方法。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Vim常用设置</title>
+      <title>Vim常用设置以及常用命令</title>
       <link>https://alvincat.github.io/post/linux/vim_usful_setting/</link>
       <pubDate>Tue, 19 Nov 2024 15:17:40 +0800</pubDate>
       <guid>https://alvincat.github.io/post/linux/vim_usful_setting/</guid>
-      <description>&lt;p&gt;本文记录vim常用参数的配置方法。&lt;/p&gt;</description>
+      <description>&lt;p&gt;本文记录vim常用参数的配置方法已经常用命令。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Ubuntu系统常用设置和命令</title>
@@ -31,7 +31,7 @@
       <description>&lt;p&gt;本文记录Ubutun操作系统常用的系统配置的设置方法和常用命令的用法。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>LRU</title>
+      <title>LRU的C代码实现</title>
       <link>https://alvincat.github.io/post/datastructure/hash_table/lru/</link>
       <pubDate>Mon, 18 Nov 2024 17:06:55 +0800</pubDate>
       <guid>https://alvincat.github.io/post/datastructure/hash_table/lru/</guid>

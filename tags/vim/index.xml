@@ -10,11 +10,11 @@
     <lastBuildDate>Tue, 19 Nov 2024 15:17:40 +0800</lastBuildDate>
     <atom:link href="https://alvincat.github.io/tags/vim/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Vim常用设置</title>
+      <title>Vim常用设置以及常用命令</title>
       <link>https://alvincat.github.io/post/linux/vim_usful_setting/</link>
       <pubDate>Tue, 19 Nov 2024 15:17:40 +0800</pubDate>
       <guid>https://alvincat.github.io/post/linux/vim_usful_setting/</guid>
-      <description>&lt;p&gt;本文记录vim常用参数的配置方法。&lt;/p&gt;</description>
+      <description>&lt;p&gt;本文记录vim常用参数的配置方法已经常用命令。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
