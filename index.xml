@@ -7,8 +7,29 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Tue, 19 Nov 2024 15:48:31 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 26 Nov 2024 16:31:22 +0800</lastBuildDate>
     <atom:link href="https://alvincat.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>遍历-DFS</title>
+      <link>https://alvincat.github.io/post/algorithm/dfs/</link>
+      <pubDate>Tue, 26 Nov 2024 16:31:22 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/algorithm/dfs/</guid>
+      <description>&lt;p&gt;本文讲解DFS算法的核心思想和代码基本框架。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>遍历-BFS</title>
+      <link>https://alvincat.github.io/post/algorithm/bfs/</link>
+      <pubDate>Tue, 26 Nov 2024 16:29:32 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/algorithm/bfs/</guid>
+      <description>&lt;p&gt;本文讲解BFS算法的核心思想和代码基本框架。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Kernel_boot_process</title>
+      <link>https://alvincat.github.io/post/linux/kernel/kernel_boot_process/</link>
+      <pubDate>Wed, 20 Nov 2024 20:56:16 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/linux/kernel/kernel_boot_process/</guid>
+      <description>&lt;p&gt;本文总结Linux系统启动的详细流程以及启动流程涉及的基础知识。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Linux系统常用的系统配置</title>
       <link>https://alvincat.github.io/post/linux/linux_common_setting/</link>

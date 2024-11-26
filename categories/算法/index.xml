@@ -7,8 +7,22 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Fri, 15 Nov 2024 16:01:16 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 26 Nov 2024 16:31:22 +0800</lastBuildDate>
     <atom:link href="https://alvincat.github.io/categories/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>遍历-DFS</title>
+      <link>https://alvincat.github.io/post/algorithm/dfs/</link>
+      <pubDate>Tue, 26 Nov 2024 16:31:22 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/algorithm/dfs/</guid>
+      <description>&lt;p&gt;本文讲解DFS算法的核心思想和代码基本框架。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>遍历-BFS</title>
+      <link>https://alvincat.github.io/post/algorithm/bfs/</link>
+      <pubDate>Tue, 26 Nov 2024 16:29:32 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/algorithm/bfs/</guid>
+      <description>&lt;p&gt;本文讲解BFS算法的核心思想和代码基本框架。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>字符串匹配算法</title>
       <link>https://alvincat.github.io/post/algorithm/string_match_algorightm/</link>

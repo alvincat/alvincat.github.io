@@ -177,7 +177,7 @@
 </div>
     <div class="post-content">
       <p>本文介绍LRU的原理和具体c代码实现。</p>
-<p>LRU的引文全称为Least Recently Used，即最近最少使用。该算法为cache淘汰算法，将最近最少使用的元素淘汰掉。具体代码是由hashTable和一个双向链表实现的。<br>
+<p>LRU的英文全称为Least Recently Used，即最近最少使用。该算法为cache淘汰算法，将最近最少使用的元素淘汰掉。具体代码是由hashTable和一个双向链表实现的。<br>
 使用双向链表存放key-value，使用哈希表存储双向链表的结点地址，保证访问结点的复杂度为 $O(1)$。通常来讲，对数据的读写都算做对数据的访问。</p>
 <h1 id="1-lru的c代码实现">1 LRU的C代码实现</h1>
 <div class="highlight"><div class="chroma">
