@@ -55,7 +55,7 @@
   <meta itemprop="description" content="本文讲解BFS算法的核心思想和代码基本框架。">
   <meta itemprop="datePublished" content="2024-11-26T16:29:32+08:00">
   <meta itemprop="dateModified" content="2024-11-26T16:29:32+08:00">
-  <meta itemprop="wordCount" content="22">
+  <meta itemprop="wordCount" content="325">
   <meta itemprop="keywords" content="BFS">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="遍历-BFS">
@@ -145,7 +145,7 @@
         <div class="post-category">
             <a href="/categories/%E7%AE%97%E6%B3%95/"> 算法 </a>
             </div>
-          <span class="more-meta"> 约 22 字 </span>
+          <span class="more-meta"> 约 325 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
         
       </div>
@@ -154,11 +154,56 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
-    <nav id="TableOfContents"></nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-bfs算法的核心思想">1 BFS算法的核心思想</a></li>
+    <li><a href="#2-bfs算法的代码框架">2 BFS算法的代码框架</a></li>
+  </ul>
+</nav>
   </div>
 </div>
     <div class="post-content">
       <p>本文讲解BFS算法的核心思想和代码基本框架。</p>
+<h1 id="1-bfs算法的核心思想">1 BFS算法的核心思想</h1>
+<p>BFS的英文全称为(Breadth-first search),称为广度优先搜索算法。
+该算法是用于在树形结构中按照某种规则搜索结点的算法。
+该算法的核心思想是从起始点出发，依次遍历完起始点周围的结点，不断重复该过程直至扩散至所有结点。</p>
+<h1 id="2-bfs算法的代码框架">2 BFS算法的代码框架</h1>
+<p>基于BFS的特点：代码实现时，采用队列来保存每一轮迭代的结果。</p>
+<ol>
+<li>首次将起始点或初始状态的结点插入队列。</li>
+<li>在出队列时，将和该结点关联的结点进队。</li>
+<li>操作结束的条件：队列为空。</li>
+</ol>
+<p>温馨提示：<br>
+若需要区分每层遍历的结果，可以通过记录队列中元素的个数来实现。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">queue</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">queue</span><span class="p">.</span><span class="nf">empty</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">head</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="nf">front</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">xxx</span><span class="p">;</span><span class="c1">// 执行和队列头部相关的操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">queue</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">child</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">queue</span><span class="p">.</span><span class="nf">pop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
     </div>
 
     
