@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://alvincat.github.io/sitemap.xml
