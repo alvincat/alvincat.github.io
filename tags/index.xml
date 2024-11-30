@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Thu, 28 Nov 2024 10:30:58 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 29 Nov 2024 16:31:59 +0800</lastBuildDate>
     <atom:link href="https://alvincat.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GDB</title>
+      <link>https://alvincat.github.io/tags/gdb/</link>
+      <pubDate>Fri, 29 Nov 2024 16:31:59 +0800</pubDate>
+      <guid>https://alvincat.github.io/tags/gdb/</guid>
+      <description></description>
+    </item>
     <item>
       <title>二叉树</title>
       <link>https://alvincat.github.io/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/</link>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GDB on Alvincat&#39;s Blog</title>
+    <link>https://alvincat.github.io/tags/gdb/</link>
+    <description>Recent content in GDB on Alvincat&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>alvincat</copyright>
+    <lastBuildDate>Fri, 29 Nov 2024 16:31:59 +0800</lastBuildDate>
+    <atom:link href="https://alvincat.github.io/tags/gdb/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GDB常用命令和一些实用方法</title>
+      <link>https://alvincat.github.io/post/linux/tools/gdb_usful_tips/</link>
+      <pubDate>Fri, 29 Nov 2024 16:31:59 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/linux/tools/gdb_usful_tips/</guid>
+      <description>&lt;p&gt;本文介绍gdb一些常用命令。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

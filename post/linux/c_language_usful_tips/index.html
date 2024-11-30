@@ -55,7 +55,7 @@
   <meta itemprop="description" content="本文主要记录c语言编码过程中的一些注意事项。">
   <meta itemprop="datePublished" content="2024-11-17T21:39:06+08:00">
   <meta itemprop="dateModified" content="2024-11-17T21:39:06+08:00">
-  <meta itemprop="wordCount" content="421">
+  <meta itemprop="wordCount" content="629">
   <meta itemprop="keywords" content="C语言">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="c语言编码注意事项">
@@ -145,8 +145,8 @@
         <div class="post-category">
             <a href="/categories/linux/"> Linux </a>
             </div>
-          <span class="more-meta"> 约 421 字 </span>
-          <span class="more-meta"> 预计阅读 1 分钟 </span>
+          <span class="more-meta"> 约 629 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
     </header>
@@ -165,6 +165,12 @@
     <li><a href="#2-c语言编译相关">2 c语言编译相关</a>
       <ul>
         <li><a href="#21-c语言使用asan的方法">2.1 C语言使用asan的方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-glibc源码阅读">3 glibc源码阅读</a>
+      <ul>
+        <li><a href="#31-实用gdb阅读glibc接口的方法">3.1 实用gdb阅读glibc接口的方法</a></li>
+        <li><a href="#32-理解glibc的简单方法使用musl-libc库">3.2 理解glibc的简单方法：使用musl libc库</a></li>
       </ul>
     </li>
   </ul>
@@ -268,6 +274,20 @@
 <li>libasan4: gcc-7</li>
 <li>libasan5: gcc-8</li>
 </ul>
+<h1 id="3-glibc源码阅读">3 glibc源码阅读</h1>
+<h2 id="31-实用gdb阅读glibc接口的方法">3.1 实用gdb阅读glibc接口的方法</h2>
+<ol>
+<li>将glibc源码下载到本地，并解压。</li>
+<li>在gdb中添加glibc源码路径；</li>
+</ol>
+<ul>
+<li>方法1：在<code>.gdbinit</code>文件中添加命令<code>directory glibc_src_path</code></li>
+<li>方法2：gdb调试二进制时，增加-d参数:<code>-d directory</code></li>
+</ul>
+<h2 id="32-理解glibc的简单方法使用musl-libc库">3.2 理解glibc的简单方法：使用musl libc库</h2>
+<p>musl libc库实现了和glibc一样的功能，但是代码更简洁易懂。<br>
+可以通过阅读这个代码理解glibc中接口是如何实现的。<br>
+<a href="https://www.musl-libc.org/">musl libc库网址</a></p>
     </div>
 
     
@@ -300,7 +320,7 @@
       <div class="social-links">
       <a href="mailto:alvincat@126.com" class="iconfont icon-email" title="email"></a>
       <a href="https://www.google.com" class="iconfont icon-google" title="google"></a>
-      <a href="https://github.com" class="iconfont icon-github" title="github"></a>
+      <a href="https://github.com/alvincat" class="iconfont icon-github" title="github"></a>
       <a href="https://weibo.com" class="iconfont icon-weibo" title="weibo"></a>
       <a href="https://www.zhihu.com" class="iconfont icon-zhihu" title="zhihu"></a>
       <a href="https://www.douban.com" class="iconfont icon-douban" title="douban"></a>

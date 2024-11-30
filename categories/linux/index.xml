@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Tue, 19 Nov 2024 15:48:31 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 29 Nov 2024 16:31:59 +0800</lastBuildDate>
     <atom:link href="https://alvincat.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GDB常用命令和一些实用方法</title>
+      <link>https://alvincat.github.io/post/linux/tools/gdb_usful_tips/</link>
+      <pubDate>Fri, 29 Nov 2024 16:31:59 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/linux/tools/gdb_usful_tips/</guid>
+      <description>&lt;p&gt;本文介绍gdb一些常用命令。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Linux系统常用的系统配置</title>
       <link>https://alvincat.github.io/post/linux/linux_common_setting/</link>
@@ -18,9 +25,9 @@
     </item>
     <item>
       <title>Vim常用设置以及常用命令</title>
-      <link>https://alvincat.github.io/post/linux/vim_usful_setting/</link>
+      <link>https://alvincat.github.io/post/linux/tools/vim_usful_setting/</link>
       <pubDate>Tue, 19 Nov 2024 15:17:40 +0800</pubDate>
-      <guid>https://alvincat.github.io/post/linux/vim_usful_setting/</guid>
+      <guid>https://alvincat.github.io/post/linux/tools/vim_usful_setting/</guid>
       <description>&lt;p&gt;本文记录vim常用参数的配置方法已经常用命令。&lt;/p&gt;</description>
     </item>
     <item>

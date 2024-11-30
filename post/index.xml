@@ -7,7 +7,7 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Thu, 28 Nov 2024 10:30:58 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 30 Nov 2024 10:48:47 +0800</lastBuildDate>
     <atom:link href="https://alvincat.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>网站导航页</title>
@@ -15,6 +15,20 @@
       <pubDate>Wed, 13 Nov 2024 16:30:08 +0800</pubDate>
       <guid>https://alvincat.github.io/post/index/content/</guid>
       <description>&lt;p&gt;该页面为网站的导航页面。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Markdown使用技巧</title>
+      <link>https://alvincat.github.io/post/linux/tools/markdown_usful_tips/</link>
+      <pubDate>Sat, 30 Nov 2024 10:48:47 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/linux/tools/markdown_usful_tips/</guid>
+      <description>&lt;p&gt;本文介绍markdown的语法和一些实用技巧。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>GDB常用命令和一些实用方法</title>
+      <link>https://alvincat.github.io/post/linux/tools/gdb_usful_tips/</link>
+      <pubDate>Fri, 29 Nov 2024 16:31:59 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/linux/tools/gdb_usful_tips/</guid>
+      <description>&lt;p&gt;本文介绍gdb一些常用命令。&lt;/p&gt;</description>
     </item>
     <item>
       <title>创建二叉树的方法</title>
@@ -60,9 +74,9 @@
     </item>
     <item>
       <title>Vim常用设置以及常用命令</title>
-      <link>https://alvincat.github.io/post/linux/vim_usful_setting/</link>
+      <link>https://alvincat.github.io/post/linux/tools/vim_usful_setting/</link>
       <pubDate>Tue, 19 Nov 2024 15:17:40 +0800</pubDate>
-      <guid>https://alvincat.github.io/post/linux/vim_usful_setting/</guid>
+      <guid>https://alvincat.github.io/post/linux/tools/vim_usful_setting/</guid>
       <description>&lt;p&gt;本文记录vim常用参数的配置方法已经常用命令。&lt;/p&gt;</description>
     </item>
     <item>

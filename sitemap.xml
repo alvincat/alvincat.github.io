@@ -10,28 +10,56 @@
   
   <url>
     <loc>https://alvincat.github.io/</loc>
-    <lastmod>2024-11-28T10:30:58+08:00</lastmod>
+    <lastmod>2024-11-30T10:48:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://alvincat.github.io/categories/</loc>
-    <lastmod>2024-11-28T10:30:58+08:00</lastmod>
+    <loc>https://alvincat.github.io/post/linux/tools/markdown_usful_tips/</loc>
+    <lastmod>2024-11-30T10:48:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://alvincat.github.io/post/</loc>
-    <lastmod>2024-11-28T10:30:58+08:00</lastmod>
+    <lastmod>2024-11-30T10:48:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/categories/</loc>
+    <lastmod>2024-11-29T16:31:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/tags/gdb/</loc>
+    <lastmod>2024-11-29T16:31:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/post/linux/tools/gdb_usful_tips/</loc>
+    <lastmod>2024-11-29T16:31:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/categories/linux/</loc>
+    <lastmod>2024-11-29T16:31:59+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://alvincat.github.io/tags/</loc>
-    <lastmod>2024-11-28T10:30:58+08:00</lastmod>
+    <lastmod>2024-11-29T16:31:59+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -121,13 +149,6 @@
   </url>
   
   <url>
-    <loc>https://alvincat.github.io/categories/linux/</loc>
-    <lastmod>2024-11-19T15:48:31+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://alvincat.github.io/post/linux/linux_common_setting/</loc>
     <lastmod>2024-11-19T15:48:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -149,7 +170,7 @@
   </url>
   
   <url>
-    <loc>https://alvincat.github.io/post/linux/vim_usful_setting/</loc>
+    <loc>https://alvincat.github.io/post/linux/tools/vim_usful_setting/</loc>
     <lastmod>2024-11-19T15:17:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
