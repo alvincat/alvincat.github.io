@@ -7,7 +7,7 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Sat, 30 Nov 2024 10:48:47 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 02 Dec 2024 15:38:46 +0800</lastBuildDate>
     <atom:link href="https://alvincat.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>网站导航页</title>
@@ -17,17 +17,66 @@
       <description>&lt;p&gt;该页面为网站的导航页面。&lt;/p&gt;</description>
     </item>
     <item>
+      <title>堆排序的原理与实现</title>
+      <link>https://alvincat.github.io/post/algorithm/heap_sort/</link>
+      <pubDate>Mon, 02 Dec 2024 15:38:46 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/algorithm/heap_sort/</guid>
+      <description>&lt;p&gt;本文主要是讲解堆排序的原理和具体实现方法。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>回溯算法</title>
+      <link>https://alvincat.github.io/post/algorithm/backtracking_algorithm/</link>
+      <pubDate>Mon, 02 Dec 2024 15:38:46 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/algorithm/backtracking_algorithm/</guid>
+      <description>&lt;p&gt;本文讲解回溯算法的原理和具体实现。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>排序算法的比较</title>
+      <link>https://alvincat.github.io/post/algorithm/sort_summary/</link>
+      <pubDate>Mon, 02 Dec 2024 15:38:46 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/algorithm/sort_summary/</guid>
+      <description>&lt;p&gt;本文主要针对各种排序算法之间的特性进行比较。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>C&#43;&#43; STL用法总结</title>
+      <link>https://alvincat.github.io/post/cpp/cpp_stl/</link>
+      <pubDate>Mon, 02 Dec 2024 15:29:46 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/cpp/cpp_stl/</guid>
+      <description>&lt;p&gt;C++中的STL用法总结&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>c&#43;&#43; string的常用方法</title>
+      <link>https://alvincat.github.io/post/cpp/cpp_string/</link>
+      <pubDate>Mon, 02 Dec 2024 15:28:46 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/cpp/cpp_string/</guid>
+      <description>&lt;p&gt;本文主要是记录c++ string的常用成员函数。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>C&#43;&#43;常用库函数的用法</title>
+      <link>https://alvincat.github.io/post/cpp/cpp_common_function/</link>
+      <pubDate>Mon, 02 Dec 2024 15:26:46 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/cpp/cpp_common_function/</guid>
+      <description>&lt;p&gt;C++中常用库函数&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>程序员入门必读</title>
+      <link>https://alvincat.github.io/post/tools/some_usful_tips/</link>
+      <pubDate>Sat, 30 Nov 2024 19:06:41 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/tools/some_usful_tips/</guid>
+      <description>&lt;p&gt;本文主要是一些针对程序员入门的一些资料。&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Markdown使用技巧</title>
-      <link>https://alvincat.github.io/post/linux/tools/markdown_usful_tips/</link>
+      <link>https://alvincat.github.io/post/tools/markdown_usful_tips/</link>
       <pubDate>Sat, 30 Nov 2024 10:48:47 +0800</pubDate>
-      <guid>https://alvincat.github.io/post/linux/tools/markdown_usful_tips/</guid>
+      <guid>https://alvincat.github.io/post/tools/markdown_usful_tips/</guid>
       <description>&lt;p&gt;本文介绍markdown的语法和一些实用技巧。&lt;/p&gt;</description>
     </item>
     <item>
       <title>GDB常用命令和一些实用方法</title>
-      <link>https://alvincat.github.io/post/linux/tools/gdb_usful_tips/</link>
+      <link>https://alvincat.github.io/post/tools/gdb_usful_tips/</link>
       <pubDate>Fri, 29 Nov 2024 16:31:59 +0800</pubDate>
-      <guid>https://alvincat.github.io/post/linux/tools/gdb_usful_tips/</guid>
+      <guid>https://alvincat.github.io/post/tools/gdb_usful_tips/</guid>
       <description>&lt;p&gt;本文介绍gdb一些常用命令。&lt;/p&gt;</description>
     </item>
     <item>
@@ -74,16 +123,16 @@
     </item>
     <item>
       <title>Vim常用设置以及常用命令</title>
-      <link>https://alvincat.github.io/post/linux/tools/vim_usful_setting/</link>
+      <link>https://alvincat.github.io/post/tools/vim_usful_setting/</link>
       <pubDate>Tue, 19 Nov 2024 15:17:40 +0800</pubDate>
-      <guid>https://alvincat.github.io/post/linux/tools/vim_usful_setting/</guid>
+      <guid>https://alvincat.github.io/post/tools/vim_usful_setting/</guid>
       <description>&lt;p&gt;本文记录vim常用参数的配置方法已经常用命令。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Ubuntu系统常用设置和命令</title>
-      <link>https://alvincat.github.io/post/linux/ubuntu_setting/</link>
+      <link>https://alvincat.github.io/post/operating_system/ubuntu_setting/</link>
       <pubDate>Tue, 19 Nov 2024 15:17:20 +0800</pubDate>
-      <guid>https://alvincat.github.io/post/linux/ubuntu_setting/</guid>
+      <guid>https://alvincat.github.io/post/operating_system/ubuntu_setting/</guid>
       <description>&lt;p&gt;本文记录Ubutun操作系统常用的系统配置的设置方法和常用命令的用法。&lt;/p&gt;</description>
     </item>
     <item>
@@ -151,9 +200,9 @@
     </item>
     <item>
       <title>Git常用命令</title>
-      <link>https://alvincat.github.io/post/git/git_commond/</link>
+      <link>https://alvincat.github.io/post/tools/git_commond/</link>
       <pubDate>Thu, 14 Nov 2024 17:13:30 +0800</pubDate>
-      <guid>https://alvincat.github.io/post/git/git_commond/</guid>
+      <guid>https://alvincat.github.io/post/tools/git_commond/</guid>
       <description>&lt;p&gt;本文记录Git常用命令。&lt;/p&gt;</description>
     </item>
     <item>
@@ -162,6 +211,20 @@
       <pubDate>Thu, 14 Nov 2024 16:51:30 +0800</pubDate>
       <guid>https://alvincat.github.io/post/hugo/hugo_build_static_page/</guid>
       <description>&lt;p&gt;本文记录Hugo配置github静态页面的关键步骤。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>C&#43;&#43;导航页</title>
+      <link>https://alvincat.github.io/post/index/content_cpp/</link>
+      <pubDate>Wed, 13 Nov 2024 18:26:40 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/index/content_cpp/</guid>
+      <description>&lt;p&gt;该页面为C++的导航页。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>工具使用导航页</title>
+      <link>https://alvincat.github.io/post/index/content_tools/</link>
+      <pubDate>Wed, 13 Nov 2024 18:25:40 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/index/content_tools/</guid>
+      <description>&lt;p&gt;该页面为工具使用的导航页。&lt;/p&gt;</description>
     </item>
     <item>
       <title>操作系统导航页</title>

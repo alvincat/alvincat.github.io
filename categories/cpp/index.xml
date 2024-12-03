@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cpp on Alvincat&#39;s Blog</title>
+    <link>https://alvincat.github.io/categories/cpp/</link>
+    <description>Recent content in Cpp on Alvincat&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>alvincat</copyright>
+    <lastBuildDate>Mon, 02 Dec 2024 15:29:46 +0800</lastBuildDate>
+    <atom:link href="https://alvincat.github.io/categories/cpp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43; STL用法总结</title>
+      <link>https://alvincat.github.io/post/cpp/cpp_stl/</link>
+      <pubDate>Mon, 02 Dec 2024 15:29:46 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/cpp/cpp_stl/</guid>
+      <description>&lt;p&gt;C++中的STL用法总结&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>c&#43;&#43; string的常用方法</title>
+      <link>https://alvincat.github.io/post/cpp/cpp_string/</link>
+      <pubDate>Mon, 02 Dec 2024 15:28:46 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/cpp/cpp_string/</guid>
+      <description>&lt;p&gt;本文主要是记录c++ string的常用成员函数。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>C&#43;&#43;常用库函数的用法</title>
+      <link>https://alvincat.github.io/post/cpp/cpp_common_function/</link>
+      <pubDate>Mon, 02 Dec 2024 15:26:46 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/cpp/cpp_common_function/</guid>
+      <description>&lt;p&gt;C++中常用库函数&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>C&#43;&#43;导航页</title>
+      <link>https://alvincat.github.io/post/index/content_cpp/</link>
+      <pubDate>Wed, 13 Nov 2024 18:26:40 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/index/content_cpp/</guid>
+      <description>&lt;p&gt;该页面为C++的导航页。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

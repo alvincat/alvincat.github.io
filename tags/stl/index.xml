@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>STL on Alvincat&#39;s Blog</title>
+    <link>https://alvincat.github.io/tags/stl/</link>
+    <description>Recent content in STL on Alvincat&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>alvincat</copyright>
+    <lastBuildDate>Mon, 02 Dec 2024 15:29:46 +0800</lastBuildDate>
+    <atom:link href="https://alvincat.github.io/tags/stl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43; STL用法总结</title>
+      <link>https://alvincat.github.io/post/cpp/cpp_stl/</link>
+      <pubDate>Mon, 02 Dec 2024 15:29:46 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/cpp/cpp_stl/</guid>
+      <description>&lt;p&gt;C++中的STL用法总结&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

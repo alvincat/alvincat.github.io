@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>堆排序 on Alvincat&#39;s Blog</title>
+    <link>https://alvincat.github.io/tags/%E5%A0%86%E6%8E%92%E5%BA%8F/</link>
+    <description>Recent content in 堆排序 on Alvincat&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>alvincat</copyright>
+    <lastBuildDate>Mon, 02 Dec 2024 15:38:46 +0800</lastBuildDate>
+    <atom:link href="https://alvincat.github.io/tags/%E5%A0%86%E6%8E%92%E5%BA%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>堆排序的原理与实现</title>
+      <link>https://alvincat.github.io/post/algorithm/heap_sort/</link>
+      <pubDate>Mon, 02 Dec 2024 15:38:46 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/algorithm/heap_sort/</guid>
+      <description>&lt;p&gt;本文主要是讲解堆排序的原理和具体实现方法。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

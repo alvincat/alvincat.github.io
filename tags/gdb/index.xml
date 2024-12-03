@@ -11,9 +11,9 @@
     <atom:link href="https://alvincat.github.io/tags/gdb/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GDB常用命令和一些实用方法</title>
-      <link>https://alvincat.github.io/post/linux/tools/gdb_usful_tips/</link>
+      <link>https://alvincat.github.io/post/tools/gdb_usful_tips/</link>
       <pubDate>Fri, 29 Nov 2024 16:31:59 +0800</pubDate>
-      <guid>https://alvincat.github.io/post/linux/tools/gdb_usful_tips/</guid>
+      <guid>https://alvincat.github.io/post/tools/gdb_usful_tips/</guid>
       <description>&lt;p&gt;本文介绍gdb一些常用命令。&lt;/p&gt;</description>
     </item>
   </channel>

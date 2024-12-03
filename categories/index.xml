@@ -7,13 +7,27 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Fri, 29 Nov 2024 16:31:59 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 02 Dec 2024 15:38:46 +0800</lastBuildDate>
     <atom:link href="https://alvincat.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Linux</title>
-      <link>https://alvincat.github.io/categories/linux/</link>
-      <pubDate>Fri, 29 Nov 2024 16:31:59 +0800</pubDate>
-      <guid>https://alvincat.github.io/categories/linux/</guid>
+      <title>算法</title>
+      <link>https://alvincat.github.io/categories/%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Mon, 02 Dec 2024 15:38:46 +0800</pubDate>
+      <guid>https://alvincat.github.io/categories/%E7%AE%97%E6%B3%95/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cpp</title>
+      <link>https://alvincat.github.io/categories/cpp/</link>
+      <pubDate>Mon, 02 Dec 2024 15:29:46 +0800</pubDate>
+      <guid>https://alvincat.github.io/categories/cpp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tools</title>
+      <link>https://alvincat.github.io/categories/tools/</link>
+      <pubDate>Sat, 30 Nov 2024 19:06:41 +0800</pubDate>
+      <guid>https://alvincat.github.io/categories/tools/</guid>
       <description></description>
     </item>
     <item>
@@ -24,17 +38,17 @@
       <description></description>
     </item>
     <item>
-      <title>算法</title>
-      <link>https://alvincat.github.io/categories/%E7%AE%97%E6%B3%95/</link>
-      <pubDate>Tue, 26 Nov 2024 16:31:22 +0800</pubDate>
-      <guid>https://alvincat.github.io/categories/%E7%AE%97%E6%B3%95/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>操作系统</title>
       <link>https://alvincat.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
       <pubDate>Wed, 20 Nov 2024 20:56:16 +0800</pubDate>
       <guid>https://alvincat.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linux</title>
+      <link>https://alvincat.github.io/categories/linux/</link>
+      <pubDate>Tue, 19 Nov 2024 15:48:31 +0800</pubDate>
+      <guid>https://alvincat.github.io/categories/linux/</guid>
       <description></description>
     </item>
     <item>
