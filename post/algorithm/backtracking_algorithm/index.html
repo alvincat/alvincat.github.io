@@ -55,7 +55,7 @@
   <meta itemprop="description" content="本文讲解回溯算法的原理和具体实现。">
   <meta itemprop="datePublished" content="2024-12-02T15:39:46+08:00">
   <meta itemprop="dateModified" content="2024-12-02T15:39:46+08:00">
-  <meta itemprop="wordCount" content="679">
+  <meta itemprop="wordCount" content="1053">
   <meta itemprop="keywords" content="排序">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="回溯算法">
@@ -145,8 +145,8 @@
         <div class="post-category">
             <a href="/categories/%E7%AE%97%E6%B3%95/"> 算法 </a>
             </div>
-          <span class="more-meta"> 约 679 字 </span>
-          <span class="more-meta"> 预计阅读 2 分钟 </span>
+          <span class="more-meta"> 约 1053 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
         
       </div>
     </header>
@@ -156,9 +156,10 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#1-回溯算法">1 回溯算法</a>
       <ul>
-        <li>
+        <li><a href="#11-回溯算法的原理">1.1 回溯算法的原理</a></li>
+        <li><a href="#12-解决回溯问题思路">1.2 解决回溯问题思路</a>
           <ul>
             <li><a href="#111-回溯代码的基本框架">1.1.1 回溯代码的基本框架</a></li>
           </ul>
@@ -178,12 +179,22 @@
 </div>
     <div class="post-content">
       <p>本文讲解回溯算法的原理和具体实现。</p>
-<p>1 回溯算法</p>
-<p>1.1 回溯算法的原理</p>
+<h1 id="1-回溯算法">1 回溯算法</h1>
+<h2 id="11-回溯算法的原理">1.1 回溯算法的原理</h2>
 <p>回溯算法是暴力搜索法中的一种。回溯法是一种可以找出所有（或一部分）解的一般性算法，尤其适用于约束满足问题。<br>
 在实际实现时采用DFS搜索的方式进行遍历，然后再遍历过程中采用剪枝的策略去掉不满足条件的解。<br>
-对于具体代码实现而言，实际上就是DFS的一种实际应用。和DFS遍历二叉树不同之处在于，回溯中使用DFS需要有前进和回退的过程，这也是为啥叫做回溯的原因。
+对于具体代码实现而言，实际上就是DFS的一种实际应用。  和DFS遍历二叉树不同之处在于，回溯中使用DFS需要有前进和回退的过程，这也是为啥叫做回溯的原因。
 一般在回溯算法中，使用递归的方式来进行DFS。</p>
+<h2 id="12-解决回溯问题思路">1.2 解决回溯问题思路</h2>
+<p>解决回溯问题时，一定要画出遍历路径的多叉树。搞清楚横向遍历的是什么，和纵向遍历的路径是啥？
+例如：
+如下图所示，为leetcode 电话号码组合问题中&quot;23&quot;的遍历示意图。其中2对应字符串&quot;abc&quot;, 3对应字符串&quot;def&quot;。<br>
+我们可以看到，横向展开的是每个字符串内的每个字母，纵向是展开的字符串&quot;23&quot;。<br>
+而回溯的递归函数中的for循环内部实现，就是横向展开的体现。<br>
+因此在这个问题中，需要先根据索引获取数字对应的字符串。</p>
+<p><img src="/web_image/algorithm/backtracking/algorithm_backtracing_01.png" alt="backtrackting_01"></p>
+<p>而针对问题39-组合总和问题，可以按照下图所示的思路去分析解决：<br>
+<img src="/web_image/algorithm/backtracking/algorithm_backtracing_02.png" alt="backtrackting_02"></p>
 <h3 id="111-回溯代码的基本框架">1.1.1 回溯代码的基本框架</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -200,15 +211,15 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>  
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">路径</span><span class="p">,</span> <span class="n">选择列表</span><span class="p">):</span>  
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">满足结束条件</span><span class="p">:</span>  
-</span></span><span class="line"><span class="cl"><span class="n">result</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">路径</span><span class="p">)</span>  
-</span></span><span class="line"><span class="cl"><span class="k">return</span>  
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">选择列表</span><span class="p">):</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">满足结束条件</span><span class="p">:</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">result</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">return</span>  
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">选择列表</span><span class="p">:</span>  
-</span></span><span class="line"><span class="cl"><span class="n">path</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="o">//</span> <span class="n">添加</span>  
-</span></span><span class="line"><span class="cl"><span class="n">backtrack</span><span class="p">(</span><span class="n">路径</span><span class="p">,</span> <span class="n">选择列表</span><span class="p">)</span>  
-</span></span><span class="line"><span class="cl"><span class="n">path</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>     <span class="o">//</span> <span class="n">删除</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">选择列表</span><span class="p">:</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">path</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="o">//</span> <span class="n">添加</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">backtrack</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">选择列表</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">path</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>     <span class="o">//</span> <span class="n">删除</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="12-回溯算法的应用">1.2 回溯算法的应用</h2>
@@ -328,7 +339,6 @@
 </span><span class="lnt">31
 </span><span class="lnt">32
 </span><span class="lnt">33
-</span><span class="lnt">34
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
@@ -347,7 +357,6 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">string</span> <span class="n">digits</span><span class="p">,</span> <span class="kt">int</span> <span class="n">index</span><span class="p">,</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">path</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">digits</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">path</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">;</span>
@@ -364,6 +373,79 @@
 </span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl"><span class="n">string</span> <span class="n">num_map</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#34;&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="s">&#34;abc&#34;</span><span class="p">,</span> <span class="s">&#34;def&#34;</span><span class="p">,</span> <span class="s">&#34;ghi&#34;</span><span class="p">,</span> <span class="s">&#34;jkl&#34;</span><span class="p">,</span> <span class="s">&#34;mno&#34;</span><span class="p">,</span> <span class="s">&#34;pqrs&#34;</span><span class="p">,</span> <span class="s">&#34;tuv&#34;</span><span class="p">,</span> <span class="s">&#34;wxyz&#34;</span><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>问题3：组合总和(39)</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">combinationSum</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">candidates</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">candidates</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">candidates</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">sort</span><span class="p">(</span><span class="n">candidates</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">candidates</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">path</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">backtrack</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">target</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">cand</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">path</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">target</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">path</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">idx</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">cand</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">target</span> <span class="o">&lt;</span> <span class="n">cand</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">path</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">cand</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">backtrack</span><span class="p">(</span><span class="n">cand</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">target</span> <span class="o">-</span> <span class="n">cand</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">path</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">res</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -424,9 +506,9 @@
           <a href="/tags/%E6%8E%92%E5%BA%8F/">排序</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/index/content/">
+        <a class="prev" href="/post/linux/multi_thread/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">网站导航页</span>
+            <span class="prev-text nav-default">多线程的特性和同步方法</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/algorithm/heap_sort/">

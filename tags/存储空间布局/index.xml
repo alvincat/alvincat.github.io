@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>存储空间布局 on Alvincat&#39;s Blog</title>
+    <link>https://alvincat.github.io/tags/%E5%AD%98%E5%82%A8%E7%A9%BA%E9%97%B4%E5%B8%83%E5%B1%80/</link>
+    <description>Recent content in 存储空间布局 on Alvincat&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>alvincat</copyright>
+    <lastBuildDate>Thu, 05 Dec 2024 22:37:40 +0800</lastBuildDate>
+    <atom:link href="https://alvincat.github.io/tags/%E5%AD%98%E5%82%A8%E7%A9%BA%E9%97%B4%E5%B8%83%E5%B1%80/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>进程环境</title>
+      <link>https://alvincat.github.io/post/linux/process_environment/</link>
+      <pubDate>Thu, 05 Dec 2024 22:37:40 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/linux/process_environment/</guid>
+      <description>&lt;p&gt;本文总结UNIX环境中一个进程是如何启动和终止的，如何向进程传递参数表和环境变量。&lt;br&gt;&#xA;还介绍了进程内部的存储空间布局方式。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
