@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Cpp on Alvincat&#39;s Blog</title>
+    <title>CPP on Alvincat&#39;s Blog</title>
     <link>https://alvincat.github.io/categories/cpp/</link>
-    <description>Recent content in Cpp on Alvincat&#39;s Blog</description>
+    <description>Recent content in CPP on Alvincat&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
@@ -32,9 +32,9 @@
     </item>
     <item>
       <title>C&#43;&#43;导航页</title>
-      <link>https://alvincat.github.io/post/index/content_cpp/</link>
+      <link>https://alvincat.github.io/index/content_cpp/</link>
       <pubDate>Wed, 13 Nov 2024 18:26:40 +0800</pubDate>
-      <guid>https://alvincat.github.io/post/index/content_cpp/</guid>
+      <guid>https://alvincat.github.io/index/content_cpp/</guid>
       <description>&lt;p&gt;该页面为C++的导航页。&lt;/p&gt;</description>
     </item>
   </channel>

@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Thu, 05 Dec 2024 22:37:40 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 06 Dec 2024 09:48:43 +0800</lastBuildDate>
     <atom:link href="https://alvincat.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>贪心算法</title>
+      <link>https://alvincat.github.io/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Fri, 06 Dec 2024 09:48:43 +0800</pubDate>
+      <guid>https://alvincat.github.io/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/</guid>
+      <description></description>
+    </item>
     <item>
       <title>存储空间布局</title>
       <link>https://alvincat.github.io/tags/%E5%AD%98%E5%82%A8%E7%A9%BA%E9%97%B4%E5%B8%83%E5%B1%80/</link>

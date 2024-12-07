@@ -59,7 +59,7 @@
 还介绍了进程内部的存储空间布局方式。">
   <meta itemprop="datePublished" content="2024-12-05T22:37:40+08:00">
   <meta itemprop="dateModified" content="2024-12-05T22:37:40+08:00">
-  <meta itemprop="wordCount" content="322">
+  <meta itemprop="wordCount" content="487">
   <meta itemprop="keywords" content="存储空间布局,环境变量">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="进程环境">
@@ -99,8 +99,8 @@
         <li class="mobile-menu-item">关于</li>
       </a><a href="/categories/">
         <li class="mobile-menu-item">分类</li>
-      </a><a href="/search/">
-        <li class="mobile-menu-item">搜索</li>
+      </a><a href="/contents/">
+        <li class="mobile-menu-item">目录</li>
       </a>
   </ul>
 
@@ -132,7 +132,7 @@
       </li><li class="menu-item">
         <a class="menu-item-link" href="/categories/">分类</a>
       </li><li class="menu-item">
-        <a class="menu-item-link" href="/search/">搜索</a>
+        <a class="menu-item-link" href="/contents/">目录</a>
       </li>
   </ul>
 </nav>
@@ -150,7 +150,7 @@
         <div class="post-category">
             <a href="/categories/linux/"> Linux </a>
             </div>
-          <span class="more-meta"> 约 322 字 </span>
+          <span class="more-meta"> 约 487 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
         
       </div>
@@ -184,13 +184,14 @@
 <p><img src="/web_image/linux/apue/typical_memory_arrange.png" alt="典型存储空间布局方式"></p>
 <p>程序中各部分的内容说明如下：</p>
 <ul>
-<li>正文段(Text Segment):</li>
+<li>正文段(Text Segment): 该部分包含了CPU执行的机器指令。通常这个段的内容是可共享、在内存中频繁被执行的单副本程序。通常正文段是只读的，以防止被修改。</li>
 <li>已初始化数据段(Initialized Data Segment): 它包含了程序中已明确初始化的变量。例如，明确初始化的全局变量。</li>
 <li>未初始化数据段(Uninitialized Data segment): 通常称为bss(block started by symbol)段。在程序开始执行前，内核将此段中的变量数据初始化为0或者空指针。例如，未初始化的全局变量。</li>
-<li>栈(stack):</li>
-<li>堆(heap):</li>
+<li>栈(stack): 存放函数中的临时变量，函数的参数以及函数返回地址等。</li>
+<li>堆(heap): 动态分配的内存存放在堆区。堆区在未初始化数据段的上方。</li>
 </ul>
 <p>只有正文段和已初始化的数据段是存放在磁盘中。</p>
+<p>通过size命令可以查看二进制各个区域占用的大小。例如查看bash二进制的各个区域大小：<code>size /usr/bin/bash</code></p>
 <h2 id="14-存储空间分配">1.4 存储空间分配</h2>
 <h2 id="15-共享库">1.5 共享库</h2>
     </div>
@@ -202,9 +203,9 @@
           <a href="/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/">环境变量</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/index/content/">
+        <a class="prev" href="/post/algorithm/greedy_algorithm/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">网站导航页</span>
+            <span class="prev-text nav-default">贪心算法</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/linux/signals/">
