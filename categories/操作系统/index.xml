@@ -17,11 +17,11 @@
       <description>&lt;p&gt;本文总结Linux系统启动的详细流程以及启动流程涉及的基础知识。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>操作系统导航页</title>
-      <link>https://alvincat.github.io/index/content_os/</link>
-      <pubDate>Wed, 13 Nov 2024 17:57:26 +0800</pubDate>
-      <guid>https://alvincat.github.io/index/content_os/</guid>
-      <description>&lt;p&gt;该页为的操作系统导航页。&lt;/p&gt;</description>
+      <title>Ubuntu系统常用设置和命令</title>
+      <link>https://alvincat.github.io/post/operating_system/ubuntu_setting/</link>
+      <pubDate>Tue, 19 Nov 2024 15:17:20 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/operating_system/ubuntu_setting/</guid>
+      <description>&lt;p&gt;本文记录Ubutun操作系统常用的系统配置的设置方法和常用命令的用法。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -23,12 +23,5 @@
       <guid>https://alvincat.github.io/post/hugo/hugo_build_static_page/</guid>
       <description>&lt;p&gt;本文记录Hugo配置github静态页面的关键步骤。&lt;/p&gt;</description>
     </item>
-    <item>
-      <title>环境搭建导航页</title>
-      <link>https://alvincat.github.io/index/content_environment_deploy/</link>
-      <pubDate>Wed, 13 Nov 2024 16:58:15 +0800</pubDate>
-      <guid>https://alvincat.github.io/index/content_environment_deploy/</guid>
-      <description>&lt;p&gt;该页为的环境搭建导航页。&lt;/p&gt;</description>
-    </item>
   </channel>
 </rss>

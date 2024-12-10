@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Fri, 06 Dec 2024 09:48:43 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 08 Dec 2024 16:05:29 +0800</lastBuildDate>
     <atom:link href="https://alvincat.github.io/categories/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>动态规划</title>
+      <link>https://alvincat.github.io/post/algorithm/dynamic_programming/</link>
+      <pubDate>Sun, 08 Dec 2024 16:05:29 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/algorithm/dynamic_programming/</guid>
+      <description>&lt;p&gt;本文总结动态规划算法的原理和使用场景。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>贪心算法</title>
       <link>https://alvincat.github.io/post/algorithm/greedy_algorithm/</link>
@@ -57,13 +64,6 @@
       <pubDate>Fri, 15 Nov 2024 16:01:16 +0800</pubDate>
       <guid>https://alvincat.github.io/post/algorithm/string_match_algorightm/</guid>
       <description>&lt;p&gt;本文记录字符串匹配算法的演进已经具体实现。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>算法导航页</title>
-      <link>https://alvincat.github.io/index/content_algorithm/</link>
-      <pubDate>Wed, 13 Nov 2024 16:56:45 +0800</pubDate>
-      <guid>https://alvincat.github.io/index/content_algorithm/</guid>
-      <description>&lt;p&gt;该页为算法的导航页。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
