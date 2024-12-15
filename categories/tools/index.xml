@@ -7,8 +7,22 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Sat, 30 Nov 2024 19:06:41 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 15 Dec 2024 14:40:46 +0800</lastBuildDate>
     <atom:link href="https://alvincat.github.io/categories/tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>QT入门</title>
+      <link>https://alvincat.github.io/post/tools/qt_usful_tips/</link>
+      <pubDate>Sun, 15 Dec 2024 14:40:46 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/tools/qt_usful_tips/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>GDB打印C&#43;&#43; STL容器中的内容的方法</title>
+      <link>https://alvincat.github.io/post/tools/gdb_print_stl_tool/</link>
+      <pubDate>Fri, 13 Dec 2024 22:15:25 +0800</pubDate>
+      <guid>https://alvincat.github.io/post/tools/gdb_print_stl_tool/</guid>
+      <description></description>
+    </item>
     <item>
       <title>程序员入门必读</title>
       <link>https://alvincat.github.io/post/tools/some_usful_tips/</link>

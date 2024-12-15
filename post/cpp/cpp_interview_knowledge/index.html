@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>C&#43;&#43;中一些易混淆的基础知识 - Alvincat&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="alvincat" /><meta name="description" content="本文总结C&#43;&#43;中容易混淆的概念。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.138.0 with theme even" />
+
+
+<link rel="canonical" href="https://alvincat.github.io/post/cpp/cpp_interview_knowledge/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f5a694fa8a6b263f05f575c19a1e180f4c9dd0ee7515e64585961f31d756a263.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:url" content="https://alvincat.github.io/post/cpp/cpp_interview_knowledge/">
+  <meta property="og:site_name" content="Alvincat&#39;s Blog">
+  <meta property="og:title" content="C&#43;&#43;中一些易混淆的基础知识">
+  <meta property="og:description" content="本文总结C&#43;&#43;中容易混淆的概念。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-12-13T12:06:32+08:00">
+    <meta property="article:modified_time" content="2024-12-13T12:06:32+08:00">
+
+  <meta itemprop="name" content="C&#43;&#43;中一些易混淆的基础知识">
+  <meta itemprop="description" content="本文总结C&#43;&#43;中容易混淆的概念。">
+  <meta itemprop="datePublished" content="2024-12-13T12:06:32+08:00">
+  <meta itemprop="dateModified" content="2024-12-13T12:06:32+08:00">
+  <meta itemprop="wordCount" content="2581">
+  <meta itemprop="keywords" content="CPP">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="C&#43;&#43;中一些易混淆的基础知识">
+  <meta name="twitter:description" content="本文总结C&#43;&#43;中容易混淆的概念。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Alvincat&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/contents/">
+        <li class="mobile-menu-item">目录</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Alvincat&#39;s Blog</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/contents/">目录</a>
+      </li>
+  </ul>
+</nav>
+
+    </header><main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">C&#43;&#43;中一些易混淆的基础知识</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-12-13 </span>
+        <div class="post-category">
+            <a href="/categories/cpp/"> CPP </a>
+            </div>
+          <span class="more-meta"> 约 2581 字 </span>
+          <span class="more-meta"> 预计阅读 6 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-常见易混淆知识点">1 常见易混淆知识点</a>
+      <ul>
+        <li><a href="#11-内存控制">1.1 内存控制</a>
+          <ul>
+            <li><a href="#111-mallocfree-newdelete的区别">1.1.1 malloc/free, new/delete的区别</a></li>
+            <li><a href="#112-newdelete">1.1.2 new/delete</a></li>
+            <li><a href="#113--operate-newdelete">1.1.3  operate new/delete</a></li>
+            <li><a href="#114-placement-new">1.1.4 placement new</a></li>
+            <li><a href="#115-智能指针">1.1.5 智能指针</a></li>
+          </ul>
+        </li>
+        <li><a href="#12-指针与引用的区别">1.2 指针与引用的区别</a></li>
+        <li><a href="#13-struct和class的区别">1.3 struct和class的区别</a></li>
+        <li><a href="#14-const修饰常量与define的区别">1.4 const修饰常量与define的区别</a></li>
+        <li><a href="#15-重载覆盖隐藏的区别">1.5 重载覆盖隐藏的区别</a>
+          <ul>
+            <li><a href="#151-重载">1.5.1 重载</a></li>
+            <li><a href="#152-覆盖">1.5.2 覆盖</a></li>
+            <li><a href="#153-隐藏">1.5.3 隐藏</a></li>
+            <li><a href="#154-覆盖隐藏的示例">1.5.4 覆盖隐藏的示例</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文总结C++中容易混淆的概念。</p>
+<h1 id="1-常见易混淆知识点">1 常见易混淆知识点</h1>
+<h2 id="11-内存控制">1.1 内存控制</h2>
+<h3 id="111-mallocfree-newdelete的区别">1.1.1 malloc/free, new/delete的区别</h3>
+<ul>
+<li>malloc和free是C/C++语言的标准库函数,而new/delete是C++的运算符。它们都可以用于动态申请和释放内存。</li>
+<li>new/delete运算符不仅可以申请/释放内存，还可以对申请的对象进行初始化和销毁操作。</li>
+<li>C++既可以使用new/delete，也可以调用malloc/free。而C语言只能用malloc/free管理动态内存。</li>
+</ul>
+<h3 id="112-newdelete">1.1.2 new/delete</h3>
+<ul>
+<li>new/delete就是C++的运算符。new的全称为new operator, delete的全称为delete operator。其作用是为分配并初始化一个对象数组。<br>
+C++执行new操作实际上后台执行了以下3步操作：</li>
+</ul>
+<blockquote>
+<ol>
+<li>调用operate new或者operate new []的标准库函数。该函数分配一块原始的、足够大的、未命名的存储特定类型对象的空间；</li>
+<li>编译器运行相应的构造函数以构造这些特定对象(或对象数组)；</li>
+<li>对象被构造完成并分配的空间，返回一个指向该对象的指针。</li>
+</ol>
+</blockquote>
+<p>C++执行delete操作实际上后台执行了以下2步操作：</p>
+<blockquote>
+<ol>
+<li>对所指向的对象或者对象数组执行对应的析构函数；</li>
+<li>编译器调用operate delete(或者operate delete[])的标准库函数释放内存空间。</li>
+</ol>
+</blockquote>
+<p>使用示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">delete</span> <span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">*</span> <span class="n">pa</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="k">delete</span> <span class="p">[]</span> <span class="n">pa</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="113--operate-newdelete">1.1.3  operate new/delete</h3>
+<ul>
+<li>operate new/delte是C++的标准函数。用于用于为特定类型的对象分配或者释放内存空间。operate new/delete的函数原型定义如下：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span><span class="o">*</span> <span class="n">operate</span> <span class="nf">new</span><span class="p">(</span><span class="n">size_t</span><span class="p">);</span>   <span class="c1">// 分配一个对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span><span class="o">*</span> <span class="n">operate</span> <span class="k">new</span><span class="p">[](</span><span class="n">size_t</span><span class="p">);</span> <span class="c1">// 分配一个对象数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span><span class="o">*</span> <span class="n">operate</span> <span class="nf">delete</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="n">noexpect</span><span class="p">;</span>   <span class="c1">// 释放一个对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span><span class="o">*</span> <span class="n">operate</span> <span class="k">delete</span><span class="p">[](</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="n">noexpect</span><span class="p">;</span> <span class="c1">// 释放一个对象数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 不会抛出异常的函数，功能同上
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span><span class="o">*</span> <span class="n">operate</span> <span class="nf">new</span><span class="p">(</span><span class="n">size_t</span><span class="p">,</span> <span class="n">nothrow_t</span><span class="o">&amp;</span><span class="p">)</span> <span class="n">noexpect</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span><span class="o">*</span> <span class="n">operate</span> <span class="k">new</span><span class="p">[](</span><span class="n">size_t</span><span class="p">,</span> <span class="n">nothrow_t</span><span class="o">&amp;</span><span class="p">)</span> <span class="n">noexpect</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span><span class="o">*</span> <span class="n">operate</span> <span class="nf">delete</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">,</span> <span class="n">nothrow_t</span><span class="o">&amp;</span><span class="p">)</span> <span class="n">noexpect</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">void</span><span class="o">*</span> <span class="n">operate</span> <span class="k">delete</span><span class="p">[](</span><span class="kt">void</span><span class="o">*</span><span class="p">,</span> <span class="n">nothrow_t</span><span class="o">&amp;</span><span class="p">)</span> <span class="n">noexpect</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果应用程序希望自己控制内存的分配和释放，就需要自己定义operate new和operate delete函数，从而让编译器使用自定义的版本替换标准库中定义的版本。
+应用程序可以在全局作用域中定义oprerate new/delete函数或者定义为类的成员函数。<br>
+如果分配或者释放的的对象是类对象，则首先在类中查找是否有自定义的oprerate new/delete函数。若没查找到，再到全局作用域中查找。<br>
+我们也可以直接指定查找全局作用域的函数：使用<code>::new ::delete</code>可以指定查找全局作用域的函数。
+因为operate new用在构造函数之前而operate delete用在对象销毁之后，所以这两个成员函数必须是静态函数，而且不能操作类的任何数据成员。</p>
+<p><strong>例外</strong>：不能重载以下形式的operate new函数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span><span class="o">*</span> <span class="n">operate</span> <span class="nf">new</span><span class="p">(</span><span class="n">size_t</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这种形式只供标准库使用，不能被用户重新定义。</p>
+<p><strong>温馨提示</strong>：<br>
+实际上C++也有和operate new/delete功能相似的标准库allocator类，用于为指定类型的对象分配内存。它非配的内存是原始、未构造的。</p>
+<h3 id="114-placement-new">1.1.4 placement new</h3>
+<p>placement new用于对使用operate new的方式申请的内存上构造对象。placement new的几种形式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">new</span> <span class="p">(</span><span class="n">place_address</span><span class="p">)</span> <span class="n">type</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="p">(</span><span class="n">place_address</span><span class="p">)</span> <span class="n">type</span> <span class="p">(</span><span class="n">initializers</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="p">(</span><span class="n">place_address</span><span class="p">)</span> <span class="n">type</span> <span class="p">[</span><span class="n">size</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="p">(</span><span class="n">place_address</span><span class="p">)</span> <span class="n">type</span> <span class="p">[</span><span class="n">size</span><span class="p">]</span> <span class="p">{</span><span class="n">braced</span> <span class="n">initializer</span> <span class="n">list</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中<code>place_address</code>必须是一个指针，同时在initializers中提供一个(可能为空)的逗号分隔的初始化列表，该初始值列表用于构造新分配的对象。</p>
+<h3 id="115-智能指针">1.1.5 智能指针</h3>
+<h4 id="1151-shared_ptr">1.1.5.1 shared_ptr</h4>
+<h4 id="1152-unique_ptr">1.1.5.2 unique_ptr</h4>
+<h4 id="1153-weak_ptr">1.1.5.3 weak_ptr</h4>
+<h2 id="12-指针与引用的区别">1.2 指针与引用的区别</h2>
+<ul>
+<li>指针本身就是一个对象，其内容是某个内存单元的地址，允许对指针赋值和拷贝；而引用并非对象，它只是一个已经存在的对象的一个别名。</li>
+<li>指针在它的生命周期内可以指向不同的对象；而引用一旦初始化完成，将和它的初始值始终绑定在一起。</li>
+<li>指针无须在定义时赋初值；而引用必须初始化，绑定到一个已经存在的对象。指针可以为空，但引用不可以。</li>
+<li>sizeof操作指针和引用的结果不同；sizeof操作引用得到的是引用所绑定的对象的大小；而sizeof操作指针得到的是指针本身的大小。</li>
+<li>引用是类型安全的，而指针不是。</li>
+</ul>
+<h2 id="13-struct和class的区别">1.3 struct和class的区别</h2>
+<ul>
+<li>struct的成员(成员函数和数据成员)的访问控制属性默认是共有的；而class的成员默认是私有的。</li>
+<li>struct的继承默认是共有继承，而class的默认继承方式是私有的。</li>
+</ul>
+<h2 id="14-const修饰常量与define的区别">1.4 const修饰常量与define的区别</h2>
+<ul>
+<li>const定义的常量在编译阶段进行处理；#define定义的常量在预处理阶段进行处理；</li>
+<li>const定义的常量要进行类型检查；#define定义的常量只是简单的文本替换，没有类型，不进行类型检查；</li>
+<li>const定义的常量要分配内存；#define定义的常量为宏定义，不需要分配内存；</li>
+<li>const定义的常量存放在数据区，只有一份拷贝；#define定义的常量不分配存储空间，使用过程中只是简单的执行文本替换；</li>
+</ul>
+<h2 id="15-重载覆盖隐藏的区别">1.5 重载覆盖隐藏的区别</h2>
+<h3 id="151-重载">1.5.1 重载</h3>
+<p>重载的特点：</p>
+<ul>
+<li>相同的范围（在同一个类中）</li>
+<li>函数名字相同</li>
+<li>参数不同</li>
+<li>virtual 关键字可有可无</li>
+</ul>
+<h3 id="152-覆盖">1.5.2 覆盖</h3>
+<p>覆盖是指派生类函数覆盖基类虚函数。其特征为：</p>
+<ul>
+<li>不同的范围（分别位于派生类与基类）；</li>
+<li>函数名字相同</li>
+<li>参数相同</li>
+<li>基类函数必须有virtual 关键字</li>
+</ul>
+<h3 id="153-隐藏">1.5.3 隐藏</h3>
+<p>“隐藏”是指派生类的函数屏蔽了与其同名的基类函数，规则如下：</p>
+<ul>
+<li>如果派生类的函数与基类的函数同名，但是参数不同。此时，不论有无virtual关键字，基类的函数将被隐藏（注意别与重载混淆）。</li>
+<li>如果派生类的函数与基类的函数同名，并且参数也相同而且基类函数没有virtual 关键字。此时，基类的函数被隐藏（注意别与覆盖混淆）</li>
+</ul>
+<h3 id="154-覆盖隐藏的示例">1.5.4 覆盖隐藏的示例</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">fcn</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;This is Base fcn().&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">FristDerived</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Base</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">     <span class="c1">// FristDerived继承Base中的虚函数fcn()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="c1">// 形参与Base::fcn()中的不一致，隐藏基类的fcn()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="n">fcn</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;This is FristDerived fcn().&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 新增一个虚函数，在Base中不存在
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">display</span><span class="p">()</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;This is FristDerived display().&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">SecondDerived</span> <span class="o">:</span> <span class="k">public</span> <span class="n">FristDerived</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 隐藏FristDerived::fcn(int)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="n">fcn</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;This is SecondDerived fcn(&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;).&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">fcn</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// 覆盖Base中的虚函数fcn()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;This is SecondDerived fcn().&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">display</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// 覆盖FristDerived中的虚函数display()函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;This is SecondDerived display().&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Base</span> <span class="n">base_obj</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">FristDerived</span> <span class="n">fd_obj</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SecondDerived</span> <span class="n">sd_obj</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">Base</span><span class="o">*</span> <span class="n">bp1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">base_obj</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Base</span><span class="o">*</span> <span class="n">bp2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">fd_obj</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Base</span><span class="o">*</span> <span class="n">bp3</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">sd_obj</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bp1</span><span class="o">-&gt;</span><span class="n">fcn</span><span class="p">();</span> <span class="c1">// Base::fcn()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">bp2</span><span class="o">-&gt;</span><span class="n">fcn</span><span class="p">();</span> <span class="c1">// Base::fcn()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">bp3</span><span class="o">-&gt;</span><span class="n">fcn</span><span class="p">();</span> <span class="c1">// SecondDerived::fcn()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;----------&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">FristDerived</span><span class="o">*</span> <span class="n">fd</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">fd_obj</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SecondDerived</span><span class="o">*</span> <span class="n">sd</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">sd_obj</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// bp2-&gt;display(); // 错误，Base没有display()函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">fd</span><span class="o">-&gt;</span><span class="n">display</span><span class="p">();</span>  <span class="c1">// FristDerived::display()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">sd</span><span class="o">-&gt;</span><span class="n">display</span><span class="p">();</span>  <span class="c1">// SecondDerived::display()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags//"></a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/data_structure/graph/topological_sorting/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">拓扑排序</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/linux/backtrace/">
+            <span class="next-text nav-default">Linux系统中进程打印堆栈的原理</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:alvincat@126.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.google.com" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/alvincat" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://www.douban.com" class="iconfont icon-douban" title="douban"></a>
+      <a href="https://www.bilibili.com" class="iconfont icon-bilibili" title="bilibili"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>alvincat</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

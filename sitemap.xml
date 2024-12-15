@@ -10,28 +10,252 @@
   
   <url>
     <loc>https://alvincat.github.io/</loc>
-    <lastmod>2024-12-08T16:05:29+08:00</lastmod>
+    <lastmod>2024-12-15T22:08:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/post/cpp/cpp_some_keywords/</loc>
+    <lastmod>2024-12-15T22:08:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://alvincat.github.io/categories/</loc>
-    <lastmod>2024-12-08T16:05:29+08:00</lastmod>
+    <lastmod>2024-12-15T22:08:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/categories/cpp/</loc>
+    <lastmod>2024-12-15T22:08:28+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://alvincat.github.io/post/</loc>
-    <lastmod>2024-12-08T16:05:29+08:00</lastmod>
+    <lastmod>2024-12-15T22:08:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/post/cpp/cpp_oop/</loc>
+    <lastmod>2024-12-15T22:08:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/tags/oop/</loc>
+    <lastmod>2024-12-15T22:08:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://alvincat.github.io/tags/</loc>
-    <lastmod>2024-12-08T16:05:29+08:00</lastmod>
+    <lastmod>2024-12-15T22:08:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/tags/qt/</loc>
+    <lastmod>2024-12-15T14:40:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/post/tools/qt_usful_tips/</loc>
+    <lastmod>2024-12-15T14:40:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/categories/tools/</loc>
+    <lastmod>2024-12-15T14:40:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/post/tools/gcc_usful_tips/</loc>
+    <lastmod>2024-12-14T19:44:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/tags/stl/</loc>
+    <lastmod>2024-12-13T22:45:13+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/tags/vector/</loc>
+    <lastmod>2024-12-13T22:45:13+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/post/cpp/stl/vector/</loc>
+    <lastmod>2024-12-13T22:45:13+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/post/cpp/cpp_common_tips/</loc>
+    <lastmod>2024-12-13T22:39:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/tags/gdb/</loc>
+    <lastmod>2024-12-13T22:15:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/post/tools/gdb_print_stl_tool/</loc>
+    <lastmod>2024-12-13T22:15:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/tags/hook/</loc>
+    <lastmod>2024-12-13T15:49:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/categories/linux/</loc>
+    <lastmod>2024-12-13T15:49:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/post/linux/linux_hook/</loc>
+    <lastmod>2024-12-13T15:49:45+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/categories/%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2024-12-13T12:07:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/</loc>
+    <lastmod>2024-12-13T12:07:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/post/data_structure/graph/topological_sorting/</loc>
+    <lastmod>2024-12-13T12:07:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/tags/%E6%9C%89%E5%90%91%E5%9B%BE/</loc>
+    <lastmod>2024-12-13T12:07:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/post/cpp/cpp_interview_knowledge/</loc>
+    <lastmod>2024-12-13T12:06:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/tags/backtrace/</loc>
+    <lastmod>2024-12-12T16:48:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/tags/elf/</loc>
+    <lastmod>2024-12-12T16:48:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/post/linux/backtrace/</loc>
+    <lastmod>2024-12-12T16:48:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/post/linux/linux_some_typical_problem/</loc>
+    <lastmod>2024-12-11T16:11:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/post/data_structure/queue/implement_a_queue/</loc>
+    <lastmod>2024-12-10T10:39:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/post/data_structure/stack/implement_a_stack/</loc>
+    <lastmod>2024-12-10T10:39:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/tags/%E9%98%9F%E5%88%97/</loc>
+    <lastmod>2024-12-10T10:39:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/tags/%E7%8E%AF%E5%BD%A2%E9%98%9F%E5%88%97/</loc>
+    <lastmod>2024-12-10T10:39:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+    <lastmod>2024-12-10T10:39:32+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://alvincat.github.io/tags/%E6%A0%88/</loc>
+    <lastmod>2024-12-10T10:39:32+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -51,13 +275,6 @@
   </url>
   
   <url>
-    <loc>https://alvincat.github.io/categories/%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2024-12-08T16:05:29+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://alvincat.github.io/tags/apue/</loc>
     <lastmod>2024-12-07T17:59:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -65,7 +282,7 @@
   </url>
   
   <url>
-    <loc>https://alvincat.github.io/categories/linux/</loc>
+    <loc>https://alvincat.github.io/tags/%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5/</loc>
     <lastmod>2024-12-07T17:59:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -73,13 +290,6 @@
   
   <url>
     <loc>https://alvincat.github.io/post/linux/apue/process_synchronization/</loc>
-    <lastmod>2024-12-07T17:59:12+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://alvincat.github.io/tags/%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5/</loc>
     <lastmod>2024-12-07T17:59:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -240,21 +450,7 @@
   </url>
   
   <url>
-    <loc>https://alvincat.github.io/post/cpp/cpp_stl/</loc>
-    <lastmod>2024-12-02T15:29:46+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://alvincat.github.io/categories/cpp/</loc>
-    <lastmod>2024-12-02T15:29:46+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://alvincat.github.io/tags/stl/</loc>
+    <loc>https://alvincat.github.io/post/cpp/stl/cpp_stl/</loc>
     <lastmod>2024-12-02T15:29:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -282,13 +478,6 @@
   </url>
   
   <url>
-    <loc>https://alvincat.github.io/categories/tools/</loc>
-    <lastmod>2024-11-30T19:06:41+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://alvincat.github.io/post/tools/some_usful_tips/</loc>
     <lastmod>2024-11-30T19:06:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -310,13 +499,6 @@
   </url>
   
   <url>
-    <loc>https://alvincat.github.io/tags/gdb/</loc>
-    <lastmod>2024-11-29T16:31:59+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://alvincat.github.io/post/tools/gdb_usful_tips/</loc>
     <lastmod>2024-11-29T16:31:59+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -332,13 +514,6 @@
   
   <url>
     <loc>https://alvincat.github.io/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/</loc>
-    <lastmod>2024-11-28T10:30:58+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://alvincat.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
     <lastmod>2024-11-28T10:30:58+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
