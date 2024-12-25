@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>C语言实现一个栈的功能 - Alvincat&#39;s Blog</title>
+  <title>C语言实现一个队列的功能 - Alvincat&#39;s Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="alvincat" /><meta name="description" content="本文描述如何使用C语言实现一个栈的功能，展示如何使用数组、链表结构实现队列的方法。
+<meta name="author" content="alvincat" /><meta name="description" content="本文描述如何使用C语言实现一个队列的功能，展示如何使用数组、链表结构实现队列的方法。
 " /><meta name="keywords" content="Hugo, theme, even" />
 
 
@@ -27,7 +27,7 @@
 <meta name="generator" content="Hugo 0.138.0 with theme even" />
 
 
-<link rel="canonical" href="https://alvincat.github.io/post/data_structure/queue/implement_a_queue/" />
+<link rel="canonical" href="https://alvincat.top/post/data_structure/queue/implement_a_queue/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,10 +40,10 @@
 <link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
 
 
-<meta property="og:url" content="https://alvincat.github.io/post/data_structure/queue/implement_a_queue/">
+<meta property="og:url" content="https://alvincat.top/post/data_structure/queue/implement_a_queue/">
   <meta property="og:site_name" content="Alvincat&#39;s Blog">
-  <meta property="og:title" content="C语言实现一个栈的功能">
-  <meta property="og:description" content="本文描述如何使用C语言实现一个栈的功能，展示如何使用数组、链表结构实现队列的方法。">
+  <meta property="og:title" content="C语言实现一个队列的功能">
+  <meta property="og:description" content="本文描述如何使用C语言实现一个队列的功能，展示如何使用数组、链表结构实现队列的方法。">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
@@ -52,15 +52,15 @@
     <meta property="article:tag" content="队列">
     <meta property="article:tag" content="环形队列">
 
-  <meta itemprop="name" content="C语言实现一个栈的功能">
-  <meta itemprop="description" content="本文描述如何使用C语言实现一个栈的功能，展示如何使用数组、链表结构实现队列的方法。">
+  <meta itemprop="name" content="C语言实现一个队列的功能">
+  <meta itemprop="description" content="本文描述如何使用C语言实现一个队列的功能，展示如何使用数组、链表结构实现队列的方法。">
   <meta itemprop="datePublished" content="2024-12-10T10:39:32+08:00">
   <meta itemprop="dateModified" content="2024-12-10T10:39:32+08:00">
-  <meta itemprop="wordCount" content="912">
+  <meta itemprop="wordCount" content="915">
   <meta itemprop="keywords" content="队列,环形队列">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="C语言实现一个栈的功能">
-  <meta name="twitter:description" content="本文描述如何使用C语言实现一个栈的功能，展示如何使用数组、链表结构实现队列的方法。">
+  <meta name="twitter:title" content="C语言实现一个队列的功能">
+  <meta name="twitter:description" content="本文描述如何使用C语言实现一个队列的功能，展示如何使用数组、链表结构实现队列的方法。">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -139,14 +139,14 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">C语言实现一个栈的功能</h1>
+      <h1 class="post-title">C语言实现一个队列的功能</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2024-12-10 </span>
         <div class="post-category">
             <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"> 数据结构 </a>
             </div>
-          <span class="more-meta"> 约 912 字 </span>
+          <span class="more-meta"> 约 915 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
@@ -157,7 +157,7 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#1-栈的基本功能">1 栈的基本功能</a></li>
+    <li><a href="#1-队列的基本功能">1 队列的基本功能</a></li>
     <li><a href="#2-使用单链表实现队列">2 使用单链表实现队列</a></li>
     <li><a href="#3-使用数组实现队列环形队列">3 使用数组实现队列(环形队列)</a></li>
   </ul>
@@ -165,9 +165,9 @@
   </div>
 </div>
     <div class="post-content">
-      <p>本文描述如何使用C语言实现一个栈的功能，展示如何使用数组、链表结构实现队列的方法。</p>
-<h1 id="1-栈的基本功能">1 栈的基本功能</h1>
-<p>栈的基本功能包括：创建队列、销毁队列、判断队列是否为空、进队列、出队列、获取队列中的元素个数、获取队列头部元素、获取队列尾部元素。</p>
+      <p>本文描述如何使用C语言实现一个队列的功能，展示如何使用数组、链表结构实现队列的方法。</p>
+<h1 id="1-队列的基本功能">1 队列的基本功能</h1>
+<p>队列的基本功能包括：创建队列、销毁队列、判断队列是否为空、进队列、出队列、获取队列中的元素个数、获取队列头部元素、获取队列尾部元素。</p>
 <h1 id="2-使用单链表实现队列">2 使用单链表实现队列</h1>
 <p>实现如下：</p>
 <div class="highlight"><div class="chroma">

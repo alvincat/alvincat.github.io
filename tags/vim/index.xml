@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Vim on Alvincat&#39;s Blog</title>
-    <link>https://alvincat.github.io/tags/vim/</link>
+    <link>https://alvincat.top/tags/vim/</link>
     <description>Recent content in Vim on Alvincat&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
     <lastBuildDate>Tue, 19 Nov 2024 15:17:40 +0800</lastBuildDate>
-    <atom:link href="https://alvincat.github.io/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://alvincat.top/tags/vim/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Vim常用设置以及常用命令</title>
-      <link>https://alvincat.github.io/post/tools/vim_usful_setting/</link>
+      <link>https://alvincat.top/post/tools/vim_usful_setting/</link>
       <pubDate>Tue, 19 Nov 2024 15:17:40 +0800</pubDate>
-      <guid>https://alvincat.github.io/post/tools/vim_usful_setting/</guid>
+      <guid>https://alvincat.top/post/tools/vim_usful_setting/</guid>
       <description>&lt;p&gt;本文记录vim常用参数的配置方法已经常用命令。&lt;/p&gt;</description>
     </item>
   </channel>

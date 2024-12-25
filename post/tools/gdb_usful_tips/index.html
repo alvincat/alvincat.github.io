@@ -27,7 +27,7 @@
 <meta name="generator" content="Hugo 0.138.0 with theme even" />
 
 
-<link rel="canonical" href="https://alvincat.github.io/post/tools/gdb_usful_tips/" />
+<link rel="canonical" href="https://alvincat.top/post/tools/gdb_usful_tips/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,7 +40,7 @@
 <link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
 
 
-<meta property="og:url" content="https://alvincat.github.io/post/tools/gdb_usful_tips/">
+<meta property="og:url" content="https://alvincat.top/post/tools/gdb_usful_tips/">
   <meta property="og:site_name" content="Alvincat&#39;s Blog">
   <meta property="og:title" content="GDB常用命令和一些实用方法">
   <meta property="og:description" content="本文介绍gdb一些常用命令。">
@@ -55,7 +55,7 @@
   <meta itemprop="description" content="本文介绍gdb一些常用命令。">
   <meta itemprop="datePublished" content="2024-11-29T16:31:59+08:00">
   <meta itemprop="dateModified" content="2024-11-29T16:31:59+08:00">
-  <meta itemprop="wordCount" content="965">
+  <meta itemprop="wordCount" content="1093">
   <meta itemprop="keywords" content="GDB">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="GDB常用命令和一些实用方法">
@@ -145,8 +145,8 @@
         <div class="post-category">
             <a href="/categories/tools/"> Tools </a>
             </div>
-          <span class="more-meta"> 约 965 字 </span>
-          <span class="more-meta"> 预计阅读 2 分钟 </span>
+          <span class="more-meta"> 约 1093 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
         
       </div>
     </header>
@@ -247,6 +247,18 @@
       <tr>
           <td>layout prev</td>
           <td>显示上一个layout</td>
+      </tr>
+      <tr>
+          <td>tui enable</td>
+          <td>显示layout窗口</td>
+      </tr>
+      <tr>
+          <td>tui disable</td>
+          <td>退出layout窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl + x -&gt; o</td>
+          <td>在多个窗口间切换</td>
       </tr>
   </tbody>
 </table>
@@ -415,6 +427,14 @@
           <td>打印指定内容</td>
       </tr>
       <tr>
+          <td>print /x $rbp-0x8</td>
+          <td>将计算结果按照16进制输出</td>
+      </tr>
+      <tr>
+          <td>print /x ($ebp+8)</td>
+          <td>将ebp+8内存中的内容按照16进制输出</td>
+      </tr>
+      <tr>
           <td>info proc mappings</td>
           <td>打印内存映射信息</td>
       </tr>
@@ -435,16 +455,16 @@
 <p>u：标明一个单元的长度。</p>
 <ul>
 <li>
-<p>b 是一个 byte</p>
+<p>b 是一个Byte(8 bit)</p>
 </li>
 <li>
-<p>h 是两个 byte （halfword）</p>
+<p>h 是两个Byte （halfword）</p>
 </li>
 <li>
-<p>w 是四个 byte （word）</p>
+<p>w 是四个Byte （word）</p>
 </li>
 <li>
-<p>g 是八个 byte （giant word）。</p>
+<p>g 是八个Byte （giant word）。</p>
 </li>
 </ul>
 </li>
@@ -551,6 +571,18 @@
           <td>disassemble 0xstart 0xend</td>
           <td>反汇编指定地址的代码</td>
       </tr>
+      <tr>
+          <td>info registers</td>
+          <td>显示当前寄存器的值</td>
+      </tr>
+      <tr>
+          <td>info registers rip</td>
+          <td>仅显示pc的值</td>
+      </tr>
+      <tr>
+          <td>info registers rbp rsp</td>
+          <td>仅显示rbp, rsp的值</td>
+      </tr>
   </tbody>
 </table>
 <h2 id="311-gdb打印c-stl中常见结构的内容的方法">3.11 GDB打印C++ STL中常见结构的内容的方法</h2>
@@ -582,7 +614,7 @@
             <span class="prev-text nav-default">Markdown使用技巧</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/data_structure/binary_tree/binary_tree_create/">
+        <a class="next" href="/post/data_structure/tree/binary_tree_create/">
             <span class="next-text nav-default">创建二叉树的方法</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>

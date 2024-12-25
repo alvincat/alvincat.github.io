@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://alvincat.github.io/sitemap.xml
+Sitemap: https://alvincat.top/sitemap.xml

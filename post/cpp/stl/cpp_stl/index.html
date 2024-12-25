@@ -27,7 +27,7 @@
 <meta name="generator" content="Hugo 0.138.0 with theme even" />
 
 
-<link rel="canonical" href="https://alvincat.github.io/post/cpp/stl/cpp_stl/" />
+<link rel="canonical" href="https://alvincat.top/post/cpp/stl/cpp_stl/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,7 +40,7 @@
 <link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
 
 
-<meta property="og:url" content="https://alvincat.github.io/post/cpp/stl/cpp_stl/">
+<meta property="og:url" content="https://alvincat.top/post/cpp/stl/cpp_stl/">
   <meta property="og:site_name" content="Alvincat&#39;s Blog">
   <meta property="og:title" content="C&#43;&#43; STL用法总结">
   <meta property="og:description" content="C&#43;&#43;中的STL用法总结">
@@ -55,7 +55,7 @@
   <meta itemprop="description" content="C&#43;&#43;中的STL用法总结">
   <meta itemprop="datePublished" content="2024-12-02T15:29:46+08:00">
   <meta itemprop="dateModified" content="2024-12-02T15:29:46+08:00">
-  <meta itemprop="wordCount" content="1588">
+  <meta itemprop="wordCount" content="1455">
   <meta itemprop="keywords" content="STL">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="C&#43;&#43; STL用法总结">
@@ -145,8 +145,8 @@
         <div class="post-category">
             <a href="/categories/cpp/"> cpp </a>
             </div>
-          <span class="more-meta"> 约 1588 字 </span>
-          <span class="more-meta"> 预计阅读 4 分钟 </span>
+          <span class="more-meta"> 约 1455 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
         
       </div>
     </header>
@@ -158,12 +158,6 @@
   <ul>
     <li><a href="#c中的stl用法总结">C++中的STL用法总结</a>
       <ul>
-        <li><a href="#1-vector">1 vector</a>
-          <ul>
-            <li><a href="#11-vector简介">1.1 vector简介</a></li>
-            <li><a href="#12-vector常用成员函数">1.2 vector常用成员函数</a></li>
-          </ul>
-        </li>
         <li><a href="#2-queue">2 queue</a></li>
         <li><a href="#3-priority_queue">3 priority_queue</a>
           <ul>
@@ -204,51 +198,7 @@
     <div class="post-content">
       <p>C++中的STL用法总结</p>
 <h1 id="c中的stl用法总结">C++中的STL用法总结</h1>
-<h2 id="1-vector">1 vector</h2>
-<h3 id="11-vector简介">1.1 vector简介</h3>
-<h3 id="12-vector常用成员函数">1.2 vector常用成员函数</h3>
-<h4 id="121-vector初始化">1.2.1 vector初始化</h4>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl">  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">first</span><span class="p">;</span>                               <span class="c1">// empty vector of ints
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">second</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>                      <span class="c1">// four ints with value 100
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">third</span><span class="p">(</span><span class="n">second</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">second</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>  <span class="c1">// iterating through second
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">fourth</span><span class="p">(</span><span class="n">third</span><span class="p">);</span>                       <span class="c1">// a copy of third
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="122-vector容量相关">1.2.2 vector容量相关</h4>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">235</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">vec</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>  <span class="c1">// return the number of elements
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">vec</span><span class="p">.</span><span class="n">empty</span><span class="p">();</span> <span class="c1">// checks whether the container is empty
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="123-vector数据修改">1.2.3 vector数据修改</h4>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">235</span><span class="p">);</span> <span class="c1">// init vector
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>            <span class="c1">// adds an element to the end 
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">vec</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>               <span class="c1">// removes the last element
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="2-queue">2 queue</h2>
+<h2 id="2-queue">2 queue</h2>
 <h2 id="3-priority_queue">3 priority_queue</h2>
 <p>优先队列（Priority Queue）是一种容器适配器，是在容器queue的基础上实现的。它能够在常数时间内查找最大（默认情况下）元素，插入和删除操作的时间复杂度为$O(logn)$。</p>
 <h3 id="31-优先级队列常用成员函数">3.1 优先级队列常用成员函数</h3>
