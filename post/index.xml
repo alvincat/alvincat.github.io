@@ -2,410 +2,410 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Alvincat&#39;s Blog</title>
-    <link>https://alvincat.top/post/</link>
+    <link>http://www.alvincat.top/post/</link>
     <description>Recent content in Posts on Alvincat&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
     <lastBuildDate>Mon, 23 Dec 2024 20:41:51 +0800</lastBuildDate>
-    <atom:link href="https://alvincat.top/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.alvincat.top/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Intel和AT&amp;T汇编语言语法的差异</title>
-      <link>https://alvincat.top/post/assembly/inter_gun_syntax_difference/</link>
+      <link>http://www.alvincat.top/post/assembly/inter_gun_syntax_difference/</link>
       <pubDate>Mon, 23 Dec 2024 20:41:51 +0800</pubDate>
-      <guid>https://alvincat.top/post/assembly/inter_gun_syntax_difference/</guid>
+      <guid>http://www.alvincat.top/post/assembly/inter_gun_syntax_difference/</guid>
       <description>&lt;p&gt;Introduce the Intel and AT&amp;amp;T Syntax about assembly language&lt;/p&gt;</description>
     </item>
     <item>
       <title>B_tree</title>
-      <link>https://alvincat.top/post/data_structure/tree/b_tree/</link>
+      <link>http://www.alvincat.top/post/data_structure/tree/b_tree/</link>
       <pubDate>Tue, 17 Dec 2024 20:01:46 +0800</pubDate>
-      <guid>https://alvincat.top/post/data_structure/tree/b_tree/</guid>
+      <guid>http://www.alvincat.top/post/data_structure/tree/b_tree/</guid>
       <description>&lt;p&gt;本文介绍B-Tree的特性，以及代码实现。&lt;/p&gt;</description>
     </item>
     <item>
       <title>LevelDB</title>
-      <link>https://alvincat.top/post/storage_system/leveldb/</link>
+      <link>http://www.alvincat.top/post/storage_system/leveldb/</link>
       <pubDate>Tue, 17 Dec 2024 17:51:06 +0800</pubDate>
-      <guid>https://alvincat.top/post/storage_system/leveldb/</guid>
+      <guid>http://www.alvincat.top/post/storage_system/leveldb/</guid>
       <description></description>
     </item>
     <item>
       <title>RocksDB</title>
-      <link>https://alvincat.top/post/storage_system/rocksdb/</link>
+      <link>http://www.alvincat.top/post/storage_system/rocksdb/</link>
       <pubDate>Tue, 17 Dec 2024 17:50:40 +0800</pubDate>
-      <guid>https://alvincat.top/post/storage_system/rocksdb/</guid>
+      <guid>http://www.alvincat.top/post/storage_system/rocksdb/</guid>
       <description></description>
     </item>
     <item>
       <title>Ceph</title>
-      <link>https://alvincat.top/post/storage_system/ceph/</link>
+      <link>http://www.alvincat.top/post/storage_system/ceph/</link>
       <pubDate>Tue, 17 Dec 2024 17:50:30 +0800</pubDate>
-      <guid>https://alvincat.top/post/storage_system/ceph/</guid>
+      <guid>http://www.alvincat.top/post/storage_system/ceph/</guid>
       <description>&lt;p&gt;本文介绍Ceph系统的基本组成部分以及一些基本概念。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Storage_basic_knowledge</title>
-      <link>https://alvincat.top/post/storage_system/storage_basic_knowledge/</link>
+      <link>http://www.alvincat.top/post/storage_system/storage_basic_knowledge/</link>
       <pubDate>Tue, 17 Dec 2024 17:49:33 +0800</pubDate>
-      <guid>https://alvincat.top/post/storage_system/storage_basic_knowledge/</guid>
+      <guid>http://www.alvincat.top/post/storage_system/storage_basic_knowledge/</guid>
       <description></description>
     </item>
     <item>
       <title>C&#43;&#43;中的部分关键字的用法</title>
-      <link>https://alvincat.top/post/cpp/cpp_some_keywords/</link>
+      <link>http://www.alvincat.top/post/cpp/cpp_some_keywords/</link>
       <pubDate>Sun, 15 Dec 2024 22:08:28 +0800</pubDate>
-      <guid>https://alvincat.top/post/cpp/cpp_some_keywords/</guid>
+      <guid>http://www.alvincat.top/post/cpp/cpp_some_keywords/</guid>
       <description>&lt;p&gt;本文总结C++中的部分关键字的用法。&lt;/p&gt;</description>
     </item>
     <item>
       <title>C&#43;&#43;面向对象理论知识</title>
-      <link>https://alvincat.top/post/cpp/cpp_oop/</link>
+      <link>http://www.alvincat.top/post/cpp/cpp_oop/</link>
       <pubDate>Sun, 15 Dec 2024 22:08:07 +0800</pubDate>
-      <guid>https://alvincat.top/post/cpp/cpp_oop/</guid>
+      <guid>http://www.alvincat.top/post/cpp/cpp_oop/</guid>
       <description>&lt;p&gt;本文总结C++面向对象的相关理论知识。&lt;/p&gt;</description>
     </item>
     <item>
       <title>QT入门</title>
-      <link>https://alvincat.top/post/tools/qt_usful_tips/</link>
+      <link>http://www.alvincat.top/post/tools/qt_usful_tips/</link>
       <pubDate>Sun, 15 Dec 2024 14:40:46 +0800</pubDate>
-      <guid>https://alvincat.top/post/tools/qt_usful_tips/</guid>
+      <guid>http://www.alvincat.top/post/tools/qt_usful_tips/</guid>
       <description></description>
     </item>
     <item>
       <title>GCC常用编译命令和常用内置函数</title>
-      <link>https://alvincat.top/post/tools/gcc_usful_tips/</link>
+      <link>http://www.alvincat.top/post/tools/gcc_usful_tips/</link>
       <pubDate>Sat, 14 Dec 2024 19:44:49 +0800</pubDate>
-      <guid>https://alvincat.top/post/tools/gcc_usful_tips/</guid>
+      <guid>http://www.alvincat.top/post/tools/gcc_usful_tips/</guid>
       <description>&lt;p&gt;GCC总结常用编译命令和常用内置函数。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Vector</title>
-      <link>https://alvincat.top/post/cpp/stl/vector/</link>
+      <link>http://www.alvincat.top/post/cpp/stl/vector/</link>
       <pubDate>Fri, 13 Dec 2024 22:45:13 +0800</pubDate>
-      <guid>https://alvincat.top/post/cpp/stl/vector/</guid>
+      <guid>http://www.alvincat.top/post/cpp/stl/vector/</guid>
       <description>&lt;p&gt;本文总结vector的原理和使用方法。&lt;/p&gt;</description>
     </item>
     <item>
       <title>C&#43;&#43;编码中常用的基础知识</title>
-      <link>https://alvincat.top/post/cpp/cpp_common_tips/</link>
+      <link>http://www.alvincat.top/post/cpp/cpp_common_tips/</link>
       <pubDate>Fri, 13 Dec 2024 22:39:33 +0800</pubDate>
-      <guid>https://alvincat.top/post/cpp/cpp_common_tips/</guid>
+      <guid>http://www.alvincat.top/post/cpp/cpp_common_tips/</guid>
       <description></description>
     </item>
     <item>
       <title>GDB打印C&#43;&#43; STL容器中的内容的方法</title>
-      <link>https://alvincat.top/post/tools/gdb_print_stl_tool/</link>
+      <link>http://www.alvincat.top/post/tools/gdb_print_stl_tool/</link>
       <pubDate>Fri, 13 Dec 2024 22:15:25 +0800</pubDate>
-      <guid>https://alvincat.top/post/tools/gdb_print_stl_tool/</guid>
+      <guid>http://www.alvincat.top/post/tools/gdb_print_stl_tool/</guid>
       <description></description>
     </item>
     <item>
       <title>Linux系统中钩子的使用方法</title>
-      <link>https://alvincat.top/post/linux/linux_hook/</link>
+      <link>http://www.alvincat.top/post/linux/linux_hook/</link>
       <pubDate>Fri, 13 Dec 2024 15:49:45 +0800</pubDate>
-      <guid>https://alvincat.top/post/linux/linux_hook/</guid>
+      <guid>http://www.alvincat.top/post/linux/linux_hook/</guid>
       <description>&lt;p&gt;本文介绍Linux系统中各种钩子的使用方法以及使用场景。&lt;/p&gt;</description>
     </item>
     <item>
       <title>拓扑排序</title>
-      <link>https://alvincat.top/post/data_structure/graph/topological_sorting/</link>
+      <link>http://www.alvincat.top/post/data_structure/graph/topological_sorting/</link>
       <pubDate>Fri, 13 Dec 2024 12:07:28 +0800</pubDate>
-      <guid>https://alvincat.top/post/data_structure/graph/topological_sorting/</guid>
+      <guid>http://www.alvincat.top/post/data_structure/graph/topological_sorting/</guid>
       <description>&lt;p&gt;本文介绍拓扑排序的原理和代码实现。&lt;/p&gt;</description>
     </item>
     <item>
       <title>C&#43;&#43;中一些易混淆的基础知识</title>
-      <link>https://alvincat.top/post/cpp/cpp_interview_knowledge/</link>
+      <link>http://www.alvincat.top/post/cpp/cpp_interview_knowledge/</link>
       <pubDate>Fri, 13 Dec 2024 12:06:32 +0800</pubDate>
-      <guid>https://alvincat.top/post/cpp/cpp_interview_knowledge/</guid>
+      <guid>http://www.alvincat.top/post/cpp/cpp_interview_knowledge/</guid>
       <description>&lt;p&gt;本文总结C++中容易混淆的概念。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Linux系统中进程打印堆栈的原理</title>
-      <link>https://alvincat.top/post/linux/backtrace/</link>
+      <link>http://www.alvincat.top/post/linux/backtrace/</link>
       <pubDate>Thu, 12 Dec 2024 16:48:23 +0800</pubDate>
-      <guid>https://alvincat.top/post/linux/backtrace/</guid>
+      <guid>http://www.alvincat.top/post/linux/backtrace/</guid>
       <description>&lt;p&gt;本文介绍进程打印堆栈的原理。&lt;/p&gt;</description>
     </item>
     <item>
       <title>并发编程中常见的问题</title>
-      <link>https://alvincat.top/post/linux/linux_some_typical_problem/</link>
+      <link>http://www.alvincat.top/post/linux/linux_some_typical_problem/</link>
       <pubDate>Wed, 11 Dec 2024 16:11:22 +0800</pubDate>
-      <guid>https://alvincat.top/post/linux/linux_some_typical_problem/</guid>
+      <guid>http://www.alvincat.top/post/linux/linux_some_typical_problem/</guid>
       <description>&lt;p&gt;本文介绍并发程序中经常遇到的几个经典问题以及解决方法。&lt;/p&gt;</description>
     </item>
     <item>
       <title>C语言实现一个队列的功能</title>
-      <link>https://alvincat.top/post/data_structure/queue/implement_a_queue/</link>
+      <link>http://www.alvincat.top/post/data_structure/queue/implement_a_queue/</link>
       <pubDate>Tue, 10 Dec 2024 10:39:32 +0800</pubDate>
-      <guid>https://alvincat.top/post/data_structure/queue/implement_a_queue/</guid>
+      <guid>http://www.alvincat.top/post/data_structure/queue/implement_a_queue/</guid>
       <description>&lt;p&gt;本文描述如何使用C语言实现一个队列的功能，展示如何使用数组、链表结构实现队列的方法。&lt;/p&gt;</description>
     </item>
     <item>
       <title>C语言实现一个栈的功能</title>
-      <link>https://alvincat.top/post/data_structure/stack/implement_a_stack/</link>
+      <link>http://www.alvincat.top/post/data_structure/stack/implement_a_stack/</link>
       <pubDate>Tue, 10 Dec 2024 10:39:32 +0800</pubDate>
-      <guid>https://alvincat.top/post/data_structure/stack/implement_a_stack/</guid>
+      <guid>http://www.alvincat.top/post/data_structure/stack/implement_a_stack/</guid>
       <description>&lt;p&gt;本文描述如何使用C语言实现一个栈的功能。&lt;/p&gt;</description>
     </item>
     <item>
       <title>动态规划</title>
-      <link>https://alvincat.top/post/algorithm/dynamic_programming/</link>
+      <link>http://www.alvincat.top/post/algorithm/dynamic_programming/</link>
       <pubDate>Sun, 08 Dec 2024 16:05:29 +0800</pubDate>
-      <guid>https://alvincat.top/post/algorithm/dynamic_programming/</guid>
+      <guid>http://www.alvincat.top/post/algorithm/dynamic_programming/</guid>
       <description>&lt;p&gt;本文总结动态规划算法的原理和使用场景。&lt;/p&gt;</description>
     </item>
     <item>
       <title>进程同步的方法</title>
-      <link>https://alvincat.top/post/linux/apue/process_synchronization/</link>
+      <link>http://www.alvincat.top/post/linux/apue/process_synchronization/</link>
       <pubDate>Sat, 07 Dec 2024 17:59:12 +0800</pubDate>
-      <guid>https://alvincat.top/post/linux/apue/process_synchronization/</guid>
+      <guid>http://www.alvincat.top/post/linux/apue/process_synchronization/</guid>
       <description>&lt;p&gt;本文介绍进程间同步的3种方法，分别是文件锁，信号量和互斥量。 并且介绍它们是如何实现进程间同步的。&lt;/p&gt;</description>
     </item>
     <item>
       <title>UNIX标准说明</title>
-      <link>https://alvincat.top/post/linux/apue/unix_standardization/</link>
+      <link>http://www.alvincat.top/post/linux/apue/unix_standardization/</link>
       <pubDate>Sat, 07 Dec 2024 17:41:42 +0800</pubDate>
-      <guid>https://alvincat.top/post/linux/apue/unix_standardization/</guid>
+      <guid>http://www.alvincat.top/post/linux/apue/unix_standardization/</guid>
       <description>&lt;p&gt;本文说明UNIX系统中常见的几种标准，以及它们之间的关系。&lt;/p&gt;</description>
     </item>
     <item>
       <title>贪心算法</title>
-      <link>https://alvincat.top/post/algorithm/greedy_algorithm/</link>
+      <link>http://www.alvincat.top/post/algorithm/greedy_algorithm/</link>
       <pubDate>Fri, 06 Dec 2024 09:48:43 +0800</pubDate>
-      <guid>https://alvincat.top/post/algorithm/greedy_algorithm/</guid>
+      <guid>http://www.alvincat.top/post/algorithm/greedy_algorithm/</guid>
       <description>&lt;p&gt;本文介绍贪心算法的原理和实际应用，以及解决贪心算法的常见思路。&lt;/p&gt;</description>
     </item>
     <item>
       <title>进程环境</title>
-      <link>https://alvincat.top/post/linux/apue/process_environment/</link>
+      <link>http://www.alvincat.top/post/linux/apue/process_environment/</link>
       <pubDate>Thu, 05 Dec 2024 22:37:40 +0800</pubDate>
-      <guid>https://alvincat.top/post/linux/apue/process_environment/</guid>
+      <guid>http://www.alvincat.top/post/linux/apue/process_environment/</guid>
       <description>&lt;p&gt;本文总结UNIX环境中一个进程是如何启动和终止的，如何向进程传递参数表和环境变量。&lt;br&gt;&#xA;还介绍了进程内部的存储空间布局方式。&lt;/p&gt;</description>
     </item>
     <item>
       <title>信号</title>
-      <link>https://alvincat.top/post/linux/apue/signals/</link>
+      <link>http://www.alvincat.top/post/linux/apue/signals/</link>
       <pubDate>Thu, 05 Dec 2024 21:58:39 +0800</pubDate>
-      <guid>https://alvincat.top/post/linux/apue/signals/</guid>
+      <guid>http://www.alvincat.top/post/linux/apue/signals/</guid>
       <description>&lt;p&gt;本文总结Linux环境中的信号相关知识以及和信号相关的接口的使用方法。&lt;/p&gt;</description>
     </item>
     <item>
       <title>内存映射IO</title>
-      <link>https://alvincat.top/post/linux/apue/memory_mapped_io/</link>
+      <link>http://www.alvincat.top/post/linux/apue/memory_mapped_io/</link>
       <pubDate>Thu, 05 Dec 2024 11:39:06 +0800</pubDate>
-      <guid>https://alvincat.top/post/linux/apue/memory_mapped_io/</guid>
+      <guid>http://www.alvincat.top/post/linux/apue/memory_mapped_io/</guid>
       <description>&lt;p&gt;本文总结内存映射相关接口的用法和注意事项。&lt;/p&gt;</description>
     </item>
     <item>
       <title>进程间通信的方法</title>
-      <link>https://alvincat.top/post/linux/apue/interprocess_communication/</link>
+      <link>http://www.alvincat.top/post/linux/apue/interprocess_communication/</link>
       <pubDate>Thu, 05 Dec 2024 11:37:06 +0800</pubDate>
-      <guid>https://alvincat.top/post/linux/apue/interprocess_communication/</guid>
+      <guid>http://www.alvincat.top/post/linux/apue/interprocess_communication/</guid>
       <description>&lt;p&gt;本文总结进程间通信的方法和各种方法的差异，以及注意事项。&lt;/p&gt;</description>
     </item>
     <item>
       <title>多线程的特性和同步方法</title>
-      <link>https://alvincat.top/post/linux/apue/thread_synchronization/</link>
+      <link>http://www.alvincat.top/post/linux/apue/thread_synchronization/</link>
       <pubDate>Thu, 05 Dec 2024 11:29:06 +0800</pubDate>
-      <guid>https://alvincat.top/post/linux/apue/thread_synchronization/</guid>
+      <guid>http://www.alvincat.top/post/linux/apue/thread_synchronization/</guid>
       <description>&lt;p&gt;本文总结多线程的特性和同步方法。&lt;/p&gt;</description>
     </item>
     <item>
       <title>回溯算法</title>
-      <link>https://alvincat.top/post/algorithm/backtracking_algorithm/</link>
+      <link>http://www.alvincat.top/post/algorithm/backtracking_algorithm/</link>
       <pubDate>Mon, 02 Dec 2024 15:39:46 +0800</pubDate>
-      <guid>https://alvincat.top/post/algorithm/backtracking_algorithm/</guid>
+      <guid>http://www.alvincat.top/post/algorithm/backtracking_algorithm/</guid>
       <description>&lt;p&gt;本文讲解回溯算法的原理和具体实现。&lt;/p&gt;</description>
     </item>
     <item>
       <title>堆排序的原理与实现</title>
-      <link>https://alvincat.top/post/algorithm/heap_sort/</link>
+      <link>http://www.alvincat.top/post/algorithm/heap_sort/</link>
       <pubDate>Mon, 02 Dec 2024 15:38:46 +0800</pubDate>
-      <guid>https://alvincat.top/post/algorithm/heap_sort/</guid>
+      <guid>http://www.alvincat.top/post/algorithm/heap_sort/</guid>
       <description>&lt;p&gt;本文主要是讲解堆排序的原理和具体实现方法。&lt;/p&gt;</description>
     </item>
     <item>
       <title>排序算法的比较</title>
-      <link>https://alvincat.top/post/algorithm/sort_summary/</link>
+      <link>http://www.alvincat.top/post/algorithm/sort_summary/</link>
       <pubDate>Mon, 02 Dec 2024 15:38:46 +0800</pubDate>
-      <guid>https://alvincat.top/post/algorithm/sort_summary/</guid>
+      <guid>http://www.alvincat.top/post/algorithm/sort_summary/</guid>
       <description>&lt;p&gt;本文主要针对各种排序算法之间的特性进行比较。&lt;/p&gt;</description>
     </item>
     <item>
       <title>C&#43;&#43; STL用法总结</title>
-      <link>https://alvincat.top/post/cpp/stl/cpp_stl/</link>
+      <link>http://www.alvincat.top/post/cpp/stl/cpp_stl/</link>
       <pubDate>Mon, 02 Dec 2024 15:29:46 +0800</pubDate>
-      <guid>https://alvincat.top/post/cpp/stl/cpp_stl/</guid>
+      <guid>http://www.alvincat.top/post/cpp/stl/cpp_stl/</guid>
       <description>&lt;p&gt;C++中的STL用法总结&lt;/p&gt;</description>
     </item>
     <item>
       <title>c&#43;&#43; string的常用方法</title>
-      <link>https://alvincat.top/post/cpp/cpp_string/</link>
+      <link>http://www.alvincat.top/post/cpp/cpp_string/</link>
       <pubDate>Mon, 02 Dec 2024 15:28:46 +0800</pubDate>
-      <guid>https://alvincat.top/post/cpp/cpp_string/</guid>
+      <guid>http://www.alvincat.top/post/cpp/cpp_string/</guid>
       <description>&lt;p&gt;本文主要是记录c++ string的常用成员函数。&lt;/p&gt;</description>
     </item>
     <item>
       <title>C&#43;&#43;常用库函数的用法</title>
-      <link>https://alvincat.top/post/cpp/cpp_common_function/</link>
+      <link>http://www.alvincat.top/post/cpp/cpp_common_function/</link>
       <pubDate>Mon, 02 Dec 2024 15:26:46 +0800</pubDate>
-      <guid>https://alvincat.top/post/cpp/cpp_common_function/</guid>
+      <guid>http://www.alvincat.top/post/cpp/cpp_common_function/</guid>
       <description>&lt;p&gt;C++中常用库函数&lt;/p&gt;</description>
     </item>
     <item>
       <title>程序员入门必读</title>
-      <link>https://alvincat.top/post/tools/some_usful_tips/</link>
+      <link>http://www.alvincat.top/post/tools/some_usful_tips/</link>
       <pubDate>Sat, 30 Nov 2024 19:06:41 +0800</pubDate>
-      <guid>https://alvincat.top/post/tools/some_usful_tips/</guid>
+      <guid>http://www.alvincat.top/post/tools/some_usful_tips/</guid>
       <description>&lt;p&gt;本文主要是一些针对程序员入门的一些资料。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Markdown使用技巧</title>
-      <link>https://alvincat.top/post/tools/markdown_usful_tips/</link>
+      <link>http://www.alvincat.top/post/tools/markdown_usful_tips/</link>
       <pubDate>Sat, 30 Nov 2024 10:48:47 +0800</pubDate>
-      <guid>https://alvincat.top/post/tools/markdown_usful_tips/</guid>
+      <guid>http://www.alvincat.top/post/tools/markdown_usful_tips/</guid>
       <description>&lt;p&gt;本文介绍markdown的语法和一些实用技巧。&lt;/p&gt;</description>
     </item>
     <item>
       <title>GDB常用命令和一些实用方法</title>
-      <link>https://alvincat.top/post/tools/gdb_usful_tips/</link>
+      <link>http://www.alvincat.top/post/tools/gdb_usful_tips/</link>
       <pubDate>Fri, 29 Nov 2024 16:31:59 +0800</pubDate>
-      <guid>https://alvincat.top/post/tools/gdb_usful_tips/</guid>
+      <guid>http://www.alvincat.top/post/tools/gdb_usful_tips/</guid>
       <description>&lt;p&gt;本文介绍gdb一些常用命令。&lt;/p&gt;</description>
     </item>
     <item>
       <title>创建二叉树的方法</title>
-      <link>https://alvincat.top/post/data_structure/tree/binary_tree_create/</link>
+      <link>http://www.alvincat.top/post/data_structure/tree/binary_tree_create/</link>
       <pubDate>Thu, 28 Nov 2024 10:30:58 +0800</pubDate>
-      <guid>https://alvincat.top/post/data_structure/tree/binary_tree_create/</guid>
+      <guid>http://www.alvincat.top/post/data_structure/tree/binary_tree_create/</guid>
       <description>&lt;p&gt;本文介绍二叉树的构造方式。&lt;/p&gt;</description>
     </item>
     <item>
       <title>二叉树的遍历</title>
-      <link>https://alvincat.top/post/data_structure/tree/binary_tree_traverse/</link>
+      <link>http://www.alvincat.top/post/data_structure/tree/binary_tree_traverse/</link>
       <pubDate>Wed, 27 Nov 2024 11:11:07 +0800</pubDate>
-      <guid>https://alvincat.top/post/data_structure/tree/binary_tree_traverse/</guid>
+      <guid>http://www.alvincat.top/post/data_structure/tree/binary_tree_traverse/</guid>
       <description>&lt;p&gt;本文介绍二叉树的遍历方法和具体代码实现。&lt;/p&gt;</description>
     </item>
     <item>
       <title>遍历-DFS</title>
-      <link>https://alvincat.top/post/algorithm/dfs/</link>
+      <link>http://www.alvincat.top/post/algorithm/dfs/</link>
       <pubDate>Tue, 26 Nov 2024 16:31:22 +0800</pubDate>
-      <guid>https://alvincat.top/post/algorithm/dfs/</guid>
+      <guid>http://www.alvincat.top/post/algorithm/dfs/</guid>
       <description>&lt;p&gt;本文讲解DFS算法的核心思想和代码基本框架。&lt;/p&gt;</description>
     </item>
     <item>
       <title>遍历-BFS</title>
-      <link>https://alvincat.top/post/algorithm/bfs/</link>
+      <link>http://www.alvincat.top/post/algorithm/bfs/</link>
       <pubDate>Tue, 26 Nov 2024 16:29:32 +0800</pubDate>
-      <guid>https://alvincat.top/post/algorithm/bfs/</guid>
+      <guid>http://www.alvincat.top/post/algorithm/bfs/</guid>
       <description>&lt;p&gt;本文讲解BFS算法的核心思想和代码基本框架。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Kernel_boot_process</title>
-      <link>https://alvincat.top/post/operating_system/linux_kernel/kernel_boot_process/</link>
+      <link>http://www.alvincat.top/post/operating_system/linux_kernel/kernel_boot_process/</link>
       <pubDate>Wed, 20 Nov 2024 20:56:16 +0800</pubDate>
-      <guid>https://alvincat.top/post/operating_system/linux_kernel/kernel_boot_process/</guid>
+      <guid>http://www.alvincat.top/post/operating_system/linux_kernel/kernel_boot_process/</guid>
       <description>&lt;p&gt;本文总结Linux系统启动的详细流程以及启动流程涉及的基础知识。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Linux系统常用的系统配置</title>
-      <link>https://alvincat.top/post/linux/linux_common_setting/</link>
+      <link>http://www.alvincat.top/post/linux/linux_common_setting/</link>
       <pubDate>Tue, 19 Nov 2024 15:48:31 +0800</pubDate>
-      <guid>https://alvincat.top/post/linux/linux_common_setting/</guid>
+      <guid>http://www.alvincat.top/post/linux/linux_common_setting/</guid>
       <description>&lt;p&gt;本文记录Linux系统常用的系统设置的方法。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Vim常用设置以及常用命令</title>
-      <link>https://alvincat.top/post/tools/vim_usful_setting/</link>
+      <link>http://www.alvincat.top/post/tools/vim_usful_setting/</link>
       <pubDate>Tue, 19 Nov 2024 15:17:40 +0800</pubDate>
-      <guid>https://alvincat.top/post/tools/vim_usful_setting/</guid>
+      <guid>http://www.alvincat.top/post/tools/vim_usful_setting/</guid>
       <description>&lt;p&gt;本文记录vim常用参数的配置方法已经常用命令。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Ubuntu系统常用设置和命令</title>
-      <link>https://alvincat.top/post/operating_system/ubuntu_setting/</link>
+      <link>http://www.alvincat.top/post/operating_system/ubuntu_setting/</link>
       <pubDate>Tue, 19 Nov 2024 15:17:20 +0800</pubDate>
-      <guid>https://alvincat.top/post/operating_system/ubuntu_setting/</guid>
+      <guid>http://www.alvincat.top/post/operating_system/ubuntu_setting/</guid>
       <description>&lt;p&gt;本文记录Ubutun操作系统常用的系统配置的设置方法和常用命令的用法。&lt;/p&gt;</description>
     </item>
     <item>
       <title>LRU的C代码实现</title>
-      <link>https://alvincat.top/post/data_structure/hash_table/lru/</link>
+      <link>http://www.alvincat.top/post/data_structure/hash_table/lru/</link>
       <pubDate>Mon, 18 Nov 2024 17:06:55 +0800</pubDate>
-      <guid>https://alvincat.top/post/data_structure/hash_table/lru/</guid>
+      <guid>http://www.alvincat.top/post/data_structure/hash_table/lru/</guid>
       <description>&lt;p&gt;本文介绍LRU的原理和具体c代码实现。&lt;/p&gt;</description>
     </item>
     <item>
       <title>c语言基础和编码注意事项</title>
-      <link>https://alvincat.top/post/linux/c_language_usful_tips/</link>
+      <link>http://www.alvincat.top/post/linux/c_language_usful_tips/</link>
       <pubDate>Sun, 17 Nov 2024 21:39:06 +0800</pubDate>
-      <guid>https://alvincat.top/post/linux/c_language_usful_tips/</guid>
+      <guid>http://www.alvincat.top/post/linux/c_language_usful_tips/</guid>
       <description>&lt;p&gt;本文主要记录c语言编码过程中的一些注意事项。&lt;/p&gt;</description>
     </item>
     <item>
       <title>哈希表</title>
-      <link>https://alvincat.top/post/data_structure/hash_table/hash_table/</link>
+      <link>http://www.alvincat.top/post/data_structure/hash_table/hash_table/</link>
       <pubDate>Sat, 16 Nov 2024 22:09:29 +0800</pubDate>
-      <guid>https://alvincat.top/post/data_structure/hash_table/hash_table/</guid>
+      <guid>http://www.alvincat.top/post/data_structure/hash_table/hash_table/</guid>
       <description>&lt;p&gt;本文介绍哈希表的基本特性和具体实现。&lt;/p&gt;</description>
     </item>
     <item>
       <title>单链表常见功能函数</title>
-      <link>https://alvincat.top/post/data_structure/linklist/link_list_function/</link>
+      <link>http://www.alvincat.top/post/data_structure/linklist/link_list_function/</link>
       <pubDate>Sat, 16 Nov 2024 21:29:14 +0800</pubDate>
-      <guid>https://alvincat.top/post/data_structure/linklist/link_list_function/</guid>
+      <guid>http://www.alvincat.top/post/data_structure/linklist/link_list_function/</guid>
       <description>&lt;p&gt;本文主要介绍单链表常见的功能函数。&lt;/p&gt;</description>
     </item>
     <item>
       <title>C语言结构体字节对齐问题</title>
-      <link>https://alvincat.top/post/linux/struct_alignment/</link>
+      <link>http://www.alvincat.top/post/linux/struct_alignment/</link>
       <pubDate>Fri, 15 Nov 2024 22:52:34 +0800</pubDate>
-      <guid>https://alvincat.top/post/linux/struct_alignment/</guid>
+      <guid>http://www.alvincat.top/post/linux/struct_alignment/</guid>
       <description>&lt;p&gt;这篇文章介绍C语言结构体字节对齐的问题。&lt;/p&gt;</description>
     </item>
     <item>
       <title>链表基本特性及其相关操作</title>
-      <link>https://alvincat.top/post/data_structure/linklist/link_list_introduction/</link>
+      <link>http://www.alvincat.top/post/data_structure/linklist/link_list_introduction/</link>
       <pubDate>Fri, 15 Nov 2024 17:52:42 +0800</pubDate>
-      <guid>https://alvincat.top/post/data_structure/linklist/link_list_introduction/</guid>
+      <guid>http://www.alvincat.top/post/data_structure/linklist/link_list_introduction/</guid>
       <description>&lt;p&gt;本文介绍链表的基本特性以及链表常用的操作。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Linux常用命令的用法</title>
-      <link>https://alvincat.top/post/linux/linux_common_tools/</link>
+      <link>http://www.alvincat.top/post/linux/linux_common_tools/</link>
       <pubDate>Fri, 15 Nov 2024 17:13:30 +0800</pubDate>
-      <guid>https://alvincat.top/post/linux/linux_common_tools/</guid>
+      <guid>http://www.alvincat.top/post/linux/linux_common_tools/</guid>
       <description>&lt;p&gt;本文记录Linux常用命令的用法。&lt;/p&gt;</description>
     </item>
     <item>
       <title>字符串匹配算法</title>
-      <link>https://alvincat.top/post/algorithm/string_match_algorightm/</link>
+      <link>http://www.alvincat.top/post/algorithm/string_match_algorightm/</link>
       <pubDate>Fri, 15 Nov 2024 16:01:16 +0800</pubDate>
-      <guid>https://alvincat.top/post/algorithm/string_match_algorightm/</guid>
+      <guid>http://www.alvincat.top/post/algorithm/string_match_algorightm/</guid>
       <description>&lt;p&gt;本文记录字符串匹配算法的演进已经具体实现。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hugo中一些实用的配置</title>
-      <link>https://alvincat.top/post/hugo/hugo_some_usful_setting/</link>
+      <link>http://www.alvincat.top/post/hugo/hugo_some_usful_setting/</link>
       <pubDate>Thu, 14 Nov 2024 23:34:32 +0800</pubDate>
-      <guid>https://alvincat.top/post/hugo/hugo_some_usful_setting/</guid>
+      <guid>http://www.alvincat.top/post/hugo/hugo_some_usful_setting/</guid>
       <description>&lt;p&gt;Hugo中一些实用的配置。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Git常用命令</title>
-      <link>https://alvincat.top/post/tools/git_commond/</link>
+      <link>http://www.alvincat.top/post/tools/git_commond/</link>
       <pubDate>Thu, 14 Nov 2024 17:13:30 +0800</pubDate>
-      <guid>https://alvincat.top/post/tools/git_commond/</guid>
+      <guid>http://www.alvincat.top/post/tools/git_commond/</guid>
       <description>&lt;p&gt;本文记录Git常用命令。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hugo配置github静态页面的方法</title>
-      <link>https://alvincat.top/post/hugo/hugo_build_static_page/</link>
+      <link>http://www.alvincat.top/post/hugo/hugo_build_static_page/</link>
       <pubDate>Thu, 14 Nov 2024 16:51:30 +0800</pubDate>
-      <guid>https://alvincat.top/post/hugo/hugo_build_static_page/</guid>
+      <guid>http://www.alvincat.top/post/hugo/hugo_build_static_page/</guid>
       <description>&lt;p&gt;本文记录Hugo配置github静态页面的关键步骤。&lt;/p&gt;</description>
     </item>
   </channel>

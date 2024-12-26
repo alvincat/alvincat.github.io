@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>汇编语言 on Alvincat&#39;s Blog</title>
-    <link>https://alvincat.top/categories/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/</link>
+    <link>http://www.alvincat.top/categories/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/</link>
     <description>Recent content in 汇编语言 on Alvincat&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
     <lastBuildDate>Mon, 23 Dec 2024 20:41:51 +0800</lastBuildDate>
-    <atom:link href="https://alvincat.top/categories/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.alvincat.top/categories/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Intel和AT&amp;T汇编语言语法的差异</title>
-      <link>https://alvincat.top/post/assembly/inter_gun_syntax_difference/</link>
+      <link>http://www.alvincat.top/post/assembly/inter_gun_syntax_difference/</link>
       <pubDate>Mon, 23 Dec 2024 20:41:51 +0800</pubDate>
-      <guid>https://alvincat.top/post/assembly/inter_gun_syntax_difference/</guid>
+      <guid>http://www.alvincat.top/post/assembly/inter_gun_syntax_difference/</guid>
       <description>&lt;p&gt;Introduce the Intel and AT&amp;amp;T Syntax about assembly language&lt;/p&gt;</description>
     </item>
   </channel>

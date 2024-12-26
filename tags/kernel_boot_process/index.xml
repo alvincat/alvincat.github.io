@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kernel_boot_process on Alvincat&#39;s Blog</title>
-    <link>https://alvincat.top/tags/kernel_boot_process/</link>
+    <link>http://www.alvincat.top/tags/kernel_boot_process/</link>
     <description>Recent content in Kernel_boot_process on Alvincat&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
     <lastBuildDate>Wed, 20 Nov 2024 20:56:16 +0800</lastBuildDate>
-    <atom:link href="https://alvincat.top/tags/kernel_boot_process/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://www.alvincat.top/tags/kernel_boot_process/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kernel_boot_process</title>
-      <link>https://alvincat.top/post/operating_system/linux_kernel/kernel_boot_process/</link>
+      <link>http://www.alvincat.top/post/operating_system/linux_kernel/kernel_boot_process/</link>
       <pubDate>Wed, 20 Nov 2024 20:56:16 +0800</pubDate>
-      <guid>https://alvincat.top/post/operating_system/linux_kernel/kernel_boot_process/</guid>
+      <guid>http://www.alvincat.top/post/operating_system/linux_kernel/kernel_boot_process/</guid>
       <description>&lt;p&gt;本文总结Linux系统启动的详细流程以及启动流程涉及的基础知识。&lt;/p&gt;</description>
     </item>
   </channel>
