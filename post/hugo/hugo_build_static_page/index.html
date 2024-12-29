@@ -475,11 +475,12 @@ github规定必须将网站内容放在形如username.github.io的代码仓中�
 <p>修改方法如下：<br>
 <img src="/web_image/hugo/hugo_github_actions_10.png" alt="修改page关联的分支"></p>
 <h1 id="5-优化方案">5 优化方案</h1>
-<p>步骤4中的方案有个问题是：需要在两个代码仓总存放public目录中的文件。当然好处是可以自动更新网站内容。
+<p>步骤4中的方案有个问题是：需要在两个代码仓中均存放public目录中的文件（好处是可以自动更新网站内容）。<br>
 只保存一份public文件的方法：</p>
 <ol>
-<li>忽略源代码仓的public文件夹：即提交源代码仓中的修改是不提交public目录下的文件。</li>
-<li>将public文件夹和username.github.io代码仓关联。</li>
+<li>忽略源代码仓的public文件夹：即提交源代码仓中的修改时不提交public目录下的文件。</li>
+<li>将public文件夹和username.github.io代码仓关联。
+需要更新网站时，只需要将public目录中的内容push到username.github.io远程代码仓即可。</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -499,10 +500,7 @@ github规定必须将网站内容放在形如username.github.io的代码仓中�
 </span></span><span class="line"><span class="cl">git push -u webPage master <span class="c1"># 提交代码</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><ol start="3">
-<li>需要更新网站时，只需要将public目录中的内容push到username.github.io远程代码仓即可。</li>
-</ol>
-<h1 id="6-参考文献">6 参考文献</h1>
+</div><h1 id="6-参考文献">6 参考文献</h1>
 <p><a href="https://simumis.com/posts/deploy-to-github/">将Hugo静态网站部署到Github Pages</a></p>
 <p><a href="https://juejin.cn/post/7044104583848673310">Hugo + even + GitHub Pages+ Utterances搭建个人博客</a></p>
 <p><a href="https://lucumt.info/post/hugo/using-github-action-to-auto-build-deploy/">利用GitHub Action实现Hugo博客在GitHub Pages自动部署</a></p>

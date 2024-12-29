@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RaspberryPi on Alvincat&#39;s Blog</title>
+    <link>http://www.alvincat.top/tags/raspberrypi/</link>
+    <description>Recent content in RaspberryPi on Alvincat&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>alvincat</copyright>
+    <lastBuildDate>Sat, 28 Dec 2024 17:49:22 +0800</lastBuildDate>
+    <atom:link href="http://www.alvincat.top/tags/raspberrypi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>树莓派系统的初始化</title>
+      <link>http://www.alvincat.top/post/operating_system/raspberrypi/raspberrypi_getting_started/</link>
+      <pubDate>Sat, 28 Dec 2024 17:49:22 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/operating_system/raspberrypi/raspberrypi_getting_started/</guid>
+      <description>&lt;p&gt;本文介绍树莓派硬件的一些初始化配置。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

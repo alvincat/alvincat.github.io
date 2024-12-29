@@ -7,8 +7,22 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Tue, 17 Dec 2024 20:01:46 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 28 Dec 2024 17:49:22 +0800</lastBuildDate>
     <atom:link href="http://www.alvincat.top/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RaspberryPi</title>
+      <link>http://www.alvincat.top/tags/raspberrypi/</link>
+      <pubDate>Sat, 28 Dec 2024 17:49:22 +0800</pubDate>
+      <guid>http://www.alvincat.top/tags/raspberrypi/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>C&#43;&#43;算法库</title>
+      <link>http://www.alvincat.top/tags/c&#43;&#43;%E7%AE%97%E6%B3%95%E5%BA%93/</link>
+      <pubDate>Fri, 27 Dec 2024 11:23:42 +0800</pubDate>
+      <guid>http://www.alvincat.top/tags/c&#43;&#43;%E7%AE%97%E6%B3%95%E5%BA%93/</guid>
+      <description></description>
+    </item>
     <item>
       <title>B-Tree</title>
       <link>http://www.alvincat.top/tags/b-tree/</link>

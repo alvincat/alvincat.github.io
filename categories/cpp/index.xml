@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Sun, 15 Dec 2024 22:08:28 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 27 Dec 2024 11:23:42 +0800</lastBuildDate>
     <atom:link href="http://www.alvincat.top/categories/cpp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43;算法库-排序算法</title>
+      <link>http://www.alvincat.top/post/cpp/algorithms_library/sorting_operations/</link>
+      <pubDate>Fri, 27 Dec 2024 11:23:42 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/cpp/algorithms_library/sorting_operations/</guid>
+      <description>&lt;p&gt;本文总结C++算法库中有关排序相关的库函数的常见用法。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>C&#43;&#43;中的部分关键字的用法</title>
       <link>http://www.alvincat.top/post/cpp/cpp_some_keywords/</link>

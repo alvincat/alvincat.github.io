@@ -7,8 +7,22 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Mon, 23 Dec 2024 20:41:51 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 28 Dec 2024 17:49:22 +0800</lastBuildDate>
     <atom:link href="http://www.alvincat.top/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>树莓派系统的初始化</title>
+      <link>http://www.alvincat.top/post/operating_system/raspberrypi/raspberrypi_getting_started/</link>
+      <pubDate>Sat, 28 Dec 2024 17:49:22 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/operating_system/raspberrypi/raspberrypi_getting_started/</guid>
+      <description>&lt;p&gt;本文介绍树莓派硬件的一些初始化配置。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>C&#43;&#43;算法库-排序算法</title>
+      <link>http://www.alvincat.top/post/cpp/algorithms_library/sorting_operations/</link>
+      <pubDate>Fri, 27 Dec 2024 11:23:42 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/cpp/algorithms_library/sorting_operations/</guid>
+      <description>&lt;p&gt;本文总结C++算法库中有关排序相关的库函数的常见用法。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Intel和AT&amp;T汇编语言语法的差异</title>
       <link>http://www.alvincat.top/post/assembly/inter_gun_syntax_difference/</link>
