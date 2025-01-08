@@ -55,7 +55,7 @@
   <meta itemprop="description" content="本文记录vim常用参数的配置方法已经常用命令。">
   <meta itemprop="datePublished" content="2024-11-19T15:17:40+08:00">
   <meta itemprop="dateModified" content="2024-11-19T15:17:40+08:00">
-  <meta itemprop="wordCount" content="623">
+  <meta itemprop="wordCount" content="764">
   <meta itemprop="keywords" content="Vim">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Vim常用设置以及常用命令">
@@ -149,7 +149,7 @@
         <div class="post-category">
             <a href="/categories/tools/"> Tools </a>
             </div>
-          <span class="more-meta"> 约 623 字 </span>
+          <span class="more-meta"> 约 764 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
@@ -170,7 +170,8 @@
       <ul>
         <li><a href="#21-vim替换字符串命令">2.1 vim替换字符串命令</a></li>
         <li><a href="#22-vim直接输入tab的方法">2.2 vim直接输入tab的方法</a></li>
-        <li><a href="#22-vim中执行命令的方法">2.2 vim中执行命令的方法</a></li>
+        <li><a href="#23-vim中执行命令的方法">2.3 vim中执行命令的方法</a></li>
+        <li><a href="#24-vim在多行尾部添加内容的方法">2.4 vim在多行尾部添加内容的方法</a></li>
       </ul>
     </li>
   </ul>
@@ -330,9 +331,17 @@
 <h2 id="22-vim直接输入tab的方法">2.2 vim直接输入tab的方法</h2>
 <p>因为在vim配置文件中配置tab键转换为4个空格，因此在编写makefile时直接按tab间无法达到输入tab的目的。<br>
 在编辑模式或者命令模式下(界面最下方有冒号)，先按快捷键<code>ctrl+v</code>，然后按<code>tab</code>键即可。</p>
-<h2 id="22-vim中执行命令的方法">2.2 vim中执行命令的方法</h2>
+<h2 id="23-vim中执行命令的方法">2.3 vim中执行命令的方法</h2>
 <p>进入命令模式，输入<code>!</code>加在终端输入的命令即可。例如：
 :!./hello	//执行hello</p>
+<h2 id="24-vim在多行尾部添加内容的方法">2.4 vim在多行尾部添加内容的方法</h2>
+<ol>
+<li>使用<code>Shift + v</code>选中多行</li>
+<li>然后按<code>:</code>进入命令模式</li>
+<li>然后键入normal,进入normal模式</li>
+<li>再normal后键入空格，在输入<code>A ;</code>即可在多行后添加分号<code>;</code>。<br>
+命令最终的内容如下：<code>:'&lt;,'&gt;normal A;</code>，其中的<code>'&lt;,'&gt;</code>不需要输入。</li>
+</ol>
     </div>
 
     
@@ -388,7 +397,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>alvincat</span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>alvincat</span>
   </span>
 </div>
 

@@ -55,7 +55,7 @@
   <meta itemprop="description" content="本文记录Linux常用命令的用法。">
   <meta itemprop="datePublished" content="2024-11-15T17:13:30+08:00">
   <meta itemprop="dateModified" content="2024-11-15T17:13:30+08:00">
-  <meta itemprop="wordCount" content="55">
+  <meta itemprop="wordCount" content="234">
   <meta itemprop="keywords" content="Linux常用命令">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Linux常用命令的用法">
@@ -149,7 +149,7 @@
         <div class="post-category">
             <a href="/categories/linux/"> Linux </a>
             </div>
-          <span class="more-meta"> 约 55 字 </span>
+          <span class="more-meta"> 约 234 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
         
       </div>
@@ -161,6 +161,12 @@
     <nav id="TableOfContents">
   <ul>
     <li><a href="#1-linux命令的综合使用">1 linux命令的综合使用</a></li>
+    <li><a href="#2-linux常用命令的使用方法">2 linux常用命令的使用方法</a>
+      <ul>
+        <li><a href="#21-tar">2.1 tar</a></li>
+        <li><a href="#22-zipunzip">2.2 zip/unzip</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -176,6 +182,59 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 删除出指定文件之外的文件</span>
 </span></span><span class="line"><span class="cl">ls <span class="p">|</span> grep -xvF file.txt <span class="p">|</span> xargs rm -rf --
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="2-linux常用命令的使用方法">2 linux常用命令的使用方法</h1>
+<h2 id="21-tar">2.1 tar</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># tar常用的命令参数</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -j 使用bzip处理文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -J 使用xz处理文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -z 使用gzip处理文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -c 压缩文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -x 解压文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -C 指定操作目录</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -v 显示正在处理的文件</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 示例1. 打包为bz文件</span>
+</span></span><span class="line"><span class="cl">tar -jcvf test.tar.bz ./test/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 示例2. 解压gz文件</span>
+</span></span><span class="line"><span class="cl">tar -zxvf test.gz
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="22-zipunzip">2.2 zip/unzip</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># zip 示例：zip options archive inpath</span>
+</span></span><span class="line"><span class="cl">zip -r foo.zip foo
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># unzip示例： unzip -d dir xxx.zip</span>
+</span></span><span class="line"><span class="cl">mkdir output <span class="o">&amp;&amp;</span> unzip -d ./output file.zip
 </span></span></code></pre></td></tr></table>
 </div>
 </div>
@@ -251,7 +310,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>alvincat</span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>alvincat</span>
   </span>
 </div>
 

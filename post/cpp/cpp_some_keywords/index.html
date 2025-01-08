@@ -54,7 +54,7 @@
   <meta itemprop="description" content="本文总结C&#43;&#43;中的部分关键字的用法。">
   <meta itemprop="datePublished" content="2024-12-15T22:08:28+08:00">
   <meta itemprop="dateModified" content="2024-12-15T22:08:28+08:00">
-  <meta itemprop="wordCount" content="2182">
+  <meta itemprop="wordCount" content="1532">
   <meta itemprop="keywords" content="CPP">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="C&#43;&#43;中的部分关键字的用法">
@@ -148,8 +148,8 @@
         <div class="post-category">
             <a href="/categories/cpp/"> CPP </a>
             </div>
-          <span class="more-meta"> 约 2182 字 </span>
-          <span class="more-meta"> 预计阅读 5 分钟 </span>
+          <span class="more-meta"> 约 1532 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
         
       </div>
     </header>
@@ -176,16 +176,6 @@
             <li><a href="#122-静态局部变量">1.2.2 静态局部变量</a></li>
             <li><a href="#123-静态函数">1.2.3 静态函数</a></li>
             <li><a href="#124-类内静态成员">1.2.4 类内静态成员</a></li>
-          </ul>
-        </li>
-        <li><a href="#13-c-11新增关键字部分">1.3 C++ 11新增关键字(部分)</a>
-          <ul>
-            <li><a href="#131--default">1.3.1 = default</a></li>
-            <li><a href="#132-constexpr">1.3.2 constexpr</a></li>
-            <li><a href="#133-decltype">1.3.3 decltype</a></li>
-            <li><a href="#134-explicit">1.3.4 explicit</a></li>
-            <li><a href="#135-final">1.3.5 final</a></li>
-            <li><a href="#136-override">1.3.6 override</a></li>
           </ul>
         </li>
       </ul>
@@ -352,39 +342,6 @@
 <li>静态成员函数不能声明为const,也不能在static函数体内使用this指针。</li>
 <li>静态成员函数不能使用非静态成员函数，非静态成员函数可以使用静态成员函数。</li>
 </ul>
-<h2 id="13-c-11新增关键字部分">1.3 C++ 11新增关键字(部分)</h2>
-<h3 id="131--default">1.3.1 = default</h3>
-<p>= default是用于限定构造函数的，要求编译器生成构造函数。它可以出现在类内部，也可以作为定义出现在类外部。
-若在类内部，则默认构造函数是内联的，如果在内外部，则该构造函数默认不是内联的。</p>
-<h3 id="132-constexpr">1.3.2 constexpr</h3>
-<p>constexpr 和const的功能类似，只值 constexpr 类型在编译时会进行变量类型检查，检查变量的值是否为常量表达式。<br>
-声明为 constexpr的变量一定是常量，而且必须使用常量表达式初始化</p>
-<h3 id="133-decltype">1.3.3 decltype</h3>
-<p>decltype的作用是获取并返回操作数的类型。<br>
-针对的场景：希望从表达式的类型推导出要定义的变量的类型，但是不想用该表达式初始化变量。例如：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">ci</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">decltype</span><span class="p">(</span><span class="n">ci</span><span class="p">)</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// x的类型为const int
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="134-explicit">1.3.4 explicit</h3>
-<h4 id="1341-修饰构造函数">1.3.4.1 修饰构造函数</h4>
-<p>explicit用于修饰构造函数是，用于阻止构造函数进行隐式转换。<br>
-explicit只对拥有一个参数的构造函数有效。
-explicit只能在类内部声明构造函数时使用，而且在类外定义该构造函数时不能重复使用该关键字。
-explicit声明构造函数时，该构造函数只能安札直接初始化的形式使用。</p>
-<h3 id="135-final">1.3.5 final</h3>
-<p>final的作用是阻止派生类覆盖该函数。
-当函数使用final修饰后，任何尝试覆盖该函数的操作都会报错。</p>
-<h3 id="136-override">1.3.6 override</h3>
-<p>override关键字用在派生类的函数中，用于明确覆盖基类中的同名函数。<br>
-若要在派生类的函数中使用override关键字，需要基类中有同名函数而且该函数为虚函数(virtual修饰)。【只有虚函数才能被覆盖】。
-final和override说明符出现在形参列表(包括任何const或引用修饰符)以及尾置返回类型之后。</p>
     </div>
 
     
@@ -440,7 +397,7 @@ final和override说明符出现在形参列表(包括任何const或引用修饰�
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>alvincat</span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>alvincat</span>
   </span>
 </div>
 

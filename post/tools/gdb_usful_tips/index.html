@@ -55,7 +55,7 @@
   <meta itemprop="description" content="本文介绍gdb一些常用命令。">
   <meta itemprop="datePublished" content="2024-11-29T16:31:59+08:00">
   <meta itemprop="dateModified" content="2024-11-29T16:31:59+08:00">
-  <meta itemprop="wordCount" content="1093">
+  <meta itemprop="wordCount" content="1176">
   <meta itemprop="keywords" content="GDB">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="GDB常用命令和一些实用方法">
@@ -149,7 +149,7 @@
         <div class="post-category">
             <a href="/categories/tools/"> Tools </a>
             </div>
-          <span class="more-meta"> 约 1093 字 </span>
+          <span class="more-meta"> 约 1176 字 </span>
           <span class="more-meta"> 预计阅读 3 分钟 </span>
         
       </div>
@@ -522,8 +522,12 @@
           <td>调试父子进程</td>
       </tr>
       <tr>
+          <td>show scheduler-locking</td>
+          <td>查看当前的调试模式</td>
+      </tr>
+      <tr>
           <td>info threads</td>
-          <td>查看线程信息</td>
+          <td>查看进程中的线程信息</td>
       </tr>
       <tr>
           <td><code>thread &lt;thread#&gt;</code></td>
@@ -531,6 +535,8 @@
       </tr>
   </tbody>
 </table>
+<p><strong>温馨提示</strong>：<br>
+使用线程的调试模式，需要先使用start/run将程序运行起来后才可以设置。否则会提示<code>Target 'exec' cannot support this command</code>错误。</p>
 <h2 id="39-修改程序中的值">3.9 修改程序中的值</h2>
 <table>
   <thead>
@@ -660,7 +666,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>alvincat</span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>alvincat</span>
   </span>
 </div>
 

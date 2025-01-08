@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network on Alvincat&#39;s Blog</title>
+    <link>http://www.alvincat.top/tags/network/</link>
+    <description>Recent content in Network on Alvincat&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>alvincat</copyright>
+    <lastBuildDate>Tue, 07 Jan 2025 20:29:34 +0800</lastBuildDate>
+    <atom:link href="http://www.alvincat.top/tags/network/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ncat用法说明</title>
+      <link>http://www.alvincat.top/post/tools/ncat/</link>
+      <pubDate>Tue, 07 Jan 2025 20:29:34 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/tools/ncat/</guid>
+      <description>&lt;p&gt;本文介绍使用ncat的用法。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

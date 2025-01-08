@@ -7,8 +7,43 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Sat, 28 Dec 2024 17:49:22 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 07 Jan 2025 22:10:10 +0800</lastBuildDate>
     <atom:link href="http://www.alvincat.top/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tcpdump软件的用法</title>
+      <link>http://www.alvincat.top/post/tools/tcpdump/</link>
+      <pubDate>Tue, 07 Jan 2025 22:10:10 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/tools/tcpdump/</guid>
+      <description>&lt;p&gt;本文介绍Tcpdump软件的用法。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ncat用法说明</title>
+      <link>http://www.alvincat.top/post/tools/ncat/</link>
+      <pubDate>Tue, 07 Jan 2025 20:29:34 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/tools/ncat/</guid>
+      <description>&lt;p&gt;本文介绍使用ncat的用法。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Nginx源码功能简介</title>
+      <link>http://www.alvincat.top/post/linux/nginx/nginx_introduction/</link>
+      <pubDate>Fri, 03 Jan 2025 13:21:21 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/linux/nginx/nginx_introduction/</guid>
+      <description>&lt;p&gt;本文对Nginx源码功能进行简要介绍。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>C&#43;&#43;新特性(C&#43;&#43;11及后续版本)</title>
+      <link>http://www.alvincat.top/post/cpp/cpp_new_features/</link>
+      <pubDate>Thu, 02 Jan 2025 21:06:18 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/cpp/cpp_new_features/</guid>
+      <description>&lt;p&gt;本文介绍C++ 11及后续版本中的新特性&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>线程</title>
+      <link>http://www.alvincat.top/post/linux/apue/threads/</link>
+      <pubDate>Thu, 02 Jan 2025 10:42:37 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/linux/apue/threads/</guid>
+      <description>&lt;p&gt;线程介绍相关功能的使用方法。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>树莓派系统的初始化</title>
       <link>http://www.alvincat.top/post/operating_system/raspberrypi/raspberrypi_getting_started/</link>
