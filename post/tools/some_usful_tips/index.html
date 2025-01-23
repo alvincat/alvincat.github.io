@@ -54,7 +54,7 @@
   <meta itemprop="description" content="本文主要是一些针对程序员入门的一些资料。">
   <meta itemprop="datePublished" content="2024-11-30T19:06:41+08:00">
   <meta itemprop="dateModified" content="2024-11-30T19:06:41+08:00">
-  <meta itemprop="wordCount" content="1163">
+  <meta itemprop="wordCount" content="1410">
   <meta itemprop="keywords" content="Tools">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="程序员入门必读">
@@ -148,7 +148,7 @@
         <div class="post-category">
             <a href="/categories/tools/"> Tools </a>
             </div>
-          <span class="more-meta"> 约 1163 字 </span>
+          <span class="more-meta"> 约 1410 字 </span>
           <span class="more-meta"> 预计阅读 3 分钟 </span>
         
       </div>
@@ -169,7 +169,8 @@
     <li><a href="#71-windows实用工具">7.1 windows实用工具</a></li>
     <li><a href="#72-绘图工具">7.2 绘图工具</a></li>
     <li><a href="#73-indent工具格式化代码">7.3 indent工具格式化代码</a></li>
-    <li><a href="#74-实用网站">7.4 实用网站</a></li>
+    <li><a href="#74-imagemagick给图片添加水印的方法">7.4 ImageMagick给图片添加水印的方法</a></li>
+    <li><a href="#75-实用网站">7.5 实用网站</a></li>
   </ul>
 </nav>
   </div>
@@ -271,7 +272,27 @@ XMind: 思维导图工具<br>
 </span></span><span class="line"><span class="cl">indent -kr -i8 hello.c <span class="c1">#将源代码格式化为内核编码风格</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="74-实用网站">7.4 实用网站</h1>
+</div><h1 id="74-imagemagick给图片添加水印的方法">7.4 ImageMagick给图片添加水印的方法</h1>
+<ol>
+<li>下载ImageMagick: <a href="https://imagemagick.org/script/download.php">ImageMagick下载地址</a></li>
+<li>添加ImageMagick的环境变量：将ImageMagick的安装完成后的二进制目录添加到系统path路径中。</li>
+<li>制作水印文件watermark.png，可以使用windows自带的mspaint制作。</li>
+<li>执行命令<code>composite -dissolve 30% -gravity south watermark.jpg input-file.jpg output-file.jpg</code>制作水印。</li>
+<li>也可以批量制作水印。例如下面shell脚本可以将当前目录下所有的jpg文件添加水印。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="k">for</span> pic in *.jpg<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    composite -dissolve 30% watermark.jpg <span class="nv">$pic</span> <span class="si">${</span><span class="nv">pic</span><span class="p">//.jpg</span><span class="si">}</span>-marked.jpg
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="75-实用网站">7.5 实用网站</h1>
 <p><a href="https://stackoverflow.com/questions/562303/the-definitive-c-book-guide-and-list">c语言编程书籍推荐</a><br>
 <a href="https://stackoverflow.com/questions/388242/the-definitive-c-book-guide-and-list">C++书籍推荐</a><br>
 <a href="https://wiki.osdev.org/Expanded_Main_Page">操作系统相关知识库</a><br>

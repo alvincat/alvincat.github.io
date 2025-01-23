@@ -7,14 +7,14 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Tue, 07 Jan 2025 22:10:10 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jan 2025 16:26:52 +0800</lastBuildDate>
     <atom:link href="http://www.alvincat.top/categories/tools/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Tcpdump软件的用法</title>
-      <link>http://www.alvincat.top/post/tools/tcpdump/</link>
-      <pubDate>Tue, 07 Jan 2025 22:10:10 +0800</pubDate>
-      <guid>http://www.alvincat.top/post/tools/tcpdump/</guid>
-      <description>&lt;p&gt;本文介绍Tcpdump软件的用法。&lt;/p&gt;</description>
+      <title>Linux网络相关工具的使用方法</title>
+      <link>http://www.alvincat.top/post/tools/network_tools/</link>
+      <pubDate>Thu, 09 Jan 2025 16:26:52 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/tools/network_tools/</guid>
+      <description>&lt;p&gt;本文介绍网络相关的工具的使用方法&lt;/p&gt;</description>
     </item>
     <item>
       <title>QT入门</title>

@@ -10,70 +10,84 @@
   
   <url>
     <loc>http://www.alvincat.top/</loc>
-    <lastmod>2025-01-07T22:10:10+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.alvincat.top/categories/</loc>
-    <lastmod>2025-01-07T22:10:10+08:00</lastmod>
+    <lastmod>2025-01-23T20:41:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://www.alvincat.top/post/</loc>
-    <lastmod>2025-01-07T22:10:10+08:00</lastmod>
+    <lastmod>2025-01-23T20:41:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.alvincat.top/post/tools/virtualbox_set_network_interface/</loc>
+    <lastmod>2025-01-23T20:41:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.alvincat.top/post/tools/iterview_questions/</loc>
+    <lastmod>2025-01-21T17:32:40+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.alvincat.top/categories/</loc>
+    <lastmod>2025-01-15T19:29:13+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.alvincat.top/tags/consistent_hash/</loc>
+    <lastmod>2025-01-15T19:29:13+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.alvincat.top/categories/storage/</loc>
+    <lastmod>2025-01-15T19:29:13+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://www.alvincat.top/tags/</loc>
-    <lastmod>2025-01-07T22:10:10+08:00</lastmod>
+    <lastmod>2025-01-15T19:29:13+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://www.alvincat.top/tags/tcpdump/</loc>
-    <lastmod>2025-01-07T22:10:10+08:00</lastmod>
+    <loc>http://www.alvincat.top/post/storage_system/consistent_hash/</loc>
+    <lastmod>2025-01-15T19:29:13+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://www.alvincat.top/post/tools/tcpdump/</loc>
-    <lastmod>2025-01-07T22:10:10+08:00</lastmod>
+    <loc>http://www.alvincat.top/post/storage_system/raft/</loc>
+    <lastmod>2025-01-15T15:49:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.alvincat.top/post/tools/network_tools/</loc>
+    <lastmod>2025-01-09T16:26:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://www.alvincat.top/categories/tools/</loc>
-    <lastmod>2025-01-07T22:10:10+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.alvincat.top/categories/linux/</loc>
-    <lastmod>2025-01-07T20:29:34+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.alvincat.top/post/tools/ncat/</loc>
-    <lastmod>2025-01-07T20:29:34+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.alvincat.top/tags/network/</loc>
-    <lastmod>2025-01-07T20:29:34+08:00</lastmod>
+    <lastmod>2025-01-09T16:26:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -95,6 +109,13 @@
   <url>
     <loc>http://www.alvincat.top/categories/cpp/</loc>
     <lastmod>2025-01-02T21:06:18+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.alvincat.top/categories/linux/</loc>
+    <lastmod>2025-01-02T10:42:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

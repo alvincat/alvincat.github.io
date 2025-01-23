@@ -7,21 +7,42 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Tue, 07 Jan 2025 22:10:10 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jan 2025 20:41:27 +0800</lastBuildDate>
     <atom:link href="http://www.alvincat.top/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Tcpdump软件的用法</title>
-      <link>http://www.alvincat.top/post/tools/tcpdump/</link>
-      <pubDate>Tue, 07 Jan 2025 22:10:10 +0800</pubDate>
-      <guid>http://www.alvincat.top/post/tools/tcpdump/</guid>
-      <description>&lt;p&gt;本文介绍Tcpdump软件的用法。&lt;/p&gt;</description>
+      <title>VirtualBox实现宿主机访问虚拟机以及虚拟机联网的方法</title>
+      <link>http://www.alvincat.top/post/tools/virtualbox_set_network_interface/</link>
+      <pubDate>Thu, 23 Jan 2025 20:41:27 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/tools/virtualbox_set_network_interface/</guid>
+      <description>&lt;p&gt;VirtualBox实现宿主机访问虚拟机以及虚拟机联网的方法。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>ncat用法说明</title>
-      <link>http://www.alvincat.top/post/tools/ncat/</link>
-      <pubDate>Tue, 07 Jan 2025 20:29:34 +0800</pubDate>
-      <guid>http://www.alvincat.top/post/tools/ncat/</guid>
-      <description>&lt;p&gt;本文介绍使用ncat的用法。&lt;/p&gt;</description>
+      <title>面试问题汇总</title>
+      <link>http://www.alvincat.top/post/tools/iterview_questions/</link>
+      <pubDate>Tue, 21 Jan 2025 17:32:40 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/tools/iterview_questions/</guid>
+      <description>&lt;p&gt;面试问题汇总&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>一致性哈希算法</title>
+      <link>http://www.alvincat.top/post/storage_system/consistent_hash/</link>
+      <pubDate>Wed, 15 Jan 2025 19:29:13 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/storage_system/consistent_hash/</guid>
+      <description>&lt;p&gt;本文介绍分布式系统中经典的一致性哈希算法。&lt;br&gt;&#xA;文章转载至：&lt;a href=&#34;https://developer.huawei.com/consumer/cn/forum/topic/0203810951415790238&#34;&gt;《16 张图解一致性哈希算法》作者：小林coding&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Raft协议</title>
+      <link>http://www.alvincat.top/post/storage_system/raft/</link>
+      <pubDate>Wed, 15 Jan 2025 15:22:33 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/storage_system/raft/</guid>
+      <description>&lt;p&gt;本文介绍raft协议。转载自：&lt;a href=&#34;https://github.com/maemual/raft-zh_cn&#34;&gt;https://github.com/maemual/raft-zh_cn&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Linux网络相关工具的使用方法</title>
+      <link>http://www.alvincat.top/post/tools/network_tools/</link>
+      <pubDate>Thu, 09 Jan 2025 16:26:52 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/tools/network_tools/</guid>
+      <description>&lt;p&gt;本文介绍网络相关的工具的使用方法&lt;/p&gt;</description>
     </item>
     <item>
       <title>Nginx源码功能简介</title>
@@ -94,11 +115,11 @@
       <description>&lt;p&gt;本文介绍Ceph系统的基本组成部分以及一些基本概念。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Storage_basic_knowledge</title>
+      <title>存储系统的基本概念</title>
       <link>http://www.alvincat.top/post/storage_system/storage_basic_knowledge/</link>
       <pubDate>Tue, 17 Dec 2024 17:49:33 +0800</pubDate>
       <guid>http://www.alvincat.top/post/storage_system/storage_basic_knowledge/</guid>
-      <description></description>
+      <description>&lt;p&gt;本文介绍存储基础知识。&lt;/p&gt;</description>
     </item>
     <item>
       <title>C&#43;&#43;中的部分关键字的用法</title>

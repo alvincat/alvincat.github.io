@@ -7,20 +7,13 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Tue, 07 Jan 2025 22:10:10 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 15 Jan 2025 19:29:13 +0800</lastBuildDate>
     <atom:link href="http://www.alvincat.top/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Tcpdump</title>
-      <link>http://www.alvincat.top/tags/tcpdump/</link>
-      <pubDate>Tue, 07 Jan 2025 22:10:10 +0800</pubDate>
-      <guid>http://www.alvincat.top/tags/tcpdump/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Network</title>
-      <link>http://www.alvincat.top/tags/network/</link>
-      <pubDate>Tue, 07 Jan 2025 20:29:34 +0800</pubDate>
-      <guid>http://www.alvincat.top/tags/network/</guid>
+      <title>Consistent_hash</title>
+      <link>http://www.alvincat.top/tags/consistent_hash/</link>
+      <pubDate>Wed, 15 Jan 2025 19:29:13 +0800</pubDate>
+      <guid>http://www.alvincat.top/tags/consistent_hash/</guid>
       <description></description>
     </item>
     <item>

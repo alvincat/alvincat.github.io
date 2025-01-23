@@ -341,35 +341,35 @@ github规定必须将网站内容放在形如username.github.io的代码仓中�
 <ol>
 <li>按照setting -&gt; Developer Settings -&gt; Personal access tokens的顺序打开创建token界面。如下图所示。</li>
 </ol>
-<p><img src="/web_image/hugo/hugo_github_actions_01.png" alt="创建personal access token"></p>
+<p><img src="/web_image/tools/hugo/hugo_github_actions_01.png" alt="创建personal access token"></p>
 <ol start="2">
 <li>按照Tokens(classic) -&gt; Generate new token -&gt; Generate new token(classic)的顺序创建token。如下图所示：</li>
 </ol>
-<p><img src="/web_image/hugo/hugo_github_actions_02.png" alt="创建personal access token"></p>
+<p><img src="/web_image/tools/hugo/hugo_github_actions_02.png" alt="创建personal access token"></p>
 <ol start="3">
 <li>在创建token的界面勾选【workflow]按钮。如下图所示：</li>
 </ol>
-<p><img src="/web_image/hugo/hugo_github_actions_03.png" alt="创建personal access token"></p>
+<p><img src="/web_image/tools/hugo/hugo_github_actions_03.png" alt="创建personal access token"></p>
 <ol start="4">
 <li>点击创建后，就会生成一串token编码。此时需要复制这串编码，后面添加的时候需要使用。</li>
 </ol>
-<p><img src="/web_image/hugo/hugo_github_actions_04.png" alt="创建personal access token"></p>
+<p><img src="/web_image/tools/hugo/hugo_github_actions_04.png" alt="创建personal access token"></p>
 <h2 id="42-添加secrets">4.2 添加secrets</h2>
 <ol>
 <li>进入网站工程的setting界面，如下图所示：</li>
 </ol>
-<p><img src="/web_image/hugo/hugo_github_actions_05.png" alt="添加secrets"></p>
-<p><img src="/web_image/hugo/hugo_github_actions_06.png" alt="添加secrets"></p>
+<p><img src="/web_image/tools/hugo/hugo_github_actions_05.png" alt="添加secrets"></p>
+<p><img src="/web_image/tools/hugo/hugo_github_actions_06.png" alt="添加secrets"></p>
 <ol start="2">
 <li>
 <p>进入添加secret界面，填写secretname和步骤5.1生成的token。(<strong>注意：</strong> 此处的secret name后续在配置文件中会用到。）如下图所示：
-<img src="/web_image/hugo/hugo_github_actions_07.png" alt="添加secrets"></p>
+<img src="/web_image/tools/hugo/hugo_github_actions_07.png" alt="添加secrets"></p>
 </li>
 <li>
 <p>添加完成后就会提示添加成功。如下图所示：</p>
 </li>
 </ol>
-<p><img src="/web_image/hugo/hugo_github_actions_08.png" alt="添加secrets"></p>
+<p><img src="/web_image/tools/hugo/hugo_github_actions_08.png" alt="添加secrets"></p>
 <h2 id="43-添加active自动化配置文件">4.3 添加active自动化配置文件</h2>
 <p>在网站工程根目录创建目录<code>.github/workflows/</code>，然后再该目录下创建一个yml文件，文件名自定。此处文件名为hugo.yml。文件内容如下：</p>
 <div class="highlight"><div class="chroma">
@@ -450,7 +450,7 @@ github规定必须将网站内容放在形如username.github.io的代码仓中�
 </div>
 </div><p>该配置文件的作用就是当私有库MyGithubWebsite的master分支代码提交后，将public目录的内容推送到username.github.io的gh-pages分支。可以通过查看MyGithubWebsite的action页面确认，该配置是否生效。
 如下图所示：
-<img src="/web_image/hugo/hugo_github_actions_09.png" alt="查看action运行情况"></p>
+<img src="/web_image/tools/hugo/hugo_github_actions_09.png" alt="查看action运行情况"></p>
 <p>其实该功能也可以手动完成，当本地调试完成后，将public的内容推送到username.github.io的gh-pages分支。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -473,7 +473,7 @@ github规定必须将网站内容放在形如username.github.io的代码仓中�
 </div><h2 id="44-修改usernamegithubio代码仓的page页面关联分支">4.4 修改username.github.io代码仓的page页面关联分支</h2>
 <p>当步骤5.4更新成功后，就会将生成的网站内容推送到username.github.io代码仓的gh-pages分支。因此需要将username.github.io代码仓的page关联分支切换为gh-pages。</p>
 <p>修改方法如下：<br>
-<img src="/web_image/hugo/hugo_github_actions_10.png" alt="修改page关联的分支"></p>
+<img src="/web_image/tools/hugo/hugo_github_actions_10.png" alt="修改page关联的分支"></p>
 <h1 id="5-优化方案">5 优化方案</h1>
 <p>步骤4中的方案有个问题是：需要在两个代码仓中均存放public目录中的文件（好处是可以自动更新网站内容）。<br>
 只保存一份public文件的方法：</p>
