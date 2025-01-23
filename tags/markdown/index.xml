@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Markdown on Alvincat&#39;s Blog</title>
+    <link>http://www.alvincat.top/tags/markdown/</link>
+    <description>Recent content in Markdown on Alvincat&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>alvincat</copyright>
+    <lastBuildDate>Sat, 30 Nov 2024 10:48:47 +0800</lastBuildDate>
+    <atom:link href="http://www.alvincat.top/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Markdown使用技巧</title>
+      <link>http://www.alvincat.top/post/tools/markdown_usful_tips/</link>
+      <pubDate>Sat, 30 Nov 2024 10:48:47 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/tools/markdown_usful_tips/</guid>
+      <description>&lt;p&gt;本文介绍markdown的语法和一些实用技巧。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

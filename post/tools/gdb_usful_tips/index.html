@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>GDB常用命令和一些实用方法 - Alvincat&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="alvincat" /><meta name="description" content="本文介绍gdb一些常用命令。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.138.0 with theme even" />
+
+
+<link rel="canonical" href="http://www.alvincat.top/post/tools/gdb_usful_tips/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f5a694fa8a6b263f05f575c19a1e180f4c9dd0ee7515e64585961f31d756a263.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:url" content="http://www.alvincat.top/post/tools/gdb_usful_tips/">
+  <meta property="og:site_name" content="Alvincat&#39;s Blog">
+  <meta property="og:title" content="GDB常用命令和一些实用方法">
+  <meta property="og:description" content="本文介绍gdb一些常用命令。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-11-29T16:31:59+08:00">
+    <meta property="article:modified_time" content="2024-11-29T16:31:59+08:00">
+    <meta property="article:tag" content="GDB">
+
+  <meta itemprop="name" content="GDB常用命令和一些实用方法">
+  <meta itemprop="description" content="本文介绍gdb一些常用命令。">
+  <meta itemprop="datePublished" content="2024-11-29T16:31:59+08:00">
+  <meta itemprop="dateModified" content="2024-11-29T16:31:59+08:00">
+  <meta itemprop="wordCount" content="1176">
+  <meta itemprop="keywords" content="GDB">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="GDB常用命令和一些实用方法">
+  <meta name="twitter:description" content="本文介绍gdb一些常用命令。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Alvincat&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a><a href="/contents/">
+        <li class="mobile-menu-item">目录</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Alvincat&#39;s Blog</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/contents/">目录</a>
+      </li>
+  </ul>
+</nav>
+
+    </header><main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">GDB常用命令和一些实用方法</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-11-29 </span>
+        <div class="post-category">
+            <a href="/categories/tools/"> Tools </a>
+            </div>
+          <span class="more-meta"> 约 1176 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-gdb的一些实用的文档">1 GDB的一些实用的文档</a></li>
+    <li><a href="#2-gdbinit文件的简单配置方法">2 gdbinit文件的简单配置方法</a></li>
+    <li><a href="#3-gdb常用命令">3 GDB常用命令</a>
+      <ul>
+        <li><a href="#31-界面配置">3.1 界面配置</a></li>
+        <li><a href="#32-单步执行">3.2 单步执行</a></li>
+        <li><a href="#33-断点调试">3.3 断点调试</a></li>
+        <li><a href="#34-观察点">3.4 观察点</a></li>
+        <li><a href="#35--断点观察点位置">3.5  断点/观察点位置</a></li>
+        <li><a href="#36-打印信息">3.6 打印信息</a></li>
+        <li><a href="#37-查看栈帧">3.7 查看栈帧</a></li>
+        <li><a href="#38-调试线程">3.8 调试线程</a></li>
+        <li><a href="#39-修改程序中的值">3.9 修改程序中的值</a></li>
+        <li><a href="#310-汇编运行">3.10 汇编运行</a></li>
+        <li><a href="#311-gdb打印c-stl中常见结构的内容的方法">3.11 GDB打印C++ STL中常见结构的内容的方法</a>
+          <ul>
+            <li><a href="#3111-通用方法">3.11.1 通用方法</a></li>
+            <li><a href="#3112-使用gdb脚本进行打印">3.11.2 使用gdb脚本进行打印</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文介绍gdb一些常用命令。</p>
+<h1 id="1-gdb的一些实用的文档">1 GDB的一些实用的文档</h1>
+<ul>
+<li><a href="https://darkdust.net/files/GDB%20Cheat%20Sheet.pdf">gdb cheat sheet</a></li>
+<li><a href="https://github.com/hellogcc/100-gdb-tips">100-gdb-tips</a></li>
+<li><a href="https://sourceware.org/gdb/current/onlinedocs/gdb.pdf">GDB User Manual</a></li>
+<li><a href="http://www.yolinux.com/TUTORIALS/GDB-Commands.html">GDB online</a></li>
+</ul>
+<h1 id="2-gdbinit文件的简单配置方法">2 gdbinit文件的简单配置方法</h1>
+<ol>
+<li>
+<p>在当前用户目录下创建文件：<code>touch ~/.gdbinit</code></p>
+</li>
+<li>
+<p>在<code>~/.gdbinit</code>文件中添加常用的gdb命令即可。常用的配置如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">directory /usr/src/glibc/glibc-2.27/ <span class="c1"># 指定源码所在目录</span>
+</span></span><span class="line"><span class="cl">layout src                           <span class="c1"># 显示源码模式</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> pagination off                   <span class="c1"># 输出信息较多时不会暂停输出</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> confirm off                      <span class="c1"># gdb退出时不显示提示信息</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h1 id="3-gdb常用命令">3 GDB常用命令</h1>
+<h2 id="31-界面配置">3.1 界面配置</h2>
+<table>
+  <thead>
+      <tr>
+          <th>命令</th>
+          <th>功能</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>layout src</td>
+          <td>显示源代码</td>
+      </tr>
+      <tr>
+          <td>layout asm</td>
+          <td>显示汇编代码</td>
+      </tr>
+      <tr>
+          <td>layout regs</td>
+          <td>显示寄存器内容</td>
+      </tr>
+      <tr>
+          <td>layout split</td>
+          <td>显示源代码和汇编窗口</td>
+      </tr>
+      <tr>
+          <td>layout next</td>
+          <td>显示下一个layout</td>
+      </tr>
+      <tr>
+          <td>layout prev</td>
+          <td>显示上一个layout</td>
+      </tr>
+      <tr>
+          <td>tui enable</td>
+          <td>显示layout窗口</td>
+      </tr>
+      <tr>
+          <td>tui disable</td>
+          <td>退出layout窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl + x -&gt; o</td>
+          <td>在多个窗口间切换</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="32-单步执行">3.2 单步执行</h2>
+<table>
+  <thead>
+      <tr>
+          <th>命令</th>
+          <th>功能</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>next/n</td>
+          <td>单步执行，不进入函数内部</td>
+      </tr>
+      <tr>
+          <td>step/s</td>
+          <td>单步执行，是函数则进入函数内部</td>
+      </tr>
+      <tr>
+          <td>until line-number</td>
+          <td>执行到指定行号</td>
+      </tr>
+      <tr>
+          <td>where</td>
+          <td>显示当前行号和当前所在的函数</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="33-断点调试">3.3 断点调试</h2>
+<table>
+  <thead>
+      <tr>
+          <th>命令</th>
+          <th>功能</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>break/b &lt;where&gt;</code></td>
+          <td>在函数入口设置断点</td>
+      </tr>
+      <tr>
+          <td><code>enable &lt;breakpoint&gt;</code></td>
+          <td>打开断点</td>
+      </tr>
+      <tr>
+          <td><code>disable &lt;breakpoint&gt;</code></td>
+          <td>关闭断点</td>
+      </tr>
+      <tr>
+          <td><code>delete &lt;breakpoint&gt;</code></td>
+          <td>删除断点</td>
+      </tr>
+      <tr>
+          <td>clear</td>
+          <td>删除所有断点</td>
+      </tr>
+      <tr>
+          <td><code>info breakpoints [n]</code></td>
+          <td>查看断点</td>
+      </tr>
+      <tr>
+          <td><code>break &lt;where&gt; if &lt;condition&gt;</code></td>
+          <td>设置条件断点</td>
+      </tr>
+  </tbody>
+</table>
+<p>示例:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 条件断点：第10行中，若变量i等于101则停止。</span>
+</span></span><span class="line"><span class="cl">b <span class="m">10</span> <span class="k">if</span> <span class="nv">i</span><span class="o">==</span><span class="m">101</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="34-观察点">3.4 观察点</h2>
+<table>
+  <thead>
+      <tr>
+          <th>命令</th>
+          <th>功能</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>watch &lt;where&gt;/variable</code></td>
+          <td>设置观察点</td>
+      </tr>
+      <tr>
+          <td><code>enable &lt;breakpoint&gt;</code></td>
+          <td>打开断点</td>
+      </tr>
+      <tr>
+          <td><code>disable &lt;breakpoint&gt;</code></td>
+          <td>关闭断点</td>
+      </tr>
+      <tr>
+          <td><code>delete &lt;breakpoint&gt;</code></td>
+          <td>删除断点</td>
+      </tr>
+      <tr>
+          <td><code>info watchpoints [n]</code></td>
+          <td>查看观察点</td>
+      </tr>
+      <tr>
+          <td><code>watch &lt;where&gt; if &lt;condition&gt;</code></td>
+          <td>设置条件观察点</td>
+      </tr>
+      <tr>
+          <td><code>rwatch/rw variable</code></td>
+          <td>设置读观察点</td>
+      </tr>
+      <tr>
+          <td><code>awatch/aw variable</code></td>
+          <td>设置读写观察点</td>
+      </tr>
+      <tr>
+          <td><code>watch expr thread threadnum</code></td>
+          <td>设置指定线程上的观察点</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="35--断点观察点位置">3.5  断点/观察点位置</h2>
+<table>
+  <thead>
+      <tr>
+          <th>命令</th>
+          <th>功能</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>function_name</td>
+          <td>函数名</td>
+      </tr>
+      <tr>
+          <td>line_num</td>
+          <td>行号</td>
+      </tr>
+      <tr>
+          <td>filenaem:line_num</td>
+          <td>文件+行号</td>
+      </tr>
+      <tr>
+          <td>addr</td>
+          <td>地址</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="36-打印信息">3.6 打印信息</h2>
+<table>
+  <thead>
+      <tr>
+          <th>命令</th>
+          <th>功能</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>print &lt;what&gt;</code></td>
+          <td>打印指定内容</td>
+      </tr>
+      <tr>
+          <td>print /x $rbp-0x8</td>
+          <td>将计算结果按照16进制输出</td>
+      </tr>
+      <tr>
+          <td>print /x ($ebp+8)</td>
+          <td>将ebp+8内存中的内容按照16进制输出</td>
+      </tr>
+      <tr>
+          <td>info proc mappings</td>
+          <td>打印内存映射信息</td>
+      </tr>
+      <tr>
+          <td><code>x/nfu 0xaddr</code></td>
+          <td>Examine the contents of memory and specify formatting.<br>n: number of display items to print<br>f: specify the format for the output<br>u: specify the size of the data unit (eg. byte, word, &hellip;)<br>Example: x/4dw var</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>
+<p>n：输出单元的个数。</p>
+</li>
+<li>
+<p>f：是输出格式。比如 x 是以16进制形式输出， o 是以8进制形式输出,等等。</p>
+</li>
+<li>
+<p>u：标明一个单元的长度。</p>
+<ul>
+<li>
+<p>b 是一个Byte(8 bit)</p>
+</li>
+<li>
+<p>h 是两个Byte （halfword）</p>
+</li>
+<li>
+<p>w 是四个Byte （word）</p>
+</li>
+<li>
+<p>g 是八个Byte （giant word）。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="37-查看栈帧">3.7 查看栈帧</h2>
+<table>
+  <thead>
+      <tr>
+          <th>命令</th>
+          <th>功能</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>backtrace/bt</td>
+          <td>打印栈帧</td>
+      </tr>
+      <tr>
+          <td><code>frame/f &lt;frame#&gt;</code></td>
+          <td>显示指定栈帧</td>
+      </tr>
+      <tr>
+          <td>info frame</td>
+          <td>显示当前栈帧的信息</td>
+      </tr>
+      <tr>
+          <td>info locals</td>
+          <td>显示当前帧的局部变量信息</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="38-调试线程">3.8 调试线程</h2>
+<table>
+  <thead>
+      <tr>
+          <th>命令</th>
+          <th>功能</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>set scheduler-locking on</td>
+          <td>只允许一个线程运行</td>
+      </tr>
+      <tr>
+          <td>set follow-fork-mode child</td>
+          <td>调试子进程</td>
+      </tr>
+      <tr>
+          <td>set detach-on-fork off</td>
+          <td>调试父子进程</td>
+      </tr>
+      <tr>
+          <td>show scheduler-locking</td>
+          <td>查看当前的调试模式</td>
+      </tr>
+      <tr>
+          <td>info threads</td>
+          <td>查看进程中的线程信息</td>
+      </tr>
+      <tr>
+          <td><code>thread &lt;thread#&gt;</code></td>
+          <td>切换调试线程</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>温馨提示</strong>：<br>
+使用线程的调试模式，需要先使用start/run将程序运行起来后才可以设置。否则会提示<code>Target 'exec' cannot support this command</code>错误。</p>
+<h2 id="39-修改程序中的值">3.9 修改程序中的值</h2>
+<table>
+  <thead>
+      <tr>
+          <th>命令</th>
+          <th>功能</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>set var  &lt;variable_name&gt;=&lt;value&gt;</code></td>
+          <td>修改变量的值</td>
+      </tr>
+      <tr>
+          <td><code>return &lt;expression&gt;</code></td>
+          <td>强制将当前函数按照指定值返回</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="310-汇编运行">3.10 汇编运行</h2>
+<table>
+  <thead>
+      <tr>
+          <th>命令</th>
+          <th>功能</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>info line number</td>
+          <td>显示指定位置的汇编代码</td>
+      </tr>
+      <tr>
+          <td>stepi/si</td>
+          <td>单步运行汇编指令</td>
+      </tr>
+      <tr>
+          <td>nexti/ni</td>
+          <td>单步运行汇编指令</td>
+      </tr>
+      <tr>
+          <td>disassemble 0xstart 0xend</td>
+          <td>反汇编指定地址的代码</td>
+      </tr>
+      <tr>
+          <td>info registers</td>
+          <td>显示当前寄存器的值</td>
+      </tr>
+      <tr>
+          <td>info registers rip</td>
+          <td>仅显示pc的值</td>
+      </tr>
+      <tr>
+          <td>info registers rbp rsp</td>
+          <td>仅显示rbp, rsp的值</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="311-gdb打印c-stl中常见结构的内容的方法">3.11 GDB打印C++ STL中常见结构的内容的方法</h2>
+<h3 id="3111-通用方法">3.11.1 通用方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">//vector&lt;int&gt; <span class="nv">vec</span> <span class="o">=</span> <span class="o">{</span>1, 2, 3, 4, 5<span class="o">}</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> print *<span class="o">(</span>vec._M_impl._M_start<span class="o">)</span>@vec.size<span class="o">()</span>
+</span></span><span class="line"><span class="cl"> print *<span class="o">(</span>vec._M_impl._M_start<span class="o">)</span>@n   	       //print first n element
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3112-使用gdb脚本进行打印">3.11.2 使用gdb脚本进行打印</h3>
+<p>使用方法见文章：<a href="/post/tools/gdb_print_stl_tool">GDB打印STL中各种容器的内容的方法</a></p>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/gdb/">GDB</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/tools/markdown_usful_tips/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Markdown使用技巧</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/data_structure/tree/binary_tree_create/">
+            <span class="next-text nav-default">创建二叉树的方法</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:alvincat@126.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.google.com" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/alvincat" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://www.douban.com" class="iconfont icon-douban" title="douban"></a>
+      <a href="https://www.bilibili.com" class="iconfont icon-bilibili" title="bilibili"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>alvincat</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

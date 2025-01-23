@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vector on Alvincat&#39;s Blog</title>
+    <link>http://www.alvincat.top/tags/vector/</link>
+    <description>Recent content in Vector on Alvincat&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>alvincat</copyright>
+    <lastBuildDate>Fri, 13 Dec 2024 22:45:13 +0800</lastBuildDate>
+    <atom:link href="http://www.alvincat.top/tags/vector/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vector</title>
+      <link>http://www.alvincat.top/post/cpp/stl/vector/</link>
+      <pubDate>Fri, 13 Dec 2024 22:45:13 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/cpp/stl/vector/</guid>
+      <description>&lt;p&gt;本文总结vector的原理和使用方法。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

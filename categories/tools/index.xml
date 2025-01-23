@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tools on Alvincat&#39;s Blog</title>
+    <link>http://www.alvincat.top/categories/tools/</link>
+    <description>Recent content in Tools on Alvincat&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>alvincat</copyright>
+    <lastBuildDate>Thu, 09 Jan 2025 16:26:52 +0800</lastBuildDate>
+    <atom:link href="http://www.alvincat.top/categories/tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux网络相关工具的使用方法</title>
+      <link>http://www.alvincat.top/post/tools/network_tools/</link>
+      <pubDate>Thu, 09 Jan 2025 16:26:52 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/tools/network_tools/</guid>
+      <description>&lt;p&gt;本文介绍网络相关的工具的使用方法&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>QT入门</title>
+      <link>http://www.alvincat.top/post/tools/qt_usful_tips/</link>
+      <pubDate>Sun, 15 Dec 2024 14:40:46 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/tools/qt_usful_tips/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>GDB打印C&#43;&#43; STL容器中的内容的方法</title>
+      <link>http://www.alvincat.top/post/tools/gdb_print_stl_tool/</link>
+      <pubDate>Fri, 13 Dec 2024 22:15:25 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/tools/gdb_print_stl_tool/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>程序员入门必读</title>
+      <link>http://www.alvincat.top/post/tools/some_usful_tips/</link>
+      <pubDate>Sat, 30 Nov 2024 19:06:41 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/tools/some_usful_tips/</guid>
+      <description>&lt;p&gt;本文主要是一些针对程序员入门的一些资料。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Markdown使用技巧</title>
+      <link>http://www.alvincat.top/post/tools/markdown_usful_tips/</link>
+      <pubDate>Sat, 30 Nov 2024 10:48:47 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/tools/markdown_usful_tips/</guid>
+      <description>&lt;p&gt;本文介绍markdown的语法和一些实用技巧。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>GDB常用命令和一些实用方法</title>
+      <link>http://www.alvincat.top/post/tools/gdb_usful_tips/</link>
+      <pubDate>Fri, 29 Nov 2024 16:31:59 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/tools/gdb_usful_tips/</guid>
+      <description>&lt;p&gt;本文介绍gdb一些常用命令。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Vim常用设置以及常用命令</title>
+      <link>http://www.alvincat.top/post/tools/vim_usful_setting/</link>
+      <pubDate>Tue, 19 Nov 2024 15:17:40 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/tools/vim_usful_setting/</guid>
+      <description>&lt;p&gt;本文记录vim常用参数的配置方法已经常用命令。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Git常用命令</title>
+      <link>http://www.alvincat.top/post/tools/git_commond/</link>
+      <pubDate>Thu, 14 Nov 2024 17:13:30 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/tools/git_commond/</guid>
+      <description>&lt;p&gt;本文记录Git常用命令。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

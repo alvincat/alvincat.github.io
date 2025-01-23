@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Linux系统中进程打印堆栈的原理 - Alvincat&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="alvincat" /><meta name="description" content="本文介绍进程打印堆栈的原理。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.138.0 with theme even" />
+
+
+<link rel="canonical" href="http://www.alvincat.top/post/linux/backtrace/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f5a694fa8a6b263f05f575c19a1e180f4c9dd0ee7515e64585961f31d756a263.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:url" content="http://www.alvincat.top/post/linux/backtrace/">
+  <meta property="og:site_name" content="Alvincat&#39;s Blog">
+  <meta property="og:title" content="Linux系统中进程打印堆栈的原理">
+  <meta property="og:description" content="本文介绍进程打印堆栈的原理。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-12-12T16:48:23+08:00">
+    <meta property="article:modified_time" content="2024-12-12T16:48:23+08:00">
+    <meta property="article:tag" content="ELF">
+    <meta property="article:tag" content="Backtrace">
+
+  <meta itemprop="name" content="Linux系统中进程打印堆栈的原理">
+  <meta itemprop="description" content="本文介绍进程打印堆栈的原理。">
+  <meta itemprop="datePublished" content="2024-12-12T16:48:23+08:00">
+  <meta itemprop="dateModified" content="2024-12-12T16:48:23+08:00">
+  <meta itemprop="wordCount" content="583">
+  <meta itemprop="keywords" content="ELF,Backtrace">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Linux系统中进程打印堆栈的原理">
+  <meta name="twitter:description" content="本文介绍进程打印堆栈的原理。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Alvincat&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a><a href="/contents/">
+        <li class="mobile-menu-item">目录</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Alvincat&#39;s Blog</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/contents/">目录</a>
+      </li>
+  </ul>
+</nav>
+
+    </header><main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Linux系统中进程打印堆栈的原理</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-12-12 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            </div>
+          <span class="more-meta"> 约 583 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#11-涉及结构体">1.1 涉及结构体</a></li>
+        <li><a href="#12-涉及接口">1.2 涉及接口</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文介绍进程打印堆栈的原理。</p>
+<h2 id="11-涉及结构体">1.1 涉及结构体</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">dl_phdr_info</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">ElfW</span><span class="p">(</span><span class="n">Addr</span><span class="p">)</span>        <span class="n">dlpi_addr</span><span class="p">;</span>  <span class="cm">/* Base address of object */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">char</span>       <span class="o">*</span><span class="n">dlpi_name</span><span class="p">;</span>  <span class="cm">/* (Null-terminated) name of object */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="nf">ElfW</span><span class="p">(</span><span class="n">Phdr</span><span class="p">)</span> <span class="o">*</span><span class="n">dlpi_phdr</span><span class="p">;</span>  <span class="cm">/* Pointer to array of ELF program headers for this object */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">ElfW</span><span class="p">(</span><span class="n">Half</span><span class="p">)</span>        <span class="n">dlpi_phnum</span><span class="p">;</span> <span class="cm">/* # of items in dlpi_phdr */</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="cm">/* The following fields were added in glibc 2.4, after the first version of this structure was available.  Check the size
+</span></span></span><span class="line"><span class="cl"><span class="cm">    argument passed to the dl_iterate_phdr callback to determine whether or not each later member is available.  */</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">dlpi_adds</span><span class="p">;</span>  <span class="cm">/* Incremented when a new object may have been added */</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">dlpi_subs</span><span class="p">;</span> <span class="cm">/* Incremented when an object may have been removed */</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">size_t</span> <span class="n">dlpi_tls_modid</span><span class="p">;</span> <span class="cm">/* If there is a PT_TLS segment, its module ID as used in TLS relocations, else zero */</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span>  <span class="o">*</span><span class="n">dlpi_tls_data</span><span class="p">;</span> <span class="cm">/* The address of the calling thread&#39;s instance of this module&#39;s PT_TLS segment, if it has
+</span></span></span><span class="line"><span class="cl"><span class="cm">                    one and it has been allocated in the calling thread, otherwise a null pointer */</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Elf32_Word</span>  <span class="n">p_type</span><span class="p">;</span>    <span class="cm">/* Segment type */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Elf32_Off</span>   <span class="n">p_offset</span><span class="p">;</span>  <span class="cm">/* Segment file offset */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Elf32_Addr</span>  <span class="n">p_vaddr</span><span class="p">;</span>   <span class="cm">/* Segment virtual address */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Elf32_Addr</span>  <span class="n">p_paddr</span><span class="p">;</span>   <span class="cm">/* Segment physical address */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Elf32_Word</span>  <span class="n">p_filesz</span><span class="p">;</span>  <span class="cm">/* Segment size in file */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Elf32_Word</span>  <span class="n">p_memsz</span><span class="p">;</span>   <span class="cm">/* Segment size in memory */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Elf32_Word</span>  <span class="n">p_flags</span><span class="p">;</span>   <span class="cm">/* Segment flags */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Elf32_Word</span>  <span class="n">p_align</span><span class="p">;</span>   <span class="cm">/* Segment alignment */</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">Elf32_Phdr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span>  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Elf64_Word</span>    <span class="n">st_name</span><span class="p">;</span>     <span class="cm">/* Symbol name */</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">st_info</span><span class="p">;</span>     <span class="cm">/* Symbol type and binding */</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">st_other</span><span class="p">;</span>    <span class="cm">/* Symbol visibility */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Elf64_Section</span> <span class="n">st_shndx</span><span class="p">;</span>    <span class="cm">/* Section index */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Elf64_Addr</span>    <span class="n">st_value</span><span class="p">;</span>    <span class="cm">/* Symbol value */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Elf64_Xword</span>   <span class="n">st_size</span><span class="p">;</span>     <span class="cm">/* Symbol size */</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">Elf64_Sym</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">dli_fname</span><span class="p">;</span>  <span class="cm">/* Pathname of shared object that contains address */</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span>       <span class="o">*</span><span class="n">dli_fbase</span><span class="p">;</span>  <span class="cm">/* Base address at which shared object is loaded */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">dli_sname</span><span class="p">;</span>  <span class="cm">/* Name of symbol whose definition overlaps addr */</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span>       <span class="o">*</span><span class="n">dli_saddr</span><span class="p">;</span>  <span class="cm">/* Exact address of symbol named in dli_sname */</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">Dl_info</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">size_t</span> <span class="n">dls_size</span><span class="p">;</span>           <span class="cm">/* Size in bytes of the whole buffer */</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">dls_cnt</span><span class="p">;</span>      <span class="cm">/* Number of elements in &#39;dls_serpath&#39; */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Dl_serpath</span> <span class="n">dls_serpath</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="cm">/* Actually longer, &#39;dls_cnt&#39; elements */</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">Dl_serinfo</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="o">*</span><span class="n">dls_name</span><span class="p">;</span>            <span class="cm">/* Name of library search path directory */</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">dls_flags</span><span class="p">;</span>    <span class="cm">/* Indicates where this directory came from */</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">Dl_serpath</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">link_map</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">ElfW</span><span class="p">(</span><span class="n">Addr</span><span class="p">)</span> <span class="n">l_addr</span><span class="p">;</span>  <span class="cm">/* Difference between the address in the ELF file and the address in memory */</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span>      <span class="o">*</span><span class="n">l_name</span><span class="p">;</span>  <span class="cm">/* Absolute pathname where object was found */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">ElfW</span><span class="p">(</span><span class="n">Dyn</span><span class="p">)</span> <span class="o">*</span><span class="n">l_ld</span><span class="p">;</span>    <span class="cm">/* Dynamic section of the shared object */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="n">link_map</span> <span class="o">*</span><span class="n">l_next</span><span class="p">,</span> <span class="o">*</span><span class="n">l_prev</span><span class="p">;</span> <span class="cm">/* Chain of loaded objects */</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Plus additional fields private to the implementation */</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="12-涉及接口">1.2 涉及接口</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;dlfcn.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">int</span> <span class="nf">dl_iterate_phdr</span><span class="p">(</span><span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">callback</span><span class="p">)(</span><span class="k">struct</span> <span class="n">dl_phdr_info</span> <span class="o">*</span><span class="n">info</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">data</span><span class="p">),</span> <span class="kt">void</span> <span class="o">*</span><span class="n">data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="o">*</span><span class="nf">dlopen</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">filename</span><span class="p">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="o">*</span><span class="nf">dlsym</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="kr">restrict</span> <span class="n">handle</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="kr">restrict</span> <span class="n">symbol</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">dlclose</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">handle</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">dladdr</span><span class="p">(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">addr</span><span class="p">,</span> <span class="n">Dl_info</span> <span class="o">*</span><span class="n">info</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">dlinfo</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="kr">restrict</span> <span class="n">handle</span><span class="p">,</span> <span class="kt">int</span> <span class="n">request</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="kr">restrict</span> <span class="n">info</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="nf">dlerror</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/elf/">ELF</a>
+          <a href="/tags/backtrace/">backtrace</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/cpp/cpp_interview_knowledge/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">C&#43;&#43;中一些易混淆的基础知识</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/linux/linux_some_typical_problem/">
+            <span class="next-text nav-default">并发编程中常见的问题</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:alvincat@126.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.google.com" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/alvincat" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://www.douban.com" class="iconfont icon-douban" title="douban"></a>
+      <a href="https://www.bilibili.com" class="iconfont icon-bilibili" title="bilibili"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>alvincat</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

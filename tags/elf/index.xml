@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ELF on Alvincat&#39;s Blog</title>
+    <link>http://www.alvincat.top/tags/elf/</link>
+    <description>Recent content in ELF on Alvincat&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>alvincat</copyright>
+    <lastBuildDate>Thu, 12 Dec 2024 16:48:23 +0800</lastBuildDate>
+    <atom:link href="http://www.alvincat.top/tags/elf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux系统中进程打印堆栈的原理</title>
+      <link>http://www.alvincat.top/post/linux/backtrace/</link>
+      <pubDate>Thu, 12 Dec 2024 16:48:23 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/linux/backtrace/</guid>
+      <description>&lt;p&gt;本文介绍进程打印堆栈的原理。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>排序 on Alvincat&#39;s Blog</title>
+    <link>http://www.alvincat.top/tags/%E6%8E%92%E5%BA%8F/</link>
+    <description>Recent content in 排序 on Alvincat&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>alvincat</copyright>
+    <lastBuildDate>Mon, 02 Dec 2024 15:39:46 +0800</lastBuildDate>
+    <atom:link href="http://www.alvincat.top/tags/%E6%8E%92%E5%BA%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>回溯算法</title>
+      <link>http://www.alvincat.top/post/algorithm/backtracking_algorithm/</link>
+      <pubDate>Mon, 02 Dec 2024 15:39:46 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/algorithm/backtracking_algorithm/</guid>
+      <description>&lt;p&gt;本文讲解回溯算法的原理和具体实现。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>堆排序的原理与实现</title>
+      <link>http://www.alvincat.top/post/algorithm/heap_sort/</link>
+      <pubDate>Mon, 02 Dec 2024 15:38:46 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/algorithm/heap_sort/</guid>
+      <description>&lt;p&gt;本文主要是讲解堆排序的原理和具体实现方法。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>排序算法的比较</title>
+      <link>http://www.alvincat.top/post/algorithm/sort_summary/</link>
+      <pubDate>Mon, 02 Dec 2024 15:38:46 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/algorithm/sort_summary/</guid>
+      <description>&lt;p&gt;本文主要针对各种排序算法之间的特性进行比较。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
