@@ -55,7 +55,7 @@
   <meta itemprop="description" content="本文记录Git常用命令。">
   <meta itemprop="datePublished" content="2024-11-14T17:13:30+08:00">
   <meta itemprop="dateModified" content="2024-11-15T17:42:30+08:00">
-  <meta itemprop="wordCount" content="1193">
+  <meta itemprop="wordCount" content="1218">
   <meta itemprop="keywords" content="Git">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Git常用命令">
@@ -149,7 +149,7 @@
         <div class="post-category">
             <a href="/categories/tools/"> Tools </a>
             </div>
-          <span class="more-meta"> 约 1193 字 </span>
+          <span class="more-meta"> 约 1218 字 </span>
           <span class="more-meta"> 预计阅读 3 分钟 </span>
         
       </div>
@@ -188,11 +188,15 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git status <span class="c1"># 查看当前git状态</span>
 </span></span><span class="line"><span class="cl">git log    <span class="c1"># 查询修改记录</span>
 </span></span><span class="line"><span class="cl">git tag -l <span class="c1"># 查询tag</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># git log精简模式显示指定信息</span>
+</span></span><span class="line"><span class="cl">git log --pretty<span class="o">=</span>format:<span class="s2">&#34;%h,%an,%aI,%s&#34;</span> <span class="p">|</span> head
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="12-代码下载上传">1.2 代码下载上传</h2>
@@ -205,12 +209,14 @@
 </span><span class="lnt">5
 </span><span class="lnt">6
 </span><span class="lnt">7
+</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># down load source code</span>
 </span></span><span class="line"><span class="cl">git clone -b main git@github.com:alvincat/MyGithubWebsite.git MyWebsite
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">git submodule update --recursive <span class="c1"># update submodule</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># recurse update submodule</span>
+</span></span><span class="line"><span class="cl">git submodule update --init --recursive
 </span></span><span class="line"><span class="cl">git push 
 </span></span><span class="line"><span class="cl">git pull
 </span></span><span class="line"><span class="cl">git push --set-upstream origin gh_pages <span class="c1"># upload new branch</span>

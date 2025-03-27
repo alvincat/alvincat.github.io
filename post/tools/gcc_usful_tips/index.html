@@ -54,7 +54,7 @@
   <meta itemprop="description" content="GCC总结常用编译命令和常用内置函数。">
   <meta itemprop="datePublished" content="2024-12-14T19:44:49+08:00">
   <meta itemprop="dateModified" content="2024-12-14T19:44:49+08:00">
-  <meta itemprop="wordCount" content="459">
+  <meta itemprop="wordCount" content="807">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="GCC常用编译命令和常用内置函数">
   <meta name="twitter:description" content="GCC总结常用编译命令和常用内置函数。">
@@ -147,8 +147,8 @@
         <div class="post-category">
             <a href="/categories//">  </a>
             </div>
-          <span class="more-meta"> 约 459 字 </span>
-          <span class="more-meta"> 预计阅读 1 分钟 </span>
+          <span class="more-meta"> 约 807 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
     </header>
@@ -158,15 +158,28 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#1-gcc常用编译选项">1 GCC常用编译选项</a></li>
+    <li><a href="#1-gcc编译选项">1 GCC编译选项</a>
+      <ul>
+        <li><a href="#11-gcc常用编译选项">1.1 GCC常用编译选项</a></li>
+        <li><a href="#12-gcc的attribute功能">1.2 GCC的attribute功能</a>
+          <ul>
+            <li><a href="#121-aligned">1.2.1 aligned</a></li>
+            <li><a href="#122-packed">1.2.2 packed</a></li>
+            <li><a href="#123-section">1.2.3 section</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
     <li><a href="#2-gcc编译时使用asan的方法">2 gcc编译时使用asan的方法</a></li>
+    <li><a href="#3-gcc的">3 GCC的</a></li>
   </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
       <p>GCC总结常用编译命令和常用内置函数。</p>
-<h1 id="1-gcc常用编译选项">1 GCC常用编译选项</h1>
+<h1 id="1-gcc编译选项">1 GCC编译选项</h1>
+<h2 id="11-gcc常用编译选项">1.1 GCC常用编译选项</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -205,7 +218,91 @@
 </span></span><span class="line"><span class="cl">-Wall	打开所有警告信息
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="2-gcc编译时使用asan的方法">2 gcc编译时使用asan的方法</h1>
+</div><h2 id="12-gcc的attribute功能">1.2 GCC的attribute功能</h2>
+<h3 id="121-aligned">1.2.1 aligned</h3>
+<p>功能说明：该属性指定结构体变量或者变量的最小对齐长度，单位是字节。</p>
+<p>示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">x</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="nf">aligned</span> <span class="p">(</span><span class="mi">16</span><span class="p">)))</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="122-packed">1.2.2 packed</h3>
+<p>功能说明：该属性指定结构体变量或者变量的最小对齐长度：变量最小对齐长度为1字节，结构体变量的最少为1位，除非通过aligned属性执行最大值。</p>
+<p>使用示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">foo</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="n">packed</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="123-section">1.2.3 section</h3>
+<p><strong>attribute</strong>((section(&ldquo;name&rdquo;)))实现在编译时把某个函数/数据放到指定的内存区域。以下两种格式都是可以的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">__attribute__</span><span class="p">((</span><span class="nf">__section__</span><span class="p">(</span><span class="s">&#34;section_name&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="nf">__attribute__</span><span class="p">((</span><span class="nf">section</span><span class="p">(</span><span class="s">&#34;section_name&#34;</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">duart</span> <span class="n">a</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="nf">section</span> <span class="p">(</span><span class="s">&#34;DUART_A&#34;</span><span class="p">)))</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">duart</span> <span class="n">b</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="nf">section</span> <span class="p">(</span><span class="s">&#34;DUART_B&#34;</span><span class="p">)))</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">stack</span><span class="p">[</span><span class="mi">10000</span><span class="p">]</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="nf">section</span> <span class="p">(</span><span class="s">&#34;STACK&#34;</span><span class="p">)))</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">init_data</span> <span class="nf">__attribute__</span> <span class="p">((</span><span class="nf">section</span> <span class="p">(</span><span class="s">&#34;INITDATA&#34;</span><span class="p">)))</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Initialize stack pointer */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">init_sp</span><span class="p">(</span><span class="n">stack</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">stack</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Initialize initialized data */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">init_data</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">edata</span> <span class="o">-</span> <span class="o">&amp;</span><span class="n">data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Turn on the serial ports */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">init_duart</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">init_duart</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>参考文献：<br>
+<a href="https://gcc.gnu.org/onlinedocs/gcc-3.1.1/gcc/Variable-Attributes.html">GCC Specifying Attributes of Variables</a></p>
+<h1 id="2-gcc编译时使用asan的方法">2 gcc编译时使用asan的方法</h1>
 <ol>
 <li>环境安装和gcc版本对应的libasan版本。</li>
 <li>编译代码时添加<code>-fsanitize=address</code>参数。</li>
@@ -227,6 +324,7 @@
 <li>libasan4: gcc-7</li>
 <li>libasan5: gcc-8</li>
 </ul>
+<h1 id="3-gcc的">3 GCC的</h1>
     </div>
 
     

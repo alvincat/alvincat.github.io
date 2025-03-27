@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>信息的表示和处理 - Alvincat&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="alvincat" /><meta name="description" content="本文总结计算机中信息的表示和处理方法。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.138.0 with theme even" />
+
+
+<link rel="canonical" href="http://www.alvincat.top/post/linux/csapp/representing_manipulating_information/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f5a694fa8a6b263f05f575c19a1e180f4c9dd0ee7515e64585961f31d756a263.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:url" content="http://www.alvincat.top/post/linux/csapp/representing_manipulating_information/">
+  <meta property="og:site_name" content="Alvincat&#39;s Blog">
+  <meta property="og:title" content="信息的表示和处理">
+  <meta property="og:description" content="本文总结计算机中信息的表示和处理方法。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-03-07T22:13:37+08:00">
+    <meta property="article:modified_time" content="2025-03-07T22:13:37+08:00">
+
+  <meta itemprop="name" content="信息的表示和处理">
+  <meta itemprop="description" content="本文总结计算机中信息的表示和处理方法。">
+  <meta itemprop="datePublished" content="2025-03-07T22:13:37+08:00">
+  <meta itemprop="dateModified" content="2025-03-07T22:13:37+08:00">
+  <meta itemprop="wordCount" content="1098">
+  <meta itemprop="keywords" content="CSAPP">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="信息的表示和处理">
+  <meta name="twitter:description" content="本文总结计算机中信息的表示和处理方法。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Alvincat&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a><a href="/contents/">
+        <li class="mobile-menu-item">目录</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Alvincat&#39;s Blog</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/contents/">目录</a>
+      </li>
+  </ul>
+</nav>
+
+    </header><main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">信息的表示和处理</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2025-03-07 </span>
+        <div class="post-category">
+            <a href="/categories/csapp/"> CSAPP </a>
+            </div>
+          <span class="more-meta"> 约 1098 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#2-信息的处理和表示">2 信息的处理和表示</a>
+      <ul>
+        <li><a href="#21-信息的存储">2.1 信息的存储</a>
+          <ul>
+            <li><a href="#210-数字的编码">2.1.0 数字的编码</a></li>
+            <li><a href="#211-进制转换">2.1.1 进制转换</a></li>
+          </ul>
+        </li>
+        <li><a href="#22-整数的表示">2.2 整数的表示</a></li>
+        <li><a href="#23-整数的运算">2.3 整数的运算</a></li>
+        <li><a href="#24-浮点数">2.4 浮点数</a></li>
+        <li><a href="#25-总结">2.5 总结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文总结计算机中信息的表示和处理方法。</p>
+<h1 id="2-信息的处理和表示">2 信息的处理和表示</h1>
+<h2 id="21-信息的存储">2.1 信息的存储</h2>
+<h3 id="210-数字的编码">2.1.0 数字的编码</h3>
+<h4 id="2101-无符号数">2.1.0.1 无符号数</h4>
+<p>无符号数是基于传统的二进制标识法，可以表示大于等于0的数字。</p>
+<h4 id="2102-二进制补码twos-complement">2.1.0.2 二进制补码(two&rsquo;s-complement)</h4>
+<p>二进制补码用来表示有符号整数的常见形式。</p>
+<h4 id="2103-浮点数">2.1.0.3 浮点数</h4>
+<p>浮点数是以二进制为基数的实数科学计数法形式。</p>
+<h3 id="211-进制转换">2.1.1 进制转换</h3>
+<h4 id="2111-十进制的转换">2.1.1.1 十进制的转换</h4>
+<p>十进制转换为其他进制的方法均使用辗转相除法即可。例如：
+一个十进制数x要转换为十六进制数，可以表示为：x = q * 16 + r 。然后通过q反复进行这个过程，直到q为0为止。</p>
+<h5 id="21111-十进制转十六进制">2.1.1.1.1 十进制转十六进制</h5>
+<p>例如：</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: right">q</th>
+          <th style="text-align: right">subprocess</th>
+          <th style="text-align: left">r</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: right">314156 =</td>
+          <td style="text-align: right">19634 * 16 + 12</td>
+          <td style="text-align: left">(C)</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">19634 =</td>
+          <td style="text-align: right">1227  * 16 + 2</td>
+          <td style="text-align: left">(2)</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">1227 =</td>
+          <td style="text-align: right">76  * 16 + 11</td>
+          <td style="text-align: left">(B)</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">76 =</td>
+          <td style="text-align: right">4  * 16 + 12</td>
+          <td style="text-align: left">(C)</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">4 =</td>
+          <td style="text-align: right">0  * 16 + 4</td>
+          <td style="text-align: left">(4)</td>
+      </tr>
+  </tbody>
+</table>
+<p>最终得到结果：314156 = 0x4CB2C。</p>
+<h5 id="21112-十进制转二进制">2.1.1.1.2 十进制转二进制</h5>
+<p>例如：</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: right">q</th>
+          <th style="text-align: right">subprocess</th>
+          <th style="text-align: left">r</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: right">29 =</td>
+          <td style="text-align: right">14 * 2 + 1</td>
+          <td style="text-align: left">(1)</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">14 =</td>
+          <td style="text-align: right">7 * 2 + 0</td>
+          <td style="text-align: left">(0)</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">7 =</td>
+          <td style="text-align: right">3 * 2 + 1</td>
+          <td style="text-align: left">(1)</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">3 =</td>
+          <td style="text-align: right">1 * 2 + 1</td>
+          <td style="text-align: left">(1)</td>
+      </tr>
+      <tr>
+          <td style="text-align: right">1 =</td>
+          <td style="text-align: right">0 * 2 + 1</td>
+          <td style="text-align: left">(1)</td>
+      </tr>
+  </tbody>
+</table>
+<p>最终得到结果：29 = 11101。</p>
+<h4 id="2112-十六进制的转换">2.1.1.2 十六进制的转换</h4>
+<h5 id="21121-十六进制转十进制">2.1.1.2.1 十六进制转十进制</h5>
+<p>十六进制数转换为十进制数，只需要将对应的十六进制位乘以16的幂，然后相加即可。例如：
+$ 0xACB = 10 * 16^2 + 12 * 16^1 + 11 * 16^0 = 10 * 256 + 12 * 16 + 11 = 2763$</p>
+<h5 id="21122-十六进制转二进制">2.1.1.2.2 十六进制转二进制</h5>
+<p>十六机制和二进制之间的对应关系如下：
+每位十六机制数对应4bit二进制。可以使用如下两种方法进行转换。</p>
+<ol>
+<li>方法1：切分法。即使用如下对照表进行转换即可。</li>
+</ol>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Hex</th>
+          <th style="text-align: center">Bin</th>
+          <th style="text-align: left">Hex</th>
+          <th style="text-align: center">Bin</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">0</td>
+          <td style="text-align: center">0000</td>
+          <td style="text-align: left">8</td>
+          <td style="text-align: center">1000</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">1</td>
+          <td style="text-align: center">0001</td>
+          <td style="text-align: left">9</td>
+          <td style="text-align: center">1001</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">2</td>
+          <td style="text-align: center">0010</td>
+          <td style="text-align: left">A</td>
+          <td style="text-align: center">1010</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">3</td>
+          <td style="text-align: center">0011</td>
+          <td style="text-align: left">B</td>
+          <td style="text-align: center">1011</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4</td>
+          <td style="text-align: center">0100</td>
+          <td style="text-align: left">C</td>
+          <td style="text-align: center">1100</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">5</td>
+          <td style="text-align: center">0101</td>
+          <td style="text-align: left">D</td>
+          <td style="text-align: center">1101</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">6</td>
+          <td style="text-align: center">0110</td>
+          <td style="text-align: left">E</td>
+          <td style="text-align: center">1110</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">7</td>
+          <td style="text-align: center">0111</td>
+          <td style="text-align: left">F</td>
+          <td style="text-align: center">1111</td>
+      </tr>
+  </tbody>
+</table>
+<p>例如： 针对0x2DFB，转换方法如下：<br>
+2 -&gt; 0010<br>
+D -&gt; 1101<br>
+F -&gt; 1111<br>
+B -&gt; 1011<br>
+因此0x2DFB(H) = 0010 1101 1111 1011(B)</p>
+<ol start="2">
+<li>方法2：先将十六机制转换为十进制，然后再将十进制转换为二进制。<br>
+十六进制转换为十进制的方法见2.1.1.2.1节。<br>
+十进制转换为二进制的方法见2.1.1.1.2节。</li>
+</ol>
+<p><strong>温馨提示</strong>：推荐使用方法1，简单快捷。</p>
+<h4 id="2113-二进制的换换">2.1.1.3 二进制的换换</h4>
+<h5 id="21131-二进制转十进制">2.1.1.3.1 二进制转十进制</h5>
+<p>二进制转换为十进制的方法和十六进制转换为10进制的方法类似。例如：<br>
+$ 1111 1011 $<br>
+$ = 1 * 2^7 + 1 * 2^6 + 1 * 2^5 + 1 * 2^4 + 1 * 2^3 + 0 * 2^2 + 1 * 2^1 + 1 * 2^0 $<br>
+$ = 1 * 128 + 1 * 64 + 1 * 32 + 1 * 16 + 1 * 8 + 0 * 4 + 1 * 2 + 1 * 1 $<br>
+$ = 128 + 64 + 32 + 16 + 8 + 0 + 2 + 1 $<br>
+$ = 251 $</p>
+<h5 id="21132-二进制转十六进制">2.1.1.3.2 二进制转十六进制</h5>
+<p>二进制转换为十六进制的方法为十六进制转换为二进制的逆过程，方法参考2.1.1.2.2节。<br>
+唯一需要注意的地方就是：<br>
+若使用切分法二进制转换为十六进制的时候，需要从右往进行切分，每4bit二进制对应一位十六进制数。不足4位的在左侧补0。<br>
+例如：针对二进制数1 1010 1001 0001</p>
+<ol>
+<li>先将二进制数的数位补为4的整数倍。1 1010 1001 0001 -&gt; 0001 1010 1001 0001</li>
+<li>按照对照表进行转换：<br>
+0001 -&gt; 1(H)<br>
+1010 -&gt; A(H)<br>
+1001 -&gt; 9(H)<br>
+0001 -&gt; 1(H)</li>
+<li>最终得到结果为： 1 1010 1001 0001 = 0x1A91(H)</li>
+</ol>
+<h2 id="22-整数的表示">2.2 整数的表示</h2>
+<h2 id="23-整数的运算">2.3 整数的运算</h2>
+<h2 id="24-浮点数">2.4 浮点数</h2>
+<h2 id="25-总结">2.5 总结</h2>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags//"></a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/cpp/c_common_tips/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">C_common_tips</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/data_structure/tree/prefix_tree/">
+            <span class="next-text nav-default">前缀树</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:alvincat@126.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.google.com" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/alvincat" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://www.douban.com" class="iconfont icon-douban" title="douban"></a>
+      <a href="https://www.bilibili.com" class="iconfont icon-bilibili" title="bilibili"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>alvincat</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

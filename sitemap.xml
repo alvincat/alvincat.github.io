@@ -10,14 +10,49 @@
   
   <url>
     <loc>http://www.alvincat.top/</loc>
-    <lastmod>2025-01-23T21:41:39+08:00</lastmod>
+    <lastmod>2025-03-25T21:34:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.alvincat.top/post/cpp/c_common_tips/</loc>
+    <lastmod>2025-03-25T21:34:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.alvincat.top/categories/</loc>
+    <lastmod>2025-03-25T21:34:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.alvincat.top/categories/cpp/</loc>
+    <lastmod>2025-03-25T21:34:33+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://www.alvincat.top/post/</loc>
-    <lastmod>2025-01-23T21:41:39+08:00</lastmod>
+    <lastmod>2025-03-25T21:34:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.alvincat.top/categories/csapp/</loc>
+    <lastmod>2025-03-07T22:13:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.alvincat.top/post/linux/csapp/representing_manipulating_information/</loc>
+    <lastmod>2025-03-07T22:13:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -39,13 +74,6 @@
   <url>
     <loc>http://www.alvincat.top/post/tools/iterview_questions/</loc>
     <lastmod>2025-01-21T17:32:40+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.alvincat.top/categories/</loc>
-    <lastmod>2025-01-15T19:29:13+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -108,13 +136,6 @@
   
   <url>
     <loc>http://www.alvincat.top/post/cpp/cpp_new_features/</loc>
-    <lastmod>2025-01-02T21:06:18+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.alvincat.top/categories/cpp/</loc>
     <lastmod>2025-01-02T21:06:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

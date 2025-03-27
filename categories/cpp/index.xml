@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Thu, 02 Jan 2025 21:06:18 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 25 Mar 2025 21:34:33 +0800</lastBuildDate>
     <atom:link href="http://www.alvincat.top/categories/cpp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C_common_tips</title>
+      <link>http://www.alvincat.top/post/cpp/c_common_tips/</link>
+      <pubDate>Tue, 25 Mar 2025 21:34:33 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/cpp/c_common_tips/</guid>
+      <description></description>
+    </item>
     <item>
       <title>C&#43;&#43;新特性(C&#43;&#43;11及后续版本)</title>
       <link>http://www.alvincat.top/post/cpp/cpp_new_features/</link>

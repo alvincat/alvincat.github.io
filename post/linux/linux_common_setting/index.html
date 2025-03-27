@@ -55,7 +55,7 @@
   <meta itemprop="description" content="本文记录Linux系统常用的系统设置的方法。">
   <meta itemprop="datePublished" content="2024-11-19T15:48:31+08:00">
   <meta itemprop="dateModified" content="2024-11-19T15:48:31+08:00">
-  <meta itemprop="wordCount" content="306">
+  <meta itemprop="wordCount" content="448">
   <meta itemprop="keywords" content="Linux系统设置">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Linux系统常用的系统配置">
@@ -149,7 +149,7 @@
         <div class="post-category">
             <a href="/categories/linux/"> Linux </a>
             </div>
-          <span class="more-meta"> 约 306 字 </span>
+          <span class="more-meta"> 约 448 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
         
       </div>
@@ -169,7 +169,13 @@
         </li>
       </ul>
     </li>
-    <li><a href="#2-修改hostname">2 修改Hostname</a></li>
+    <li><a href="#2-修改hostname">2 修改Hostname</a>
+      <ul>
+        <li><a href="#21-通过命令修改">2.1 通过命令修改</a></li>
+        <li><a href="#22-修改配置文件">2.2 修改配置文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-linux修改终端的显示">3 Linux修改终端的显示</a></li>
   </ul>
 </nav>
   </div>
@@ -236,12 +242,32 @@
 </div><p>参考文档：<br>
 <a href="https://access.redhat.com/solutions/4896">How to enable core file dumps when an application crashes or segmentation faults</a></p>
 <h1 id="2-修改hostname">2 修改Hostname</h1>
+<h2 id="21-通过命令修改">2.1 通过命令修改</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">hostnamectl set-hostname new_host_name
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="22-修改配置文件">2.2 修改配置文件</h2>
+<p>修改配置文件<code>/etc/hostname</code>中的名字即可（需要root权限）。</p>
+<h1 id="3-linux修改终端的显示">3 Linux修改终端的显示</h1>
+<p>通过修改/etc/profile或者当前用户目录下的<code>PS1</code>变量既可以实现。<br>
+参考链接：  <a href="https://superuser.com/questions/601181/how-to-display-current-path-in-command-prompt-in-linuxs-sh-not-bash">How to display current path in command prompt in linux&rsquo;s sh (not bash)?</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># \u username</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># \h hostname</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># \W Name of present folder (not full path)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># \w current path(pull path)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div>

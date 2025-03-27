@@ -54,7 +54,7 @@
   <meta itemprop="description" content="本文介绍前缀树这种数据结构。">
   <meta itemprop="datePublished" content="2025-01-23T21:41:39+08:00">
   <meta itemprop="dateModified" content="2025-01-23T21:41:39+08:00">
-  <meta itemprop="wordCount" content="126">
+  <meta itemprop="wordCount" content="151">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="前缀树">
   <meta name="twitter:description" content="本文介绍前缀树这种数据结构。">
@@ -147,7 +147,7 @@
         <div class="post-category">
             <a href="/categories//">  </a>
             </div>
-          <span class="more-meta"> 约 126 字 </span>
+          <span class="more-meta"> 约 151 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
         
       </div>
@@ -156,14 +156,22 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
-    <nav id="TableOfContents"></nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-前缀树简介">1 前缀树简介</a></li>
+    <li><a href="#2-前缀树的代码实现">2 前缀树的代码实现</a></li>
+  </ul>
+</nav>
   </div>
 </div>
     <div class="post-content">
       <p>本文介绍前缀树这种数据结构。</p>
+<h1 id="1-前缀树简介">1 前缀树简介</h1>
 <p>前缀树是一种用于存储和查询字典或者集合中的字符串的数据结构。<br>
-前缀树和普通的二叉树不同的是，它的结点中存储的是从根结点到当前结点的路径上的字符。因此每个结点的子结点都拥有相同的前缀。<br>
-前缀树主要用于代码不全、拼写检查和IP路由。</p>
+前缀树和普通的二叉树不同的是，它的结点中存储的是从根结点到当前结点的路径上的字符。<br>
+因此每个结点的子结点都拥有相同的前缀，根结点表示空字符串。<br>
+前缀树主要用于代码补全、拼写检查和IP路由。</p>
+<h1 id="2-前缀树的代码实现">2 前缀树的代码实现</h1>
     </div>
 
     
@@ -172,7 +180,11 @@
           <a href="/tags//"></a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/linux/csapp/representing_manipulating_information/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">信息的表示和处理</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/post/tools/virtualbox_set_network_interface/">
             <span class="next-text nav-default">VirtualBox实现宿主机访问虚拟机以及虚拟机联网的方法</span>
             <span class="next-text nav-mobile">下一篇</span>
