@@ -10,7 +10,35 @@
   
   <url>
     <loc>http://www.alvincat.top/</loc>
-    <lastmod>2025-03-25T21:34:33+08:00</lastmod>
+    <lastmod>2025-03-28T20:38:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.alvincat.top/categories/</loc>
+    <lastmod>2025-03-28T20:38:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.alvincat.top/post/others/music/</loc>
+    <lastmod>2025-03-28T20:38:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.alvincat.top/categories/others/</loc>
+    <lastmod>2025-03-28T20:38:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.alvincat.top/post/</loc>
+    <lastmod>2025-03-28T20:38:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -23,21 +51,7 @@
   </url>
   
   <url>
-    <loc>http://www.alvincat.top/categories/</loc>
-    <lastmod>2025-03-25T21:34:33+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>http://www.alvincat.top/categories/cpp/</loc>
-    <lastmod>2025-03-25T21:34:33+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.alvincat.top/post/</loc>
     <lastmod>2025-03-25T21:34:33+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1018,6 +1032,13 @@
   
   <url>
     <loc>http://www.alvincat.top/index/content_tools/</loc>
+    <lastmod>2024-11-13T18:25:40+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.alvincat.top/index/content_others/</loc>
     <lastmod>2024-11-13T18:25:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

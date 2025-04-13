@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Tue, 25 Mar 2025 21:34:33 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 28 Mar 2025 20:38:00 +0800</lastBuildDate>
     <atom:link href="http://www.alvincat.top/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Music</title>
+      <link>http://www.alvincat.top/post/others/music/</link>
+      <pubDate>Fri, 28 Mar 2025 20:38:00 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/others/music/</guid>
+      <description></description>
+    </item>
     <item>
       <title>C_common_tips</title>
       <link>http://www.alvincat.top/post/cpp/c_common_tips/</link>
