@@ -10,7 +10,21 @@
   
   <url>
     <loc>http://www.alvincat.top/</loc>
-    <lastmod>2025-03-28T20:38:00+08:00</lastmod>
+    <lastmod>2025-05-22T20:44:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.alvincat.top/post/</loc>
+    <lastmod>2025-05-22T20:44:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.alvincat.top/post/tools/how_to_config_gtest/</loc>
+    <lastmod>2025-05-22T20:44:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -31,13 +45,6 @@
   
   <url>
     <loc>http://www.alvincat.top/categories/others/</loc>
-    <lastmod>2025-03-28T20:38:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.alvincat.top/post/</loc>
     <lastmod>2025-03-28T20:38:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

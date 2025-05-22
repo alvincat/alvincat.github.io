@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>配置gtest的方法 - Alvincat&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="alvincat" /><meta name="description" content="记录如何在Linux环境中使用gtest进行单元测试。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.138.0 with theme even" />
+
+
+<link rel="canonical" href="http://www.alvincat.top/post/tools/how_to_config_gtest/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f5a694fa8a6b263f05f575c19a1e180f4c9dd0ee7515e64585961f31d756a263.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:url" content="http://www.alvincat.top/post/tools/how_to_config_gtest/">
+  <meta property="og:site_name" content="Alvincat&#39;s Blog">
+  <meta property="og:title" content="配置gtest的方法">
+  <meta property="og:description" content="记录如何在Linux环境中使用gtest进行单元测试。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-05-22T20:44:30+08:00">
+    <meta property="article:modified_time" content="2025-05-22T20:44:30+08:00">
+
+  <meta itemprop="name" content="配置gtest的方法">
+  <meta itemprop="description" content="记录如何在Linux环境中使用gtest进行单元测试。">
+  <meta itemprop="datePublished" content="2025-05-22T20:44:30+08:00">
+  <meta itemprop="dateModified" content="2025-05-22T20:44:30+08:00">
+  <meta itemprop="wordCount" content="951">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="配置gtest的方法">
+  <meta name="twitter:description" content="记录如何在Linux环境中使用gtest进行单元测试。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Alvincat&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a><a href="/contents/">
+        <li class="mobile-menu-item">目录</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Alvincat&#39;s Blog</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/contents/">目录</a>
+      </li>
+  </ul>
+</nav>
+
+    </header><main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">配置gtest的方法</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2025-05-22 </span>
+        <div class="post-category">
+            <a href="/categories//">  </a>
+            </div>
+          <span class="more-meta"> 约 951 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-环境工具说明">1 环境&amp;工具说明</a></li>
+    <li><a href="#2-安装工具">2 安装工具</a>
+      <ul>
+        <li><a href="#21-安装cmake">2.1 安装cmake</a></li>
+        <li><a href="#22-安装gtest">2.2 安装gtest</a>
+          <ul>
+            <li><a href="#221-下载gtest">2.2.1 下载gtest</a></li>
+            <li><a href="#222-安装gtest">2.2.2 安装gtest</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#3-代码框架说明">3 代码框架说明</a>
+      <ul>
+        <li><a href="#31-addc">3.1 add.c</a></li>
+        <li><a href="#32-addh">3.2 add.h</a></li>
+        <li><a href="#33-test_maincpp">3.3 test_main.cpp</a></li>
+        <li><a href="#34-test_addcpp">3.4 test_add.cpp</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-编写cmake">4 编写cmake</a>
+      <ul>
+        <li><a href="#41-根目录下的cmakeliststxt">4.1 根目录下的CMakeLists.txt</a></li>
+        <li><a href="#42-test目录下的cmakelisttxt">4.2 test目录下的CMakeList.txt</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-编译代码">5 编译代码</a></li>
+    <li><a href="#6-运行测试用例代码">6 运行测试用例代码</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>记录如何在Linux环境中使用gtest进行单元测试。</p>
+<h1 id="1-环境工具说明">1 环境&amp;工具说明</h1>
+<p>环境工具版本说明：</p>
+<ol>
+<li>Linux系统版本：</li>
+<li>GCC版本：7.5.0</li>
+<li>G++版本：7.5.0</li>
+<li>CMake版本：3.10.2</li>
+<li>gtest版本：1.12.1</li>
+</ol>
+<h1 id="2-安装工具">2 安装工具</h1>
+<h2 id="21-安装cmake">2.1 安装cmake</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt update
+</span></span><span class="line"><span class="cl">sudo apt install build-essential cmake
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="22-安装gtest">2.2 安装gtest</h2>
+<h3 id="221-下载gtest">2.2.1 下载gtest</h3>
+<p>gtest下载链接：<a href="https://codeload.github.com/google/googletest/tar.gz/refs/tags/release-1.12.1">gtest-1.12.1</a></p>
+<h3 id="222-安装gtest">2.2.2 安装gtest</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir build
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> build
+</span></span><span class="line"><span class="cl">cmake .. -DCMAKE_CXX_STANDARD<span class="o">=</span><span class="m">11</span>  <span class="c1"># 指定C++标准</span>
+</span></span><span class="line"><span class="cl">make
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装到系统目录（可选，需sudo权限）</span>
+</span></span><span class="line"><span class="cl">sudo make install
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="3-代码框架说明">3 代码框架说明</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1">#.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#├── CMakeLists.txt</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#└── src</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    ├── includ</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    │   └── add.h</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    ├── add.c</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    ├── test</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#        ├── CMakeLists.txt</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#        ├── test_main.cpp</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#        └── test_add.cpp</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="31-addc">3.1 add.c</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;add.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>  
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">counter</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">reset_counter</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">get_counter</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">counter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="32-addh">3.2 add.h</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// include/add.h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#ifndef ADD_H
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define ADD_H
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#ifdef __cplusplus
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">extern</span> <span class="s">&#34;C&#34;</span> <span class="p">{</span>  <span class="c1">// 确保C++编译器正确处理C函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">reset_counter</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">get_counter</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#ifdef __cplusplus
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="33-test_maincpp">3.3 test_main.cpp</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;gtest/gtest.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>  
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">::</span><span class="n">testing</span><span class="o">::</span><span class="nf">InitGoogleTest</span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nf">RUN_ALL_TESTS</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="34-test_addcpp">3.4 test_add.cpp</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;gtest/gtest.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;add.h&#34;  // 包含C头文件</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 测试 add 函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">TEST</span><span class="p">(</span><span class="n">CCodeTest</span><span class="p">,</span> <span class="n">AddFunction</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">EXPECT_EQ</span><span class="p">(</span><span class="nf">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="mi">5</span><span class="p">);</span>  <span class="c1">// 调用C函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">EXPECT_EQ</span><span class="p">(</span><span class="nf">add</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 测试计数器逻辑
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">TEST</span><span class="p">(</span><span class="n">CCodeTest</span><span class="p">,</span> <span class="n">CounterLogic</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">reset_counter</span><span class="p">();</span>  <span class="c1">// 调用C函数重置计数器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">ASSERT_EQ</span><span class="p">(</span><span class="nf">get_counter</span><span class="p">(),</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>  <span class="c1">// 调用C函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">EXPECT_EQ</span><span class="p">(</span><span class="nf">get_counter</span><span class="p">(),</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="4-编写cmake">4 编写cmake</h1>
+<h2 id="41-根目录下的cmakeliststxt">4.1 根目录下的CMakeLists.txt</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cmake_minimum_required<span class="o">(</span>VERSION 3.10<span class="o">)</span>
+</span></span><span class="line"><span class="cl">project<span class="o">(</span>CProjectWithGTest<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置C标准</span>
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>CMAKE_C_STANDARD 11<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加C源代码为静态库</span>
+</span></span><span class="line"><span class="cl">add_library<span class="o">(</span>add STATIC
+</span></span><span class="line"><span class="cl">  src/add.c
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 包含头文件目录</span>
+</span></span><span class="line"><span class="cl">target_include_directories<span class="o">(</span>add PUBLIC src/include<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 包含Google Test</span>
+</span></span><span class="line"><span class="cl">find_package<span class="o">(</span>GTest REQUIRED<span class="o">)</span>
+</span></span><span class="line"><span class="cl">enable_testing<span class="o">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加测试子目录</span>
+</span></span><span class="line"><span class="cl">add_subdirectory<span class="o">(</span>src/test<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="42-test目录下的cmakelisttxt">4.2 test目录下的CMakeList.txt</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cmake_minimum_required<span class="o">(</span>VERSION 3.10<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">find_package<span class="o">(</span>GTest REQUIRED<span class="o">)</span>
+</span></span><span class="line"><span class="cl">include_directories<span class="o">(</span><span class="si">${</span><span class="nv">GTEST_INCLUDE_DIRS</span><span class="si">}</span><span class="o">)</span>  <span class="c1"># Var managed by CMake</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">message<span class="o">(</span>STATUS <span class="s2">&#34;C Compiler: </span><span class="si">${</span><span class="nv">CMAKE_C_COMPILER</span><span class="si">}</span><span class="s2">&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">message<span class="o">(</span>STATUS <span class="s2">&#34;C++ Compiler: </span><span class="si">${</span><span class="nv">CMAKE_CXX_COMPILER</span><span class="si">}</span><span class="s2">&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 测试代码使用C++编译器</span>
+</span></span><span class="line"><span class="cl">add_executable<span class="o">(</span>test_add
+</span></span><span class="line"><span class="cl">  test_main.cpp
+</span></span><span class="line"><span class="cl">  test_add.cpp
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">set<span class="o">(</span>PROG_ROOT <span class="s2">&#34;/opt/code&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">target_include_directories<span class="o">(</span>test_add PRIVATE <span class="si">${</span><span class="nv">PROG_ROOT</span><span class="si">}</span>/include<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 链接C库和GTest库</span>
+</span></span><span class="line"><span class="cl">target_link_libraries<span class="o">(</span>test_add
+</span></span><span class="line"><span class="cl">  add
+</span></span><span class="line"><span class="cl">  <span class="si">${</span><span class="nv">GTEST_LIBRARIES</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">  pthread
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="5-编译代码">5 编译代码</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 生成makefile</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /opt/code <span class="c1"># 假设该目录为src所在目录</span>
+</span></span><span class="line"><span class="cl">rm -rf build
+</span></span><span class="line"><span class="cl">mkdir build
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> build
+</span></span><span class="line"><span class="cl">cmake ..
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 编译代码，生成测试二进制文件</span>
+</span></span><span class="line"><span class="cl">make
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="6-运行测试用例代码">6 运行测试用例代码</h1>
+<p>若步骤5执行成功，则会在目录<code>/opt/code/build/src/test</code>下生成二进制文件<code>test_add</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> /opt/code/build/src/test
+</span></span><span class="line"><span class="cl">./test_add
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行结果如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># [==========] Running 2 tests from 1 test suite.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [----------] Global test environment set-up.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [----------] 2 tests from CCodeTest</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [ RUN      ] CCodeTest.AddFunction</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [       OK ] CCodeTest.AddFunction (0 ms)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [ RUN      ] CCodeTest.CounterLogic</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [       OK ] CCodeTest.CounterLogic (0 ms)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [----------] 2 tests from CCodeTest (2 ms total)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [----------] Global test environment tear-down</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [==========] 2 tests from 1 test suite ran. (5 ms total)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [  PASSED  ] 2 tests.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags//"></a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/others/music/">
+            <span class="next-text nav-default">Music</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:alvincat@126.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.google.com" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/alvincat" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://www.douban.com" class="iconfont icon-douban" title="douban"></a>
+      <a href="https://www.bilibili.com" class="iconfont icon-bilibili" title="bilibili"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>alvincat</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
