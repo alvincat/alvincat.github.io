@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Fri, 28 Mar 2025 20:38:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 03 Aug 2025 18:25:40 +0800</lastBuildDate>
     <atom:link href="http://www.alvincat.top/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>操作系统</title>
+      <link>http://www.alvincat.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+      <pubDate>Sun, 03 Aug 2025 18:25:40 +0800</pubDate>
+      <guid>http://www.alvincat.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Others</title>
       <link>http://www.alvincat.top/categories/others/</link>
@@ -49,13 +56,6 @@
       <link>http://www.alvincat.top/categories/linux/</link>
       <pubDate>Thu, 02 Jan 2025 10:42:37 +0800</pubDate>
       <guid>http://www.alvincat.top/categories/linux/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>操作系统</title>
-      <link>http://www.alvincat.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
-      <pubDate>Sat, 28 Dec 2024 17:49:22 +0800</pubDate>
-      <guid>http://www.alvincat.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
       <description></description>
     </item>
     <item>
