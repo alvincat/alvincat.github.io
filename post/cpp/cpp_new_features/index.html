@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>C&#43;&#43;新特性(C&#43;&#43;11及后续版本) - Alvincat&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="alvincat" /><meta name="description" content="本文介绍C&#43;&#43; 11及后续版本中的新特性
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.138.0 with theme even" />
+
+
+<link rel="canonical" href="http://www.alvincat.top/post/cpp/cpp_new_features/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f5a694fa8a6b263f05f575c19a1e180f4c9dd0ee7515e64585961f31d756a263.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:url" content="http://www.alvincat.top/post/cpp/cpp_new_features/">
+  <meta property="og:site_name" content="Alvincat&#39;s Blog">
+  <meta property="og:title" content="C&#43;&#43;新特性(C&#43;&#43;11及后续版本)">
+  <meta property="og:description" content="本文介绍C&#43;&#43; 11及后续版本中的新特性">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-01-02T21:06:18+08:00">
+    <meta property="article:modified_time" content="2025-01-02T21:06:18+08:00">
+
+  <meta itemprop="name" content="C&#43;&#43;新特性(C&#43;&#43;11及后续版本)">
+  <meta itemprop="description" content="本文介绍C&#43;&#43; 11及后续版本中的新特性">
+  <meta itemprop="datePublished" content="2025-01-02T21:06:18+08:00">
+  <meta itemprop="dateModified" content="2025-01-02T21:06:18+08:00">
+  <meta itemprop="wordCount" content="1284">
+  <meta itemprop="keywords" content="CPP">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="C&#43;&#43;新特性(C&#43;&#43;11及后续版本)">
+  <meta name="twitter:description" content="本文介绍C&#43;&#43; 11及后续版本中的新特性">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Alvincat&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a><a href="/contents/">
+        <li class="mobile-menu-item">目录</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Alvincat&#39;s Blog</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/contents/">目录</a>
+      </li>
+  </ul>
+</nav>
+
+    </header><main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">C&#43;&#43;新特性(C&#43;&#43;11及后续版本)</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2025-01-02 </span>
+        <div class="post-category">
+            <a href="/categories/cpp/"> CPP </a>
+            </div>
+          <span class="more-meta"> 约 1284 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-c-11新增关键字部分">1 C++ 11新增关键字(部分)</a>
+      <ul>
+        <li><a href="#11-constexpr">1.1 constexpr</a></li>
+        <li><a href="#12-decltype">1.2 decltype</a></li>
+        <li><a href="#13-default">1.3 =default</a></li>
+        <li><a href="#14-delete">1.4 =delete</a></li>
+        <li><a href="#15-noexcept">1.5 noexcept</a></li>
+        <li><a href="#16-nullptr">1.6 nullptr</a></li>
+        <li><a href="#17-explicit">1.7 explicit</a>
+          <ul>
+            <li><a href="#171-修饰构造函数">1.7.1 修饰构造函数</a></li>
+          </ul>
+        </li>
+        <li><a href="#18-override">1.8 override</a></li>
+        <li><a href="#19-final">1.9 final</a></li>
+        <li><a href="#110-auto">1.10 auto</a></li>
+        <li><a href="#111-using">1.11 using</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-lambda表达式">2 Lambda表达式</a>
+      <ul>
+        <li><a href="#21-lambda表达式的几种模式">2.1 Lambda表达式的几种模式</a></li>
+        <li><a href="#22-lambda表达式的示例程序">2.2 Lambda表达式的示例程序</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文介绍C++ 11及后续版本中的新特性</p>
+<h1 id="1-c-11新增关键字部分">1 C++ 11新增关键字(部分)</h1>
+<h2 id="11-constexpr">1.1 constexpr</h2>
+<p>constexpr 和const的功能类似，只值 constexpr 类型在编译时会进行变量类型检查，检查变量的值是否为常量表达式。<br>
+声明为 constexpr的变量一定是常量，而且必须使用常量表达式初始化</p>
+<h2 id="12-decltype">1.2 decltype</h2>
+<p>decltype的作用是获取并返回操作数的类型。<br>
+针对的场景：希望从表达式的类型推导出要定义的变量的类型，但是不想用该表达式初始化变量。例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">ci</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">decltype</span><span class="p">(</span><span class="n">ci</span><span class="p">)</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// x的类型为const int
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="13-default">1.3 =default</h2>
+<p>= default是用于限定构造函数的，要求编译器生成构造函数。它可以出现在类内部，也可以作为定义出现在类外部。
+若在类内部，则默认构造函数是内联的，如果在内外部，则该构造函数默认不是内联的。</p>
+<h2 id="14-delete">1.4 =delete</h2>
+<p>用于修饰函数，将函数定义为已删除。所有尝试调用已删除函数的代码，都会在编译阶段报错。</p>
+<h2 id="15-noexcept">1.5 noexcept</h2>
+<p>用于指定函数不抛出异常。</p>
+<h2 id="16-nullptr">1.6 nullptr</h2>
+<p>nullptr是一个指针常量，表示空指针。</p>
+<h2 id="17-explicit">1.7 explicit</h2>
+<h3 id="171-修饰构造函数">1.7.1 修饰构造函数</h3>
+<p>explicit用于修饰构造函数是，用于阻止构造函数进行隐式转换。<br>
+explicit只对拥有一个参数的构造函数有效。
+explicit只能在类内部声明构造函数时使用，而且在类外定义该构造函数时不能重复使用该关键字。
+explicit声明构造函数时，该构造函数只能安札直接初始化的形式使用。</p>
+<h2 id="18-override">1.8 override</h2>
+<p>override关键字用在派生类的函数中，用于明确覆盖基类中的同名函数。<br>
+若要在派生类的函数中使用override关键字，需要基类中有同名函数而且该函数为虚函数(virtual修饰)。【只有虚函数才能被覆盖】。
+final和override说明符出现在形参列表(包括任何const或引用修饰符)以及尾置返回类型之后。</p>
+<h2 id="19-final">1.9 final</h2>
+<p>final的作用是阻止派生类覆盖该函数。
+当函数使用final修饰后，任何尝试覆盖该函数的操作都会报错。</p>
+<h2 id="110-auto">1.10 auto</h2>
+<h2 id="111-using">1.11 using</h2>
+<p>using可以用来声明类型别名和模板声明别名。<br>
+示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// type alias, identical to
+</span></span></span><span class="line"><span class="cl"><span class="c1">// typedef std::ios_base::fmtflags flags;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">using</span> <span class="n">flags</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">ios_base</span><span class="o">::</span><span class="n">fmtflags</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// the name &#39;flags&#39; now denotes a type:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">flags</span> <span class="n">fl</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">ios_base</span><span class="o">::</span><span class="n">dec</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">// type alias, identical to
+</span></span></span><span class="line"><span class="cl"><span class="c1">// typedef void (*func)(int, int);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">using</span> <span class="n">func</span> <span class="o">=</span> <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// the name &#39;func&#39; now denotes a pointer to function:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">example</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="n">func</span> <span class="n">f</span> <span class="o">=</span> <span class="n">example</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// type alias used to hide a template parameter 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">CharT</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="n">mystring</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">basic_string</span><span class="o">&lt;</span><span class="n">CharT</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">char_traits</span><span class="o">&lt;</span><span class="n">CharT</span><span class="o">&gt;&gt;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">mystring</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">str</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="2-lambda表达式">2 Lambda表达式</h1>
+<h2 id="21-lambda表达式的几种模式">2.1 Lambda表达式的几种模式</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">//[ capture-list ] ( params ) mutable(optional) constexpr(optional)(c++17) exception attribute -&gt; ret { body }  (1)   
+</span></span></span><span class="line"><span class="cl"><span class="c1">//[ capture-list ] ( params ) -&gt; ret { body }  (2)   
+</span></span></span><span class="line"><span class="cl"><span class="c1">//[ capture-list ] ( params ) { body }  (3)   
+</span></span></span><span class="line"><span class="cl"><span class="c1">//[ capture-list ] { body }  (4)
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>capture-list  -  a comma-separated list of zero or more captures, optionally beginning with a capture-default. <br>
+Capture list can be passed as follows (see below for the detailed description):</p>
+<blockquote>
+<p>[a,&amp;b] where a is captured by copy and b is captured by reference.<br>
+[this] captures the current object (*this) by reference<br>
+[&amp;] captures all automatic variables used in the body of the lambda by reference and current object by reference if exists<br>
+[=] captures all automatic variables used in the body of the lambda by copy and current object by reference if exists <br>
+[] captures nothing</p>
+</blockquote>
+</li>
+<li>
+<p>params  -  The list of parameters, as in named functions, except that default arguments are not allowed (until C++14).
+If auto is used as a type of a parameter, the lambda is a generic lambda. (since C++14)</p>
+</li>
+<li>
+<p>ret  -  Return type. If not present it&rsquo;s implied by the function return statements (or void if it doesn&rsquo;t return any value)</p>
+</li>
+<li>
+<p>body  -  Function body</p>
+</li>
+</ul>
+<h2 id="22-lambda表达式的示例程序">2.2 Lambda表达式的示例程序</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;functional&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span> 
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">remove_if</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">c</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[</span><span class="n">x</span><span class="p">](</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">;</span> <span class="p">}),</span> <span class="n">c</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;c: &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">c</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">){</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span><span class="p">;</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">// the type of a closure cannot be named, but can be inferred with auto
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">auto</span> <span class="n">func1</span> <span class="o">=</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">;</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;func1: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">func1</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">// like all callable objects, closures can be captured in std::function
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// (this may incur unnecessary overhead)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">func2</span> <span class="o">=</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">;</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;func2: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">func2</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>程序执行结果：</p>
+<blockquote>
+<p>c: 5 6 7<br>
+func1: 10<br>
+func2: 10</p>
+</blockquote>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags//"></a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/linux/nginx/nginx_introduction/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Nginx源码功能简介</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/linux/apue/threads/">
+            <span class="next-text nav-default">线程</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:alvincat@126.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.google.com" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/alvincat" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://www.douban.com" class="iconfont icon-douban" title="douban"></a>
+      <a href="https://www.bilibili.com" class="iconfont icon-bilibili" title="bilibili"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>alvincat</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

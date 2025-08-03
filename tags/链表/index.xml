@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>链表 on Alvincat&#39;s Blog</title>
+    <link>http://www.alvincat.top/tags/%E9%93%BE%E8%A1%A8/</link>
+    <description>Recent content in 链表 on Alvincat&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>alvincat</copyright>
+    <lastBuildDate>Sat, 16 Nov 2024 21:29:14 +0800</lastBuildDate>
+    <atom:link href="http://www.alvincat.top/tags/%E9%93%BE%E8%A1%A8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>单链表常见功能函数</title>
+      <link>http://www.alvincat.top/post/data_structure/linklist/link_list_function/</link>
+      <pubDate>Sat, 16 Nov 2024 21:29:14 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/data_structure/linklist/link_list_function/</guid>
+      <description>&lt;p&gt;本文主要介绍单链表常见的功能函数。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>链表基本特性及其相关操作</title>
+      <link>http://www.alvincat.top/post/data_structure/linklist/link_list_introduction/</link>
+      <pubDate>Fri, 15 Nov 2024 17:52:42 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/data_structure/linklist/link_list_introduction/</guid>
+      <description>&lt;p&gt;本文介绍链表的基本特性以及链表常用的操作。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>有向图 on Alvincat&#39;s Blog</title>
+    <link>http://www.alvincat.top/tags/%E6%9C%89%E5%90%91%E5%9B%BE/</link>
+    <description>Recent content in 有向图 on Alvincat&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>alvincat</copyright>
+    <lastBuildDate>Fri, 13 Dec 2024 12:07:28 +0800</lastBuildDate>
+    <atom:link href="http://www.alvincat.top/tags/%E6%9C%89%E5%90%91%E5%9B%BE/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>拓扑排序</title>
+      <link>http://www.alvincat.top/post/data_structure/graph/topological_sorting/</link>
+      <pubDate>Fri, 13 Dec 2024 12:07:28 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/data_structure/graph/topological_sorting/</guid>
+      <description>&lt;p&gt;本文介绍拓扑排序的原理和代码实现。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
