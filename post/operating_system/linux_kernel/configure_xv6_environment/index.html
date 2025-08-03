@@ -57,7 +57,7 @@
   <meta itemprop="description" content="该页面记录配置xv6-riscv的方法。">
   <meta itemprop="datePublished" content="2025-08-03T18:25:40+08:00">
   <meta itemprop="dateModified" content="2025-08-03T18:25:40+08:00">
-  <meta itemprop="wordCount" content="240">
+  <meta itemprop="wordCount" content="522">
   <meta itemprop="keywords" content="XV6,RISCV,QEMU">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="xv6编译环境的配置方法">
@@ -151,8 +151,8 @@
         <div class="post-category">
             <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"> 操作系统 </a>
             </div>
-          <span class="more-meta"> 约 240 字 </span>
-          <span class="more-meta"> 预计阅读 1 分钟 </span>
+          <span class="more-meta"> 约 522 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
     </header>
@@ -171,6 +171,13 @@
       </ul>
     </li>
     <li><a href="#2-配置riscv64-toolchain">2 配置riscv64 toolchain</a></li>
+    <li><a href="#3-编译xv6-riscv">3 编译xv6-riscv</a>
+      <ul>
+        <li><a href="#31-下载xv6-riscv">3.1 下载xv6-riscv</a></li>
+        <li><a href="#32-编译xv6-riscv">3.2 编译xv6-riscv</a></li>
+        <li><a href="#33-调试xv6">3.3 调试xv6</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
@@ -261,7 +268,54 @@
 </span></span><span class="line"><span class="cl"><span class="nb">source</span> ~/.bashrc
 </span></span></code></pre></td></tr></table>
 </div>
+</div><h1 id="3-编译xv6-riscv">3 编译xv6-riscv</h1>
+<h2 id="31-下载xv6-riscv">3.1 下载xv6-riscv</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git clone https://github.com/mit-pdos/xv6-riscv.git
+</span></span></code></pre></td></tr></table>
 </div>
+</div><h2 id="32-编译xv6-riscv">3.2 编译xv6-riscv</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> xv6-riscv-path
+</span></span><span class="line"><span class="cl">make clean
+</span></span><span class="line"><span class="cl">make qemu
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="33-调试xv6">3.3 调试xv6</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> xv6-riscv-path
+</span></span><span class="line"><span class="cl">make clean
+</span></span><span class="line"><span class="cl">make qemu-gdb
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后再另外一个窗口：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> xv6-riscv-path
+</span></span><span class="line"><span class="cl">riscv64-unknown-elf-gdb -q kernel/kernel
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>若在gdb client加载过程提示：warning: File &ldquo;xv6-path/.gdbinit&rdquo; auto-loading has been declined by your <code>auto-load safe-path' set to &quot;$debugdir:$datadir/auto-load&quot; 则编辑文件~/.config/gdb/gdbinit，按照提示添加：</code>add-auto-load-safe-path xxx<code>即可。 例如我的环境,在文件/home/alvin/.config/gdb/gdbinit中添加内容如下：</code>add-auto-load-safe-path /opt/xv6-riscv/.gdbinit`即可。</p>
     </div>
 
     
