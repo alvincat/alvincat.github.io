@@ -55,7 +55,7 @@
   <meta itemprop="description" content="本文记录Linux系统常用的系统设置的方法。">
   <meta itemprop="datePublished" content="2024-11-19T15:48:31+08:00">
   <meta itemprop="dateModified" content="2024-11-19T15:48:31+08:00">
-  <meta itemprop="wordCount" content="448">
+  <meta itemprop="wordCount" content="528">
   <meta itemprop="keywords" content="Linux系统设置">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Linux系统常用的系统配置">
@@ -149,8 +149,8 @@
         <div class="post-category">
             <a href="/categories/linux/"> Linux </a>
             </div>
-          <span class="more-meta"> 约 448 字 </span>
-          <span class="more-meta"> 预计阅读 1 分钟 </span>
+          <span class="more-meta"> 约 528 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
     </header>
@@ -176,6 +176,8 @@
       </ul>
     </li>
     <li><a href="#3-linux修改终端的显示">3 Linux修改终端的显示</a></li>
+    <li><a href="#4-修改系统时区">4 修改系统时区</a></li>
+    <li><a href="#5-date格式化时间">5 date格式化时间</a></li>
   </ul>
 </nav>
   </div>
@@ -268,6 +270,48 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># \h hostname</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># \W Name of present folder (not full path)</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># \w current path(pull path)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="4-修改系统时区">4 修改系统时区</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 查看系统中的时区</span>
+</span></span><span class="line"><span class="cl">timedatectl list-timezones <span class="p">|</span>grep -ai <span class="s2">&#34;shanghai&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置时区</span>
+</span></span><span class="line"><span class="cl">timedatectl set-timezone Asia/Shanghai
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查询当前系统时区</span>
+</span></span><span class="line"><span class="cl">timedatectl 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="5-date格式化时间">5 date格式化时间</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 查看当前时间</span>
+</span></span><span class="line"><span class="cl">date
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2025-08-06 21:34:01</span>
+</span></span><span class="line"><span class="cl">date +<span class="s2">&#34;%F %T&#34;</span>
+</span></span><span class="line"><span class="cl">date +<span class="s2">&#34;%Y-%m-%d %H:%M:%S&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div>
