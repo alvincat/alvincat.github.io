@@ -54,7 +54,7 @@
   <meta itemprop="description" content="本文主要是一些针对程序员入门的一些资料。">
   <meta itemprop="datePublished" content="2024-11-30T19:06:41+08:00">
   <meta itemprop="dateModified" content="2024-11-30T19:06:41+08:00">
-  <meta itemprop="wordCount" content="1482">
+  <meta itemprop="wordCount" content="1554">
   <meta itemprop="keywords" content="Tools">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="程序员入门必读">
@@ -148,8 +148,8 @@
         <div class="post-category">
             <a href="/categories/tools/"> Tools </a>
             </div>
-          <span class="more-meta"> 约 1482 字 </span>
-          <span class="more-meta"> 预计阅读 3 分钟 </span>
+          <span class="more-meta"> 约 1554 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
         
       </div>
     </header>
@@ -168,7 +168,16 @@
     <li><a href="#7-实用工具">7 实用工具</a></li>
     <li><a href="#71-windows实用工具">7.1 windows实用工具</a></li>
     <li><a href="#72-绘图工具">7.2 绘图工具</a></li>
-    <li><a href="#73-indent工具格式化代码">7.3 indent工具格式化代码</a></li>
+    <li><a href="#73-格式化代码">7.3 格式化代码</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#731-indent">7.3.1 indent</a></li>
+            <li><a href="#732-clang-format">7.3.2 clang-format</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
     <li><a href="#74-imagemagick给图片添加水印的方法">7.4 ImageMagick给图片添加水印的方法</a>
       <ul>
         <li><a href="#75-7-zip用法">7.5 7-zip用法</a></li>
@@ -265,7 +274,8 @@ XMind: 思维导图工具<br>
 <a href="https://excalidraw.com/">Excalidraw: 开源手绘画风绘图工具</a><br>
 <a href="https://plantuml.com/zh/">PlantUML：绘制UML的工具</a><br>
 <a href="https://matplotlib.org/">Matplotlib【配合python使用】 官网</a></p>
-<h1 id="73-indent工具格式化代码">7.3 indent工具格式化代码</h1>
+<h1 id="73-格式化代码">7.3 格式化代码</h1>
+<h3 id="731-indent">7.3.1 indent</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -276,14 +286,35 @@ XMind: 思维导图工具<br>
 </span></span><span class="line"><span class="cl">indent -kr -i8 hello.c <span class="c1">#将源代码格式化为内核编码风格</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="74-imagemagick给图片添加水印的方法">7.4 ImageMagick给图片添加水印的方法</h1>
+</div><h3 id="732-clang-format">7.3.2 clang-format</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 使用clang-format格式化当前目录下所有的.h、.c文件</span>
+</span></span><span class="line"><span class="cl">find ./ -iname <span class="s1">&#39;*.h&#39;</span> -o -iname <span class="s1">&#39;*.c&#39;</span> <span class="p">|</span> xargs clang-format -i
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><a href="https://llvm.org/builds/">clang-format下载地址</a><br>
+<a href="https://clang.llvm.org/docs/ClangFormat.html">clang-format用法</a></p>
+<h1 id="74-imagemagick给图片添加水印的方法">7.4 ImageMagick给图片添加水印的方法</h1>
 <ol>
-<li>下载ImageMagick: <a href="https://imagemagick.org/script/download.php">ImageMagick下载地址</a></li>
-<li>添加ImageMagick的环境变量：将ImageMagick的安装完成后的二进制目录添加到系统path路径中。</li>
-<li>制作水印文件watermark.png，可以使用windows自带的mspaint制作。</li>
-<li>执行命令<code>composite -dissolve 30% -gravity south watermark.jpg input-file.jpg output-file.jpg</code>制作水印。</li>
-<li>也可以批量制作水印。例如下面shell脚本可以将当前目录下所有的jpg文件添加水印。</li>
-</ol>
+<li>
+<p>下载ImageMagick: <a href="https://imagemagick.org/script/download.php">ImageMagick下载地址</a></p>
+</li>
+<li>
+<p>添加ImageMagick的环境变量：将ImageMagick的安装完成后的二进制目录添加到系统path路径中。</p>
+</li>
+<li>
+<p>制作水印文件watermark.png，可以使用windows自带的mspaint制作。</p>
+</li>
+<li>
+<p>执行命令<code>composite -dissolve 30% -gravity south watermark.jpg input-file.jpg output-file.jpg</code>制作水印。</p>
+</li>
+<li>
+<p>也可以批量制作水印。例如下面shell脚本可以将当前目录下所有的jpg文件添加水印。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -292,11 +323,13 @@ XMind: 思维导图工具<br>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="k">for</span> pic in *.png<span class="p">;</span> <span class="k">do</span>
-</span></span><span class="line"><span class="cl">    composite -dissolve 30% watermark.png <span class="nv">$pic</span> <span class="si">${</span><span class="nv">pic</span><span class="p">//.png</span><span class="si">}</span>-marked.png
+</span></span><span class="line"><span class="cl"> composite -dissolve 30% watermark.png <span class="nv">$pic</span> <span class="si">${</span><span class="nv">pic</span><span class="p">//.png</span><span class="si">}</span>-marked.png
 </span></span><span class="line"><span class="cl"><span class="k">done</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="75-7-zip用法">7.5 7-zip用法</h2>
+</div></li>
+</ol>
+<h2 id="75-7-zip用法">7.5 7-zip用法</h2>
 <p>7-zip制作tar.gz压缩包的方法：</p>
 <ol>
 <li>先将待压缩的目录或者文件压缩为tar格式的压缩包</li>
