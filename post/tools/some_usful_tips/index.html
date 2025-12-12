@@ -54,7 +54,7 @@
   <meta itemprop="description" content="本文主要是一些针对程序员入门的一些资料。">
   <meta itemprop="datePublished" content="2024-11-30T19:06:41+08:00">
   <meta itemprop="dateModified" content="2024-11-30T19:06:41+08:00">
-  <meta itemprop="wordCount" content="1554">
+  <meta itemprop="wordCount" content="1747">
   <meta itemprop="keywords" content="Tools">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="程序员入门必读">
@@ -148,7 +148,7 @@
         <div class="post-category">
             <a href="/categories/tools/"> Tools </a>
             </div>
-          <span class="more-meta"> 约 1554 字 </span>
+          <span class="more-meta"> 约 1747 字 </span>
           <span class="more-meta"> 预计阅读 4 分钟 </span>
         
       </div>
@@ -289,16 +289,45 @@ XMind: 思维导图工具<br>
 </div><h3 id="732-clang-format">7.3.2 clang-format</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 使用clang-format格式化当前目录下所有的.h、.c文件</span>
 </span></span><span class="line"><span class="cl">find ./ -iname <span class="s1">&#39;*.h&#39;</span> -o -iname <span class="s1">&#39;*.c&#39;</span> <span class="p">|</span> xargs clang-format -i
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用clang-format默认风格格式化文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># LLVM A style complying with the LLVM coding standards</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Google A style complying with Google’s C++ style guide</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Chromium A style complying with Chromium’s style guide</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Mozilla A style complying with Mozilla’s style guide</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># WebKit A style complying with WebKit’s style guide</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Microsoft A style complying with Microsoft’s style guide</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># GNU A style complying with the GNU coding standards</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">clang-format -style<span class="o">=</span>Google -i test_fork.c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用自定义的format配置文件格式化文件</span>
+</span></span><span class="line"><span class="cl">clang-format -style<span class="o">=</span>file:~/.clang-format -i test_fork.c
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><a href="https://llvm.org/builds/">clang-format下载地址</a><br>
-<a href="https://clang.llvm.org/docs/ClangFormat.html">clang-format用法</a></p>
+<a href="https://clang.llvm.org/docs/ClangFormat.html">clang-format用法</a><br>
+<a href="https://clang.llvm.org/docs/ClangFormatStyleOptions.html">clang-formt自定义格式语法</a></p>
 <h1 id="74-imagemagick给图片添加水印的方法">7.4 ImageMagick给图片添加水印的方法</h1>
 <ol>
 <li>

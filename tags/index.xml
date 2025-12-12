@@ -7,27 +7,27 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Sun, 03 Aug 2025 18:25:40 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 05 Dec 2025 20:34:16 +0800</lastBuildDate>
     <atom:link href="http://www.alvincat.top/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Riscv</title>
+      <link>http://www.alvincat.top/tags/riscv/</link>
+      <pubDate>Fri, 05 Dec 2025 20:34:16 +0800</pubDate>
+      <guid>http://www.alvincat.top/tags/riscv/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Xv6</title>
+      <link>http://www.alvincat.top/tags/xv6/</link>
+      <pubDate>Fri, 05 Dec 2025 20:34:16 +0800</pubDate>
+      <guid>http://www.alvincat.top/tags/xv6/</guid>
+      <description></description>
+    </item>
     <item>
       <title>QEMU</title>
       <link>http://www.alvincat.top/tags/qemu/</link>
       <pubDate>Sun, 03 Aug 2025 18:25:40 +0800</pubDate>
       <guid>http://www.alvincat.top/tags/qemu/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>RISCV</title>
-      <link>http://www.alvincat.top/tags/riscv/</link>
-      <pubDate>Sun, 03 Aug 2025 18:25:40 +0800</pubDate>
-      <guid>http://www.alvincat.top/tags/riscv/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>XV6</title>
-      <link>http://www.alvincat.top/tags/xv6/</link>
-      <pubDate>Sun, 03 Aug 2025 18:25:40 +0800</pubDate>
-      <guid>http://www.alvincat.top/tags/xv6/</guid>
       <description></description>
     </item>
     <item>

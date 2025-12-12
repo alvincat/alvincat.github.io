@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>RISCV on Alvincat&#39;s Blog</title>
+    <title>Riscv on Alvincat&#39;s Blog</title>
     <link>http://www.alvincat.top/tags/riscv/</link>
-    <description>Recent content in RISCV on Alvincat&#39;s Blog</description>
+    <description>Recent content in Riscv on Alvincat&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Sun, 03 Aug 2025 18:25:40 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 05 Dec 2025 20:34:16 +0800</lastBuildDate>
     <atom:link href="http://www.alvincat.top/tags/riscv/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Read Book Riscv</title>
+      <link>http://www.alvincat.top/post/operating_system/xv6/read-book-riscv/</link>
+      <pubDate>Fri, 05 Dec 2025 20:34:16 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/operating_system/xv6/read-book-riscv/</guid>
+      <description>&lt;p&gt;本文记录阅读book-riscv-rec3.pdf的笔记&lt;/p&gt;</description>
+    </item>
     <item>
       <title>xv6编译环境的配置方法</title>
       <link>http://www.alvincat.top/post/operating_system/linux_kernel/configure_xv6_environment/</link>

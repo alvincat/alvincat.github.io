@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Sun, 03 Aug 2025 18:25:40 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 05 Dec 2025 20:34:16 +0800</lastBuildDate>
     <atom:link href="http://www.alvincat.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Read Book Riscv</title>
+      <link>http://www.alvincat.top/post/operating_system/xv6/read-book-riscv/</link>
+      <pubDate>Fri, 05 Dec 2025 20:34:16 +0800</pubDate>
+      <guid>http://www.alvincat.top/post/operating_system/xv6/read-book-riscv/</guid>
+      <description>&lt;p&gt;本文记录阅读book-riscv-rec3.pdf的笔记&lt;/p&gt;</description>
+    </item>
     <item>
       <title>xv6编译环境的配置方法</title>
       <link>http://www.alvincat.top/post/operating_system/linux_kernel/configure_xv6_environment/</link>
