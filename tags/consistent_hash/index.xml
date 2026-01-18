@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Consistent_hash on Alvincat&#39;s Blog</title>
-    <link>http://www.alvincat.top/tags/consistent_hash/</link>
+    <link>alvincat.github.io/tags/consistent_hash/</link>
     <description>Recent content in Consistent_hash on Alvincat&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
     <lastBuildDate>Wed, 15 Jan 2025 19:29:13 +0800</lastBuildDate>
-    <atom:link href="http://www.alvincat.top/tags/consistent_hash/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="alvincat.github.io/tags/consistent_hash/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>一致性哈希算法</title>
-      <link>http://www.alvincat.top/post/storage_system/consistent_hash/</link>
+      <link>alvincat.github.io/post/storage_system/consistent_hash/</link>
       <pubDate>Wed, 15 Jan 2025 19:29:13 +0800</pubDate>
-      <guid>http://www.alvincat.top/post/storage_system/consistent_hash/</guid>
+      <guid>alvincat.github.io/post/storage_system/consistent_hash/</guid>
       <description>&lt;p&gt;本文介绍分布式系统中经典的一致性哈希算法。&lt;br&gt;&#xA;文章转载至：&lt;a href=&#34;https://developer.huawei.com/consumer/cn/forum/topic/0203810951415790238&#34;&gt;《16 张图解一致性哈希算法》作者：小林coding&lt;/a&gt;&lt;/p&gt;</description>
     </item>
   </channel>

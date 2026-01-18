@@ -2,74 +2,74 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>数据结构 on Alvincat&#39;s Blog</title>
-    <link>http://www.alvincat.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+    <link>alvincat.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
     <description>Recent content in 数据结构 on Alvincat&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
     <lastBuildDate>Tue, 17 Dec 2024 20:01:46 +0800</lastBuildDate>
-    <atom:link href="http://www.alvincat.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="alvincat.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>B_tree</title>
-      <link>http://www.alvincat.top/post/data_structure/tree/b_tree/</link>
+      <link>alvincat.github.io/post/data_structure/tree/b_tree/</link>
       <pubDate>Tue, 17 Dec 2024 20:01:46 +0800</pubDate>
-      <guid>http://www.alvincat.top/post/data_structure/tree/b_tree/</guid>
+      <guid>alvincat.github.io/post/data_structure/tree/b_tree/</guid>
       <description>&lt;p&gt;本文介绍B-Tree的特性，以及代码实现。&lt;/p&gt;</description>
     </item>
     <item>
       <title>C语言实现一个队列的功能</title>
-      <link>http://www.alvincat.top/post/data_structure/queue/implement_a_queue/</link>
+      <link>alvincat.github.io/post/data_structure/queue/implement_a_queue/</link>
       <pubDate>Tue, 10 Dec 2024 10:39:32 +0800</pubDate>
-      <guid>http://www.alvincat.top/post/data_structure/queue/implement_a_queue/</guid>
+      <guid>alvincat.github.io/post/data_structure/queue/implement_a_queue/</guid>
       <description>&lt;p&gt;本文描述如何使用C语言实现一个队列的功能，展示如何使用数组、链表结构实现队列的方法。&lt;/p&gt;</description>
     </item>
     <item>
       <title>C语言实现一个栈的功能</title>
-      <link>http://www.alvincat.top/post/data_structure/stack/implement_a_stack/</link>
+      <link>alvincat.github.io/post/data_structure/stack/implement_a_stack/</link>
       <pubDate>Tue, 10 Dec 2024 10:39:32 +0800</pubDate>
-      <guid>http://www.alvincat.top/post/data_structure/stack/implement_a_stack/</guid>
+      <guid>alvincat.github.io/post/data_structure/stack/implement_a_stack/</guid>
       <description>&lt;p&gt;本文描述如何使用C语言实现一个栈的功能。&lt;/p&gt;</description>
     </item>
     <item>
       <title>创建二叉树的方法</title>
-      <link>http://www.alvincat.top/post/data_structure/tree/binary_tree_create/</link>
+      <link>alvincat.github.io/post/data_structure/tree/binary_tree_create/</link>
       <pubDate>Thu, 28 Nov 2024 10:30:58 +0800</pubDate>
-      <guid>http://www.alvincat.top/post/data_structure/tree/binary_tree_create/</guid>
+      <guid>alvincat.github.io/post/data_structure/tree/binary_tree_create/</guid>
       <description>&lt;p&gt;本文介绍二叉树的构造方式。&lt;/p&gt;</description>
     </item>
     <item>
       <title>二叉树的遍历</title>
-      <link>http://www.alvincat.top/post/data_structure/tree/binary_tree_traverse/</link>
+      <link>alvincat.github.io/post/data_structure/tree/binary_tree_traverse/</link>
       <pubDate>Wed, 27 Nov 2024 11:11:07 +0800</pubDate>
-      <guid>http://www.alvincat.top/post/data_structure/tree/binary_tree_traverse/</guid>
+      <guid>alvincat.github.io/post/data_structure/tree/binary_tree_traverse/</guid>
       <description>&lt;p&gt;本文介绍二叉树的遍历方法和具体代码实现。&lt;/p&gt;</description>
     </item>
     <item>
       <title>LRU的C代码实现</title>
-      <link>http://www.alvincat.top/post/data_structure/hash_table/lru/</link>
+      <link>alvincat.github.io/post/data_structure/hash_table/lru/</link>
       <pubDate>Mon, 18 Nov 2024 17:06:55 +0800</pubDate>
-      <guid>http://www.alvincat.top/post/data_structure/hash_table/lru/</guid>
+      <guid>alvincat.github.io/post/data_structure/hash_table/lru/</guid>
       <description>&lt;p&gt;本文介绍LRU的原理和具体c代码实现。&lt;/p&gt;</description>
     </item>
     <item>
       <title>哈希表</title>
-      <link>http://www.alvincat.top/post/data_structure/hash_table/hash_table/</link>
+      <link>alvincat.github.io/post/data_structure/hash_table/hash_table/</link>
       <pubDate>Sat, 16 Nov 2024 22:09:29 +0800</pubDate>
-      <guid>http://www.alvincat.top/post/data_structure/hash_table/hash_table/</guid>
+      <guid>alvincat.github.io/post/data_structure/hash_table/hash_table/</guid>
       <description>&lt;p&gt;本文介绍哈希表的基本特性和具体实现。&lt;/p&gt;</description>
     </item>
     <item>
       <title>单链表常见功能函数</title>
-      <link>http://www.alvincat.top/post/data_structure/linklist/link_list_function/</link>
+      <link>alvincat.github.io/post/data_structure/linklist/link_list_function/</link>
       <pubDate>Sat, 16 Nov 2024 21:29:14 +0800</pubDate>
-      <guid>http://www.alvincat.top/post/data_structure/linklist/link_list_function/</guid>
+      <guid>alvincat.github.io/post/data_structure/linklist/link_list_function/</guid>
       <description>&lt;p&gt;本文主要介绍单链表常见的功能函数。&lt;/p&gt;</description>
     </item>
     <item>
       <title>链表基本特性及其相关操作</title>
-      <link>http://www.alvincat.top/post/data_structure/linklist/link_list_introduction/</link>
+      <link>alvincat.github.io/post/data_structure/linklist/link_list_introduction/</link>
       <pubDate>Fri, 15 Nov 2024 17:52:42 +0800</pubDate>
-      <guid>http://www.alvincat.top/post/data_structure/linklist/link_list_introduction/</guid>
+      <guid>alvincat.github.io/post/data_structure/linklist/link_list_introduction/</guid>
       <description>&lt;p&gt;本文介绍链表的基本特性以及链表常用的操作。&lt;/p&gt;</description>
     </item>
   </channel>

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>B-Tree on Alvincat&#39;s Blog</title>
-    <link>http://www.alvincat.top/tags/b-tree/</link>
+    <link>alvincat.github.io/tags/b-tree/</link>
     <description>Recent content in B-Tree on Alvincat&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
     <lastBuildDate>Tue, 17 Dec 2024 20:01:46 +0800</lastBuildDate>
-    <atom:link href="http://www.alvincat.top/tags/b-tree/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="alvincat.github.io/tags/b-tree/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>B_tree</title>
-      <link>http://www.alvincat.top/post/data_structure/tree/b_tree/</link>
+      <link>alvincat.github.io/post/data_structure/tree/b_tree/</link>
       <pubDate>Tue, 17 Dec 2024 20:01:46 +0800</pubDate>
-      <guid>http://www.alvincat.top/post/data_structure/tree/b_tree/</guid>
+      <guid>alvincat.github.io/post/data_structure/tree/b_tree/</guid>
       <description>&lt;p&gt;本文介绍B-Tree的特性，以及代码实现。&lt;/p&gt;</description>
     </item>
   </channel>
