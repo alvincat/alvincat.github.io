@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>UNIX标准 on Alvincat&#39;s Blog</title>
+    <link>http://localhost:1313/tags/unix%E6%A0%87%E5%87%86/</link>
+    <description>Recent content in UNIX标准 on Alvincat&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>alvincat</copyright>
+    <lastBuildDate>Sat, 07 Dec 2024 17:41:42 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/unix%E6%A0%87%E5%87%86/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>UNIX标准说明</title>
+      <link>http://localhost:1313/post/linux/apue/unix_standardization/</link>
+      <pubDate>Sat, 07 Dec 2024 17:41:42 +0800</pubDate>
+      <guid>http://localhost:1313/post/linux/apue/unix_standardization/</guid>
+      <description>&lt;p&gt;本文说明UNIX系统中常见的几种标准，以及它们之间的关系。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

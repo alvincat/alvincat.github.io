@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Storage on Alvincat&#39;s Blog</title>
+    <link>http://localhost:1313/categories/storage/</link>
+    <description>Recent content in Storage on Alvincat&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>alvincat</copyright>
+    <lastBuildDate>Wed, 15 Jan 2025 19:29:13 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/storage/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一致性哈希算法</title>
+      <link>http://localhost:1313/post/storage_system/consistent_hash/</link>
+      <pubDate>Wed, 15 Jan 2025 19:29:13 +0800</pubDate>
+      <guid>http://localhost:1313/post/storage_system/consistent_hash/</guid>
+      <description>&lt;p&gt;本文介绍分布式系统中经典的一致性哈希算法。&lt;br&gt;&#xA;文章转载至：&lt;a href=&#34;https://developer.huawei.com/consumer/cn/forum/topic/0203810951415790238&#34;&gt;《16 张图解一致性哈希算法》作者：小林coding&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Raft协议</title>
+      <link>http://localhost:1313/post/storage_system/raft/</link>
+      <pubDate>Wed, 15 Jan 2025 15:22:33 +0800</pubDate>
+      <guid>http://localhost:1313/post/storage_system/raft/</guid>
+      <description>&lt;p&gt;本文介绍raft协议。转载自：&lt;a href=&#34;https://github.com/maemual/raft-zh_cn&#34;&gt;https://github.com/maemual/raft-zh_cn&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>存储系统的基本概念</title>
+      <link>http://localhost:1313/post/storage_system/storage_basic_knowledge/</link>
+      <pubDate>Tue, 17 Dec 2024 17:49:33 +0800</pubDate>
+      <guid>http://localhost:1313/post/storage_system/storage_basic_knowledge/</guid>
+      <description>&lt;p&gt;本文介绍存储基础知识。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

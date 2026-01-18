@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BFS on Alvincat&#39;s Blog</title>
+    <link>http://localhost:1313/tags/bfs/</link>
+    <description>Recent content in BFS on Alvincat&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>alvincat</copyright>
+    <lastBuildDate>Tue, 26 Nov 2024 16:29:32 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/bfs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>遍历-BFS</title>
+      <link>http://localhost:1313/post/algorithm/bfs/</link>
+      <pubDate>Tue, 26 Nov 2024 16:29:32 +0800</pubDate>
+      <guid>http://localhost:1313/post/algorithm/bfs/</guid>
+      <description>&lt;p&gt;本文讲解BFS算法的核心思想和代码基本框架。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

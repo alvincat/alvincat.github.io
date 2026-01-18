@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>VirtualBox实现宿主机访问虚拟机以及虚拟机联网的方法 - Alvincat&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="alvincat" /><meta name="description" content="VirtualBox实现宿主机访问虚拟机以及虚拟机联网的方法。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.138.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/tools/virtualbox_set_network_interface/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f5a694fa8a6b263f05f575c19a1e180f4c9dd0ee7515e64585961f31d756a263.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:url" content="http://localhost:1313/post/tools/virtualbox_set_network_interface/">
+  <meta property="og:site_name" content="Alvincat&#39;s Blog">
+  <meta property="og:title" content="VirtualBox实现宿主机访问虚拟机以及虚拟机联网的方法">
+  <meta property="og:description" content="VirtualBox实现宿主机访问虚拟机以及虚拟机联网的方法。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-01-23T20:41:27+08:00">
+    <meta property="article:modified_time" content="2025-01-23T20:41:27+08:00">
+
+  <meta itemprop="name" content="VirtualBox实现宿主机访问虚拟机以及虚拟机联网的方法">
+  <meta itemprop="description" content="VirtualBox实现宿主机访问虚拟机以及虚拟机联网的方法。">
+  <meta itemprop="datePublished" content="2025-01-23T20:41:27+08:00">
+  <meta itemprop="dateModified" content="2025-01-23T20:41:27+08:00">
+  <meta itemprop="wordCount" content="798">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="VirtualBox实现宿主机访问虚拟机以及虚拟机联网的方法">
+  <meta name="twitter:description" content="VirtualBox实现宿主机访问虚拟机以及虚拟机联网的方法。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Alvincat&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a><a href="/contents/">
+        <li class="mobile-menu-item">目录</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Alvincat&#39;s Blog</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/contents/">目录</a>
+      </li>
+  </ul>
+</nav>
+
+    </header><main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">VirtualBox实现宿主机访问虚拟机以及虚拟机联网的方法</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2025-01-23 </span>
+        <div class="post-category">
+            <a href="/categories//">  </a>
+            </div>
+          <span class="more-meta"> 约 798 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#virtualbox实现宿主机访问虚拟机以及虚拟机联网的方法">VirtualBox实现宿主机访问虚拟机以及虚拟机联网的方法</a>
+      <ul>
+        <li><a href="#1-virtualbox初始设置">1 VirtualBox初始设置</a>
+          <ul>
+            <li><a href="#11-创建nat网络">1.1 创建NAT网络</a></li>
+            <li><a href="#12-创建host-only网卡">1.2 创建Host-Only网卡</a></li>
+          </ul>
+        </li>
+        <li><a href="#13-virtualbox-7x版本配置网路的方法">1.3 VirtualBox 7.x版本配置网路的方法</a></li>
+        <li><a href="#2-centos系统网络参数设置">2 CentOS系统网络参数设置</a>
+          <ul>
+            <li><a href="#21-网络连接设置">2.1 网络连接设置</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>VirtualBox实现宿主机访问虚拟机以及虚拟机联网的方法。</p>
+<h1 id="virtualbox实现宿主机访问虚拟机以及虚拟机联网的方法">VirtualBox实现宿主机访问虚拟机以及虚拟机联网的方法</h1>
+<h2 id="1-virtualbox初始设置">1 VirtualBox初始设置</h2>
+<h3 id="11-创建nat网络">1.1 创建NAT网络</h3>
+<p>选中虚拟机中的系统(系统应处于关闭状态)(①),然后选择【管理&ndash;&gt;全局设定】（②③）。如图 1-1所示。
+<img src="/web_image/tools/VirtualBox/1-1.jpeg" alt="1_1"><br>
+图 1-1</p>
+<p>通过图 1-1的操作打开VirtualBox全局设定对话框。然后选择【网络】（①），定位到网络子选项， 选择【NAT网络】(②),点击右侧的【添加】按钮(③)，创建一个NAT虚拟网络(④)。如图 1-2所示。单击【修改】按钮(⑤)，可以修改NAT网络的参数,如图 1-3所示：<br>
+<img src="/web_image/tools/VirtualBox/1-2.png" alt="1_2"><br>
+图 1-2<br>
+　　　　　　　　　　　　　
+<img src="/web_image/tools/VirtualBox/1-3.png" alt="1_3"> <br>
+图 1-3</p>
+<h3 id="12-创建host-only网卡">1.2 创建Host-Only网卡</h3>
+<p>类似于图 1-2，点击【仅主机（host-only）网络】（②），默认情况下，系统已经创建了一个Host-Only网卡（③）。若没有可以点击【添加】按钮（⑤），添加一个Host-Only网络。
+<img src="/web_image/tools/VirtualBox/1-4.png" alt="1_4"><br>
+图 1-4</p>
+<p>选中已经添加的Host-Only网卡，然后点击【编辑】按钮，打开【仅主机（Host-Only）网络明细】对话框，就可以对Host-Only网卡进行编辑，如图 1 5所示。Ipv4地址和子网掩码可以保持不变。
+<img src="/web_image/tools/VirtualBox/1-5.png" alt="1_5"><br>
+图 1-5</p>
+<p>　　　　　　　　　　　　　　　　　　　　　　　　　　
+点击【DHCP服务器】子选项卡，取消【启用服务器】选项，即不适用动态IP，如图 1 6所示。<br>
+<img src="/web_image/tools/VirtualBox/1-6.png" alt="1_6"><br>
+图 1-6</p>
+<h2 id="13-virtualbox-7x版本配置网路的方法">1.3 VirtualBox 7.x版本配置网路的方法</h2>
+<p><img src="/web_image/tools/VirtualBox/1-7.png" alt="1_7"><br>
+图 1-7</p>
+<p>　　　　　　　　　　　　　　　　　　　　　　　　　</p>
+<h2 id="2-centos系统网络参数设置">2 CentOS系统网络参数设置</h2>
+<h3 id="21-网络连接设置">2.1 网络连接设置</h3>
+<p>选中虚拟机中的系统(①),然后点击【设置】（②）,打开虚拟系统的设置对话框（③），如图 2 1所示：
+<img src="/web_image/tools/VirtualBox/2-1.png" alt="2_1"><br>
+　　　　　　　　　　　　　　　　　　　　　　　　　　　　图 2-1</p>
+<h4 id="211-网卡1设置">2.1.1 网卡1设置</h4>
+<p>选择【网络】（①），勾选网络连接，然后点击【网卡1】（②），连接方式选择【网络地址转换（NAT）】,其他设置同图 2 2所示即可。
+　　　　　<img src="/web_image/tools/VirtualBox/2-2.png" alt="2_2"><br>
+　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　图 2-2</p>
+<h4 id="212-网卡2设置">2.1.2 网卡2设置</h4>
+<p>点击【网卡2】（②），勾选网络连接，连接方式选择【仅主机（Host-Only）网络】（③），界面名称选择【Virtual Host-Only Ethernet Adapter】（4），其他设置同图 2 3所示即可。
+　　　　　<img src="/web_image/tools/VirtualBox/2-3.png" alt="2_3"><br>
+　　　　　　　　　　　　　　　　　　　　　　　　　　　图 2-3</p>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags//"></a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/data_structure/tree/prefix_tree/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">前缀树</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/tools/iterview_questions/">
+            <span class="next-text nav-default">面试问题汇总</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:alvincat@126.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.google.com" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/alvincat" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://www.douban.com" class="iconfont icon-douban" title="douban"></a>
+      <a href="https://www.bilibili.com" class="iconfont icon-bilibili" title="bilibili"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2026<span class="heart"><i class="iconfont icon-heart"></i></span><span>alvincat</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

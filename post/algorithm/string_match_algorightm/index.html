@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>字符串匹配算法 - Alvincat&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="alvincat" /><meta name="description" content="本文记录字符串匹配算法的演进已经具体实现。
+" /><meta name="keywords" content="KMP" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.138.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/algorithm/string_match_algorightm/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f5a694fa8a6b263f05f575c19a1e180f4c9dd0ee7515e64585961f31d756a263.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:url" content="http://localhost:1313/post/algorithm/string_match_algorightm/">
+  <meta property="og:site_name" content="Alvincat&#39;s Blog">
+  <meta property="og:title" content="字符串匹配算法">
+  <meta property="og:description" content="本文记录字符串匹配算法的演进已经具体实现。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-11-15T16:01:16+08:00">
+    <meta property="article:modified_time" content="2024-11-15T16:01:16+08:00">
+    <meta property="article:tag" content="字符串匹配">
+
+  <meta itemprop="name" content="字符串匹配算法">
+  <meta itemprop="description" content="本文记录字符串匹配算法的演进已经具体实现。">
+  <meta itemprop="datePublished" content="2024-11-15T16:01:16+08:00">
+  <meta itemprop="dateModified" content="2024-11-15T16:01:16+08:00">
+  <meta itemprop="wordCount" content="2479">
+  <meta itemprop="keywords" content="KMP">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="字符串匹配算法">
+  <meta name="twitter:description" content="本文记录字符串匹配算法的演进已经具体实现。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Alvincat&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a><a href="/contents/">
+        <li class="mobile-menu-item">目录</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Alvincat&#39;s Blog</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/contents/">目录</a>
+      </li>
+  </ul>
+</nav>
+
+    </header><main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">字符串匹配算法</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-11-15 </span>
+        <div class="post-category">
+            <a href="/categories/%E7%AE%97%E6%B3%95/"> 算法 </a>
+            </div>
+          <span class="more-meta"> 约 2479 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#字符串匹配算法string-search-algorigthm">字符串匹配算法(String Search Algorigthm)</a>
+      <ul>
+        <li><a href="#1-kmp算法-the-knuth-morris-pratt-algorithm">1 KMP算法 (The Knuth-Morris-Pratt Algorithm)</a>
+          <ul>
+            <li><a href="#计算局部匹配表partial-math-table">计算局部匹配表(partial math table)</a></li>
+            <li><a href="#使用局部匹配表进行字符串匹配">使用局部匹配表进行字符串匹配</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-bm算法-boyer-moore-algorithm">2 BM算法 (Boyer-Moore Algorithm)</a></li>
+        <li><a href="#3-sunday算法sunday-algorigthm">3 Sunday算法(Sunday Algorigthm)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文记录字符串匹配算法的演进已经具体实现。</p>
+<h1 id="字符串匹配算法string-search-algorigthm">字符串匹配算法(String Search Algorigthm)</h1>
+<p>一点说明：</p>
+<p>原串：即子串匹配过程中， 待查找的字符串；</p>
+<p>搜索串：即用来匹配的特定的一个子串。</p>
+<h2 id="1-kmp算法-the-knuth-morris-pratt-algorithm">1 KMP算法 (The Knuth-Morris-Pratt Algorithm)</h2>
+<p>优点：在暴力解法的基础上，减少匹配过程中查找字符串比较次数。</p>
+<p>缺点：当待查找的字符串没有重复搜索串时，算法退化为暴力解法。</p>
+<p>算法中的概念：</p>
+<blockquote>
+<ol>
+<li>
+<p>局部匹配表(partial match table):查找过程中的子串中真前缀和真后缀的最大公共长度。</p>
+</li>
+<li>
+<p>字符串的真前缀(proper prefix)：例如 “S”, “Sn”, “Sna”, 和 “Snap” 都是 “Snape”的proper prefix。</p>
+</li>
+<li>
+<p>字符串的真后缀(proper suffix)：例如“d”,“agrid”, “grid”, “rid”, “id”和  都是“Hagrid”的proper suffix。</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="计算局部匹配表partial-math-table">计算局部匹配表(partial math table)</h3>
+<p>局部匹配表有时也称为next数组。该表是由子串的内容决定的。计算过程如下(以下过程以字符串&quot;abababca&quot;为例)：</p>
+<ol>
+<li>
+<p>字符串长度为1时，字符串为&quot;a&quot;。因此对应表项为0。</p>
+</li>
+<li>
+<p>字符串长度为2时，字符串为“ab”，proper prefix包含“a”；proper suffix包含“b”，因此对应表项为0。</p>
+</li>
+<li>
+<p>字符串长度为3时，字符串为“aba”，proper prefix包含“a”, “ab”； proper suffix包含“a”,“ba”，因此对应表项为1。</p>
+</li>
+<li>
+<p>字符串长度为4时，字符串为“abab”，proper prefix包含“a”, “ab”,“aba”；proper suffix包含“b”，“ab”，“bab”，因此对应表项为2。</p>
+</li>
+<li>
+<p>字符串长度为5时，字符串为“ababa”，proper prefix包含“a”, “ab”,“aba”,“abab”；proper suffix包含“a”，“ba”，“aba”，“baba”，因此对应表项为3。</p>
+</li>
+<li>
+<p>字符串长度为6时，字符串为“ababab”，proper prefix包含“a”, “ab”,“aba”,“abab”,“ababa”；proper suffix包含“b”，“ab”，“bab”，“abab”,，因此对应表项为3。<br>
+<img src="/web_image/algorithm/kmp/01.jpg" alt="01"></p>
+</li>
+</ol>
+<h3 id="使用局部匹配表进行字符串匹配">使用局部匹配表进行字符串匹配</h3>
+<p>设局部匹配表为table。如果存在部分匹配值<code>partial_match_length</code>，而且<code>table[partial_match_length] &gt; 1</code>，则子串可以跳过的长度为：<code>partial_match_length - table[partial_match_length - 1]</code> 。例如：</p>
+<p><img src="/web_image/algorithm/kmp/02.jpg" alt="02"></p>
+<p>第一次匹配情况，如下图所示：</p>
+<p><img src="/web_image/algorithm/kmp/03.jpg" alt="图3"></p>
+<p>该匹配中部分匹配长度(partial_match_length)为1。而对应的值table[partial_match_length - 1]即table[0]等于0。因此我们不需要跳过任何字母。
+接下来的匹配情况如下图所示：</p>
+<p><img src="/web_image/algorithm/kmp/04.jpg" alt="04"></p>
+<p>该匹配中部分匹配长度为(partial_match_length)为5。这个值对应的table[partial_match_length - 1](即table[4])值为3。这意味着partial_match_length - table[partial_match_length - 1](即5 - talbe[4]，即5-3，即2)。即子串向右移动2个字符。如图所示：<br>
+<img src="/web_image/algorithm/kmp/05.jpg" alt="05"></p>
+<p>移动后的匹配情况如上图所示，匹配成功长度(partial_match_length)为3。对应的table[partial_match_length - 1](即table[2])值为1。意味着我们向后移动长度为：<code>partial_match_length - table[partial_match_length - 1]</code>(即3 - table[2] = 3 - 1 = 2)。移动后的结果如图所示：</p>
+<p><img src="/web_image/algorithm/kmp/06.jpg" alt="图6"></p>
+<p>因子串尾部以超过原串长度，因此结束匹配。</p>
+<h2 id="2-bm算法-boyer-moore-algorithm">2 BM算法 (Boyer-Moore Algorithm)</h2>
+<p>1977年，德克萨斯大学的Robert S. Boyer教授和J Strother Moore教授发明了这种算法。因此取这两个人的名字而得。word中的查找功能就是使用该算法。</p>
+<p>算法中的概念：</p>
+<blockquote>
+<ol>
+<li>坏字符(<strong>bad character</strong>)：字符串匹配过程中，与搜索串不匹配的字符。</li>
+<li>好后缀(<strong>good suffix</strong>): 即搜索串与原串尾部能够匹配的字符串。</li>
+</ol>
+</blockquote>
+<p>坏字符实例，如下图: <br>
+<img src="/web_image/algorithm/kmp/07.jpg" alt="图7坏字符1"><br>
+<img src="/web_image/algorithm/kmp/bad_ch02.jpg" alt="图8坏字符1"><br>
+<img src="/web_image/algorithm/kmp/good_suffix01.jpg" alt="bad_ch02"><br>
+好后缀实例，如下图：<br>
+<img src="/web_image/algorithm/kmp/good_suffix01.jpg" alt="good_suffix01"></p>
+<p><strong>比较规则</strong>：首先，将搜索串与原串对齐，从搜索串尾部从后往前比较。</p>
+<p><strong>坏字符移动规则</strong>: <code>后移位数 = 坏字符的位置 - 搜索词中的上一次出现位置</code>。说明，若搜索串中不包含坏字符，则<code>搜索串上一次出现位置</code>为-1。若包含该字符，则为离坏字符位置最近的那个位置。</p>
+<p><strong>好后缀规则</strong> :后移位数 = 好后缀的位置 - 搜索词中的上一次出现位置。好后缀位置以后缀最后一个位置为准。说明，若搜索串中不包含坏字符，则<code>搜索串上一次出现位置</code>为-1。例如：</p>
+<blockquote>
+<ul>
+<li>如果字符串&quot;ABCDAB&quot;的后一个&quot;AB&quot;是&quot;好后缀&quot;。那么它的位置是5（从0开始计算，<strong>取最后的&quot;B&quot;的值</strong>），在&quot;搜索词中的上一次出现位置&quot;是1（第一个&quot;B&quot;的位置），所以后移 5 - 1 = 4位，前一个&quot;AB&quot;移到后一个&quot;AB&quot;的位置。</li>
+<li>如果字符串&quot;ABCDEF&quot;的&quot;EF&quot;是好后缀，则&quot;EF&quot;的位置是5 ，上一次出现的位置是 -1（即未出现），所以后移 5 - (-1) = 6位，即整个字符串移到&quot;F&quot;的后一位。</li>
+</ul>
+</blockquote>
+<p>注意：</p>
+<ol>
+<li>以上两个规则的中的位置指的是搜索串中的位置。</li>
+<li>当通过坏字符规则和好后缀移动规则得到的值不同时，取较大的值作为移动量。</li>
+</ol>
+<p>下面以字符串为&quot;HERE IS A SIMPLE EXAMPLE&quot;，搜索词为&quot;EXAMPLE&quot;为例，进行说明：</p>
+<p>step1：<br>
+<img src="/web_image/algorithm/kmp/ex01.jpg" alt="ex01"></p>
+<p>首先遇到坏字符，计算移动位置：6 - (-1) = 7.
+step2:</p>
+<p><img src="/web_image/algorithm/kmp/ex02.jpg" alt="ex02"></p>
+<p>遇到坏字符，计算移动位置：6 - 4 = 2.</p>
+<p>step3:</p>
+<p><img src="/web_image/algorithm/kmp/ex03.jpg" alt="ex03"></p>
+<p>遇到好后缀，计算移动位置：6 - 0 = 6。</p>
+<p>step4:</p>
+<p><img src="/web_image/algorithm/kmp/ex04.jpg" alt="ex04"><br>
+坏字符和好后缀的选择问题：</p>
+<p>坏字符的结果：</p>
+<p><img src="/web_image/algorithm/kmp/ex05.jpg" alt="ex05"><br>
+后后缀的结果：</p>
+<p><img src="/web_image/algorithm/kmp/ex06.jpg" alt="ex06"></p>
+<p>step5:</p>
+<p><img src="/web_image/algorithm/kmp/ex07.jpg" alt="ex07"></p>
+<h2 id="3-sunday算法sunday-algorigthm">3 Sunday算法(Sunday Algorigthm)</h2>
+<p>sunday算法是对BM算法的改进。改进之处：当匹配失败时，判断搜索串下次匹配位置的第一个字符是否与搜索串第一个字符是否相同。进而减少匹配次数。</p>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/">字符串匹配</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/linux/linux_common_tools/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Linux常用命令的用法</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/hugo/hugo_some_usful_setting/">
+            <span class="next-text nav-default">Hugo中一些实用的配置</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:alvincat@126.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.google.com" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/alvincat" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://www.douban.com" class="iconfont icon-douban" title="douban"></a>
+      <a href="https://www.bilibili.com" class="iconfont icon-bilibili" title="bilibili"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2026<span class="heart"><i class="iconfont icon-heart"></i></span><span>alvincat</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

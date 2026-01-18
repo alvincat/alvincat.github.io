@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>并发编程中常见的问题 - Alvincat&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="alvincat" /><meta name="description" content="本文介绍并发程序中经常遇到的几个经典问题以及解决方法。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.138.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/linux/linux_some_typical_problem/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f5a694fa8a6b263f05f575c19a1e180f4c9dd0ee7515e64585961f31d756a263.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:url" content="http://localhost:1313/post/linux/linux_some_typical_problem/">
+  <meta property="og:site_name" content="Alvincat&#39;s Blog">
+  <meta property="og:title" content="并发编程中常见的问题">
+  <meta property="og:description" content="本文介绍并发程序中经常遇到的几个经典问题以及解决方法。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-12-11T16:11:22+08:00">
+    <meta property="article:modified_time" content="2024-12-11T16:11:22+08:00">
+
+  <meta itemprop="name" content="并发编程中常见的问题">
+  <meta itemprop="description" content="本文介绍并发程序中经常遇到的几个经典问题以及解决方法。">
+  <meta itemprop="datePublished" content="2024-12-11T16:11:22+08:00">
+  <meta itemprop="dateModified" content="2024-12-11T16:11:22+08:00">
+  <meta itemprop="wordCount" content="1908">
+  <meta itemprop="keywords" content="Linux">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="并发编程中常见的问题">
+  <meta name="twitter:description" content="本文介绍并发程序中经常遇到的几个经典问题以及解决方法。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Alvincat&#39;s Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/search/">
+        <li class="mobile-menu-item">搜索</li>
+      </a><a href="/contents/">
+        <li class="mobile-menu-item">目录</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Alvincat&#39;s Blog</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/search/">搜索</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/contents/">目录</a>
+      </li>
+  </ul>
+</nav>
+
+    </header><main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">并发编程中常见的问题</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-12-11 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            </div>
+          <span class="more-meta"> 约 1908 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-thundering-herd-problem惊群效应">1 Thundering herd problem(惊群效应)</a></li>
+    <li><a href="#2-lock-problem">2 lock problem</a>
+      <ul>
+        <li><a href="#21-deadlock死锁">2.1 deadlock(死锁)</a></li>
+        <li><a href="#22-livelock活锁">2.2 livelock(活锁)</a></li>
+        <li><a href="#23-starvation饿死">2.3 Starvation(饿死)</a></li>
+        <li><a href="#23-lock-convoy">2.3 Lock convoy</a></li>
+        <li><a href="#25-pessimistic-concurrency-control悲观锁">2.5 Pessimistic Concurrency Control(悲观锁)</a></li>
+        <li><a href="#26-optimistic-concurrency-control乐观锁">2.6 Optimistic Concurrency Control(乐观锁)</a></li>
+        <li><a href="#27-false-sharing伪共享">2.7 False Sharing(伪共享)</a></li>
+        <li><a href="#24-non-blocking-algorithm">2.4 Non-blocking algorithm</a>
+          <ul>
+            <li><a href="#241--ring-buffer-fifo">2.4.1  ring buffer FIFO</a></li>
+            <li><a href="#242--disruptor">2.4.2  disruptor</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文介绍并发程序中经常遇到的几个经典问题以及解决方法。</p>
+<h1 id="1-thundering-herd-problem惊群效应">1 Thundering herd problem(惊群效应)</h1>
+<p>解决方法：</p>
+<ol>
+<li>
+<p>Event Multiplexing: Use event-driven programming models (e.g., select, poll, epoll in Linux) that allow a single thread or process to handle multiple events.</p>
+</li>
+<li>
+<p>Load Distribution: Distribute the load more evenly among multiple processes or threads using techniques like load balancers.
+Load balancing involves distributing incoming requests across multiple servers to prevent any one server from becoming overwhelmed. By distributing the load across multiple servers, the likelihood of a thundering herd problem occurring can be reduced.</p>
+</li>
+<li>
+<p>Serialized Access: Implement locking mechanisms or use queueing to serialize access to the shared resource, ensuring that only one process or thread handles the event at a time.
+Queuing: Queuing involves placing incoming requests in a queue and processing them in a controlled and orderly manner. By queuing requests, the load on the resource can be controlled, and the likelihood of a thundering herd problem occurring can be minimized.</p>
+</li>
+<li>
+<p>Rate Limiting: Introduce rate limits to control the frequency at which processes or threads are woken up.
+Throttling involves limiting the rate at which requests are processed. By limiting the rate at which requests are processed, the load on the resource can be controlled, and the likelihood of a thundering herd problem occurring can be minimized.</p>
+</li>
+<li>
+<p>Connection pooling: Connection pooling involves reusing existing connections to a resource rather than creating a new connection for each request. By reusing existing connections, the load on the resource can be reduced, and the likelihood of a thundering herd problem occurring can be minimized.</p>
+</li>
+</ol>
+<h1 id="2-lock-problem">2 lock problem</h1>
+<h2 id="21-deadlock死锁">2.1 deadlock(死锁)</h2>
+<h2 id="22-livelock活锁">2.2 livelock(活锁)</h2>
+<p>活锁产生的背景是：若获取多个锁时，若无法获取全部的锁时，会释放已经持有的锁，防止死锁。</p>
+<p>下面考虑这种场景：<br>
+线程1(t1)需要获取lock1和lock2才能工作。线程2(t2)也需要获取lock1和lock2才能工作。<br>
+t1先拿到lock1,尝试去获取lock2；t2先拿到lock2,尝试获取lock1;如果t1获取lock1和t2获取到lock2是同时发生的，他们在尝试获取另外一个锁时都会失败，然后同时释放自己的锁后重新按照原流程进程尝试。这样就会导致两个线程一直重试而无法继续进行。</p>
+<p>活锁类似于生活中两个有礼貌的人让路的场景：两个人都很客气的让路给对方，但是两人同时移动到同一侧，又继续冲突，再移动回来又冲突，一直这样持续下去，那么就会发生活锁。</p>
+<h2 id="23-starvation饿死">2.3 Starvation(饿死)</h2>
+<h2 id="23-lock-convoy">2.3 Lock convoy</h2>
+<h2 id="25-pessimistic-concurrency-control悲观锁">2.5 Pessimistic Concurrency Control(悲观锁)</h2>
+<p>悲观锁策略：认为修改读写数据是不安全的，需要在操作数据前加锁，操作完数据后再解锁。也就是传统意义上的加锁动作。</p>
+<h2 id="26-optimistic-concurrency-control乐观锁">2.6 Optimistic Concurrency Control(乐观锁)</h2>
+<p>乐观锁的策略：乐观锁在更新数据前先获暂存数据，然后执行修改数据的操作。<br>
+在将数据写回时，确认数据是否被修改，若数据被修改，就放弃更新的动作。</p>
+<p>乐观锁，一般用在数据冲突比较小的场景。</p>
+<h2 id="27-false-sharing伪共享">2.7 False Sharing(伪共享)</h2>
+<h2 id="24-non-blocking-algorithm">2.4 Non-blocking algorithm</h2>
+<h3 id="241--ring-buffer-fifo">2.4.1  ring buffer FIFO</h3>
+<p>a single-reader single-writer</p>
+<h3 id="242--disruptor">2.4.2  disruptor</h3>
+<h4 id="2421-disruptor-的原理介绍">2.4.2.1 disruptor 的原理介绍</h4>
+<p><a href="https://github.com/LMAX-Exchange/disruptor/wiki/Blogs-And-Articles">How the Disruptor works and how to use it</a><br>
+<a href="https://lixiangyun.gitbook.io/disruptor">disruptor的原理中文翻译</a></p>
+<h4 id="2422-disruptor的ringbuffer结构">2.4.2.2 disruptor的ringbuffer结构</h4>
+<ol>
+<li>内部结构为数组实现的环状队列，大小一般设置为$2^n$个，这样可以通过使用<code>&amp;</code>运算替代<code>%</code>运算，加快计算速度。例如对于有8($2^3$)个数据的环状队列。
+只需要将数字编号n&amp;7(8-1)即可得访问对应的内容。</li>
+<li>其中的数据的编号从0开始，不断增长。随着你不停地填充这个buffer（可能也会有相应的读取），这个序号会一直增长，直到绕过这个环。</li>
+</ol>
+<h4 id="2423-从ring-buffer中读数据的原理">2.4.2.3 从ring Buffer中读数据的原理</h4>
+<p>假设Ring Buffer中已经写入了一些数据，如下图所示，怎样从Ring Buffer读出这些数据呢？
+<img src="/web_image/linux/disruptor/read_ringbuffer_01.png" alt="读数据示意图1"></p>
+<p>这里增加几个基本概念：</p>
+<ul>
+<li>
+<p>消费者(Consumer)：消费者(Consumer)是一个想从Ring Buffer里读取数据的线程。就像Ring Buffer需要一个序号才能找到下一个可用节点一样，消费者也需要知道它将要处理的序号——每个消费者都需要找到下一个它要访问的序号。　　</p>
+</li>
+<li>
+<p>ConsumerBarrier对象： ConsumerBarrier是消费者和Ring Buffer沟通的桥梁，用于两者之间的通信。
+这个对象由RingBuffer创建并且代表消费者与RingBuffer进行交互。</p>
+</li>
+</ul>
+<p>消费者可以调用ConsumerBarrier对象的waitFor()方法，传递它所需要的下一个序号.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">final</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">availableSeq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">consumerBarrier</span><span class="p">.</span><span class="na">waitFor</span><span class="p">(</span><span class="n">nextSequence</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>在上面的例子中，消费者处理完了Ring Buffer里序号8之前（包括8）的所有数据，那么它期待访问的下一个序号是9。
+但是ConsumerBarrier从RingBuffer获取到的最大可访问序号是12。如下图所示： <br>
+<img src="/web_image/linux/disruptor/read_ringbuffer_02.png" alt="读数据示意图1"></p>
+<p><strong>注意</strong>：</p>
+<ol>
+<li>
+<p>对于这个环状队列，其中的编号要经过对环的大小取余，才是其实际的编号。<br>
+针对该示例，RingBuffer返回的最大可访问序列号是12（实际对应的数组编号是2），而消费者期望访问的编号是9。   所以消费者需要等待数据填充到9以及已有的区域时才可以访问。（实际分析问题是，可以认为只能按照顺时针去访问数据，不能逆时针访问。）</p>
+</li>
+<li>
+<p>ConsumerBarrier有一个WaitStrategy方法来决定它如何等待这个序号</p>
+</li>
+</ol>
+<p>接下来怎么做？<br>
+接下来消费者会一直原地停留，等待更多数据被写入Ring Buffer。并且一旦数据写入后消费者会收到通知——节点9，10，11和12 已写入。现在序号12到了，消费者可以让ConsumerBarrier去拿这些序号节点里的数据了。如下图所示：</p>
+<p><img src="/web_image/linux/disruptor/read_ringbuffer_03.png" alt="读数据示意图1"></p>
+<h4 id="2424-向ringbuffer中写数据的原理">2.4.2.4 向ringbuffer中写数据的原理</h4>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags//"></a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/linux/backtrace/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Linux系统中进程打印堆栈的原理</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/data_structure/queue/implement_a_queue/">
+            <span class="next-text nav-default">C语言实现一个队列的功能</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+    
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:alvincat@126.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.google.com" class="iconfont icon-google" title="google"></a>
+      <a href="https://github.com/alvincat" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="https://www.douban.com" class="iconfont icon-douban" title="douban"></a>
+      <a href="https://www.bilibili.com" class="iconfont icon-bilibili" title="bilibili"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2026<span class="heart"><i class="iconfont icon-heart"></i></span><span>alvincat</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

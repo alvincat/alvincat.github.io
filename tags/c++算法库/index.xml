@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43;算法库 on Alvincat&#39;s Blog</title>
+    <link>http://localhost:1313/tags/c&#43;&#43;%E7%AE%97%E6%B3%95%E5%BA%93/</link>
+    <description>Recent content in C&#43;&#43;算法库 on Alvincat&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>alvincat</copyright>
+    <lastBuildDate>Fri, 27 Dec 2024 11:23:42 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/c++%E7%AE%97%E6%B3%95%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43;算法库-排序算法</title>
+      <link>http://localhost:1313/post/cpp/algorithms_library/sorting_operations/</link>
+      <pubDate>Fri, 27 Dec 2024 11:23:42 +0800</pubDate>
+      <guid>http://localhost:1313/post/cpp/algorithms_library/sorting_operations/</guid>
+      <description>&lt;p&gt;本文总结C++算法库中有关排序相关的库函数的常见用法。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
