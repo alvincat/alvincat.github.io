@@ -54,7 +54,7 @@
   <meta itemprop="description" content="本文总结内联汇编的基本用法和应用举例。">
   <meta itemprop="datePublished" content="2026-02-07T16:42:10+08:00">
   <meta itemprop="dateModified" content="2026-02-07T16:42:10+08:00">
-  <meta itemprop="wordCount" content="888">
+  <meta itemprop="wordCount" content="1404">
   <meta itemprop="keywords" content="汇编语言">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="内联汇编">
@@ -148,8 +148,8 @@
         <div class="post-category">
             <a href="/categories/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/"> 汇编语言 </a>
             </div>
-          <span class="more-meta"> 约 888 字 </span>
-          <span class="more-meta"> 预计阅读 2 分钟 </span>
+          <span class="more-meta"> 约 1404 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
         
       </div>
     </header>
@@ -172,7 +172,7 @@
     </li>
     <li><a href="#2-内联汇编实例">2 内联汇编实例</a>
       <ul>
-        <li><a href="#21">2.1</a></li>
+        <li><a href="#21-x86内联汇编实例">2.1 x86内联汇编实例</a></li>
       </ul>
     </li>
   </ul>
@@ -252,9 +252,9 @@
 <li>内联汇编代码说明</li>
 </ol>
 <ul>
-<li>第7，8行为汇编代码。其中%0, %1, %2为占位符，占位符将在后续说明。</li>
-<li>内联汇编中，若有多行代码，一般使用<code>\n\t</code>分隔；</li>
-<li>此处%1表示的是第一个输出操作数。%1为第一个输入操作数，%2为第二个输入操作数。</li>
+<li>引号包含的内容为汇编语言。此处第7，8行为汇编代码。其中%0, %1, %2为占位符，占位符将在后续说明。</li>
+<li>内联汇编中，若有多行代码，一般使用<code>\n\t</code>分隔（也可以写在同一行，使用分好分隔）；</li>
+<li>此处%0表示的是第一个输出操作数。%1为第一个输入操作数，%2为第二个输入操作数。</li>
 </ul>
 <ol start="2">
 <li>输出操作数列表</li>
@@ -286,7 +286,7 @@
 <ul>
 <li>从0开始编号</li>
 <li>先从输出操作数开始，依次编号。</li>
-<li>编号顺序为：第一个输出操作数为%0，，第二个输出操作数为%1，然后一次编号输入操作数。输出操作数编号完毕后，紧接着编号输入操作数。</li>
+<li>编号顺序为：第一个输出操作数为%0，第二个输出操作数为%1，然后依次编号输入操作数。输出操作数编号完毕后，紧接着编号输入操作数。</li>
 </ul>
 <h3 id="122-修饰符">1.2.2 修饰符</h3>
 <p>修饰符用于控制输入操作数列表，输出操作数列表和被破坏寄存器列表，可以多个修饰符共同使用。</p>
@@ -332,7 +332,52 @@
   </tbody>
 </table>
 <h1 id="2-内联汇编实例">2 内联汇编实例</h1>
-<h2 id="21">2.1</h2>
+<h2 id="21-x86内联汇编实例">2.1 x86内联汇编实例</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">static</span> <span class="kr">inline</span> <span class="kt">int</span> <span class="nf">a_cas</span><span class="p">(</span><span class="k">volatile</span> <span class="kt">int</span> <span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="kt">int</span> <span class="n">t</span><span class="p">,</span> <span class="kt">int</span> <span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__asm__</span> <span class="nf">__volatile__</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;lock ; cmpxchg %3, %1&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">:</span> <span class="s">&#34;=a&#34;</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="s">&#34;=m&#34;</span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">        <span class="o">:</span> <span class="s">&#34;a&#34;</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="s">&#34;r&#34;</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">        <span class="o">:</span> <span class="s">&#34;memory&#34;</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>代码含义说明：</p>
+<ul>
+<li>%0表示输出参数t，%1表示输出参数*p，%2表示输入参数t，%3表示输入参数s。</li>
+</ul>
+<ul>
+<li>
+<p><code>%0</code> 和 <code>%2</code> 都关联到同一个 C 变量 <code>t</code>，但含义不同：<code>%2</code> 是输入，提供期望值；<code>%0</code> 是输出，将操作后的实际值写回 <code>t</code>。&quot;=a&quot;(t)表示将通用寄存器EAX的值写入到输出参数t中。&ldquo;a&rdquo;(t)表示将输入参数t的保存到通用寄存器EAX中。</p>
+</li>
+<li>
+<p><code>%1</code> 被声明为 <code>=m</code>（输出），同时又被隐含地作为 CMPXCHG 的目的操作数，会被修改。虽然未在输入列表中显式出现，但 <code>&quot;memory&quot;</code> 破坏描述符同样确保了编译器不会在此前后缓存该内存的值。</p>
+</li>
+<li>
+<p><code>*(void *volatile *)p</code> 这个写法：先将 <code>p</code> 强制转换为 <code>void *volatile *</code> 类型（即指向 <code>volatile void*</code> 的指针），再解引用，从而操作一个指针大小的内存单元，并告知编译器该内存是易变的。</p>
+</li>
+<li>
+<p>函数功能说明：原子的比较 <code>*p</code>（即地址 <code>p</code> 处存放的指针值）是否等于 <code>t</code>，如果相等则将其替换为 <code>s</code>；*<em>无论成功与否，最终都返回 <em>p 在操作前的实际值</em></em>。</p>
+</li>
+<li>
+<p>返回值的行为是标准 CAS 的一种形式：函数返回旧值，调用方通过判断 <code>返回值 == t</code> 来得知是否交换成功。</p>
+</li>
+</ul>
     </div>
 
     
