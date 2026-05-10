@@ -7,7 +7,7 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Sat, 07 Feb 2026 16:42:10 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 10 May 2026 20:36:44 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>网站导航页</title>
@@ -15,6 +15,13 @@
       <pubDate>Wed, 13 Nov 2024 16:30:08 +0800</pubDate>
       <guid>http://localhost:1313/contents/</guid>
       <description>&lt;p&gt;该页面为网站的导航页面。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Musl使用方法简介</title>
+      <link>http://localhost:1313/post/linux/musl_usage/</link>
+      <pubDate>Sun, 10 May 2026 20:36:44 +0800</pubDate>
+      <guid>http://localhost:1313/post/linux/musl_usage/</guid>
+      <description></description>
     </item>
     <item>
       <title>内联汇编</title>

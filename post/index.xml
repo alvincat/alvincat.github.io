@@ -7,8 +7,15 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>alvincat</copyright>
-    <lastBuildDate>Sat, 07 Feb 2026 16:42:10 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 10 May 2026 20:36:44 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Musl使用方法简介</title>
+      <link>http://localhost:1313/post/linux/musl_usage/</link>
+      <pubDate>Sun, 10 May 2026 20:36:44 +0800</pubDate>
+      <guid>http://localhost:1313/post/linux/musl_usage/</guid>
+      <description></description>
+    </item>
     <item>
       <title>内联汇编</title>
       <link>http://localhost:1313/post/assembly/inlineassembly/</link>
